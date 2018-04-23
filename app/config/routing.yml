@@ -4,4 +4,4 @@ app:
 
 home_visitor:  
     path: /
-    defaults: { _controller: AppBundle:home:homeVisitor }
+    defaults: { _controller: AppBundle:Home:homeVisitor }
