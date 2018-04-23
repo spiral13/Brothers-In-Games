@@ -8240,6 +8240,314 @@ module.exports = require('./modules/_core');
   })();
 });
 
+require.register("events/events.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "events");
+  (function() {
+    // Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+function EventEmitter() {
+  this._events = this._events || {};
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+EventEmitter.defaultMaxListeners = 10;
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function(n) {
+  if (!isNumber(n) || n < 0 || isNaN(n))
+    throw TypeError('n must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+EventEmitter.prototype.emit = function(type) {
+  var er, handler, len, args, i, listeners;
+
+  if (!this._events)
+    this._events = {};
+
+  // If there is no 'error' event listener then throw.
+  if (type === 'error') {
+    if (!this._events.error ||
+        (isObject(this._events.error) && !this._events.error.length)) {
+      er = arguments[1];
+      if (er instanceof Error) {
+        throw er; // Unhandled 'error' event
+      } else {
+        // At least give some kind of context to the user
+        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
+        err.context = er;
+        throw err;
+      }
+    }
+  }
+
+  handler = this._events[type];
+
+  if (isUndefined(handler))
+    return false;
+
+  if (isFunction(handler)) {
+    switch (arguments.length) {
+      // fast cases
+      case 1:
+        handler.call(this);
+        break;
+      case 2:
+        handler.call(this, arguments[1]);
+        break;
+      case 3:
+        handler.call(this, arguments[1], arguments[2]);
+        break;
+      // slower
+      default:
+        args = Array.prototype.slice.call(arguments, 1);
+        handler.apply(this, args);
+    }
+  } else if (isObject(handler)) {
+    args = Array.prototype.slice.call(arguments, 1);
+    listeners = handler.slice();
+    len = listeners.length;
+    for (i = 0; i < len; i++)
+      listeners[i].apply(this, args);
+  }
+
+  return true;
+};
+
+EventEmitter.prototype.addListener = function(type, listener) {
+  var m;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events)
+    this._events = {};
+
+  // To avoid recursion in the case that type === "newListener"! Before
+  // adding it to the listeners, first emit "newListener".
+  if (this._events.newListener)
+    this.emit('newListener', type,
+              isFunction(listener.listener) ?
+              listener.listener : listener);
+
+  if (!this._events[type])
+    // Optimize the case of one listener. Don't need the extra array object.
+    this._events[type] = listener;
+  else if (isObject(this._events[type]))
+    // If we've already got an array, just append.
+    this._events[type].push(listener);
+  else
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+
+  // Check for listener leak
+  if (isObject(this._events[type]) && !this._events[type].warned) {
+    if (!isUndefined(this._maxListeners)) {
+      m = this._maxListeners;
+    } else {
+      m = EventEmitter.defaultMaxListeners;
+    }
+
+    if (m && m > 0 && this._events[type].length > m) {
+      this._events[type].warned = true;
+      console.error('(node) warning: possible EventEmitter memory ' +
+                    'leak detected. %d listeners added. ' +
+                    'Use emitter.setMaxListeners() to increase limit.',
+                    this._events[type].length);
+      if (typeof console.trace === 'function') {
+        // not supported in IE 10
+        console.trace();
+      }
+    }
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.once = function(type, listener) {
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  var fired = false;
+
+  function g() {
+    this.removeListener(type, g);
+
+    if (!fired) {
+      fired = true;
+      listener.apply(this, arguments);
+    }
+  }
+
+  g.listener = listener;
+  this.on(type, g);
+
+  return this;
+};
+
+// emits a 'removeListener' event iff the listener was removed
+EventEmitter.prototype.removeListener = function(type, listener) {
+  var list, position, length, i;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events || !this._events[type])
+    return this;
+
+  list = this._events[type];
+  length = list.length;
+  position = -1;
+
+  if (list === listener ||
+      (isFunction(list.listener) && list.listener === listener)) {
+    delete this._events[type];
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+
+  } else if (isObject(list)) {
+    for (i = length; i-- > 0;) {
+      if (list[i] === listener ||
+          (list[i].listener && list[i].listener === listener)) {
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0)
+      return this;
+
+    if (list.length === 1) {
+      list.length = 0;
+      delete this._events[type];
+    } else {
+      list.splice(position, 1);
+    }
+
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = function(type) {
+  var key, listeners;
+
+  if (!this._events)
+    return this;
+
+  // not listening for removeListener, no need to emit
+  if (!this._events.removeListener) {
+    if (arguments.length === 0)
+      this._events = {};
+    else if (this._events[type])
+      delete this._events[type];
+    return this;
+  }
+
+  // emit removeListener for all listeners on all events
+  if (arguments.length === 0) {
+    for (key in this._events) {
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+    this.removeAllListeners('removeListener');
+    this._events = {};
+    return this;
+  }
+
+  listeners = this._events[type];
+
+  if (isFunction(listeners)) {
+    this.removeListener(type, listeners);
+  } else if (listeners) {
+    // LIFO order
+    while (listeners.length)
+      this.removeListener(type, listeners[listeners.length - 1]);
+  }
+  delete this._events[type];
+
+  return this;
+};
+
+EventEmitter.prototype.listeners = function(type) {
+  var ret;
+  if (!this._events || !this._events[type])
+    ret = [];
+  else if (isFunction(this._events[type]))
+    ret = [this._events[type]];
+  else
+    ret = this._events[type].slice();
+  return ret;
+};
+
+EventEmitter.prototype.listenerCount = function(type) {
+  if (this._events) {
+    var evlistener = this._events[type];
+
+    if (isFunction(evlistener))
+      return 1;
+    else if (evlistener)
+      return evlistener.length;
+  }
+  return 0;
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  return emitter.listenerCount(type);
+};
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+  })();
+});
+
 require.register("fbjs/lib/ExecutionEnvironment.js", function(exports, require, module) {
   require = __makeRelativeRequire(require, {"transform":["loose-envify"]}, "fbjs");
   (function() {
@@ -10149,6 +10457,308 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 };
 
 module.exports = invariant;
+  })();
+});
+
+require.register("keymaster/keymaster.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "keymaster");
+  (function() {
+    //     keymaster.js
+//     (c) 2011-2013 Thomas Fuchs
+//     keymaster.js may be freely distributed under the MIT license.
+
+;(function(global){
+  var k,
+    _handlers = {},
+    _mods = { 16: false, 18: false, 17: false, 91: false },
+    _scope = 'all',
+    // modifier keys
+    _MODIFIERS = {
+      '⇧': 16, shift: 16,
+      '⌥': 18, alt: 18, option: 18,
+      '⌃': 17, ctrl: 17, control: 17,
+      '⌘': 91, command: 91
+    },
+    // special keys
+    _MAP = {
+      backspace: 8, tab: 9, clear: 12,
+      enter: 13, 'return': 13,
+      esc: 27, escape: 27, space: 32,
+      left: 37, up: 38,
+      right: 39, down: 40,
+      del: 46, 'delete': 46,
+      home: 36, end: 35,
+      pageup: 33, pagedown: 34,
+      ',': 188, '.': 190, '/': 191,
+      '`': 192, '-': 189, '=': 187,
+      ';': 186, '\'': 222,
+      '[': 219, ']': 221, '\\': 220
+    },
+    code = function(x){
+      return _MAP[x] || x.toUpperCase().charCodeAt(0);
+    },
+    _downKeys = [];
+
+  for(k=1;k<20;k++) _MAP['f'+k] = 111+k;
+
+  // IE doesn't support Array#indexOf, so have a simple replacement
+  function index(array, item){
+    var i = array.length;
+    while(i--) if(array[i]===item) return i;
+    return -1;
+  }
+
+  // for comparing mods before unassignment
+  function compareArray(a1, a2) {
+    if (a1.length != a2.length) return false;
+    for (var i = 0; i < a1.length; i++) {
+        if (a1[i] !== a2[i]) return false;
+    }
+    return true;
+  }
+
+  var modifierMap = {
+      16:'shiftKey',
+      18:'altKey',
+      17:'ctrlKey',
+      91:'metaKey'
+  };
+  function updateModifierKey(event) {
+      for(k in _mods) _mods[k] = event[modifierMap[k]];
+  };
+
+  // handle keydown event
+  function dispatch(event) {
+    var key, handler, k, i, modifiersMatch, scope;
+    key = event.keyCode;
+
+    if (index(_downKeys, key) == -1) {
+        _downKeys.push(key);
+    }
+
+    // if a modifier key, set the key.<modifierkeyname> property to true and return
+    if(key == 93 || key == 224) key = 91; // right command on webkit, command on Gecko
+    if(key in _mods) {
+      _mods[key] = true;
+      // 'assignKey' from inside this closure is exported to window.key
+      for(k in _MODIFIERS) if(_MODIFIERS[k] == key) assignKey[k] = true;
+      return;
+    }
+    updateModifierKey(event);
+
+    // see if we need to ignore the keypress (filter() can can be overridden)
+    // by default ignore key presses if a select, textarea, or input is focused
+    if(!assignKey.filter.call(this, event)) return;
+
+    // abort if no potentially matching shortcuts found
+    if (!(key in _handlers)) return;
+
+    scope = getScope();
+
+    // for each potential shortcut
+    for (i = 0; i < _handlers[key].length; i++) {
+      handler = _handlers[key][i];
+
+      // see if it's in the current scope
+      if(handler.scope == scope || handler.scope == 'all'){
+        // check if modifiers match if any
+        modifiersMatch = handler.mods.length > 0;
+        for(k in _mods)
+          if((!_mods[k] && index(handler.mods, +k) > -1) ||
+            (_mods[k] && index(handler.mods, +k) == -1)) modifiersMatch = false;
+        // call the handler and stop the event if neccessary
+        if((handler.mods.length == 0 && !_mods[16] && !_mods[18] && !_mods[17] && !_mods[91]) || modifiersMatch){
+          if(handler.method(event, handler)===false){
+            if(event.preventDefault) event.preventDefault();
+              else event.returnValue = false;
+            if(event.stopPropagation) event.stopPropagation();
+            if(event.cancelBubble) event.cancelBubble = true;
+          }
+        }
+      }
+    }
+  };
+
+  // unset modifier keys on keyup
+  function clearModifier(event){
+    var key = event.keyCode, k,
+        i = index(_downKeys, key);
+
+    // remove key from _downKeys
+    if (i >= 0) {
+        _downKeys.splice(i, 1);
+    }
+
+    if(key == 93 || key == 224) key = 91;
+    if(key in _mods) {
+      _mods[key] = false;
+      for(k in _MODIFIERS) if(_MODIFIERS[k] == key) assignKey[k] = false;
+    }
+  };
+
+  function resetModifiers() {
+    for(k in _mods) _mods[k] = false;
+    for(k in _MODIFIERS) assignKey[k] = false;
+  };
+
+  // parse and assign shortcut
+  function assignKey(key, scope, method){
+    var keys, mods;
+    keys = getKeys(key);
+    if (method === undefined) {
+      method = scope;
+      scope = 'all';
+    }
+
+    // for each shortcut
+    for (var i = 0; i < keys.length; i++) {
+      // set modifier keys if any
+      mods = [];
+      key = keys[i].split('+');
+      if (key.length > 1){
+        mods = getMods(key);
+        key = [key[key.length-1]];
+      }
+      // convert to keycode and...
+      key = key[0]
+      key = code(key);
+      // ...store handler
+      if (!(key in _handlers)) _handlers[key] = [];
+      _handlers[key].push({ shortcut: keys[i], scope: scope, method: method, key: keys[i], mods: mods });
+    }
+  };
+
+  // unbind all handlers for given key in current scope
+  function unbindKey(key, scope) {
+    var multipleKeys, keys,
+      mods = [],
+      i, j, obj;
+
+    multipleKeys = getKeys(key);
+
+    for (j = 0; j < multipleKeys.length; j++) {
+      keys = multipleKeys[j].split('+');
+
+      if (keys.length > 1) {
+        mods = getMods(keys);
+        key = keys[keys.length - 1];
+      }
+
+      key = code(key);
+
+      if (scope === undefined) {
+        scope = getScope();
+      }
+      if (!_handlers[key]) {
+        return;
+      }
+      for (i = 0; i < _handlers[key].length; i++) {
+        obj = _handlers[key][i];
+        // only clear handlers if correct scope and mods match
+        if (obj.scope === scope && compareArray(obj.mods, mods)) {
+          _handlers[key][i] = {};
+        }
+      }
+    }
+  };
+
+  // Returns true if the key with code 'keyCode' is currently down
+  // Converts strings into key codes.
+  function isPressed(keyCode) {
+      if (typeof(keyCode)=='string') {
+        keyCode = code(keyCode);
+      }
+      return index(_downKeys, keyCode) != -1;
+  }
+
+  function getPressedKeyCodes() {
+      return _downKeys.slice(0);
+  }
+
+  function filter(event){
+    var tagName = (event.target || event.srcElement).tagName;
+    // ignore keypressed in any elements that support keyboard data input
+    return !(tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+  }
+
+  // initialize key.<modifier> to false
+  for(k in _MODIFIERS) assignKey[k] = false;
+
+  // set current scope (default 'all')
+  function setScope(scope){ _scope = scope || 'all' };
+  function getScope(){ return _scope || 'all' };
+
+  // delete all handlers for a given scope
+  function deleteScope(scope){
+    var key, handlers, i;
+
+    for (key in _handlers) {
+      handlers = _handlers[key];
+      for (i = 0; i < handlers.length; ) {
+        if (handlers[i].scope === scope) handlers.splice(i, 1);
+        else i++;
+      }
+    }
+  };
+
+  // abstract key logic for assign and unassign
+  function getKeys(key) {
+    var keys;
+    key = key.replace(/\s/g, '');
+    keys = key.split(',');
+    if ((keys[keys.length - 1]) == '') {
+      keys[keys.length - 2] += ',';
+    }
+    return keys;
+  }
+
+  // abstract mods logic for assign and unassign
+  function getMods(key) {
+    var mods = key.slice(0, key.length - 1);
+    for (var mi = 0; mi < mods.length; mi++)
+    mods[mi] = _MODIFIERS[mods[mi]];
+    return mods;
+  }
+
+  // cross-browser events
+  function addEvent(object, event, method) {
+    if (object.addEventListener)
+      object.addEventListener(event, method, false);
+    else if(object.attachEvent)
+      object.attachEvent('on'+event, function(){ method(window.event) });
+  };
+
+  // set the handlers globally on document
+  addEvent(document, 'keydown', function(event) { dispatch(event) }); // Passing _scope to a callback to ensure it remains the same by execution. Fixes #48
+  addEvent(document, 'keyup', clearModifier);
+
+  // reset modifiers to false whenever the window is (re)focused.
+  addEvent(window, 'focus', resetModifiers);
+
+  // store previously defined key
+  var previousKey = global.key;
+
+  // restore previously defined key and return reference to our key object
+  function noConflict() {
+    var k = global.key;
+    global.key = previousKey;
+    return k;
+  }
+
+  // set window.key and window.key.set/get/deleteScope, and the default filter
+  global.key = assignKey;
+  global.key.setScope = setScope;
+  global.key.getScope = getScope;
+  global.key.deleteScope = deleteScope;
+  global.key.filter = filter;
+  global.key.isPressed = isPressed;
+  global.key.getPressedKeyCodes = getPressedKeyCodes;
+  global.key.noConflict = noConflict;
+  global.key.unbind = unbindKey;
+
+  if(typeof module !== 'undefined') module.exports = assignKey;
+
+})(this);
   })();
 });
 
@@ -28851,6 +29461,1115 @@ if ('development' === 'production') {
   })();
 });
 
+require.register("react-popup/dist/ActionButton.react.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var defaultProps = {
+    onClick: function onClick() {},
+    className: 'btn',
+    url: null
+};
+
+var propTypes = {
+    onClick: _propTypes2.default.func,
+    className: _propTypes2.default.string,
+    children: _propTypes2.default.node.isRequired,
+    url: _propTypes2.default.string
+};
+
+var Component = function (_React$Component) {
+    _inherits(Component, _React$Component);
+
+    function Component() {
+        _classCallCheck(this, Component);
+
+        return _possibleConstructorReturn(this, (Component.__proto__ || Object.getPrototypeOf(Component)).apply(this, arguments));
+    }
+
+    _createClass(Component, [{
+        key: 'handleClick',
+        value: function handleClick() {
+            return this.props.onClick();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var className = this.props.className;
+
+
+            if (this.props.url && this.props.url !== '#') {
+                return _react2.default.createElement(
+                    'a',
+                    { href: this.props.url, target: '_blank', className: className },
+                    this.props.children
+                );
+            }
+
+            return _react2.default.createElement(
+                'button',
+                { onClick: function onClick() {
+                        return _this2.handleClick();
+                    }, className: className },
+                this.props.children
+            );
+        }
+    }]);
+
+    return Component;
+}(_react2.default.Component);
+
+Component.displayName = 'PopupAction';
+Component.propTypes = propTypes;
+Component.defaultProps = defaultProps;
+
+exports.default = Component;
+  })();
+});
+
+require.register("react-popup/dist/ButtonsSpace.react.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _ActionButton = require('./ActionButton.react');
+
+var _ActionButton2 = _interopRequireDefault(_ActionButton);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ButtonsSpace = function (_React$Component) {
+    _inherits(ButtonsSpace, _React$Component);
+
+    function ButtonsSpace() {
+        _classCallCheck(this, ButtonsSpace);
+
+        return _possibleConstructorReturn(this, (ButtonsSpace.__proto__ || Object.getPrototypeOf(ButtonsSpace)).apply(this, arguments));
+    }
+
+    _createClass(ButtonsSpace, [{
+        key: 'onOk',
+        value: function onOk() {
+            return this.props.onOk();
+        }
+    }, {
+        key: 'onClose',
+        value: function onClose() {
+            return this.props.onClose();
+        }
+    }, {
+        key: 'buttonClick',
+        value: function buttonClick(action) {
+            return this.props.buttonClick(action);
+        }
+    }, {
+        key: 'wildClass',
+        value: function wildClass(className, base) {
+            if (!className) {
+                return null;
+            }
+
+            if (this.props.wildClasses) {
+                return className;
+            }
+
+            var finalClass = [];
+            var classNames = className.split(' ');
+
+            classNames.forEach(function (singleClass) {
+                finalClass.push(base + '--' + singleClass);
+            });
+
+            return finalClass.join(' ');
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            if (!this.props.buttons) {
+                return null;
+            }
+
+            var btns = [];
+
+            this.props.buttons.forEach(function (btn, i) {
+                var url = btn.url ? btn.url : null;
+                var key = i;
+
+                if (typeof btn === 'string') {
+                    if (btn === 'ok') {
+                        btns.push(_react2.default.createElement(
+                            _ActionButton2.default,
+                            { className: _this2.props.btnClass + ' ' + _this2.props.btnClass + '--ok', key: key, onClick: function onClick() {
+                                    return _this2.onOk();
+                                } },
+                            _this2.props.defaultOk
+                        ));
+                    } else if (btn === 'cancel') {
+                        btns.push(_react2.default.createElement(
+                            _ActionButton2.default,
+                            { className: _this2.props.btnClass + ' ' + _this2.props.btnClass + '--cancel', key: key, onClick: function onClick() {
+                                    return _this2.onClose();
+                                } },
+                            _this2.props.defaultCancel
+                        ));
+                    }
+                } else {
+                    var className = _this2.props.btnClass + ' ' + _this2.wildClass(btn.className, _this2.props.btnClass);
+                    var btnComponent = _react2.default.createElement(
+                        _ActionButton2.default,
+                        {
+                            className: className,
+                            key: key,
+                            url: url,
+                            onClick: function onClick() {
+                                return _this2.buttonClick(btn.action);
+                            }
+                        },
+                        btn.text
+                    );
+
+                    btns.push(btnComponent);
+                }
+            });
+
+            return _react2.default.createElement(
+                'div',
+                { className: this.props.className },
+                btns
+            );
+        }
+    }]);
+
+    return ButtonsSpace;
+}(_react2.default.Component);
+
+ButtonsSpace.displayName = 'PopupFooterButtons';
+ButtonsSpace.propTypes = {
+    buttons: _propTypes2.default.arrayOf(_propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object])),
+    className: _propTypes2.default.string,
+    onOk: _propTypes2.default.func,
+    onClose: _propTypes2.default.func,
+    buttonClick: _propTypes2.default.func,
+    btnClass: _propTypes2.default.string,
+    wildClasses: _propTypes2.default.bool,
+    defaultOk: _propTypes2.default.string,
+    defaultCancel: _propTypes2.default.string
+};
+ButtonsSpace.defaultProps = {
+    buttons: null,
+    className: null,
+    onOk: function onOk() {},
+    onClose: function onClose() {},
+    buttonClick: function buttonClick() {},
+    btnClass: null,
+    wildClasses: false,
+    defaultOk: null,
+    defaultCancel: null
+};
+exports.default = ButtonsSpace;
+  })();
+});
+
+require.register("react-popup/dist/Constants.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    SHOW: 'SHOW',
+    CLOSE: 'CLOSE',
+    REFRESH: 'REFRESH'
+};
+  })();
+});
+
+require.register("react-popup/dist/Footer.react.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _ButtonsSpace = require('./ButtonsSpace.react');
+
+var _ButtonsSpace2 = _interopRequireDefault(_ButtonsSpace);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Component = function Component(props) {
+    if (!props.buttons) {
+        return null;
+    }
+
+    return _react2.default.createElement(
+        'footer',
+        { className: props.className },
+        _react2.default.createElement(_ButtonsSpace2.default, {
+            buttonClick: props.buttonClick,
+            onOk: props.onOk,
+            onClose: props.onClose,
+            className: props.className + '__left-space',
+            wildClasses: props.wildClasses,
+            btnClass: props.btnClass,
+            defaultOk: props.defaultOk,
+            defaultCancel: props.defaultCancel,
+            buttons: props.buttons.left
+        }),
+        _react2.default.createElement(_ButtonsSpace2.default, {
+            buttonClick: props.buttonClick,
+            onOk: props.onOk,
+            onClose: props.onClose,
+            className: props.className + '__right-space',
+            wildClasses: props.wildClasses,
+            btnClass: props.btnClass,
+            defaultOk: props.defaultOk,
+            defaultCancel: props.defaultCancel,
+            buttons: props.buttons.right
+        })
+    );
+};
+
+Component.displayName = 'PopupFooter';
+Component.propTypes = {
+    buttons: _propTypes2.default.shape({
+        left: _propTypes2.default.arrayOf(_propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object])),
+        right: _propTypes2.default.arrayOf(_propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]))
+    }),
+    className: _propTypes2.default.string,
+    wildClasses: _propTypes2.default.bool,
+    btnClass: _propTypes2.default.string,
+    onOk: _propTypes2.default.func,
+    onClose: _propTypes2.default.func,
+    buttonClick: _propTypes2.default.func,
+    defaultOk: _propTypes2.default.string,
+    defaultCancel: _propTypes2.default.string
+};
+Component.defaultProps = {
+    buttons: null,
+    className: null,
+    wildClasses: false,
+    btnClass: null,
+    defaultOk: null,
+    defaultCancel: null,
+    buttonClick: function buttonClick() {},
+    onOk: function onOk() {},
+    onClose: function onClose() {}
+};
+
+exports.default = Component;
+  })();
+});
+
+require.register("react-popup/dist/Header.react.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Component = function Component(props) {
+    if (!props.title) {
+        return null;
+    }
+
+    return _react2.default.createElement(
+        'header',
+        { className: props.className },
+        _react2.default.createElement(
+            'h1',
+            { className: props.className + '__title' },
+            props.title
+        )
+    );
+};
+
+Component.displayName = 'PopupHeader';
+Component.defaultProps = {
+    title: null,
+    className: null
+};
+Component.propTypes = {
+    title: _propTypes2.default.string,
+    className: _propTypes2.default.string
+};
+
+exports.default = Component;
+  })();
+});
+
+require.register("react-popup/dist/Popup.react.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _keymaster = require('keymaster');
+
+var _keymaster2 = _interopRequireDefault(_keymaster);
+
+var _Store = require('./Store');
+
+var _Store2 = _interopRequireDefault(_Store);
+
+var _Header = require('./Header.react');
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Footer = require('./Footer.react');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _Constants = require('./Constants');
+
+var _Constants2 = _interopRequireDefault(_Constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var defaultKeyFilter = _keymaster2.default.filter;
+
+var Store = new _Store2.default();
+var hasClass = function hasClass(element, className) {
+    if (element.classList) {
+        return !!className && element.classList.contains(className);
+    }
+
+    return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+};
+
+var handleClose = function handleClose() {
+    _keymaster2.default.deleteScope('react-popup');
+    _keymaster2.default.filter = defaultKeyFilter;
+
+    Store.close();
+};
+
+var initialState = {
+    id: null,
+    title: null,
+    buttons: null,
+    content: null,
+    visible: false,
+    className: null,
+    noOverlay: false,
+    position: false,
+    closeOnOutsideClick: true
+};
+
+var Component = function (_React$Component) {
+    _inherits(Component, _React$Component);
+
+    _createClass(Component, null, [{
+        key: 'addShowListener',
+        value: function addShowListener(callback) {
+            Store.on(_Constants2.default.SHOW, callback);
+        }
+    }, {
+        key: 'removeShowListener',
+        value: function removeShowListener(callback) {
+            Store.removeListener(_Constants2.default.SHOW, callback);
+        }
+    }, {
+        key: 'addCloseListener',
+        value: function addCloseListener(callback) {
+            Store.on(_Constants2.default.CLOSE, callback);
+        }
+    }, {
+        key: 'removeCloseListener',
+        value: function removeCloseListener(callback) {
+            Store.removeListener(_Constants2.default.CLOSE, callback);
+        }
+    }, {
+        key: 'register',
+        value: function register(data) {
+            var id = Store.getId();
+
+            Store.popups[id] = Object.assign({}, initialState, data);
+
+            return id;
+        }
+    }, {
+        key: 'queue',
+        value: function queue(id) {
+            if (!Object.prototype.hasOwnProperty.call(Store.popups, id)) {
+                return false;
+            }
+
+            /** Add popup to queue */
+            Store.queue.push(id);
+
+            /** Dispatch queue */
+            Store.dispatch();
+
+            return id;
+        }
+    }, {
+        key: 'create',
+        value: function create(data, bringToFront) {
+            /** Register popup */
+            var id = this.register(data);
+
+            /** Queue popup */
+            if (bringToFront === true) {
+                var currentlyActive = Store.active;
+
+                Store.active = null;
+                this.queue(id);
+                this.queue(currentlyActive);
+                Store.dispatch();
+            } else {
+                this.queue(id);
+            }
+
+            return id;
+        }
+    }, {
+        key: 'alert',
+        value: function alert(text, title, bringToFront) {
+            var data = {
+                title: title,
+                content: text,
+                buttons: {
+                    right: ['ok']
+                }
+            };
+
+            return this.create(data, bringToFront);
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            Store.close();
+        }
+    }, {
+        key: 'registerPlugin',
+        value: function registerPlugin(name, callback) {
+            Store.plugins[name] = callback.bind(this);
+        }
+    }, {
+        key: 'plugins',
+        value: function plugins() {
+            return Store.plugins;
+        }
+    }, {
+        key: 'refreshPosition',
+        value: function refreshPosition(position) {
+            return Store.refreshPosition(position);
+        }
+    }, {
+        key: 'clearQueue',
+        value: function clearQueue() {
+            return Store.clearQueue();
+        }
+    }]);
+
+    function Component(props) {
+        _classCallCheck(this, Component);
+
+        var _this = _possibleConstructorReturn(this, (Component.__proto__ || Object.getPrototypeOf(Component)).call(this, props));
+
+        initialState.closeOnOutsideClick = _this.props.closeOnOutsideClick;
+
+        _this.state = initialState;
+
+        _this.bound = {
+            onShow: _this.onShow.bind(_this),
+            onClose: _this.onClose.bind(_this),
+            onRefresh: _this.onRefresh.bind(_this),
+            containerClick: _this.containerClick.bind(_this),
+            handleButtonClick: _this.handleButtonClick.bind(_this)
+        };
+
+        _this.boxRef = null;
+
+        _this.defaultKeyBindings = {
+            ok: _this.props.defaultOkKey,
+            cancel: _this.props.defaultCancelKey
+        };
+        return _this;
+    }
+
+    _createClass(Component, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            Store.on(_Constants2.default.SHOW, this.bound.onShow);
+            Store.on(_Constants2.default.CLOSE, this.bound.onClose);
+            Store.on(_Constants2.default.REFRESH, this.bound.onRefresh);
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            if (this.boxRef) {
+                this.boxRef.focus();
+            }
+
+            this.setPosition(this.state.position);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            _keymaster2.default.deleteScope('react-popup');
+            _keymaster2.default.filter = defaultKeyFilter;
+        }
+
+        /**
+         * Refresh popup position
+         * @param position
+         * @private
+         */
+
+    }, {
+        key: 'onRefresh',
+        value: function onRefresh(position) {
+            this.setPosition(position);
+        }
+
+        /**
+         * On popup close
+         * @private
+         */
+
+    }, {
+        key: 'onClose',
+        value: function onClose() {
+            _keymaster2.default.deleteScope('react-popup');
+            _keymaster2.default.filter = defaultKeyFilter;
+
+            this.setState(initialState);
+        }
+
+        /**
+         * On popup show
+         * @private
+         */
+
+    }, {
+        key: 'onShow',
+        value: function onShow(id) {
+            var _this2 = this;
+
+            _keymaster2.default.deleteScope('react-popup');
+
+            _keymaster2.default.filter = function () {
+                return true;
+            };
+
+            var popup = Store.activePopup();
+
+            if (popup.buttons && !Object.prototype.hasOwnProperty.call(popup.buttons, 'left')) {
+                popup.buttons.left = [];
+            }
+
+            if (popup.buttons && !Object.prototype.hasOwnProperty.call(popup.buttons, 'right')) {
+                popup.buttons.right = [];
+            }
+
+            this.setState({
+                id: id,
+                title: popup.title,
+                content: popup.content,
+                buttons: popup.buttons,
+                visible: true,
+                className: popup.className,
+                noOverlay: popup.noOverlay,
+                position: popup.position,
+                closeOnOutsideClick: popup.closeOnOutsideClick
+            }, function () {
+                _keymaster2.default.setScope('react-popup');
+
+                if (_this2.props.escToClose) {
+                    (0, _keymaster2.default)('esc', 'react-popup', _this2.handleKeyEvent.bind(_this2, 'cancel', _this2.state.id));
+                }
+
+                if (_this2.state.buttons) {
+                    if (_this2.state.buttons.left.length) {
+                        _this2.state.buttons.left.forEach(function (button) {
+                            return _this2.bindKeyEvents(button);
+                        });
+                    }
+
+                    if (_this2.state.buttons.right.length) {
+                        _this2.state.buttons.right.forEach(function (button) {
+                            return _this2.bindKeyEvents(button);
+                        });
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'setPosition',
+        value: function setPosition(position) {
+            var box = this.boxRef;
+            var boxPosition = position;
+
+            if (!box) {
+                return;
+            }
+
+            if (!boxPosition) {
+                boxPosition = this.state.position;
+            }
+
+            if (!boxPosition) {
+                box.style.opacity = 1;
+                box.style.top = null;
+                box.style.left = null;
+                box.style.margin = null;
+
+                return;
+            }
+
+            if (typeof boxPosition === 'function') {
+                boxPosition.call(null, box);
+
+                return;
+            }
+
+            console.log(boxPosition);
+
+            box.style.top = parseInt(boxPosition.y, 10) + 'px';
+            box.style.left = parseInt(boxPosition.x, 10) + 'px';
+            box.style.margin = 0;
+            box.style.opacity = 1;
+        }
+
+        /**
+         * Handle container click
+         * @param e
+         * @private
+         */
+
+    }, {
+        key: 'containerClick',
+        value: function containerClick(e) {
+            if (this.state.closeOnOutsideClick) {
+                handleClose();
+            }
+        }
+    }, {
+        key: 'bindKeyEvents',
+        value: function bindKeyEvents(button) {
+            var code = null;
+
+            if (typeof button === 'string') {
+                code = this.defaultKeyBindings[button];
+            } else if (Object.prototype.hasOwnProperty.call(button, 'key')) {
+                code = button.key;
+            }
+
+            if (this.props.escToClose && code === 'esc') {
+                return;
+            }
+
+            if (code) {
+                (0, _keymaster2.default)(code, 'react-popup', this.handleKeyEvent.bind(this, button, this.state.id));
+            }
+        }
+    }, {
+        key: 'handleKeyEvent',
+        value: function handleKeyEvent(button, id, e) {
+            var excludeTags = ['INPUT', 'TEXTAREA', 'BUTTON'];
+
+            if (this.state.id !== id || button.key === 'enter' && excludeTags.indexOf(e.target.tagName) >= 0) {
+                return true;
+            }
+
+            if (typeof button === 'string') {
+                handleClose();
+            } else if (Object.prototype.hasOwnProperty.call(button, 'action')) {
+                this.handleButtonClick(button.action);
+            }
+
+            return false;
+        }
+
+        /**
+         * Handle button clicks
+         * @param action
+         * @returns {*}
+         * @private
+         */
+
+    }, {
+        key: 'handleButtonClick',
+        value: function handleButtonClick(action) {
+            if (typeof action === 'function') {
+                return action.call(this, Store);
+            }
+
+            return null;
+        }
+    }, {
+        key: 'className',
+        value: function className(_className) {
+            return this.props.className + '__' + _className;
+        }
+    }, {
+        key: 'wildClass',
+        value: function wildClass(className, base) {
+            if (!className) {
+                return null;
+            }
+
+            if (this.props.wildClasses) {
+                return className;
+            }
+
+            var finalClass = [];
+            var classNames = className.split(' ');
+
+            classNames.forEach(function (singleClass) {
+                finalClass.push(base + '--' + singleClass);
+            });
+
+            return finalClass.join(' ');
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            var className = this.props.className;
+
+            var box = null;
+            var overlayStyle = {};
+
+            if (this.state.visible) {
+                var closeBtn = null;
+
+                className += ' ' + this.props.className + '--visible';
+
+                if (this.props.closeBtn) {
+                    closeBtn = _react2.default.createElement(
+                        'button',
+                        { onClick: handleClose, className: this.props.className + '__close' },
+                        this.props.closeHtml
+                    );
+                }
+
+                var boxClass = this.className('box');
+
+                if (this.state.className) {
+                    boxClass += ' ' + this.wildClass(this.state.className, boxClass);
+                }
+
+                box = _react2.default.createElement(
+                    'article',
+                    { role: 'dialog', tabIndex: '-1', ref: function ref(el) {
+                            _this3.boxRef = el;
+                        }, style: { opacity: 0, outline: 'none' }, className: boxClass },
+                    closeBtn,
+                    _react2.default.createElement(_Header2.default, { title: this.state.title, className: this.className('box__header') }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: this.className('box__body') },
+                        this.state.content
+                    ),
+                    _react2.default.createElement(_Footer2.default, {
+                        className: this.className('box__footer'),
+                        wildClasses: this.props.wildClasses,
+                        btnClass: this.props.btnClass,
+                        buttonClick: this.bound.handleButtonClick,
+                        onClose: handleClose,
+                        onOk: handleClose,
+                        defaultOk: this.props.defaultOk,
+                        defaultCancel: this.props.defaultCancel,
+                        buttons: this.state.buttons
+                    })
+                );
+            }
+
+            if (this.state.noOverlay) {
+                overlayStyle.background = 'transparent';
+            }
+
+            return _react2.default.createElement(
+                'div',
+                { className: className },
+                _react2.default.createElement('div', { role: 'presentation', onClick: this.bound.containerClick, className: this.className('overlay'), style: overlayStyle }),
+                box
+            );
+        }
+    }]);
+
+    return Component;
+}(_react2.default.Component);
+
+Component.displayName = 'Popup';
+Component.propTypes = {
+    className: _propTypes2.default.string,
+    btnClass: _propTypes2.default.string,
+    closeBtn: _propTypes2.default.bool,
+    closeHtml: _propTypes2.default.node,
+    defaultOk: _propTypes2.default.string,
+    defaultOkKey: _propTypes2.default.string,
+    defaultCancel: _propTypes2.default.string,
+    defaultCancelKey: _propTypes2.default.string,
+    wildClasses: _propTypes2.default.bool,
+    closeOnOutsideClick: _propTypes2.default.bool,
+    escToClose: _propTypes2.default.bool
+};
+Component.defaultProps = {
+    className: 'mm-popup',
+    btnClass: 'mm-popup__btn',
+    closeBtn: true,
+    closeHtml: null,
+    defaultOk: 'Ok',
+    defaultOkKey: 'enter',
+    defaultCancel: 'Cancel',
+    defaultCancelKey: 'esc',
+    wildClasses: false,
+    closeOnOutsideClick: true,
+    escToClose: true
+};
+exports.default = Component;
+  })();
+});
+
+require.register("react-popup/dist/Store.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _events = require('events');
+
+var _Constants = require('./Constants');
+
+var _Constants2 = _interopRequireDefault(_Constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PopupStore = function (_EventEmitter) {
+    _inherits(PopupStore, _EventEmitter);
+
+    function PopupStore(props) {
+        _classCallCheck(this, PopupStore);
+
+        var _this = _possibleConstructorReturn(this, (PopupStore.__proto__ || Object.getPrototypeOf(PopupStore)).call(this, props));
+
+        _this.id = 1;
+        _this.popups = {};
+        _this.queue = [];
+        _this.active = null;
+        _this.plugins = {};
+        return _this;
+    }
+
+    /**
+     * Get popup ID
+     */
+
+
+    _createClass(PopupStore, [{
+        key: 'getId',
+        value: function getId() {
+            return 'id_' + this.id++;
+        }
+
+        /**
+         * Get active popup
+         * @returns {*}
+         */
+
+    }, {
+        key: 'activePopup',
+        value: function activePopup() {
+            return this.popups[this.active];
+        }
+
+        /**
+         * Close current popup
+         */
+
+    }, {
+        key: 'close',
+        value: function close() {
+            if (!this.active) {
+                return false;
+            }
+
+            var id = this.active;
+            this.active = null;
+
+            this.emit(_Constants2.default.CLOSE);
+            this.dispatch();
+
+            this.value = null;
+
+            return id;
+        }
+
+        /**
+         * Dispatch next popup in queue
+         */
+
+    }, {
+        key: 'dispatch',
+        value: function dispatch() {
+            if (this.active || this.queue.length < 1) {
+                return false;
+            }
+
+            var id = this.queue.shift();
+
+            /** Set active */
+            this.active = id;
+
+            this.emit(_Constants2.default.SHOW, id);
+
+            return true;
+        }
+
+        /**
+         * Refresh popup position
+         * @param position
+         */
+
+    }, {
+        key: 'refreshPosition',
+        value: function refreshPosition(position) {
+            this.emit(_Constants2.default.REFRESH, position);
+        }
+
+        /**
+         * Clear queue
+         */
+
+    }, {
+        key: 'clearQueue',
+        value: function clearQueue() {
+            this.queue = [];
+        }
+    }]);
+
+    return PopupStore;
+}(_events.EventEmitter);
+
+exports.default = PopupStore;
+  })();
+});
+
+require.register("react-popup/dist/index.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-popup");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Popup = require('./Popup.react');
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Popup2.default;
+  })();
+});
+
 require.register("react-redux/lib/components/Provider.js", function(exports, require, module) {
   require = __makeRelativeRequire(require, {"transform":["loose-envify"]}, "react-redux");
   (function() {
@@ -34718,7 +36437,141 @@ var App = function App() {
 exports.default = App;
 });
 
-require.register("frontend/src/components/HomeVisiter/Form/index.js", function(exports, require, module) {
+require.register("frontend/src/components/HomeVisiter/Header/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactPopup = require('react-popup');
+
+var _reactPopup2 = _interopRequireDefault(_reactPopup);
+
+var _SigninForm = require('frontend/src/components/HomeVisiter/SigninForm');
+
+var _SigninForm2 = _interopRequireDefault(_SigninForm);
+
+var _SignupForm = require('frontend/src/components/HomeVisiter/SignupForm');
+
+var _SignupForm2 = _interopRequireDefault(_SignupForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/**
+* Local import
+*/
+
+
+/**
+ * Code
+ */
+var Header = function (_React$Component) {
+  _inherits(Header, _React$Component);
+
+  function Header() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Header);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Header.__proto__ || Object.getPrototypeOf(Header)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      isClicked: false
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Header, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'header',
+        null,
+        _react2.default.createElement(
+          'div',
+          { id: 'leftSide' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Brothers',
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+              'span',
+              null,
+              'inGames'
+            )
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'login_signin' },
+            'Se connecter'
+          ),
+          _react2.default.createElement(_SigninForm2.default, null),
+          _react2.default.createElement(
+            'a',
+            { href: '#', onClick: function onClick() {
+                _this2.setState({
+                  isClicked: !_this2.state.isClicked
+                });
+              }, className: 'login_signin ajust' },
+            'S\'inscrire'
+          ),
+          this.state.isClicked && _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(_SignupForm2.default, null)
+          )
+        ),
+        _react2.default.createElement('div', { id: 'tom_clancy' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'underplace' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            'Lorem Ipsum'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          )
+        )
+      );
+    }
+  }]);
+
+  return Header;
+}(_react2.default.Component);
+/**
+ * Export
+ */
+
+
+exports.default = Header;
+});
+
+require.register("frontend/src/components/HomeVisiter/SigninForm/index.js", function(exports, require, module) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34738,10 +36591,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Code
  */
-var Form = function Form() {
+var SigninForm = function SigninForm() {
   return _react2.default.createElement(
     "form",
-    { className: "", action: "index.html", method: "post" },
+    { action: "index.html", method: "post" },
     _react2.default.createElement(
       "label",
       { "for": "login" },
@@ -34767,88 +36620,71 @@ var Form = function Form() {
 /**
  * Npm import
  */
-exports.default = Form;
+exports.default = SigninForm;
 });
 
-require.register("frontend/src/components/HomeVisiter/Header/index.js", function(exports, require, module) {
-'use strict';
+require.register("frontend/src/components/HomeVisiter/SignupForm/index.js", function(exports, require, module) {
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
-
-var _Form = require('frontend/src/components/HomeVisiter/Form');
-
-var _Form2 = _interopRequireDefault(_Form);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
+* Local import
+*/
+
+/**
  * Code
  */
-/**
- * Npm import
- */
-var Header = function Header() {
+var SignupForm = function SignupForm() {
   return _react2.default.createElement(
-    'header',
-    null,
+    "form",
+    { className: "signupForm", action: "index.html", method: "post" },
     _react2.default.createElement(
-      'div',
-      { id: 'leftSide' },
-      _react2.default.createElement(
-        'h1',
-        null,
-        'Brothers',
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'span',
-          null,
-          'inGames'
-        )
-      ),
-      _react2.default.createElement(
-        'p',
-        { className: 'login_signin' },
-        'Se connecter'
-      ),
-      _react2.default.createElement(_Form2.default, null),
-      _react2.default.createElement(
-        'a',
-        { href: '#', className: 'login_signin ajust' },
-        'S\'inscrire'
-      )
+      "label",
+      { "for": "username" },
+      "Username"
     ),
-    _react2.default.createElement('div', { id: 'tom_clancy' }),
+    _react2.default.createElement("input", { id: "username", type: "text", name: "username", value: "" }),
     _react2.default.createElement(
-      'div',
-      { className: 'underplace' },
-      _react2.default.createElement(
-        'h2',
-        null,
-        'Lorem Ipsum'
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      )
+      "label",
+      { "for": "newPassword" },
+      "Password"
+    ),
+    _react2.default.createElement("input", { id: "newPassword", type: "password", name: "newPassword", value: "" }),
+    _react2.default.createElement(
+      "label",
+      { "for": "confirmPassword" },
+      "Confirm Password"
+    ),
+    _react2.default.createElement("input", { id: "confirmPassword", type: "password", name: "confirmPassword", value: "" }),
+    _react2.default.createElement(
+      "label",
+      { "for": "email" },
+      "Email"
+    ),
+    _react2.default.createElement("input", { id: "email", type: "text", name: "email", value: "" }),
+    _react2.default.createElement(
+      "button",
+      null,
+      "Envoyer"
     )
   );
 };
 /**
  * Export
  */
-
-
 /**
-* Local import
-*/
-exports.default = Header;
+ * Npm import
+ */
+exports.default = SignupForm;
 });
 
 require.register("frontend/src/components/HomeVisiter/index.js", function(exports, require, module) {
@@ -34862,7 +36698,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Header = require('frontend/src/components/HomeVisiter/Header');
+var _Header = require('frontend/src/containers/HomeVisiter/Header');
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -34892,6 +36728,52 @@ var HomeVisiter = function HomeVisiter() {
 exports.default = HomeVisiter;
 });
 
+require.register("frontend/src/containers/HomeVisiter/Header.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _Header = require('frontend/src/components/HomeVisiter/Header');
+
+var _Header2 = _interopRequireDefault(_Header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
+/**
+* Local import
+*/
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // changeClick: () => {
+    //   console.log('test');
+    // },
+  };
+};
+
+var HeaderContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Header2.default);
+
+/**
+ * Export
+ */
+exports.default = HeaderContainer;
+});
+
 require.register("frontend/src/containers/HomeVisiter/Signin.js", function(exports, require, module) {
 /**
  * Npm import
@@ -34915,6 +36797,8 @@ require.register("frontend/src/containers/HomeVisiter/Signin.js", function(expor
 /**
  * Npm import
  */
+
+// Signup = S'inscrire
 
 /**
 * Local import
@@ -35104,8 +36988,11 @@ exports.default = reducer;
 });
 
 require.alias("babel-polyfill/lib/index.js", "babel-polyfill");
+require.alias("events/events.js", "events");
 require.alias("invariant/browser.js", "invariant");
+require.alias("keymaster/keymaster.js", "keymaster");
 require.alias("process/browser.js", "process");
+require.alias("react-popup/dist/index.js", "react-popup");
 require.alias("react-redux/lib/index.js", "react-redux");
 require.alias("redux/lib/redux.js", "redux");
 require.alias("resolve-pathname/cjs/index.js", "resolve-pathname");
