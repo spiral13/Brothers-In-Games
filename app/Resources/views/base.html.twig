@@ -9,7 +9,8 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <div id="root"></div>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        <script>require('frontend/index');</script>
+        <script>require('frontend/src');</script>
     </body>
 </html>
