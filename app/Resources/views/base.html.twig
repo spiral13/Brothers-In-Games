@@ -8,8 +8,8 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        {% block javascripts %}{% endblock %}
         <script>require('frontend/index');</script>
     </body>
 </html>
