@@ -1,0 +1,13 @@
+AppBunde\Entity\User:
+    properties:
+        username:
+            - notBlank: ~
+        mail:
+            - Email: 
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: true
+        password:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                minMessage: 'Your first name must be at least {{ limit }} characters long'
