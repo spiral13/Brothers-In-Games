@@ -1,3 +1,7 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+home_visitor:  
+    path: /
+    defaults: { _controller: AppBundle:home:homeVisitor }
