@@ -1,29 +1,24 @@
-AppBundle\Entity\Messenger:
+AppBundle\Entity\Friend:
     type: entity
     table: null
-    repositoryClass: AppBundle\Repository\MessengerRepository
+    repositoryClass: AppBundle\Repository\FriendRepository
     id:
         id:
             type: integer
             id: true
             generator:
                 strategy: AUTO
-    fields:
-        content:
-            type: text
-        published:
-            type: datetime
     manyToOne:
-        receiver:
+        user1:
             targetEntity: User
-            inversedBy: messengerRead
+            inversedBy: friend1
             joinColumn: 
-                name: receiver_id
+                name: user1_id
                 referencedColumnName: id
-        author:
+        user2:
             targetEntity: User
-            inversedBy: messengerSend
+            inversedBy: friend2
             joinColumn: 
-                name: author_id
+                name: user2_id
                 referencedColumnName: id
     lifecycleCallbacks: {  }

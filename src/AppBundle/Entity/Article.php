@@ -27,6 +27,16 @@ class Article
      */
     private $published;
 
+    /* JOIN */
+
+    /**
+     * @var User
+     */
+    private $user;
+
+    /* *************** **
+    ** GETTER & SETTER **
+    ** *************** */
 
     /**
      * Get id
@@ -108,6 +118,28 @@ class Article
     public function getPublished()
     {
         return $this->published;
+    }
+
+    /* JOIN */
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return self
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
 

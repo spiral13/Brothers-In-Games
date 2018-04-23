@@ -37,6 +37,13 @@ class Profile
      */
     private $description;
 
+    /* JOIN */
+
+    private $user;
+
+    /* *************** **
+    ** GETTER & SETTER **
+    ** *************** */
 
     /**
      * Get id
@@ -166,6 +173,28 @@ class Profile
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /* JOIN */
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     *
+     * @return self
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
 

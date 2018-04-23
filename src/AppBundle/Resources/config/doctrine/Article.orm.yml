@@ -16,4 +16,11 @@ AppBundle\Entity\Article:
             type: text
         published:
             type: datetime
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: articles
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

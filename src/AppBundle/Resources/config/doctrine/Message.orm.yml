@@ -13,4 +13,17 @@ AppBundle\Entity\Message:
             type: text
         published:
             type: datetime
+    manyToOne:
+        receiver:
+            targetEntity: User
+            inversedBy: messageRead
+            joinColumn: 
+                name: receiver_id
+                referencedColumnName: id
+        author:
+            targetEntity: User
+            inversedBy: messageSend
+            joinColumn: 
+                name: author_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

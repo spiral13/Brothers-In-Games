@@ -17,6 +17,25 @@ class GameCategory
      */
     private $title;
 
+    /* JOIN */
+
+    /**
+     * @var game
+     */
+    private $games;
+
+    /* **************** **
+    ** VARIOUS FUNCTION **
+    ** **************** */
+
+    public function __construct()
+    {
+        $this->games = new ArrayCollection();
+    }
+
+    /* *************** **
+    ** GETTER & SETTER **
+    ** *************** */
 
     /**
      * Get id
@@ -50,6 +69,16 @@ class GameCategory
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /* JOIN */
+
+    /**
+     * @return mixed
+     */
+    public function getGames()
+    {
+        return $this->games;
     }
 }
 

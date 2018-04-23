@@ -32,6 +32,73 @@ class User
      */
     private $isActive;
 
+    /* JOIN */
+
+    /**
+     * @var Game
+     */
+    private $games;
+
+    /**
+     * @var Announcement
+     */
+    private $announcements;
+
+    /**
+     * @var Article
+     */
+    private $articles;
+
+    /**
+     * @var Messenger
+     */
+    private $messengerRead;
+
+    /**
+     * @var Messenger
+     */
+    private $messengerSend;   
+
+     /**
+     * @var Message
+     */
+    private $messageRead;
+
+    /**
+     * @var Message
+     */
+    private $messageSend;
+
+    /**
+     * @var Friend
+     */
+    private $friend1;
+
+    /**
+     * @var Friend
+     */
+    private $friend2;
+
+    /* **************** **
+    ** VARIOUS FUNCTION **
+    ** **************** */
+
+    public function __construct()
+    {
+        $this->games = new ArrayCollection();
+        $this->articles = new ArrayCollection();
+        $this->announcements = new ArrayCollection();
+        $this->messengerRead = new ArrayCollection();
+        $this->messengerSend = new ArrayCollection();
+        $this->messageRead = new ArrayCollection();
+        $this->messageSend = new ArrayCollection();
+        $this->friend1 = new ArrayCollection();
+        $this->friend2 = new ArrayCollection();
+    }
+
+    /* *************** **
+    ** GETTER & SETTER **
+    ** *************** */
 
     /**
      * Get id
@@ -137,6 +204,100 @@ class User
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /* JOIN */
+
+    /**
+     * @return mixed
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
+
+    /**
+     * @return Announcement
+     */
+    public function getAnnouncements()
+    {
+        return $this->announcements;
+    }
+
+    /**
+     * @return Article
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param Article $articles
+     *
+     * @return self
+     */
+    public function setArticles(Article $articles)
+    {
+        $this->articles = $articles;
+
+        return $this;
+    }
+
+    /**
+     * @return Messenger
+     */
+    public function getMessengerRead()
+    {
+        return $this->messengerRead;
+    }
+
+    /**
+     * @return Messenger
+     */
+    public function getMessengerSend()
+    {
+        return $this->messengerSend;
+    }
+
+    /**
+     * @return Messenger
+     */
+    public function getMessageRead()
+    {
+        return $this->messageRead;
+    }
+
+    /**
+     * @return Messenger
+     */
+    public function getMessageSend()
+    {
+        return $this->messageSend;
+    }
+
+    /**
+     * @return Friend
+     */
+    public function getFriend1()
+    {
+        return $this->friend1;
+    }
+
+    /**
+     * @return Friend
+     */
+    public function getFriend2()
+    {
+        return $this->friend2;
     }
 }
 

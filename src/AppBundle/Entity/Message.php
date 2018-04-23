@@ -22,6 +22,21 @@ class Message
      */
     private $published;
 
+    /* JOIN */
+
+    /**
+     * @var User
+     */
+    private $receiver;
+
+    /**
+     * @var User
+     */
+    private $author;
+
+    /* *************** **
+    ** GETTER & SETTER **
+    ** *************** */
 
     /**
      * Get id

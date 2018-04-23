@@ -22,6 +22,21 @@ class Messenger
      */
     private $published;
 
+    /* JOIN */
+
+    /**
+     * @var User
+     */
+    private $receiver;
+
+    /**
+     * @var User
+     */
+    private $author;
+
+    /* *************** **
+    ** GETTER & SETTER **
+    ** *************** */
 
     /**
      * Get id
@@ -80,5 +95,49 @@ class Messenger
     {
         return $this->published;
     }
+
+    /* JOIN */
+
+    /**
+     * @return User
+     */
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    /**
+     * @param User $receiver
+     *
+     * @return self
+     */
+    public function setReceiver(User $receiver)
+    {
+        $this->receiver = $receiver;
+
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     *
+     * @return self
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /* JOIN */
 }
 

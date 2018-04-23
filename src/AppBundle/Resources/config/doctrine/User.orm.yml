@@ -21,5 +21,42 @@ AppBundle\Entity\User:
             type: string
             length: 255
         isActive:
-            type: boolean
+            type: boolean  
+    manyToMany:
+        games:
+            targetEntity: Game
+            inversedBy: users
+            joinTable:
+                name: user_has_game
+                joinColumn:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    game_id:
+                        referencedColumnName: id     
+    oneToMany:
+        announcements:
+            targetEntity: Announcement
+            mappedBy: user
+        articles:
+            targetEntity: Article
+            mappedBy: user
+        messengerRead:
+            targetEntity: Messenger
+            mappedBy: receiver        
+        messengerSend:
+            targetEntity: Messenger
+            mappedBy: author        
+        messageRead:
+            targetEntity: Message
+            mappedBy: receiver        
+        messageSend:
+            targetEntity: Message
+            mappedBy: author        
+        friend1:
+            targetEntity: Friend
+            mappedBy: user1        
+        friend2:
+            targetEntity: Friend
+            mappedBy: user2
     lifecycleCallbacks: {  }

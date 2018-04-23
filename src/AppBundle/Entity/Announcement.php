@@ -27,6 +27,21 @@ class Announcement
      */
     private $published;
 
+    /* JOIN */
+
+    /**
+     * @var Game
+     */
+    private $game;
+
+    /**
+     * @var User
+     */
+    private $user;
+
+    /* *************** **
+    ** GETTER & SETTER **
+    ** *************** */
 
     /**
      * Get id
@@ -108,6 +123,48 @@ class Announcement
     public function getPublished()
     {
         return $this->published;
+    }
+
+    /* JOIN */
+
+    /**
+     * @return Game
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param Game $game
+     *
+     * @return self
+     */
+    public function setGame(Game $game)
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return self
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
 

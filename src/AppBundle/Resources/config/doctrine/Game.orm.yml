@@ -16,4 +16,23 @@ AppBundle\Entity\Game:
             type: string
             length: 255
             nullable: true
+    manyToMany:
+        gamecategories:
+            targetEntity: GameCategory
+            inversedBy: games
+            joinTable:
+                name: game_has_gamecategory
+                joinColumn:
+                    game_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    gamecategory_id:
+                        referencedColumnName: id
+        users:
+            targetEntity: User
+            mappedBy: games
+    oneToMany:
+        announcements:
+            targetEntity: Announcement
+            mappedBy: game
     lifecycleCallbacks: {  }

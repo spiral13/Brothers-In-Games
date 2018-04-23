@@ -16,4 +16,17 @@ AppBundle\Entity\Announcement:
             type: text
         published:
             type: datetime
+    manyToOne:
+        game:
+            targetEntity: Game
+            inversedBy: announcements
+            joinColumn:
+                name: game_id
+                referencedColumnName: id
+        user:
+            targetEntity: User
+            inversedBy: announcements
+            jointColumn:
+                name: user_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }
