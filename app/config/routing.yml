@@ -5,3 +5,11 @@ app:
 home_visitor:  
     path: /
     defaults: { _controller: AppBundle:Home:homeVisitor }
+
+signup:
+    path: /user/create
+    defaults: { _controller: AppBundle:User:create }
+
+login:
+    path: /connection
+    defaults: { _controller: AppBundle:User:login }

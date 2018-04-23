@@ -1,0 +1,19 @@
+AppBundle\Entity\Announcement:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\AnnouncementRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        content:
+            type: text
+        published:
+            type: datetime
+    lifecycleCallbacks: {  }

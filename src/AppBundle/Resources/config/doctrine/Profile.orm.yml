@@ -1,0 +1,30 @@
+AppBundle\Entity\Profile:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ProfileRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstname:
+            type: string
+            length: '45'
+            nullable: true
+        image:
+            type: string
+            length: 255
+            nullable: true
+        age:
+            type: integer
+            nullable: true
+        gender:
+            type: string
+            length: '45'
+            nullable: true
+        description:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

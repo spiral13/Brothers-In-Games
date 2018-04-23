@@ -1,0 +1,16 @@
+AppBundle\Entity\Message:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\MessageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        content:
+            type: text
+        published:
+            type: datetime
+    lifecycleCallbacks: {  }

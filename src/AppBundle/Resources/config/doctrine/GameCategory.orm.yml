@@ -1,0 +1,16 @@
+AppBundle\Entity\GameCategory:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\GameCategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '45'
+            unique: true
+    lifecycleCallbacks: {  }
