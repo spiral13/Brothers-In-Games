@@ -25,6 +25,7 @@ const App = () => (
     <div id="app">
       <Switch>
         <Route exact path="/app_dev.php" component={HomeVisiter} />
+        {/* <Route exact path="/app_dev.php/home" component={HomeVisiter} /> */}
         {/* <Route exact path="/app_dev.php/home" render={() => <HomeMember data="" />} /> */}
         {/* Nous pouvons ajouter autant de pages que souhaité  */}
       </Switch>

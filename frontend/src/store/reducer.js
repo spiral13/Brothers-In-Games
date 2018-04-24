@@ -3,6 +3,11 @@
  */
 const initialState = {
   message: 'Coucou',
+  signup: {},
+  signin: {
+    login: "",
+    password: "",
+  },
 };
 
 /**

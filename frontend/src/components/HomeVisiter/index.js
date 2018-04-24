@@ -5,7 +5,7 @@ import React from 'react';
 /**
 * Local import
 */
-import Header from 'frontend/src/components/HomeVisiter/Header';
+import Header from 'frontend/src/containers/HomeVisiter/Header';
 /**
  * Code
  */

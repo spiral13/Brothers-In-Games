@@ -36454,13 +36454,13 @@ var _reactPopup = require('react-popup');
 
 var _reactPopup2 = _interopRequireDefault(_reactPopup);
 
-var _SigninForm = require('frontend/src/components/HomeVisiter/SigninForm');
+var _Signin = require('frontend/src/containers/HomeVisiter/Signin');
 
-var _SigninForm2 = _interopRequireDefault(_SigninForm);
+var _Signin2 = _interopRequireDefault(_Signin);
 
-var _SignupForm = require('frontend/src/components/HomeVisiter/SignupForm');
+var _Signup = require('frontend/src/containers/HomeVisiter/Signup');
 
-var _SignupForm2 = _interopRequireDefault(_SignupForm);
+var _Signup2 = _interopRequireDefault(_Signup);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36526,7 +36526,7 @@ var Header = function (_React$Component) {
             { className: 'login_signin' },
             'Se connecter'
           ),
-          _react2.default.createElement(_SigninForm2.default, null),
+          _react2.default.createElement(_Signin2.default, null),
           _react2.default.createElement(
             'a',
             { href: '#', onClick: function onClick() {
@@ -36539,7 +36539,7 @@ var Header = function (_React$Component) {
           this.state.isClicked && _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_SignupForm2.default, null)
+            _react2.default.createElement(_Signup2.default, null)
           )
         ),
         _react2.default.createElement('div', { id: 'tom_clancy' }),
@@ -36670,7 +36670,13 @@ var SignupForm = function SignupForm() {
       { "for": "email" },
       "Email"
     ),
-    _react2.default.createElement("input", { id: "email", type: "text", name: "email", value: "" }),
+    _react2.default.createElement("input", { className: "email", type: "text", name: "email", value: "" }),
+    _react2.default.createElement(
+      "label",
+      { "for": "email" },
+      "Confirm Email"
+    ),
+    _react2.default.createElement("input", { className: "email", type: "text", name: "confirmEmail", value: "" }),
     _react2.default.createElement(
       "button",
       null,
@@ -36775,46 +36781,98 @@ exports.default = HeaderContainer;
 });
 
 require.register("frontend/src/containers/HomeVisiter/Signin.js", function(exports, require, module) {
-/**
- * Npm import
- */
+'use strict';
 
-/**
-* Local import
-*/
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _SigninForm = require('frontend/src/components/HomeVisiter/SigninForm');
+
+var _SigninForm2 = _interopRequireDefault(_SigninForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Code
  */
 
 /**
- * Export
- */
-"use strict";
-});
-
-;require.register("frontend/src/containers/HomeVisiter/Signup.js", function(exports, require, module) {
-/**
  * Npm import
  */
-
-// Signup = S'inscrire
-
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
 /**
 * Local import
 */
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // changeClick: () => {
+    //   console.log('test');
+    // },
+  };
+};
+
+var SigninFormContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_SigninForm2.default);
+
+/**
+ * Export
+ */
+exports.default = SigninFormContainer;
+});
+
+require.register("frontend/src/containers/HomeVisiter/Signup.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _SignupForm = require('frontend/src/components/HomeVisiter/SignupForm');
+
+var _SignupForm2 = _interopRequireDefault(_SignupForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Code
  */
 
 /**
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
+/**
+* Local import
+*/
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // changeClick: () => {
+    //   console.log('test');
+    // },
+  };
+};
+
+var SignupFormContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_SignupForm2.default);
+
+/**
  * Export
  */
-"use strict";
+exports.default = SignupFormContainer;
 });
 
-;require.register("frontend/src/index.js", function(exports, require, module) {
+require.register("frontend/src/index.js", function(exports, require, module) {
 'use strict';
 
 require('babel-polyfill');
@@ -36936,7 +36994,7 @@ exports.default = store;
 });
 
 require.register("frontend/src/store/reducer.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -36948,7 +37006,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * Initial State
  */
 var initialState = {
-  message: 'Coucou'
+  message: 'Coucou',
+  signup: {},
+  signin: {
+    login: "",
+    password: ""
+  }
 };
 
 /**

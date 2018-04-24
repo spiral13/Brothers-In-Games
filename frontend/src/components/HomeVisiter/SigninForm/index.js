@@ -9,8 +9,8 @@ import React from 'react';
 /**
  * Code
  */
-const Form = () => (
-  <form className="" action="index.html" method="post">
+const SigninForm = () => (
+  <form action="index.html" method="post">
     <label for="login">Login</label>
     <input id="login" type="text" name="login" value="" />
     <label for="password">Mot de passe</label>
@@ -22,4 +22,4 @@ const Form = () => (
 /**
  * Export
  */
-export default Form;
+export default SigninForm;
