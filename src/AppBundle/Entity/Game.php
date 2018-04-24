@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\GameCategory;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Game
  */
@@ -120,6 +123,13 @@ class Game
     public function getGamecategories()
     {
         return $this->gamecategories;
+    }
+
+    public function addGamecategories(GameCategory $gamecategorie)
+    {
+        $this->gamecategories[] = $gamecategorie;
+
+        return $this;
     }
 
     /**

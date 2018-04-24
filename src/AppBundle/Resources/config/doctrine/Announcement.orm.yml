@@ -9,9 +9,6 @@ AppBundle\Entity\Announcement:
             generator:
                 strategy: AUTO
     fields:
-        title:
-            type: string
-            length: 255
         content:
             type: text
         published:

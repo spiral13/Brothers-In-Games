@@ -33,7 +33,14 @@ AppBundle\Entity\User:
                         referencedColumnName: id
                 inverseJoinColumns:
                     game_id:
-                        referencedColumnName: id     
+                        referencedColumnName: id
+    manyToOne:
+        role:
+            targetEntity: Role
+            inversedBy: users
+            joinColumn:
+                name: role_id
+                referencedColumnName: id
     oneToMany:
         announcements:
             targetEntity: Announcement

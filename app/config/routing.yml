@@ -1,15 +1,21 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 home_visitor:  
     path: /
     defaults: { _controller: AppBundle:Home:homeVisitor }
-
 signup:
     path: /user/create
     defaults: { _controller: AppBundle:User:create }
-
 login:
     path: /connection
     defaults: { _controller: AppBundle:User:login }
+home_user:
+  path: /home
+  defaults: { _controller: AppBundle:Home:homeUser }
+games_list:
+  path: /games
+  defaults: { _controller: AppBundle:Game:list }

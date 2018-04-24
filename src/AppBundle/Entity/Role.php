@@ -2,13 +2,12 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Game;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * GameCategory
+ * Role
  */
-class GameCategory
+class Role
 {
     /**
      * @var int
@@ -20,12 +19,17 @@ class GameCategory
      */
     private $title;
 
+    /**
+     * @var string
+     */
+    private $code;
+
     /* JOIN */
 
     /**
-     * @var game
+     * @var User
      */
-    private $games;
+    private $users;
 
     /* **************** **
     ** VARIOUS FUNCTION **
@@ -33,7 +37,7 @@ class GameCategory
 
     public function __construct()
     {
-        $this->games = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /* *************** **
@@ -55,7 +59,7 @@ class GameCategory
      *
      * @param string $title
      *
-     * @return GameCategory
+     * @return Role
      */
     public function setTitle($title)
     {
@@ -74,22 +78,38 @@ class GameCategory
         return $this->title;
     }
 
+    /**
+     * Set code
+     *
+     * @param string $code
+     *
+     * @return Role
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
     /* JOIN */
 
     /**
-     * @return mixed
+     * @return User
      */
-    public function getGames()
+    public function getUsers()
     {
-        return $this->games;
-    }
-
-    public function addGames(Game $game)
-    {
-        $game->addGamecategories($this);
-        $this->games[] = $game;
-
-        return $this;
+        return $this->users;
     }
 }
 

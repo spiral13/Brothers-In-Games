@@ -2,10 +2,14 @@
 
 namespace AppBundle\Entity;
 
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -79,12 +83,19 @@ class User
      */
     private $friend2;
 
+    /**
+     * @var Role
+     */
+    private $role;
+
     /* **************** **
     ** VARIOUS FUNCTION **
     ** **************** */
 
     public function __construct()
     {
+        $this->isActive = true;
+
         $this->games = new ArrayCollection();
         $this->articles = new ArrayCollection();
         $this->announcements = new ArrayCollection();
@@ -94,6 +105,30 @@ class User
         $this->messageSend = new ArrayCollection();
         $this->friend1 = new ArrayCollection();
         $this->friend2 = new ArrayCollection();
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
     /* *************** **
@@ -214,6 +249,22 @@ class User
         return $this->isActive;
     }
 
+    public function eraseCredentials()
+    {
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return $this->getRole()->getCode();
+    }
+
     /* JOIN */
 
     /**
@@ -298,6 +349,26 @@ class User
     public function getFriend2()
     {
         return $this->friend2;
+    }
+
+    /**
+     * @return Role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param Role $role
+     *
+     * @return self
+     */
+    public function setRole(Role $role)
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }
 
