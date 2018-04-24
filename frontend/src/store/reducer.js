@@ -21,7 +21,7 @@ const SIGNUP_CHANGE_USERNAME_INPUT = 'SIGNUP_CHANGE_USERNAME_INPUT';
 const SIGNUP_CHANGE_NEWPASSWORD_INPUT = 'SIGNUP_CHANGE_NEWPASSWORD_INPUT';
 const SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT = 'SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT';
 const SIGNUP_CHANGE_EMAIL_INPUT = 'SIGNUP_CHANGE_EMAIL_INPUT';
-const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
+export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 
 const CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
 const CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
@@ -49,6 +49,7 @@ const reducer = (state = initialState, action = {}) => {
           newpassword: action.newpassword,
         }
       };
+
     case SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT:
       return {
         ...state,
@@ -129,13 +130,13 @@ export const signUpSubmit = () => ({
 });
 
 export const changePasswordForm = value => ({
-    type: CHANGE_PASSWORD_FORM,
-    value,
+  type: CHANGE_PASSWORD_FORM,
+  value,
 });
 
 export const changeLoginForm = value => ({
-    type: CHANGE_LOGIN_FORM,
-    value,
+  type: CHANGE_LOGIN_FORM,
+  value,
 });
 
 export const submitConnect = () => ({

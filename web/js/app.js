@@ -38688,6 +38688,7 @@ exports.default = function (store) {
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);
             });
+            break;
           }
 
         case _reducer.SIGNUP_SUBMIT:
@@ -38700,8 +38701,8 @@ exports.default = function (store) {
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);
             });
+            break;
           }
-          break;
       }
 
       // On passe au voisin
@@ -38796,7 +38797,7 @@ var SIGNUP_CHANGE_USERNAME_INPUT = 'SIGNUP_CHANGE_USERNAME_INPUT';
 var SIGNUP_CHANGE_NEWPASSWORD_INPUT = 'SIGNUP_CHANGE_NEWPASSWORD_INPUT';
 var SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT = 'SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT';
 var SIGNUP_CHANGE_EMAIL_INPUT = 'SIGNUP_CHANGE_EMAIL_INPUT';
-var SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
+var SIGNUP_SUBMIT = exports.SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 
 var CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
 var CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
@@ -38823,6 +38824,7 @@ var reducer = function reducer() {
           newpassword: action.newpassword
         })
       });
+
     case SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT:
       return _extends({}, state, {
         signup: _extends({}, state.signup, {

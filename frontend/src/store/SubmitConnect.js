@@ -19,6 +19,7 @@ export default store => next => (action) => {
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);
       });
+      break;
     }
 
     case SIGNUP_SUBMIT: {
@@ -32,8 +33,8 @@ export default store => next => (action) => {
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);
       });
+      break;
     }
-    break;
   }
 
   // On passe au voisin
