@@ -13,8 +13,11 @@
         {% block body %}{% endblock %}
         <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        <script>require('frontend/src');</script>
+        <script>
+            require('frontend/src');
+        </script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

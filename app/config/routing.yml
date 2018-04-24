@@ -7,15 +7,25 @@ fos_js_routing:
 home_visitor:  
     path: /
     defaults: { _controller: AppBundle:Home:homeVisitor }
+    options:
+        expose: true
 signup:
     path: /user/create
     defaults: { _controller: AppBundle:User:create }
+    options:
+        expose: true
 login:
     path: /connection
     defaults: { _controller: AppBundle:User:login }
+    options:
+        expose: true
 home_user:
   path: /home
   defaults: { _controller: AppBundle:Home:homeUser }
+  options:
+        expose: true
 games_list:
   path: /games
   defaults: { _controller: AppBundle:Game:list }
+  options:
+        expose: true
