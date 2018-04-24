@@ -22,7 +22,13 @@ security:
 
         main:
             anonymous: ~
-            provider: our_db_provider
+            provider: user_provider
+            form_login:
+                login_path: login
+                check_path: login
+            logout:
+                path: /logout
+                target: /
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -30,3 +36,11 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/admin, roles: ROLE_ADMIN }
+    role_hierarchy:
+        ROLE_MODERATOR: ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_MODERATOR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

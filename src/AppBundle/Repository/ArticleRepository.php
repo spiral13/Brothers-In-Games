@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findSoMuchFormTheLast()
+	{
+		$qb = $em->createQueryBuilder();
+		$qb->select('a')
+		   ->from('Article', 'a')
+		   ->add('orderBy', 'a.published DESC')
+		   ->setMaxResults(5);
+
+		$query = $qb->getQuery();
+
+		return $query;
+	}
+
 }

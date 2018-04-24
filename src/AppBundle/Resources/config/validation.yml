@@ -1,8 +1,12 @@
-AppBunde\Entity\User:
+AppBundle\Entity\User:
     properties:
         username:
-            - notBlank: ~
+            - NotBlank: ~
+            - Length:
+                min: 4
+                minMessage: 'Your first name must be at least {{ limit }} characters long'
         mail:
+            - NotBlank: ~
             - Email: 
                 message: The email "{{ value }}" is not a valid email.
                 checkMX: true

@@ -18,6 +18,11 @@ class Article
     private $title;
 
     /**
+     * @var $image;
+     */
+    private $image;
+
+    /**
      * @var string
      */
     private $content;

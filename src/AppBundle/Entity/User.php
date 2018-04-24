@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -81,6 +82,11 @@ class User implements UserInterface, \Serializable
      * @var Friend
      */
     private $friend2;
+
+    /**
+     * @var Role
+     */
+    private $role;
 
     /* **************** **
     ** VARIOUS FUNCTION **
@@ -256,7 +262,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this->getRole()->getCode();
     }
 
     /* JOIN */
@@ -343,6 +349,26 @@ class User implements UserInterface, \Serializable
     public function getFriend2()
     {
         return $this->friend2;
+    }
+
+    /**
+     * @return Role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param Role $role
+     *
+     * @return self
+     */
+    public function setRole(Role $role)
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }
 

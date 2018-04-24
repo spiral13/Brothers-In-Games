@@ -15,11 +15,6 @@ class Announcement
     /**
      * @var string
      */
-    private $title;
-
-    /**
-     * @var string
-     */
     private $content;
 
     /**
