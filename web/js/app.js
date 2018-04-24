@@ -116,6 +116,7 @@
 
 (function() {
 var global = typeof window === 'undefined' ? this : window;
+var process;
 var __makeRelativeRequire = function(require, mappings, pref) {
   var none = {};
   var tryReq = function(name, pref) {
@@ -37061,7 +37062,7 @@ require.alias("redux/lib/redux.js", "redux");
 require.alias("resolve-pathname/cjs/index.js", "resolve-pathname");
 require.alias("symbol-observable/lib/index.js", "symbol-observable");
 require.alias("value-equal/cjs/index.js", "value-equal");
-require.alias("warning/browser.js", "warning");require.register("___globals___", function(exports, require, module) {
+require.alias("warning/browser.js", "warning");process = require('process');require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
 
