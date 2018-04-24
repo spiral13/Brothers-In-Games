@@ -26,13 +26,14 @@ class UserController extends Controller
     }
 	public function createAction(UserPasswordEncoderInterface $encoder, Request $request){
 
+dump($request->request);exit;
         $role = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
 
-		if(!empty($request->query->all()))
+		if(!empty($request->request->all()))
 		{
-			$username = trim($request->query->get('username'));
-			$mail = trim($request->query->get('mail'));
-			$plainPassword = trim($request->query->get('password'));
+			$username = trim($request->request->get('username'));
+			$mail = trim($request->request->get('mail'));
+			$plainPassword = trim($request->request->get('password'));
 
             $alreadyName = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => $username]);
             $alreadyMail = $this->getDoctrine()->getRepository(User::class)->findOneBy(['mail' => $mail]);
