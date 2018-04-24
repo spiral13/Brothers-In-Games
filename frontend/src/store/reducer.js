@@ -2,16 +2,16 @@
  * Initial State
  */
 const initialState = {
+
   message: 'Coucou',
   signup: {
     username: ""
     newpassword: "",
     confirmpassword: "",
     email: "",
-  },
   signin: {
-    login: "",
-    password: "",
+    login: "Login",
+    password: "Password",
   },
 };
 
@@ -19,11 +19,16 @@ const initialState = {
  * Types
  */
 const DO_SOMETHING = 'DO_SOMETHING';
+
 const SIGNUP_CHANGE_USERNAME_INPUT = 'SIGNUP_CHANGE_USERNAME_INPUT';
 const SIGNUP_CHANGE_NEWPASSWORD_INPUT = 'SIGNUP_CHANGE_NEWPASSWORD_INPUT';
 const SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT = 'SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT';
 const SIGNUP_CHANGE_EMAIL_INPUT = 'SIGNUP_CHANGE_EMAIL_INPUT';
 const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
+
+const CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
+const CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
+export const SUBMIT_CONNECT = "SUBMIT_CONNECT";
 
 /**
  * Reducer
@@ -73,6 +78,30 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
+    case CHANGE_PASSWORD_FORM: {
+      return {
+        ...state,
+        signin: {
+          ...state.signin,
+          password: action.value,
+        }
+      };
+    }
+
+    case CHANGE_LOGIN_FORM:
+      return {
+        ...state,
+        signin: {
+          ...state.signin,
+          login: action.value,
+        },
+      };
+
+    case SUBMIT_CONNECT:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
@@ -84,6 +113,7 @@ const reducer = (state = initialState, action = {}) => {
 export const doSomething = () => ({
   type: DO_SOMETHING,
 });
+
 
 export const changeSignUpUserName = username => ({
   type: SIGNUP_CHANGE_USERNAME_INPUT,
@@ -110,6 +140,22 @@ export const signUpSubmit = () => ({
   type: SIGNUP_SUBMIT,
 });
 
+
+
+
+export const changePasswordForm = value => ({
+    type: CHANGE_PASSWORD_FORM,
+    value,
+});
+
+export const changeLoginForm = value => ({
+    type: CHANGE_LOGIN_FORM,
+    value,
+});
+
+export const submitConnect = () => ({
+  type: SUBMIT_CONNECT,
+});
 
 
 /**

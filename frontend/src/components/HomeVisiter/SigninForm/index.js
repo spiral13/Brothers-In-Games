@@ -9,16 +9,42 @@ import React from 'react';
 /**
  * Code
  */
-const SigninForm = () => (
-  <form action="index.html" method="post">
-    <label for="login">Login</label>
-    <input id="login" type="text" name="login" value="" />
-    <label for="password">Mot de passe</label>
-    <input id="password" type="password" name="password" value="" />
-    <a href="#" id="forgotPassword">Mot de passe perdu?</a>
-    {/* <button id="buttonSubmit" type="button" name="button">Envoyer</button> */}
-  </form>
-);
+class SigninForm extends React.Component {
+  submitForm = (evt) => {
+    evt.preventDefault();
+    this.props.actions.submitConnect();
+  }
+
+  render() {
+    const { login, password, actions } = this.props;
+    return (
+      <form
+        method="post"
+        onSubmit={this.submitForm}
+      >
+        <label for="login">Login</label>
+        <input
+          id="login"
+          type="text"
+          name="login"
+          onChange={({ target }) => actions.changeLoginForm(target.value)}
+          value={login}
+        />
+        <label for="password">Mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          onChange={({ target }) => actions.changePasswordForm(target.value)}
+          value={password}
+        />
+        <button id="buttonSubmit">Envoyer</button>
+
+        <a href="#" id="forgotPassword">Mot de passe perdu?</a>
+      </form>
+    );
+  }
+}
 /**
  * Export
  */
