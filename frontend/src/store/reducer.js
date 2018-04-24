@@ -2,13 +2,12 @@
  * Initial State
  */
 const initialState = {
-
-  message: 'Coucou',
   signup: {
-    username: ""
+    username: "",
     newpassword: "",
     confirmpassword: "",
     email: "",
+  },
   signin: {
     login: "Login",
     password: "Password",
@@ -18,13 +17,11 @@ const initialState = {
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
-
 const SIGNUP_CHANGE_USERNAME_INPUT = 'SIGNUP_CHANGE_USERNAME_INPUT';
 const SIGNUP_CHANGE_NEWPASSWORD_INPUT = 'SIGNUP_CHANGE_NEWPASSWORD_INPUT';
 const SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT = 'SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT';
 const SIGNUP_CHANGE_EMAIL_INPUT = 'SIGNUP_CHANGE_EMAIL_INPUT';
-const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
+export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 
 const CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
 const CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
@@ -35,10 +32,6 @@ export const SUBMIT_CONNECT = "SUBMIT_CONNECT";
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
-      return {
-        ...state,
-      };
     case SIGNUP_CHANGE_USERNAME_INPUT:
       return {
         ...state,
@@ -47,6 +40,7 @@ const reducer = (state = initialState, action = {}) => {
           username: action.username,
         }
       };
+
     case SIGNUP_CHANGE_NEWPASSWORD_INPUT:
       return {
         ...state,
@@ -55,6 +49,7 @@ const reducer = (state = initialState, action = {}) => {
           newpassword: action.newpassword,
         }
       };
+
     case SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT:
       return {
         ...state,
@@ -106,15 +101,9 @@ const reducer = (state = initialState, action = {}) => {
       return state;
   }
 };
-
 /**
  * Action Creators
  */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
-});
-
-
 export const changeSignUpUserName = username => ({
   type: SIGNUP_CHANGE_USERNAME_INPUT,
   username
@@ -140,17 +129,14 @@ export const signUpSubmit = () => ({
   type: SIGNUP_SUBMIT,
 });
 
-
-
-
 export const changePasswordForm = value => ({
-    type: CHANGE_PASSWORD_FORM,
-    value,
+  type: CHANGE_PASSWORD_FORM,
+  value,
 });
 
 export const changeLoginForm = value => ({
-    type: CHANGE_LOGIN_FORM,
-    value,
+  type: CHANGE_LOGIN_FORM,
+  value,
 });
 
 export const submitConnect = () => ({

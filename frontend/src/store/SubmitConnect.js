@@ -19,22 +19,23 @@ export default store => next => (action) => {
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);
       });
+      break;
     }
+
     case SIGNUP_SUBMIT: {
-      // console.log(store.getState());
       axios.post('/app_dev.php/user/create', {
         params: {
           ...store.getState(),
         },
       }).then((response) => {
-        alert('Requête envoyée');
+        alert('Requête inscription envoyée');
         console.log(response);
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);
       });
+      break;
     }
-    break;
-  }
+  }  
 
   // On passe au voisin
   next(action);

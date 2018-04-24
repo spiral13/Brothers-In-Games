@@ -116,7 +116,6 @@
 
 (function() {
 var global = typeof window === 'undefined' ? this : window;
-var process;
 var __makeRelativeRequire = function(require, mappings, pref) {
   var none = {};
   var tryReq = function(name, pref) {
@@ -38076,11 +38075,13 @@ var Header = function (_React$Component) {
           _react2.default.createElement(_Signin2.default, null),
           _react2.default.createElement(
             'a',
-            { href: '#', onClick: function onClick() {
-                _this2.setState({
-                  isClicked: !_this2.state.isClicked
-                });
-              }, className: 'login_signin ajust' },
+            {
+              href: '#',
+              className: 'login_signin ajust',
+              onClick: function onClick() {
+                return _this2.setState({ isClicked: !_this2.state.isClicked });
+              }
+            },
             'S\'inscrire'
           ),
           this.state.isClicked && _react2.default.createElement(
@@ -38238,17 +38239,32 @@ exports.default = SigninForm;
 });
 
 require.register("frontend/src/components/HomeVisiter/SignupForm/index.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("react");
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
 
 /**
 * Local import
@@ -38257,53 +38273,142 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Code
  */
-var SignupForm = function SignupForm() {
-  return _react2.default.createElement(
-    "form",
-    { className: "signupForm", action: "index.html", method: "post" },
-    _react2.default.createElement(
-      "label",
-      { "for": "username" },
-      "Username"
-    ),
-    _react2.default.createElement("input", { id: "username", type: "text", name: "username", value: "" }),
-    _react2.default.createElement(
-      "label",
-      { "for": "newPassword" },
-      "Password"
-    ),
-    _react2.default.createElement("input", { id: "newPassword", type: "password", name: "newPassword", value: "" }),
-    _react2.default.createElement(
-      "label",
-      { "for": "confirmPassword" },
-      "Confirm Password"
-    ),
-    _react2.default.createElement("input", { id: "confirmPassword", type: "password", name: "confirmPassword", value: "" }),
-    _react2.default.createElement(
-      "label",
-      { "for": "email" },
-      "Email"
-    ),
-    _react2.default.createElement("input", { className: "email", type: "text", name: "email", value: "" }),
-    _react2.default.createElement(
-      "label",
-      { "for": "email" },
-      "Confirm Email"
-    ),
-    _react2.default.createElement("input", { className: "email", type: "text", name: "confirmEmail", value: "" }),
-    _react2.default.createElement(
-      "button",
-      null,
-      "Envoyer"
-    )
-  );
+var SignupForm = function (_React$Component) {
+  _inherits(SignupForm, _React$Component);
+
+  function SignupForm() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, SignupForm);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SignupForm.__proto__ || Object.getPrototypeOf(SignupForm)).call.apply(_ref, [this].concat(args))), _this), _this.userNameHandleChange = function (evt) {
+      // Je recup la value depuis la cible de l'event
+      var value = evt.target.value;
+      // j'exécute la fonction fournie en passant la value
+
+      _this.props.actions.changeSignUpUserName(value);
+    }, _this.newPasswordHandleChange = function (evt) {
+      // Je recup la value depuis la cible de l'event
+      var value = evt.target.value;
+      // j'exécute la fonction fournie en passant la value
+
+      _this.props.actions.changeSignUpNewPassword(value);
+    }, _this.confirmPasswordHandleChange = function (evt) {
+      // Je recup la value depuis la cible de l'event
+      var value = evt.target.value;
+      // j'exécute la fonction fournie en passant la value
+
+      _this.props.actions.changeSignUpConfirmPassword(value);
+    }, _this.emailHandleChange = function (evt) {
+      // Je recup la value depuis la cible de l'event
+      var value = evt.target.value;
+      // j'exécute la fonction fournie en passant la value
+
+      _this.props.actions.changeSignUpEmail(value);
+    }, _this.handleSubmit = function (evt) {
+      // J'empeche le comportement par défaut
+      evt.preventDefault();
+      console.log(_this.props);
+      // J'exécute la fonction fournie par les props
+      _this.props.actions.signUpSubmit();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(SignupForm, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          username = _props.username,
+          newpassword = _props.newpassword,
+          confirmpassword = _props.confirmpassword,
+          email = _props.email;
+
+      return _react2.default.createElement(
+        'form',
+        { className: 'signupForm', method: 'post', onSubmit: this.handleSubmit },
+        _react2.default.createElement(
+          'label',
+          { 'for': 'username' },
+          'Username'
+        ),
+        _react2.default.createElement('input', {
+          id: 'username',
+          type: 'text',
+          name: 'username',
+          value: username,
+          onChange: this.userNameHandleChange
+        }),
+        _react2.default.createElement(
+          'label',
+          { 'for': 'newPassword' },
+          'Password'
+        ),
+        _react2.default.createElement('input', {
+          id: 'newPassword',
+          type: 'password',
+          name: 'newPassword',
+          value: newpassword,
+          onChange: this.newPasswordHandleChange
+        }),
+        _react2.default.createElement(
+          'label',
+          { 'for': 'confirmPassword' },
+          'Confirm Password'
+        ),
+        _react2.default.createElement('input', {
+          id: 'confirmPassword',
+          type: 'password',
+          name: 'confirmPassword',
+          value: confirmpassword,
+          onChange: this.confirmPasswordHandleChange
+        }),
+        _react2.default.createElement(
+          'label',
+          { 'for': 'email' },
+          'Email'
+        ),
+        _react2.default.createElement('input', {
+          className: 'email',
+          type: 'text',
+          name: 'email',
+          value: email,
+          onChange: this.emailHandleChange
+        }),
+        _react2.default.createElement(
+          'label',
+          { 'for': 'email' },
+          'Confirm Email'
+        ),
+        _react2.default.createElement('input', { className: 'email', type: 'text', name: 'confirmEmail' }),
+        _react2.default.createElement(
+          'button',
+          null,
+          'Envoyer'
+        )
+      );
+    }
+  }]);
+
+  return SignupForm;
+}(_react2.default.Component);
+/**
+* Export
+*/
+
+
+SignupForm.propTypes = {
+  actions: _propTypes2.default.objectOf(_propTypes2.default.func.isRequired).isRequired,
+  username: _propTypes2.default.string.isRequired,
+  newpassword: _propTypes2.default.string.isRequired,
+  confirmpassword: _propTypes2.default.string.isRequired,
+  email: _propTypes2.default.string.isRequired
 };
-/**
- * Export
- */
-/**
- * Npm import
- */
 exports.default = SignupForm;
 });
 
@@ -38453,9 +38558,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = require('react-redux');
 
+var _redux = require('redux');
+
 var _SignupForm = require('frontend/src/components/HomeVisiter/SignupForm');
 
 var _SignupForm2 = _interopRequireDefault(_SignupForm);
+
+var _reducer = require('frontend/src/store/reducer');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38464,21 +38573,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 /**
- * Npm import
- */
-var mapStateToProps = function mapStateToProps(state, ownProp) {
-  return {};
-};
-/**
 * Local import
 */
-
+/*
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    username: state.signup.username,
+    newpassword: state.signup.newpassword,
+    confirmpassword: state.signup.confirmpassword,
+    email: state.signup.email
+  };
+};
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    // changeClick: () => {
-    //   console.log('test');
-    // },
+    actions: (0, _redux.bindActionCreators)({
+      changeSignUpUserName: _reducer.changeSignUpUserName,
+      changeSignUpNewPassword: _reducer.changeSignUpNewPassword,
+      changeSignUpConfirmPassword: _reducer.changeSignUpConfirmPassword,
+      changeSignUpEmail: _reducer.changeSignUpEmail,
+      signUpSubmit: _reducer.signUpSubmit
+    }, dispatch)
   };
 };
 
@@ -38571,8 +38688,21 @@ exports.default = function (store) {
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);
             });
+            break;
           }
-          break;
+
+        case _reducer.SIGNUP_SUBMIT:
+          {
+            _axios2.default.post('/app_dev.php/user/create', {
+              params: _extends({}, store.getState())
+            }).then(function (response) {
+              alert('Requête inscription envoyée');
+              console.log(response);
+            }).catch(function (error) {
+              console.log('Echec de l\'envoie de la requ\xEAte :' + error);
+            });
+            break;
+          }
       }
 
       // On passe au voisin
@@ -38648,7 +38778,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * Initial State
  */
 var initialState = {
-  signup: {},
+  signup: {
+    username: "",
+    newpassword: "",
+    confirmpassword: "",
+    email: ""
+  },
   signin: {
     login: "Login",
     password: "Password"
@@ -38658,10 +38793,16 @@ var initialState = {
 /**
  * Types
  */
-var DO_SOMETHING = 'DO_SOMETHING';
+var SIGNUP_CHANGE_USERNAME_INPUT = 'SIGNUP_CHANGE_USERNAME_INPUT';
+var SIGNUP_CHANGE_NEWPASSWORD_INPUT = 'SIGNUP_CHANGE_NEWPASSWORD_INPUT';
+var SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT = 'SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT';
+var SIGNUP_CHANGE_EMAIL_INPUT = 'SIGNUP_CHANGE_EMAIL_INPUT';
+var SIGNUP_SUBMIT = exports.SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
+
 var CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
 var CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
 var SUBMIT_CONNECT = exports.SUBMIT_CONNECT = "SUBMIT_CONNECT";
+
 /**
  * Reducer
  */
@@ -38670,7 +38811,35 @@ var reducer = function reducer() {
   var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   switch (action.type) {
-    case DO_SOMETHING:
+    case SIGNUP_CHANGE_USERNAME_INPUT:
+      return _extends({}, state, {
+        signup: _extends({}, state.signup, {
+          username: action.username
+        })
+      });
+
+    case SIGNUP_CHANGE_NEWPASSWORD_INPUT:
+      return _extends({}, state, {
+        signup: _extends({}, state.signup, {
+          newpassword: action.newpassword
+        })
+      });
+
+    case SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT:
+      return _extends({}, state, {
+        signup: _extends({}, state.signup, {
+          confirmpassword: action.confirmpassword
+        })
+      });
+
+    case SIGNUP_CHANGE_EMAIL_INPUT:
+      return _extends({}, state, {
+        signup: _extends({}, state.signup, {
+          email: action.email
+        })
+      });
+
+    case SIGNUP_SUBMIT:
       return _extends({}, state);
 
     case CHANGE_PASSWORD_FORM:
@@ -38696,13 +38865,40 @@ var reducer = function reducer() {
       return state;
   }
 };
-
 /**
  * Action Creators
  */
-var doSomething = exports.doSomething = function doSomething() {
+var changeSignUpUserName = exports.changeSignUpUserName = function changeSignUpUserName(username) {
   return {
-    type: DO_SOMETHING
+    type: SIGNUP_CHANGE_USERNAME_INPUT,
+    username: username
+  };
+};
+
+var changeSignUpNewPassword = exports.changeSignUpNewPassword = function changeSignUpNewPassword(newpassword) {
+  return {
+    type: SIGNUP_CHANGE_NEWPASSWORD_INPUT,
+    newpassword: newpassword
+  };
+};
+
+var changeSignUpConfirmPassword = exports.changeSignUpConfirmPassword = function changeSignUpConfirmPassword(confirmpassword) {
+  return {
+    type: SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT,
+    confirmpassword: confirmpassword
+  };
+};
+
+var changeSignUpEmail = exports.changeSignUpEmail = function changeSignUpEmail(email) {
+  return {
+    type: SIGNUP_CHANGE_EMAIL_INPUT,
+    email: email
+  };
+};
+
+var signUpSubmit = exports.signUpSubmit = function signUpSubmit() {
+  return {
+    type: SIGNUP_SUBMIT
   };
 };
 
@@ -38745,7 +38941,7 @@ require.alias("redux/lib/redux.js", "redux");
 require.alias("resolve-pathname/cjs/index.js", "resolve-pathname");
 require.alias("symbol-observable/lib/index.js", "symbol-observable");
 require.alias("value-equal/cjs/index.js", "value-equal");
-require.alias("warning/browser.js", "warning");process = require('process');require.register("___globals___", function(exports, require, module) {
+require.alias("warning/browser.js", "warning");require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
 
