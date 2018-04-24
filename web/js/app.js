@@ -38682,7 +38682,6 @@ exports.default = function (store) {
             _axios2.default.post('/app_dev.php/connection', {
               params: _extends({}, store.getState())
             }).then(function (response) {
-              alert('Requête de connexion envoyée');
               console.log(response);
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);
@@ -38695,7 +38694,6 @@ exports.default = function (store) {
             _axios2.default.post('/app_dev.php/user/create', {
               params: _extends({}, store.getState())
             }).then(function (response) {
-              alert('Requête inscription envoyée');
               console.log(response);
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);

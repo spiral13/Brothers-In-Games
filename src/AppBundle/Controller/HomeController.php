@@ -13,7 +13,7 @@ class HomeController extends Controller
     }
     public function homeUserAction()
     {
-    	$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast();
     	return $this->render('home/user.html.twig');
     }
+    
 }

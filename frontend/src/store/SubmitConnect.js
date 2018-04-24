@@ -13,7 +13,6 @@ export default store => next => (action) => {
           ...store.getState(),
         },
       }).then((response) => {
-        alert('Requête de connexion envoyée');
         console.log(response);
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);
@@ -27,7 +26,6 @@ export default store => next => (action) => {
           ...store.getState(),
         },
       }).then((response) => {
-        alert('Requête inscription envoyée');
         console.log(response);
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);

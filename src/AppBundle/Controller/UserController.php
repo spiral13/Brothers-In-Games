@@ -26,7 +26,7 @@ class UserController extends Controller
     }
 	public function createAction(UserPasswordEncoderInterface $encoder, Request $request){
 
-dump($request->request);exit;
+        dump($request);exit;
         $role = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
 
 		if(!empty($request->request->all()))
