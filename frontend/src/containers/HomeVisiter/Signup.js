@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 * Local import
 */
 import SignupForm from 'frontend/src/components/HomeVisiter/SignupForm';
-import {changeSignUpUserName, changeSignUpNewPassword, changeSignUpConfirmPassword, changeSignUpEmail} from 'frontend/src/store/reducer';
+import {changeSignUpUserName, changeSignUpNewPassword, changeSignUpConfirmPassword, changeSignUpEmail, signUpSubmit} from 'frontend/src/store/reducer';
 /**
  * Code
  */
@@ -24,8 +24,8 @@ const mapDispatchToProps = dispatch => ({
     changeSignUpUserName,
     changeSignUpNewPassword,
     changeSignUpConfirmPassword,
-    changeSignUpEmail
-    signUpSubmit
+    changeSignUpEmail,
+    signUpSubmit,
   }, dispatch),
 });
 

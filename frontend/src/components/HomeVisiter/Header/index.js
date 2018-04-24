@@ -27,11 +27,11 @@ class Header extends React.Component {
         </h1>
         <p className="login_signin">Se connecter</p>
         <SigninForm/>
-        <a href="#" onClick={() => {
-            this.setState({
-              isClicked: !this.state.isClicked
-            });
-          }} className="login_signin ajust">
+        <a
+          href="#"
+          className="login_signin ajust"
+          onClick={() => this.setState({isClicked: !this.state.isClicked})}
+        >
           S'inscrire
         </a>
         {this.state.isClicked &&

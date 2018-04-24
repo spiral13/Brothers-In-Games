@@ -2,13 +2,12 @@
  * Initial State
  */
 const initialState = {
-
-  message: 'Coucou',
   signup: {
-    username: ""
+    username: "",
     newpassword: "",
     confirmpassword: "",
     email: "",
+  },
   signin: {
     login: "Login",
     password: "Password",
@@ -18,8 +17,6 @@ const initialState = {
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
-
 const SIGNUP_CHANGE_USERNAME_INPUT = 'SIGNUP_CHANGE_USERNAME_INPUT';
 const SIGNUP_CHANGE_NEWPASSWORD_INPUT = 'SIGNUP_CHANGE_NEWPASSWORD_INPUT';
 const SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT = 'SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT';
@@ -35,10 +32,6 @@ export const SUBMIT_CONNECT = "SUBMIT_CONNECT";
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
-      return {
-        ...state,
-      };
     case SIGNUP_CHANGE_USERNAME_INPUT:
       return {
         ...state,
@@ -47,6 +40,7 @@ const reducer = (state = initialState, action = {}) => {
           username: action.username,
         }
       };
+
     case SIGNUP_CHANGE_NEWPASSWORD_INPUT:
       return {
         ...state,
@@ -106,15 +100,9 @@ const reducer = (state = initialState, action = {}) => {
       return state;
   }
 };
-
 /**
  * Action Creators
  */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
-});
-
-
 export const changeSignUpUserName = username => ({
   type: SIGNUP_CHANGE_USERNAME_INPUT,
   username
@@ -139,9 +127,6 @@ export const changeSignUpEmail = email => ({
 export const signUpSubmit = () => ({
   type: SIGNUP_SUBMIT,
 });
-
-
-
 
 export const changePasswordForm = value => ({
     type: CHANGE_PASSWORD_FORM,

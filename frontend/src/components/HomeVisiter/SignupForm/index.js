@@ -51,6 +51,7 @@ class SignupForm extends React.Component {
   handleSubmit = (evt) => {
     // J'empeche le comportement par défaut
     evt.preventDefault();
+    console.log(this.props);
     // J'exécute la fonction fournie par les props
     this.props.actions.signUpSubmit();
   }
@@ -58,45 +59,45 @@ class SignupForm extends React.Component {
   render() {
     const { username, newpassword, confirmpassword, email } = this.props;
     return (
-    <form className="signupForm" action="index.html" method="post" onSubmit= {this.handleSubmit}>
-      <label for="username">Username</label>
-      <input
-        id="username"
-        type="text"
-        name="username"
-        value={username}
-        onChange={this.userNameHandleChange}
+      <form className="signupForm" method="post" onSubmit={this.handleSubmit}>
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          value={username}
+          onChange={this.userNameHandleChange}
+          />
+        <label for="newPassword">Password</label>
+        <input
+          id="newPassword"
+          type="password"
+          name="newPassword"
+          value={newpassword}
+          onChange={this.newPasswordHandleChange}
         />
-      <label for="newPassword">Password</label>
-      <input
-        id="newPassword"
-        type="password"
-        name="newPassword"
-        value={newpassword}
-        onChange={this.newPasswordHandleChange}
-      />
-      <label for="confirmPassword">Confirm Password</label>
-      <input
-        id="confirmPassword"
-        type="password"
-        name="confirmPassword"
-        value={confirmpassword}
-        onChange={this.confirmPasswordHandleChange}
-      />
-      <label for="email">Email</label>
-      <input
-        className="email"
-        type="text"
-        name="email"
-        value={email}
-        onChange={this.emailHandleChange}
-      />
-      <label for="email">Confirm Email</label>
-      <input className="email" type="text" name="confirmEmail" value="" />
-      <button>Envoyer</button>
-      {/* <button id="buttonSubmit">Envoyer</button> */}
-    </form>;
-  )
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          name="confirmPassword"
+          value={confirmpassword}
+          onChange={this.confirmPasswordHandleChange}
+        />
+        <label for="email">Email</label>
+        <input
+          className="email"
+          type="text"
+          name="email"
+          value={email}
+          onChange={this.emailHandleChange}
+        />
+        <label for="email">Confirm Email</label>
+        <input className="email" type="text" name="confirmEmail" />
+        <button>Envoyer</button>
+        {/* <button id="buttonSubmit">Envoyer</button> */}
+      </form>
+    );
   }
 }
  /**
