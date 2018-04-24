@@ -10,7 +10,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import reducer from 'frontend/src/store/reducer';
 
 // Middleware
-import exampleMiddleware from './exampleMiddleware';
+import SubmitConnect from './SubmitConnect';
 
 /*
  * Code
@@ -22,8 +22,8 @@ if (window.devToolsExtension) {
 }
 
 // Middleware vers Enhancers
-const exampleEnhancer = applyMiddleware(exampleMiddleware);
-const enhancers = compose(exampleEnhancer, ...devTools);
+const SubmitConnectEnhancer = applyMiddleware(SubmitConnect);
+const enhancers = compose(SubmitConnectEnhancer, ...devTools);
 
 // createStore
 const store = createStore(reducer, enhancers);
