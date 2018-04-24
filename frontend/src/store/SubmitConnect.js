@@ -8,9 +8,9 @@ export default store => next => (action) => {
   // Code
   switch (action.type) {
     case SUBMIT_CONNECT: {
-      axios.post('/app_dev.php/connection', {
+      axios.post(Routing.generate('login'), {
         params: {
-          ...store.getState(),
+          ...store.getState().signin,
         },
       }).then((response) => {
         alert('Requête de connexion envoyée');
@@ -22,9 +22,9 @@ export default store => next => (action) => {
     }
 
     case SIGNUP_SUBMIT: {
-      axios.post('/app_dev.php/user/create', {
+      axios.post(Routing.generate('signup'), {
         params: {
-          ...store.getState(),
+          ...store.getState().signup,
         },
       }).then((response) => {
         alert('Requête inscription envoyée');
