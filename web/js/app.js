@@ -38152,9 +38152,20 @@ var SigninForm = function (_React$Component) {
   _inherits(SigninForm, _React$Component);
 
   function SigninForm() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, SigninForm);
 
-    return _possibleConstructorReturn(this, (SigninForm.__proto__ || Object.getPrototypeOf(SigninForm)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SigninForm.__proto__ || Object.getPrototypeOf(SigninForm)).call.apply(_ref, [this].concat(args))), _this), _this.submitForm = function (evt) {
+      evt.preventDefault();
+      _this.props.actions.submitConnect();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SigninForm, [{
@@ -38168,12 +38179,8 @@ var SigninForm = function (_React$Component) {
       return _react2.default.createElement(
         "form",
         {
-          // action="index.html"
           method: "post",
-          onSubmit: function onSubmit(evt) {
-            evt.preventDefault();
-            actions.submitConnect();
-          }
+          onSubmit: this.submitForm
         },
         _react2.default.createElement(
           "label",
@@ -38184,10 +38191,9 @@ var SigninForm = function (_React$Component) {
           id: "login",
           type: "text",
           name: "login",
-          onChange: function onChange(_ref) {
-            var target = _ref.target;
-
-            actions.changeLoginForm(target.value);
+          onChange: function onChange(_ref2) {
+            var target = _ref2.target;
+            return actions.changeLoginForm(target.value);
           },
           value: login
         }),
@@ -38200,10 +38206,9 @@ var SigninForm = function (_React$Component) {
           id: "password",
           type: "password",
           name: "password",
-          onChange: function onChange(_ref2) {
-            var target = _ref2.target;
-
-            actions.changePasswordForm(target.value);
+          onChange: function onChange(_ref3) {
+            var target = _ref3.target;
+            return actions.changePasswordForm(target.value);
           },
           value: password
         }),

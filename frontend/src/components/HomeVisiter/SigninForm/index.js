@@ -10,25 +10,24 @@ import React from 'react';
  * Code
  */
 class SigninForm extends React.Component {
+  submitForm = (evt) => {
+    evt.preventDefault();
+    this.props.actions.submitConnect();
+  }
+
   render() {
     const { login, password, actions } = this.props;
     return (
       <form
-        // action="index.html"
         method="post"
-        onSubmit={(evt) => {
-          evt.preventDefault();
-          actions.submitConnect();
-        }}
+        onSubmit={this.submitForm}
       >
         <label for="login">Login</label>
         <input
           id="login"
           type="text"
           name="login"
-          onChange={({ target }) => {
-            actions.changeLoginForm(target.value);
-          }}
+          onChange={({ target }) => actions.changeLoginForm(target.value)}
           value={login}
         />
         <label for="password">Mot de passe</label>
@@ -36,9 +35,7 @@ class SigninForm extends React.Component {
           id="password"
           type="password"
           name="password"
-          onChange={({ target }) => {
-            actions.changePasswordForm(target.value);
-          }}
+          onChange={({ target }) => actions.changePasswordForm(target.value)}
           value={password}
         />
         <button id="buttonSubmit">Envoyer</button>
