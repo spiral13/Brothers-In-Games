@@ -38679,11 +38679,10 @@ exports.default = function (store) {
       switch (action.type) {
         case _reducer.SUBMIT_CONNECT:
           {
-            // console.log(store.getState());
             _axios2.default.post('/app_dev.php/connection', {
               params: _extends({}, store.getState())
             }).then(function (response) {
-              alert('Requête envoyée');
+              alert('Requête de connexion envoyée');
               console.log(response);
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);
