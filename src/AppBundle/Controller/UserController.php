@@ -25,8 +25,7 @@ class UserController extends Controller
         ));
     }
 	public function createAction(UserPasswordEncoderInterface $encoder, Request $request){
-
-        dump($request);exit;
+        dump($request->request->all());exit;
         $role = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
 
 		if(!empty($request->request->all()))
@@ -73,6 +72,5 @@ class UserController extends Controller
                 return $this->json(array('valid' => false, 'errors' => $arrayErrors));
             }
 		}
-        return $this->redirectToRoute('home_visitor');
 	}
 }

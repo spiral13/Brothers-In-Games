@@ -8,11 +8,12 @@ export default store => next => (action) => {
   // Code
   switch (action.type) {
     case SUBMIT_CONNECT: {
-      axios.post('/app_dev.php/connection', {
+      axios.post(Routing.generate('login'), {
         params: {
-          ...store.getState(),
+          ...store.getState().signin,
         },
       }).then((response) => {
+        alert('Requête de connexion envoyée');
         console.log(response);
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);
@@ -21,11 +22,19 @@ export default store => next => (action) => {
     }
 
     case SIGNUP_SUBMIT: {
-      axios.post('/app_dev.php/user/create', {
-        params: {
-          ...store.getState(),
-        },
-      }).then((response) => {
+      // J'assigne les donnée que je veux a data
+      var data = store.getState().signup;
+      // Je crée un objet FormData 
+      var formData = new FormData();
+
+      // Je boucle pour y stocker tout à l'interieur de l'objet FormData
+      for (var key in data) {
+        formData.append(key, data[key]);
+      }
+
+      // Et j'envoie la donnée
+      axios.post(Routing.generate('signup'), formData).then((response) => {
+        alert('Requête inscription envoyée');
         console.log(response);
       }).catch((error) => {
         console.log(`Echec de l'envoie de la requête :${error}`);

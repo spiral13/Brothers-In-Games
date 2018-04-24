@@ -31007,6 +31007,264 @@ if ('development' === 'production') {
   })();
 });
 
+require.register("react-icon-base/lib/index.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-icon-base");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var IconBase = function IconBase(_ref, _ref2) {
+  var children = _ref.children;
+  var color = _ref.color;
+  var size = _ref.size;
+  var style = _ref.style;
+  var width = _ref.width;
+  var height = _ref.height;
+
+  var props = _objectWithoutProperties(_ref, ['children', 'color', 'size', 'style', 'width', 'height']);
+
+  var _ref2$reactIconBase = _ref2.reactIconBase;
+  var reactIconBase = _ref2$reactIconBase === undefined ? {} : _ref2$reactIconBase;
+
+  var computedSize = size || reactIconBase.size || '1em';
+  return _react2.default.createElement('svg', _extends({
+    children: children,
+    fill: 'currentColor',
+    preserveAspectRatio: 'xMidYMid meet',
+    height: height || computedSize,
+    width: width || computedSize
+  }, reactIconBase, props, {
+    style: _extends({
+      verticalAlign: 'middle',
+      color: color || reactIconBase.color
+    }, reactIconBase.style || {}, style)
+  }));
+};
+
+IconBase.propTypes = {
+  color: _propTypes2.default.string,
+  size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  height: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  style: _propTypes2.default.object
+};
+
+IconBase.contextTypes = {
+  reactIconBase: _propTypes2.default.shape(IconBase.propTypes)
+};
+
+exports.default = IconBase;
+module.exports = exports['default'];
+  })();
+});
+
+require.register("react-icons/lib/fa/envelope.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-icons");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaEnvelope = function FaEnvelope(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm40 15.8v17.8q0 1.4-1 2.5t-2.6 1h-32.8q-1.5 0-2.6-1t-1-2.5v-17.8q1 1.1 2.3 2 8 5.5 11 7.7 1.3 0.9 2.1 1.5t2.1 1 2.5 0.6h0q1.2 0 2.5-0.6t2.1-1 2.1-1.5q3.7-2.8 11.1-7.7 1.2-0.9 2.2-1.9z m0-6.5q0 1.7-1.1 3.4t-2.7 2.7q-8.4 5.8-10.5 7.3-0.2 0.1-0.9 0.6t-1.2 0.9-1.2 0.7-1.3 0.6-1.1 0.2h0q-0.5 0-1.1-0.2t-1.3-0.6-1.2-0.7-1.2-0.9-0.9-0.6q-2.1-1.5-5.9-4.1t-4.6-3.2q-1.3-0.9-2.6-2.6t-1.2-3q0-1.8 0.9-2.9t2.7-1.2h32.8q1.5 0 2.5 1.1t1.1 2.5z' })
+        )
+    );
+};
+
+exports.default = FaEnvelope;
+module.exports = exports['default'];
+  })();
+});
+
+require.register("react-icons/lib/fa/gamepad.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-icons");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaGamepad = function FaGamepad(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm17.3 24v-2.7q0-0.3-0.2-0.4t-0.5-0.2h-4v-4q0-0.3-0.2-0.5t-0.4-0.2h-2.7q-0.3 0-0.5 0.2t-0.2 0.5v4h-3.9q-0.3 0-0.5 0.1t-0.2 0.5v2.7q0 0.3 0.2 0.5t0.5 0.2h3.9v3.9q0 0.3 0.2 0.5t0.5 0.2h2.7q0.3 0 0.4-0.2t0.2-0.5v-3.9h4q0.3 0 0.5-0.2t0.2-0.5z m11.9 1.3q0-1.1-0.7-1.9t-1.9-0.7-1.9 0.7-0.8 1.9 0.8 1.9 1.9 0.8 1.9-0.8 0.7-1.9z m5.4-5.3q0-1.1-0.8-1.9t-1.9-0.8-1.9 0.8-0.8 1.9 0.8 1.9 1.9 0.8 1.9-0.8 0.8-1.9z m5.3 2.7q0 4.4-3.1 7.5t-7.6 3.1q-4 0-7-2.7h-4.6q-3 2.7-7 2.7-4.4 0-7.5-3.1t-3.1-7.5 3.1-7.6 7.5-3.1h18.6q4.4 0 7.6 3.1t3.1 7.6z' })
+        )
+    );
+};
+
+exports.default = FaGamepad;
+module.exports = exports['default'];
+  })();
+});
+
+require.register("react-icons/lib/fa/server.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-icons");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaServer = function FaServer(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm2.9 31.4h22.8v-2.8h-22.8v2.8z m0-11.4h22.8v-2.9h-22.8v2.9z m35 10q0-0.9-0.7-1.5t-1.5-0.6-1.5 0.6-0.6 1.5 0.6 1.5 1.5 0.6 1.5-0.6 0.7-1.5z m-35-21.4h22.8v-2.9h-22.8v2.9z m35 10q0-0.9-0.7-1.5t-1.5-0.7-1.5 0.7-0.6 1.5 0.6 1.5 1.5 0.6 1.5-0.6 0.7-1.5z m0-11.5q0-0.8-0.7-1.5t-1.5-0.6-1.5 0.6-0.6 1.5 0.6 1.6 1.5 0.6 1.5-0.6 0.7-1.6z m2.1 18.6v8.6h-40v-8.6h40z m0-11.4v8.6h-40v-8.6h40z m0-11.4v8.5h-40v-8.5h40z' })
+        )
+    );
+};
+
+exports.default = FaServer;
+module.exports = exports['default'];
+  })();
+});
+
+require.register("react-icons/lib/fa/sign-out.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-icons");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaSignOut = function FaSignOut(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm16.8 32.1q0 0.1 0 0.5t0 0.6 0 0.5-0.3 0.4-0.4 0.2h-7.2q-2.6 0-4.5-1.9t-1.9-4.5v-15.8q0-2.6 1.9-4.5t4.5-1.9h7.2q0.3 0 0.5 0.2t0.2 0.5q0 0.1 0 0.5t0 0.6 0 0.5-0.3 0.4-0.4 0.2h-7.2q-1.4 0-2.5 1t-1 2.5v15.8q0 1.4 1 2.5t2.5 1h7l0.2 0.1 0.3 0 0.2 0.1 0.1 0.2 0.1 0.3z m20.7-12.1q0 0.6-0.4 1l-12.2 12.1q-0.4 0.5-1 0.5t-1-0.5-0.4-1v-6.4h-10q-0.6 0-1-0.4t-0.4-1v-8.6q0-0.6 0.4-1t1-0.4h10v-6.4q0-0.6 0.4-1t1-0.5 1 0.5l12.2 12.1q0.4 0.4 0.4 1z' })
+        )
+    );
+};
+
+exports.default = FaSignOut;
+module.exports = exports['default'];
+  })();
+});
+
+require.register("react-icons/lib/fa/user.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-icons");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaUser = function FaUser(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm35.9 31.4q0 2.6-1.6 4.2t-4.3 1.5h-19.5q-2.7 0-4.4-1.5t-1.6-4.2q0-1.2 0.1-2.3t0.3-2.5 0.6-2.4 0.9-2.2 1.4-1.8 1.9-1.2 2.5-0.4q0.2 0 1 0.5t1.6 1 2.4 1.1 3 0.5 3-0.5 2.4-1.1 1.7-1 0.9-0.5q1.4 0 2.5 0.4t1.9 1.2 1.4 1.8 0.9 2.2 0.6 2.4 0.4 2.5 0 2.3z m-7.1-20q0 3.6-2.5 6.1t-6.1 2.5-6-2.5-2.6-6.1 2.6-6 6-2.5 6.1 2.5 2.5 6z' })
+        )
+    );
+};
+
+exports.default = FaUser;
+module.exports = exports['default'];
+  })();
+});
+
 require.register("react-popup/dist/ActionButton.react.js", function(exports, require, module) {
   require = __makeRelativeRequire(require, {}, "react-popup");
   (function() {
@@ -37939,19 +38197,15 @@ var _HomeVisiter = require('frontend/src/components/HomeVisiter');
 
 var _HomeVisiter2 = _interopRequireDefault(_HomeVisiter);
 
+var _HomeMember = require('frontend/src/components/HomeMember');
+
+var _HomeMember2 = _interopRequireDefault(_HomeMember);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * Code
  */
-
-var HomeMember = function HomeMember() {
-  return _react2.default.createElement(
-    'div',
-    { id: 'homeMember' },
-    'Hello Home Member'
-  );
-};
 
 /*
  * Local import
@@ -37959,8 +38213,6 @@ var HomeMember = function HomeMember() {
 /*
  * Npm import
  */
-
-
 var App = function App() {
   return _react2.default.createElement(
     _reactRouterDom.BrowserRouter,
@@ -37971,7 +38223,8 @@ var App = function App() {
       _react2.default.createElement(
         _reactRouterDom.Switch,
         null,
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/app_dev.php', component: _HomeVisiter2.default })
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: Routing.generate('home_visitor'), component: _HomeVisiter2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: Routing.generate('home_user'), component: _HomeMember2.default })
       )
     )
   );
@@ -37981,6 +38234,51 @@ var App = function App() {
  * Export default
  */
 exports.default = App;
+});
+
+require.register("frontend/src/components/HomeMember/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Sidebar = require('frontend/src/components/Navigation_sidebar/Sidebar');
+
+var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+var _Navbar = require('frontend/src/components/Navigation_sidebar/Navbar');
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+* Local import
+*/
+var HomeMember = function HomeMember() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'homeMember' },
+    _react2.default.createElement(_Navbar2.default, null),
+    _react2.default.createElement(_Sidebar2.default, null)
+  );
+};
+/**
+ * Export
+ */
+/**
+ * Npm import
+ */
+exports.default = HomeMember;
 });
 
 require.register("frontend/src/components/HomeVisiter/Header/index.js", function(exports, require, module) {
@@ -38453,6 +38751,279 @@ var HomeVisiter = function HomeVisiter() {
 exports.default = HomeVisiter;
 });
 
+require.register("frontend/src/components/Navigation_sidebar/Friends/Friend.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _envelope = require('react-icons/lib/fa/envelope');
+
+var _envelope2 = _interopRequireDefault(_envelope);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+* Local import
+*/
+
+/**
+ * Code
+ */
+/**
+ * Npm import
+ */
+var Friend = function Friend(_ref) {
+  var name = _ref.name;
+  return _react2.default.createElement(
+    'div',
+    { className: 'friend' },
+    _react2.default.createElement(
+      'h3',
+      { className: 'friend-name' },
+      name
+    ),
+    _react2.default.createElement(_envelope2.default, null)
+  );
+};
+/**
+ * Export
+ */
+exports.default = Friend;
+});
+
+require.register("frontend/src/components/Navigation_sidebar/Friends/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Friend = require('frontend/src/components/Navigation_sidebar/Friends/Friend');
+
+var _Friend2 = _interopRequireDefault(_Friend);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+/**
+ * Npm import
+ */
+var Friends = function Friends() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'friends' },
+    _react2.default.createElement(
+      'h2',
+      null,
+      'Friends'
+    ),
+    _react2.default.createElement(_Friend2.default, { name: 'Jean pierre' }),
+    _react2.default.createElement(_Friend2.default, { name: 'Pigeon' }),
+    _react2.default.createElement(_Friend2.default, { name: 'OKKAYY' }),
+    _react2.default.createElement(_Friend2.default, { name: 'Oxiii' })
+  );
+};
+/**
+ * Export
+ */
+
+/**
+* Local import
+*/
+exports.default = Friends;
+});
+
+require.register("frontend/src/components/Navigation_sidebar/Navbar/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _gamepad = require('react-icons/lib/fa/gamepad');
+
+var _gamepad2 = _interopRequireDefault(_gamepad);
+
+var _user = require('react-icons/lib/fa/user');
+
+var _user2 = _interopRequireDefault(_user);
+
+var _server = require('react-icons/lib/fa/server');
+
+var _server2 = _interopRequireDefault(_server);
+
+var _signOut = require('react-icons/lib/fa/sign-out');
+
+var _signOut2 = _interopRequireDefault(_signOut);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+* Local import
+*/
+
+/**
+ * Code
+ */
+var Navbar = function Navbar() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'navbar' },
+    _react2.default.createElement(
+      'h1',
+      null,
+      'Les jeux'
+    ),
+    _react2.default.createElement(
+      'nav',
+      { id: 'nav-rubrique' },
+      _react2.default.createElement(
+        'ul',
+        null,
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(_gamepad2.default, { className: 'nav-fig' }),
+          _react2.default.createElement(
+            'a',
+            { href: '#' },
+            'Mes jeux'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(_server2.default, { className: 'nav-fig' }),
+          _react2.default.createElement(
+            'a',
+            { href: '#' },
+            'Mon profil'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(_user2.default, { className: 'nav-fig' }),
+          _react2.default.createElement(
+            'a',
+            { href: '#' },
+            'Mon compte'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(_signOut2.default, { className: 'nav-fig' }),
+          _react2.default.createElement(
+            'a',
+            { href: '#' },
+            'D\xE9connexion'
+          )
+        )
+      )
+    )
+  );
+};
+/**
+ * Export
+ */
+/**
+ * Npm import
+ */
+exports.default = Navbar;
+});
+
+require.register("frontend/src/components/Navigation_sidebar/Sidebar/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Friends = require('frontend/src/components/Navigation_sidebar/Friends');
+
+var _Friends2 = _interopRequireDefault(_Friends);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+/**
+ * Npm import
+ */
+var Sidebar = function Sidebar() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'sidebar' },
+    _react2.default.createElement(
+      'h1',
+      { id: 'sidebar-title' },
+      _react2.default.createElement(
+        'a',
+        { href: Routing.generate('home_user') },
+        'Brothers',
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'span',
+          null,
+          _react2.default.createElement(
+            'i',
+            null,
+            'in'
+          ),
+          'Games'
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'h2',
+      { id: 'sidebar-username' },
+      'Robert Gudule'
+    ),
+    _react2.default.createElement(
+      'form',
+      { id: 'sidebar-form' },
+      _react2.default.createElement(
+        'label',
+        { id: 'sidebar-label', 'for': 'sidebar-input' },
+        'Chercher un jeu / ami'
+      ),
+      _react2.default.createElement('input', { id: 'sidebar-input', type: 'text', value: '', placeholder: 'Recherche de joueurs/jeux' })
+    ),
+    _react2.default.createElement(_Friends2.default, null)
+  );
+};
+/**
+ * Export
+ */
+
+/**
+* Local import
+*/
+exports.default = Sidebar;
+});
+
 require.register("frontend/src/containers/HomeVisiter/Header.js", function(exports, require, module) {
 'use strict';
 
@@ -38679,9 +39250,10 @@ exports.default = function (store) {
       switch (action.type) {
         case _reducer.SUBMIT_CONNECT:
           {
-            _axios2.default.post('/app_dev.php/connection', {
-              params: _extends({}, store.getState())
+            _axios2.default.post(Routing.generate('login'), {
+              params: _extends({}, store.getState().signin)
             }).then(function (response) {
+              alert('Requête de connexion envoyée');
               console.log(response);
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);
@@ -38691,9 +39263,19 @@ exports.default = function (store) {
 
         case _reducer.SIGNUP_SUBMIT:
           {
-            _axios2.default.post('/app_dev.php/user/create', {
-              params: _extends({}, store.getState())
-            }).then(function (response) {
+            // J'assigne les donnée que je veux a data
+            var data = store.getState().signup;
+            // Je crée un objet FormData 
+            var formData = new FormData();
+
+            // Je boucle pour y stocker tout à l'interieur de l'objet FormData
+            for (var key in data) {
+              formData.append(key, data[key]);
+            }
+
+            // Et j'envoie la donnée
+            _axios2.default.post(Routing.generate('signup'), formData).then(function (response) {
+              alert('Requête inscription envoyée');
               console.log(response);
             }).catch(function (error) {
               console.log('Echec de l\'envoie de la requ\xEAte :' + error);
@@ -38932,6 +39514,7 @@ require.alias("events/events.js", "events");
 require.alias("invariant/browser.js", "invariant");
 require.alias("keymaster/keymaster.js", "keymaster");
 require.alias("process/browser.js", "process");
+require.alias("react-icon-base/lib/index.js", "react-icon-base");
 require.alias("react-popup/dist/index.js", "react-popup");
 require.alias("react-redux/lib/index.js", "react-redux");
 require.alias("redux/lib/redux.js", "redux");

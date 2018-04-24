@@ -10,24 +10,18 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
  * Local import
  */
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
+import HomeMember from 'frontend/src/components/HomeMember';
 /*
  * Code
  */
 
-const HomeMember = () => (
-  <div id="homeMember">
-    Hello Home Member
-  </div>
-);
-
 const App = () => (
   <Router>
     <div id="app">
+      {/* Nous pouvons ajouter autant de pages que souhaité  */}
       <Switch>
-        <Route exact path="/app_dev.php" component={HomeVisiter} />
-        {/* <Route exact path="/app_dev.php/home" component={HomeVisiter} /> */}
-        {/* <Route exact path="/app_dev.php/home" render={() => <HomeMember data="" />} /> */}
-        {/* Nous pouvons ajouter autant de pages que souhaité  */}
+        <Route exact path={Routing.generate('home_visitor')} component={HomeVisiter} />
+        <Route exact path={Routing.generate('home_user')} component={HomeMember} />
       </Switch>
     </div>
   </Router>

@@ -4,10 +4,10 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class GameController extends Controller
+class AnnouncementController extends Controller
 {
 	public function listAction()
 	{
-		return $this->render('game/list.html.twig');
+		return $this->render('announcement/list.html.twig');
 	}
 }
