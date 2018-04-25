@@ -4,7 +4,7 @@ app:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-home_visitor:  
+home_visitor:
     path: /
     defaults: { _controller: AppBundle:Home:homeVisitor }
     options:
@@ -42,6 +42,6 @@ announcements_list:
 
 get_home_articles:
     path: /home/get/articles
-    defaults: { _controller: AppBundle:Announcement:getHomeArticles }
+    defaults: { _controller: AppBundle:Article:getHomeArticle }
     options:
         expose: true

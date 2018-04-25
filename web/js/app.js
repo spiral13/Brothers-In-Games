@@ -39964,7 +39964,13 @@ exports.default = function (store) {
       switch (action.type) {
         case _reducer.GET_NEWS:
           {
-            console.log('GET_NEWS');
+            _axios2.default.get(Routing.generate('get_home_articles')).then(function (response) {
+              alert('Requête de connexion envoyée');
+              console.log(response);
+            }).catch(function (error) {
+              alert('Echec de l\'envoie de la requ\xEAte :' + error);
+              console.log(error);
+            });
           }
           break;
       }
@@ -40046,7 +40052,6 @@ exports.default = function (store) {
               console.log(key, data[key]);
               formData.append(key, data[key]);
             }
-            console.log(formData);
             _axios2.default.post(Routing.generate('login'), formData).then(function (response) {
               alert('Requête de connexion envoyée');
             }).catch(function (error) {
