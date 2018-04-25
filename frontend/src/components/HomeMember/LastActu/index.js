@@ -10,7 +10,7 @@ import React from 'react';
  * Code
  */
 const LastActu = () => (
-  <div id="lastActu">
+  <div className="lastActu">
     <a href="">Content</a>
   </div>
 );

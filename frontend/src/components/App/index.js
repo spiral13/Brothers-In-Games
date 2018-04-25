@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
  * Local import
  */
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
-import HomeMember from 'frontend/src/components/HomeMember';
+import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/components/GameList';
 /*
  * Code

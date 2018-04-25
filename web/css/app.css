@@ -67,6 +67,19 @@ body {
 }
 
 
+.lastActu {
+  border-left: 3px solid #ec9c34;
+  border-radius: 1px 0 0 1px;
+  height: 40px;
+  text-align: left;
+  padding: 5px 10px;
+  border-bottom: 4px solid #2c2c2c;
+  font-size: 0.7em;
+  font-weight: lighter;
+}
+.lastActu a {
+  color: #f5f5f5;
+}
 
 #main-member {
   width: 70%;
@@ -79,6 +92,7 @@ body {
   width: 15%;
   background-color: #2c2c2c;
   height: 100vh;
+  box-shadow: 0px 0px 2px;
 }
 #rightBar-rubrique {
   display: flex;
@@ -92,8 +106,14 @@ body {
   text-align: center;
   text-transform: uppercase;
 }
-.selected-bar {
+.bar {
   background-color: #ec9c34;
+  color: #2c2c2c;
+  line-height: 1.2em;
+}
+.selected-bar {
+  background-color: #2c2c2c;
+  color: #ec9c34;
 }
 
 

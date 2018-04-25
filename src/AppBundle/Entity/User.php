@@ -61,7 +61,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var Messenger
      */
-    private $messengerSend;   
+    private $messengerSend;
 
      /**
      * @var Message
@@ -110,7 +110,7 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-        
+
         return serialize(array(
             $this->id,
             $this->username,
@@ -123,9 +123,6 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
-        dump($this->id,
-            $this->username,
-            $this->password);exit;
         list (
             $this->id,
             $this->username,
@@ -375,4 +372,3 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 }
-

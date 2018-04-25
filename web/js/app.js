@@ -1701,6 +1701,60 @@ define(String.prototype, "padRight", "".padEnd);
   })();
 });
 
+require.register("classnames/index.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "classnames");
+  (function() {
+    /*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+  })();
+});
+
 require.register("core-js/fn/regexp/escape.js", function(exports, require, module) {
   require = __makeRelativeRequire(require, {}, "core-js");
   (function() {
@@ -38235,7 +38289,7 @@ var _HomeVisiter = require('frontend/src/components/HomeVisiter');
 
 var _HomeVisiter2 = _interopRequireDefault(_HomeVisiter);
 
-var _HomeMember = require('frontend/src/components/HomeMember');
+var _HomeMember = require('frontend/src/containers/HomeMember/HomeMember');
 
 var _HomeMember2 = _interopRequireDefault(_HomeMember);
 
@@ -38356,7 +38410,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var LastActu = function LastActu() {
   return _react2.default.createElement(
     "div",
-    { id: "lastActu" },
+    { className: "lastActu" },
     _react2.default.createElement(
       "a",
       { href: "" },
@@ -38380,11 +38434,22 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
 
 /**
 * Local import
@@ -38393,19 +38458,33 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Code
  */
-var Main = function Main() {
-  return _react2.default.createElement(
-    "div",
-    { id: "main-member" },
-    "Main"
-  );
-};
+var Main = function (_React$Component) {
+  _inherits(Main, _React$Component);
+
+  function Main() {
+    _classCallCheck(this, Main);
+
+    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+  }
+
+  _createClass(Main, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { id: "main-member" },
+        "Main"
+      );
+    }
+  }]);
+
+  return Main;
+}(_react2.default.Component);
 /**
  * Export
  */
-/**
- * Npm import
- */
+
+
 exports.default = Main;
 });
 
@@ -38416,9 +38495,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 var _LastActu = require('frontend/src/components/HomeMember/LastActu');
 
@@ -38426,40 +38511,94 @@ var _LastActu2 = _interopRequireDefault(_LastActu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Code
- */
-/**
- * Npm import
- */
-var RightSidebar = function RightSidebar() {
-  return _react2.default.createElement(
-    'div',
-    { id: 'rightSidebar' },
-    _react2.default.createElement(
-      'div',
-      { id: 'rightBar-rubrique' },
-      _react2.default.createElement(
-        'a',
-        { href: '#', className: 'selected-bar' },
-        'Derni\xE8res actualit\xE9s'
-      ),
-      _react2.default.createElement(
-        'a',
-        { href: '#' },
-        'Activit\xE9s des joueurs'
-      )
-    ),
-    _react2.default.createElement(_LastActu2.default, null)
-  );
-};
-/**
- * Export
- */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 /**
 * Local import
 */
+
+
+/**
+ * Code
+ */
+var RightSidebar = function (_React$Component) {
+  _inherits(RightSidebar, _React$Component);
+
+  function RightSidebar() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, RightSidebar);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RightSidebar.__proto__ || Object.getPrototypeOf(RightSidebar)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      currentBar: "actus-bar"
+    }, _this.changeBar = function (_ref2) {
+      var target = _ref2.target;
+
+      _this.setState({ currentBar: target.id });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(RightSidebar, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'rightSidebar' },
+        _react2.default.createElement(
+          'div',
+          { id: 'rightBar-rubrique' },
+          _react2.default.createElement(
+            'a',
+            {
+              id: 'actus-bar',
+              href: '#',
+              className: (0, _classnames2.default)('bar', { "selected-bar": this.state.currentBar === 'actus-bar' }),
+              onClick: this.changeBar
+            },
+            'Derni\xE8res actualit\xE9s'
+          ),
+          _react2.default.createElement(
+            'a',
+            {
+              id: 'player-bar',
+              href: '#',
+              className: (0, _classnames2.default)('bar', { "selected-bar": this.state.currentBar === 'player-bar' }),
+              onClick: this.changeBar
+            },
+            'Activit\xE9s des joueurs'
+          )
+        ),
+        this.state.currentBar === "actus-bar" && _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_LastActu2.default, null),
+          _react2.default.createElement(_LastActu2.default, null),
+          _react2.default.createElement(_LastActu2.default, null)
+        ),
+        this.state.currentBar === "player-bar" && _react2.default.createElement(_LastActu2.default, null)
+      );
+    }
+  }]);
+
+  return RightSidebar;
+}(_react2.default.Component);
+/**
+ * Export
+ */
+
+
 exports.default = RightSidebar;
 });
 
@@ -38470,51 +38609,81 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Sidebar = require('frontend/src/components/Navigation_sidebar/Sidebar');
+var _Sidebar = require('frontend/src/containers/Navigation_sidebar/Sidebar');
 
 var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
-var _Navbar = require('frontend/src/components/Navigation_sidebar/Navbar');
+var _Navbar = require('frontend/src/containers/Navigation_sidebar/Navbar');
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
-var _Main = require('frontend/src/components/HomeMember/Main');
+var _Main = require('frontend/src/containers/HomeMember/Main');
 
 var _Main2 = _interopRequireDefault(_Main);
 
-var _RightSidebar = require('frontend/src/components/HomeMember/RightSidebar');
+var _RightSidebar = require('frontend/src/containers/HomeMember/RightSidebar');
 
 var _RightSidebar2 = _interopRequireDefault(_RightSidebar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Code
- */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 /**
 * Local import
 */
-var HomeMember = function HomeMember() {
-  return _react2.default.createElement(
-    'div',
-    { id: 'homeMember' },
-    _react2.default.createElement(_Navbar2.default, null),
-    _react2.default.createElement(_Sidebar2.default, null),
-    _react2.default.createElement(_Main2.default, null),
-    _react2.default.createElement(_RightSidebar2.default, null)
-  );
-};
+
+
+/**
+ * Code
+ */
+var HomeMember = function (_React$Component) {
+  _inherits(HomeMember, _React$Component);
+
+  function HomeMember() {
+    _classCallCheck(this, HomeMember);
+
+    return _possibleConstructorReturn(this, (HomeMember.__proto__ || Object.getPrototypeOf(HomeMember)).apply(this, arguments));
+  }
+
+  _createClass(HomeMember, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.props.actions.getAllNews();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'homeMember' },
+        _react2.default.createElement(_Navbar2.default, null),
+        _react2.default.createElement(_Sidebar2.default, null),
+        _react2.default.createElement(_Main2.default, null),
+        _react2.default.createElement(_RightSidebar2.default, null)
+      );
+    }
+  }]);
+
+  return HomeMember;
+}(_react2.default.Component);
 /**
  * Export
  */
-/**
- * Npm import
- */
+
+
 exports.default = HomeMember;
 });
 
@@ -39270,6 +39439,145 @@ var Sidebar = function Sidebar() {
 exports.default = Sidebar;
 });
 
+require.register("frontend/src/containers/HomeMember/HomeMember.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _redux = require('redux');
+
+var _HomeMember = require('frontend/src/components/HomeMember');
+
+var _HomeMember2 = _interopRequireDefault(_HomeMember);
+
+var _reducer = require('frontend/src/store/reducer');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+* Local import
+*/
+/**
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    actions: (0, _redux.bindActionCreators)({ getAllNews: _reducer.getAllNews }, dispatch)
+  };
+};
+
+var HomeMemberContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_HomeMember2.default);
+
+/**
+ * Export
+ */
+exports.default = HomeMemberContainer;
+});
+
+require.register("frontend/src/containers/HomeMember/Main.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _Main = require('frontend/src/components/HomeMember/Main');
+
+var _Main2 = _interopRequireDefault(_Main);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
+/**
+* Local import
+*/
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // changeClick: () => {
+    //   console.log('test');
+    // },
+  };
+};
+
+var MainContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Main2.default);
+
+/**
+ * Export
+ */
+exports.default = MainContainer;
+});
+
+require.register("frontend/src/containers/HomeMember/RightSidebar.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _RightSidebar = require('frontend/src/components/HomeMember/RightSidebar');
+
+var _RightSidebar2 = _interopRequireDefault(_RightSidebar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
+/**
+* Local import
+*/
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // changeClick: () => {
+    //   console.log('test');
+    // },
+  };
+};
+
+var RightSidebarContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_RightSidebar2.default);
+
+/**
+ * Export
+ */
+exports.default = RightSidebarContainer;
+});
+
 require.register("frontend/src/containers/HomeVisiter/Header.js", function(exports, require, module) {
 'use strict';
 
@@ -39424,6 +39732,98 @@ var SignupFormContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchT
 exports.default = SignupFormContainer;
 });
 
+require.register("frontend/src/containers/Navigation_sidebar/Navbar.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _Navbar = require('frontend/src/components/Navigation_sidebar/Navbar');
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
+/**
+* Local import
+*/
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // changeClick: () => {
+    //   console.log('test');
+    // },
+  };
+};
+
+var NavbarContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Navbar2.default);
+
+/**
+ * Export
+ */
+exports.default = NavbarContainer;
+});
+
+require.register("frontend/src/containers/Navigation_sidebar/Sidebar.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _Sidebar = require('frontend/src/components/Navigation_sidebar/Sidebar');
+
+var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+ * Npm import
+ */
+var mapStateToProps = function mapStateToProps(state, ownProp) {
+  return {};
+};
+/**
+* Local import
+*/
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // changeClick: () => {
+    //   console.log('test');
+    // },
+  };
+};
+
+var SidebarContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Sidebar2.default);
+
+/**
+ * Export
+ */
+exports.default = SidebarContainer;
+});
+
 require.register("frontend/src/index.js", function(exports, require, module) {
 'use strict';
 
@@ -39467,6 +39867,80 @@ var rootComponent = _react2.default.createElement(
 document.addEventListener('DOMContentLoaded', function () {
   (0, _reactDom.render)(rootComponent, document.getElementById('root'));
 });
+});
+
+require.register("frontend/src/store/GetNews.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _reducer = require('./reducer');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Middleware
+ */
+exports.default = function (store) {
+  return function (next) {
+    return function (action) {
+
+      // Code
+      switch (action.type) {
+        case _reducer.GET_NEWS:
+          {
+            console.log('GET_NEWS');
+          }
+          break;
+      }
+
+      // On passe au voisin
+      next(action);
+    };
+  };
+};
+});
+
+require.register("frontend/src/store/MainReducer.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = require('redux');
+
+var _reducer = require('frontend/src/store/reducer');
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Code
+ */
+/*
+ * Import NPM
+ */
+var MainReducer = (0, _redux.combineReducers)({
+  reducer: _reducer2.default
+});
+
+/*
+ * Export
+ */
+
+
+/*
+ * Local import
+ */
+exports.default = _reducer2.default;
 });
 
 require.register("frontend/src/store/SubmitConnect.js", function(exports, require, module) {
@@ -39549,13 +40023,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = require('redux');
 
-var _reducer = require('frontend/src/store/reducer');
+var _MainReducer = require('frontend/src/store/MainReducer');
 
-var _reducer2 = _interopRequireDefault(_reducer);
+var _MainReducer2 = _interopRequireDefault(_MainReducer);
 
 var _SubmitConnect = require('./SubmitConnect');
 
 var _SubmitConnect2 = _interopRequireDefault(_SubmitConnect);
+
+var _GetNews = require('./GetNews');
+
+var _GetNews2 = _interopRequireDefault(_GetNews);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39565,27 +40043,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // DevTools
 
 
-/*
- * Local import
- */
-// Reducer
-var devTools = [];
-
 // Middleware
 /*
  * Npm import
  */
+var devTools = [];
+
+/*
+ * Local import
+ */
+// Reducer
 
 if (window.devToolsExtension) {
   devTools.push(window.devToolsExtension());
 }
 
 // Middleware vers Enhancers
-var SubmitConnectEnhancer = (0, _redux.applyMiddleware)(_SubmitConnect2.default);
-var enhancers = _redux.compose.apply(undefined, [SubmitConnectEnhancer].concat(devTools));
+var middlewares = (0, _redux.applyMiddleware)(_SubmitConnect2.default, _GetNews2.default);
+var enhancers = _redux.compose.apply(undefined, [middlewares].concat(devTools));
 
 // createStore
-var store = (0, _redux.createStore)(_reducer2.default, enhancers);
+var store = (0, _redux.createStore)(_MainReducer2.default, enhancers);
 
 /*
  * Export
@@ -39631,6 +40109,7 @@ var CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
 var CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
 var SUBMIT_CONNECT = exports.SUBMIT_CONNECT = "SUBMIT_CONNECT";
 
+var GET_NEWS = exports.GET_NEWS = "GET_NEWS";
 /**
  * Reducer
  */
@@ -39687,6 +40166,10 @@ var reducer = function reducer() {
       });
 
     case SUBMIT_CONNECT:
+      return _extends({}, state);
+
+    case GET_NEWS:
+      // Ajouter dans le state toutes les news.
       return _extends({}, state);
 
     default:
@@ -39750,6 +40233,11 @@ var submitConnect = exports.submitConnect = function submitConnect() {
   };
 };
 
+var getAllNews = exports.getAllNews = function getAllNews() {
+  return {
+    type: GET_NEWS
+  };
+};
 /**
  * Export
  */

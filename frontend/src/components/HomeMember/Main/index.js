@@ -9,11 +9,15 @@ import React from 'react';
 /**
  * Code
  */
-const Main = () => (
-  <div id="main-member">
-    Main
-  </div>
-);
+class Main extends React.Component {
+  render() {
+    return (
+      <div id="main-member">
+        Main
+      </div>
+    );
+  }
+}
 /**
  * Export
  */

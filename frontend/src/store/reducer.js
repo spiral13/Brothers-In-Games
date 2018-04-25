@@ -27,6 +27,7 @@ const CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
 const CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
 export const SUBMIT_CONNECT = "SUBMIT_CONNECT";
 
+export const GET_NEWS = "GET_NEWS";
 /**
  * Reducer
  */
@@ -97,6 +98,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
+    case GET_NEWS:
+    // Ajouter dans le state toutes les news.
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
@@ -143,7 +150,9 @@ export const submitConnect = () => ({
   type: SUBMIT_CONNECT,
 });
 
-
+export const getAllNews = () => ({
+  type: GET_NEWS,
+});
 /**
  * Export
  */
