@@ -7,20 +7,16 @@ import React from 'react';
 */
 import Sidebar from 'frontend/src/components/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/components/Navigation_sidebar/Navbar';
-import Main from 'frontend/src/components/HomeMember/Main';
-import RightSidebar from 'frontend/src/components/HomeMember/RightSidebar';
 /**
  * Code
  */
-const HomeMember = () => (
-  <div id="homeMember">
+const GameList = () => (
+  <div id="gameList">
     <Navbar />
     <Sidebar />
-    <Main />
-    <RightSidebar />
   </div>
 );
 /**
  * Export
  */
-export default HomeMember;
+export default GameList;
