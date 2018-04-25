@@ -49,3 +49,8 @@ get_home_articles:
     defaults: { _controller: AppBundle:Article:getHomeArticle }
     options:
         expose: true
+get_all_games:
+    path: /games/get/games
+    defaults: { _controller: AppBundle:Game:getAllGames }
+    options:
+        expose: true
