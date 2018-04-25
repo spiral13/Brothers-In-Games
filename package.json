@@ -44,6 +44,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-icons": "^2.2.7",
+    "react-loading": "^2.0.2",
     "react-popup": "^0.9.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",

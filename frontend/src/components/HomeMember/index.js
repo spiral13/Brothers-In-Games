@@ -9,23 +9,35 @@ import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Main from 'frontend/src/containers/HomeMember/Main';
 import RightSidebar from 'frontend/src/containers/HomeMember/RightSidebar';
+import Loading from 'frontend/src/components/Loading';
 /**
  * Code
  */
 class HomeMember extends React.Component {
-  componentWillMount() {
+  state = {
+    loading: true,
+  }
+
+  componentWillMount () {
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 1500);
     this.props.actions.getAllNews();
   }
 
   render() {
-    return (
-      <div id="homeMember">
-        <Navbar />
-        <Sidebar />
-        <Main />
-        <RightSidebar />
-      </div>
-    );
+    if (this.state.loading) {
+      return <Loading />;
+    } else {
+      return (
+        <div id="homeMember">
+          <Navbar />
+          <Sidebar />
+          <Main />
+          <RightSidebar />
+        </div>
+      );
+    }
   }
 }
 /**

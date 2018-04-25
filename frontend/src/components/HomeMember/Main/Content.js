@@ -9,14 +9,26 @@ import React from 'react';
 /**
  * Code
  */
-class Content extends React.Component {
-  render() {
-    return (
-      <div id="content-new">
-        Content
-      </div>
-    );
+const Content = ({ index, content }) => {
+  let style = "content-new";
+  // if (index === 0) {
+  //   style += " first";
+  // }
+  if (index >= 0 && index < 5) {
+    style += " middle";
   }
+  if (index >= 5 && index < 10) {
+    style += " last";
+  }
+  return (
+    <div className={style}>
+      <img src={content.image} alt={content.title}  />
+      <div className="presentation">
+        <h3>{content.title}</h3>
+        <p>Description de l'image</p>
+      </div>
+    </div>
+  );
 }
 /**
  * Export
