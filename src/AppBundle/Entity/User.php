@@ -110,10 +110,6 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-<<<<<<< HEAD
-=======
-
->>>>>>> b534453f4019bedf5817132e63c149458b8efd58
         return serialize(array(
             $this->id,
             $this->username,
