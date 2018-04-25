@@ -68,6 +68,35 @@ body {
 
 
 
+#main-member {
+  width: 70%;
+  float: left;
+  margin-left: 15%;
+}
+
+#rightSidebar {
+  float: right;
+  width: 15%;
+  background-color: #2c2c2c;
+  height: 100vh;
+}
+#rightBar-rubrique {
+  display: flex;
+  flex-direction: row;
+}
+#rightBar-rubrique a {
+  width: 50%;
+  font-size: 0.5em;
+  padding: 5px;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: uppercase;
+}
+.selected-bar {
+  background-color: #ec9c34;
+}
+
+
 
 #buttonSubmit {
   margin-left: 70%;

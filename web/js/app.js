@@ -38333,6 +38333,136 @@ var GameList = function GameList() {
 exports.default = GameList;
 });
 
+require.register("frontend/src/components/HomeMember/LastActu/index.js", function(exports, require, module) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+* Local import
+*/
+
+/**
+ * Code
+ */
+var LastActu = function LastActu() {
+  return _react2.default.createElement(
+    "div",
+    { id: "lastActu" },
+    _react2.default.createElement(
+      "a",
+      { href: "" },
+      "Content"
+    )
+  );
+};
+/**
+ * Export
+ */
+/*
+ * Npm import
+ */
+exports.default = LastActu;
+});
+
+require.register("frontend/src/components/HomeMember/Main/index.js", function(exports, require, module) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+* Local import
+*/
+
+/**
+ * Code
+ */
+var Main = function Main() {
+  return _react2.default.createElement(
+    "div",
+    { id: "main-member" },
+    "Main"
+  );
+};
+/**
+ * Export
+ */
+/**
+ * Npm import
+ */
+exports.default = Main;
+});
+
+require.register("frontend/src/components/HomeMember/RightSidebar/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _LastActu = require('frontend/src/components/HomeMember/LastActu');
+
+var _LastActu2 = _interopRequireDefault(_LastActu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+/**
+ * Npm import
+ */
+var RightSidebar = function RightSidebar() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'rightSidebar' },
+    _react2.default.createElement(
+      'div',
+      { id: 'rightBar-rubrique' },
+      _react2.default.createElement(
+        'a',
+        { href: '#', className: 'selected-bar' },
+        'Derni\xE8res actualit\xE9s'
+      ),
+      _react2.default.createElement(
+        'a',
+        { href: '#' },
+        'Activit\xE9s des joueurs'
+      )
+    ),
+    _react2.default.createElement(_LastActu2.default, null)
+  );
+};
+/**
+ * Export
+ */
+
+/**
+* Local import
+*/
+exports.default = RightSidebar;
+});
+
 require.register("frontend/src/components/HomeMember/index.js", function(exports, require, module) {
 'use strict';
 
@@ -38352,6 +38482,14 @@ var _Navbar = require('frontend/src/components/Navigation_sidebar/Navbar');
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
+var _Main = require('frontend/src/components/HomeMember/Main');
+
+var _Main2 = _interopRequireDefault(_Main);
+
+var _RightSidebar = require('frontend/src/components/HomeMember/RightSidebar');
+
+var _RightSidebar2 = _interopRequireDefault(_RightSidebar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -38366,7 +38504,9 @@ var HomeMember = function HomeMember() {
     'div',
     { id: 'homeMember' },
     _react2.default.createElement(_Navbar2.default, null),
-    _react2.default.createElement(_Sidebar2.default, null)
+    _react2.default.createElement(_Sidebar2.default, null),
+    _react2.default.createElement(_Main2.default, null),
+    _react2.default.createElement(_RightSidebar2.default, null)
   );
 };
 /**
@@ -38596,7 +38736,7 @@ var SigninForm = function (_React$Component) {
         _react2.default.createElement('input', {
           id: 'login',
           type: 'text',
-          name: 'login',
+          name: 'username',
           onChange: function onChange(_ref2) {
             var target = _ref2.target;
             return actions.changeLoginForm(target.value);
@@ -39336,8 +39476,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _reducer = require('./reducer');
 
 var _axios = require('axios');
@@ -39356,9 +39494,16 @@ exports.default = function (store) {
       switch (action.type) {
         case _reducer.SUBMIT_CONNECT:
           {
-            _axios2.default.post(Routing.generate('login'), {
-              params: _extends({}, store.getState().signin)
-            }).then(function (response) {
+            // J'assigne les donnée que je veux a data
+            var data = store.getState().signin;
+            // Je crée un objet FormData
+            var formData = new FormData();
+            // Je boucle pour y stocker tout à l'interieur de l'objet FormData
+            for (var key in data) {
+              formData.append(key, data[key]);
+            }
+
+            _axios2.default.post(Routing.generate('login'), formData).then(function (response) {
               alert('Requête de connexion envoyée');
             }).catch(function (error) {
               alert('Echec de l\'envoie de la requ\xEAte :' + error);

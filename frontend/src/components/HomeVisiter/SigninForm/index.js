@@ -27,7 +27,7 @@ class SigninForm extends React.Component {
         <input
           id="login"
           type="text"
-          name="login"
+          name="username"
           onChange={({ target }) => actions.changeLoginForm(target.value)}
           value={login}
         />

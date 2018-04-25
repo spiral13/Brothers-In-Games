@@ -8,11 +8,16 @@ export default store => next => (action) => {
   // Code
   switch (action.type) {
     case SUBMIT_CONNECT: {
-      axios.post(Routing.generate('login'), {
-        params: {
-          ...store.getState().signin,
-        },
-      }).then((response) => {
+      // J'assigne les donnée que je veux a data
+      var data = store.getState().signin;
+      // Je crée un objet FormData
+      var formData = new FormData();
+      // Je boucle pour y stocker tout à l'interieur de l'objet FormData
+      for (var key in data) {
+        formData.append(key, data[key]);
+      }
+
+      axios.post(Routing.generate('login'), formData).then((response) => {
         alert('Requête de connexion envoyée');
       }).catch((error) => {
         alert(`Echec de l'envoie de la requête :${error}`);
