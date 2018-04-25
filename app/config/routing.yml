@@ -26,6 +26,10 @@ login:
     defaults: { _controller: AppBundle:User:login }
     options:
         expose: true
+logout:
+    path: /logout
+    options:
+        expose: true
 
 games_list:
     path: /games
@@ -42,6 +46,6 @@ announcements_list:
 
 get_home_articles:
     path: /home/get/articles
-    defaults: { _controller: AppBundle:Announcement:getHomeArticles }
+    defaults: { _controller: AppBundle:Article:getHomeArticle }
     options:
         expose: true

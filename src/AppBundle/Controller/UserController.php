@@ -13,14 +13,14 @@ class UserController extends Controller
 {
 	public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        dump($request->request->all());exit;
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         
         $this->addFlash('valid', 'Vous êtes à présent connecté(e)');
 
-        return $this->json(array('valid' => true, 'error' => $error));
+        return $this->json(array('valid' => true, 'last_username' => $lastUsername, 'error' => $error));
     }
+
 	public function createAction(UserPasswordEncoderInterface $encoder, Request $request){
 
         $role = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
