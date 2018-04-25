@@ -17,7 +17,7 @@ class SigninForm extends React.Component {
   }
 
   render() {
-    const { login, password, actions } = this.props;
+    const { username, password, actions } = this.props;
     return (
       <form
         method="post"
@@ -29,7 +29,7 @@ class SigninForm extends React.Component {
           type="text"
           name="username"
           onChange={({ target }) => actions.changeLoginForm(target.value)}
-          value={login}
+          value={username}
         />
         <label for="password">Mot de passe</label>
         <input

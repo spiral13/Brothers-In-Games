@@ -9,7 +9,7 @@ const initialState = {
     email: "",
   },
   signin: {
-    login: "Login",
+    username: "Username",
     password: "Password",
   },
 };
@@ -88,7 +88,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         signin: {
           ...state.signin,
-          login: action.value,
+          username: action.value,
         },
       };
 
