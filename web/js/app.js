@@ -40368,6 +40368,9 @@ var initialState = {
     description: ''
   }],
   news: [{}]
+<<<<<<< HEAD
+>>>>>>> 6644c5239e03bfb0b209f8cfb340b5ca4ee7df9a
+=======
 >>>>>>> 6644c5239e03bfb0b209f8cfb340b5ca4ee7df9a
 };
 
@@ -40452,8 +40455,11 @@ var reducer = function reducer() {
       return _extends({}, state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     case GET_GAMES:
 =======
+=======
+>>>>>>> 6644c5239e03bfb0b209f8cfb340b5ca4ee7df9a
     case ADD_NEWS:
       return _extends({}, state, {
         news: action.news.data
@@ -40549,9 +40555,20 @@ var getAllNews = exports.getAllNews = function getAllNews() {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 var getAllGames = exports.getAllGames = function getAllGames() {
 =======
 var addNews = exports.addNews = function addNews(news) {
+=======
+var addNews = exports.addNews = function addNews(news) {
+  return {
+    type: ADD_NEWS,
+    news: news
+  };
+};
+
+var displayTitleGame = exports.displayTitleGame = function displayTitleGame(title) {
+>>>>>>> 6644c5239e03bfb0b209f8cfb340b5ca4ee7df9a
   return {
     type: ADD_NEWS,
     news: news
