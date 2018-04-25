@@ -38602,12 +38602,23 @@ var Main = function (_React$Component) {
   }
 
   _createClass(Main, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      console.log('ok');
+      this.tab = this.props.news.data;
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var news = this.props.news;
+
+      this.tab = ['test', 'test'];
       return _react2.default.createElement(
         'div',
         { id: 'main-member' },
-        'Content'
+        this.tab.map(function (news) {
+          return _react2.default.createElement(_Content2.default, { key: news.id });
+        })
       );
     }
   }]);
