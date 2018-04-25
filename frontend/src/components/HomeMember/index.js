@@ -5,21 +5,29 @@ import React from 'react';
 /**
 * Local import
 */
-import Sidebar from 'frontend/src/components/Navigation_sidebar/Sidebar';
-import Navbar from 'frontend/src/components/Navigation_sidebar/Navbar';
-import Main from 'frontend/src/components/HomeMember/Main';
-import RightSidebar from 'frontend/src/components/HomeMember/RightSidebar';
+import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
+import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
+import Main from 'frontend/src/containers/HomeMember/Main';
+import RightSidebar from 'frontend/src/containers/HomeMember/RightSidebar';
 /**
  * Code
  */
-const HomeMember = () => (
-  <div id="homeMember">
-    <Navbar />
-    <Sidebar />
-    <Main />
-    <RightSidebar />
-  </div>
-);
+class HomeMember extends React.Component {
+  componentWillMount() {
+    this.props.actions.getAllNews();
+  }
+
+  render() {
+    return (
+      <div id="homeMember">
+        <Navbar />
+        <Sidebar />
+        <Main />
+        <RightSidebar />
+      </div>
+    );
+  }
+}
 /**
  * Export
  */
