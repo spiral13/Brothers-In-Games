@@ -38342,6 +38342,54 @@ var App = function App() {
 exports.default = App;
 });
 
+require.register("frontend/src/components/GameList/Game/index.js", function(exports, require, module) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import Gamepad from 'react-icons/lib/fa/gamepad';
+
+/**
+* Local import
+*/
+
+/**
+ * Code
+ */
+var Game = function Game() {
+  return _react2.default.createElement(
+    "div",
+    { id: "game" },
+    _react2.default.createElement("img", { src: "https://media.koreus.com/201701/allez-faire-loutre.jpg", alt: "Titre du jeu", id: "gamePicture" }),
+    _react2.default.createElement(
+      "h2",
+      { id: "gameTitle" },
+      "Titre du jeu"
+    ),
+    _react2.default.createElement(
+      "p",
+      { id: "gameInfo" },
+      "130 personnes recherchent des joueurs"
+    )
+  );
+};
+/**
+ * Export
+ */
+/**
+ * Npm import
+ */
+exports.default = Game;
+});
+
 require.register("frontend/src/components/GameList/index.js", function(exports, require, module) {
 'use strict';
 
@@ -38361,29 +38409,50 @@ var _Navbar = require('frontend/src/components/Navigation_sidebar/Navbar');
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
+var _Game = require('frontend/src/components/GameList/Game');
+
+var _Game2 = _interopRequireDefault(_Game);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Code
  */
-
-/**
-* Local import
-*/
+/*
+ * Npm import
+ */
 var GameList = function GameList() {
   return _react2.default.createElement(
     'div',
     { id: 'gameList' },
     _react2.default.createElement(_Navbar2.default, null),
-    _react2.default.createElement(_Sidebar2.default, null)
+    _react2.default.createElement(_Sidebar2.default, null),
+    _react2.default.createElement(
+      'main',
+      { id: 'games' },
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null),
+      _react2.default.createElement(_Game2.default, null)
+    )
   );
 };
 /**
  * Export
  */
+
 /**
- * Npm import
- */
+* Local import
+*/
 exports.default = GameList;
 });
 
@@ -40093,7 +40162,36 @@ var initialState = {
   signin: {
     _username: "Login",
     _password: "Password"
-  }
+  },
+  games: [{
+    title: 'Overwatch',
+    cover: '',
+    description: ''
+  }, {
+    title: 'Fortnite',
+    cover: '',
+    description: ''
+  }, {
+    title: 'League of Legends',
+    cover: '',
+    description: ''
+  }, {
+    title: 'Dota 2',
+    cover: '',
+    description: ''
+  }, {
+    title: 'Counter Strike: Global offensive',
+    cover: '',
+    description: ''
+  }, {
+    title: 'Hearthstone',
+    cover: '',
+    description: ''
+  }, {
+    title: 'Warframe',
+    cover: '',
+    description: ''
+  }]
 };
 
 /**
@@ -40110,6 +40208,11 @@ var CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
 var SUBMIT_CONNECT = exports.SUBMIT_CONNECT = "SUBMIT_CONNECT";
 
 var GET_NEWS = exports.GET_NEWS = "GET_NEWS";
+
+var GAMESLIST_DISPLAY_TITLE = 'GAMESLIST_DISPLAY_TITLE';
+var GAMESLIST_DISPLAY_COVER = 'GAMESLIST_DISPLAY_COVER';
+var GAMESLIST_DISPLAY_DESCRIPTION = 'GAMESLIST_DISPLAY_DESCRIPTION';
+
 /**
  * Reducer
  */
@@ -40171,6 +40274,27 @@ var reducer = function reducer() {
     case GET_NEWS:
       // Ajouter dans le state toutes les news.
       return _extends({}, state);
+
+    case GAMESLIST_DISPLAY_TITLE:
+      return _extends({}, state, {
+        games: _extends({}, state.title, {
+          title: action.title
+        })
+      });
+
+    case GAMESLIST_DISPLAY_COVER:
+      return _extends({}, state, {
+        games: _extends({}, state.cover, {
+          cover: action.cover
+        })
+      });
+
+    case GAMESLIST_DISPLAY_DESCRIPTION:
+      return _extends({}, state, {
+        games: _extends({}, state.description, {
+          description: action.description
+        })
+      });
 
     default:
       return state;
@@ -40236,6 +40360,26 @@ var submitConnect = exports.submitConnect = function submitConnect() {
 var getAllNews = exports.getAllNews = function getAllNews() {
   return {
     type: GET_NEWS
+  };
+};
+
+var displayTitleGame = exports.displayTitleGame = function displayTitleGame(title) {
+  return {
+    type: GAMESLIST_DISPLAY_TITLE,
+    title: title
+  };
+};
+
+var displayCoverGame = exports.displayCoverGame = function displayCoverGame(cover) {
+  return {
+    type: GAMESLIST_DISPLAY_COVER,
+    cover: cover
+  };
+};
+var displayDescriptionGame = exports.displayDescriptionGame = function displayDescriptionGame(description) {
+  return {
+    type: GAMESLIST_DISPLAY_DESCRIPTION,
+    description: description
   };
 };
 /**
