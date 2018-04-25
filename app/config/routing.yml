@@ -28,13 +28,20 @@ login:
         expose: true
 
 games_list:
-  path: /games
-  defaults: { _controller: AppBundle:Game:list }
-  options:
+    path: /games
+    defaults: { _controller: AppBundle:Game:list }
+    options:
         expose: true
 
 announcements_list:
-  path: /annoucements
-  defaults: { _controller: AppBundle:Announcement:list }
-  options:
+    path: /annoucements
+    defaults: { _controller: AppBundle:Announcement:list }
+    options:
+        expose: true
+
+
+get_home_articles:
+    path: /home/get/articles
+    defaults: { _controller: AppBundle:Announcement:getHomeArticles }
+    options:
         expose: true

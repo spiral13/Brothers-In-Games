@@ -38718,7 +38718,7 @@ var SigninForm = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _props = this.props,
-          login = _props.login,
+          username = _props.username,
           password = _props.password,
           actions = _props.actions;
 
@@ -38730,18 +38730,18 @@ var SigninForm = function (_React$Component) {
         },
         _react2.default.createElement(
           'label',
-          { 'for': 'login' },
+          { 'for': 'username' },
           'Login'
         ),
         _react2.default.createElement('input', {
-          id: 'login',
+          id: 'username',
           type: 'text',
           name: 'username',
           onChange: function onChange(_ref2) {
             var target = _ref2.target;
             return actions.changeLoginForm(target.value);
           },
-          value: login
+          value: username
         }),
         _react2.default.createElement(
           'label',
@@ -39347,8 +39347,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    login: state.signin.login,
-    password: state.signin.password
+    username: state.signin._username,
+    password: state.signin._password
   };
 };
 
@@ -39500,9 +39500,10 @@ exports.default = function (store) {
             var formData = new FormData();
             // Je boucle pour y stocker tout à l'interieur de l'objet FormData
             for (var key in data) {
+              console.log(key, data[key]);
               formData.append(key, data[key]);
             }
-
+            console.log(formData);
             _axios2.default.post(Routing.generate('login'), formData).then(function (response) {
               alert('Requête de connexion envoyée');
             }).catch(function (error) {
@@ -39612,8 +39613,8 @@ var initialState = {
     email: ""
   },
   signin: {
-    login: "Login",
-    password: "Password"
+    _username: "Login",
+    _password: "Password"
   }
 };
 
@@ -39673,7 +39674,7 @@ var reducer = function reducer() {
       {
         return _extends({}, state, {
           signin: _extends({}, state.signin, {
-            password: action.value
+            _password: action.value
           })
         });
       }
@@ -39681,7 +39682,7 @@ var reducer = function reducer() {
     case CHANGE_LOGIN_FORM:
       return _extends({}, state, {
         signin: _extends({}, state.signin, {
-          login: action.value
+          _username: action.value
         })
       });
 

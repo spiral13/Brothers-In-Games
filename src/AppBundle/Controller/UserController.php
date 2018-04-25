@@ -11,28 +11,25 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends Controller
 {
-	public function loginAction(AuthenticationUtils $authenticationUtils)
+	public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
+        dump($request->request->all());exit;
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         
         $this->addFlash('valid', 'Vous êtes à présent connecté(e)');
-        dump($lastUsername);
 
-        return $this->render('home/user.html.twig', array(
-        'last_username' => $lastUsername,
-        'error'         => $error,
-        ));
+        return $this->json(array('valid' => true, 'error' => $error));
     }
 	public function createAction(UserPasswordEncoderInterface $encoder, Request $request){
-        dump($request->request->all());exit;
+
         $role = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
 
 		if(!empty($request->request->all()))
 		{
-			$username = trim($request->request->get('username'));
-			$mail = trim($request->request->get('mail'));
-			$plainPassword = trim($request->request->get('password'));
+            $username = trim($request->request->get('username'));
+            $mail = trim($request->request->get('email'));
+            $plainPassword = trim($request->request->get('newpassword'));
 
             $alreadyName = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => $username]);
             $alreadyMail = $this->getDoctrine()->getRepository(User::class)->findOneBy(['mail' => $mail]);

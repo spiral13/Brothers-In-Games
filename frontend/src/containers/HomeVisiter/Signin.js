@@ -13,8 +13,8 @@ import { changePasswordForm, changeLoginForm, submitConnect } from 'frontend/src
  */
 
  const mapStateToProps = state => ({
-   login: state.signin.login,
-   password: state.signin.password,
+   username: state.signin._username,
+   password: state.signin._password,
  });
 
  const mapDispatchToProps = dispatch => ({

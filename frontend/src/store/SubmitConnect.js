@@ -14,9 +14,10 @@ export default store => next => (action) => {
       var formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
       for (var key in data) {
+        console.log(key, data[key]);
         formData.append(key, data[key]);
       }
-
+              console.log(formData);
       axios.post(Routing.generate('login'), formData).then((response) => {
         alert('Requête de connexion envoyée');
       }).catch((error) => {

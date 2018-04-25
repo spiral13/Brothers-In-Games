@@ -110,6 +110,7 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
+        
         return serialize(array(
             $this->id,
             $this->username,
@@ -122,6 +123,9 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
+        dump($this->id,
+            $this->username,
+            $this->password);exit;
         list (
             $this->id,
             $this->username,
@@ -262,7 +266,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return $this->getRole()->getCode();
+        return array('ROLE_USER');
     }
 
     /* JOIN */

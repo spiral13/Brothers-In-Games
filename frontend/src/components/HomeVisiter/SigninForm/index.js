@@ -17,19 +17,19 @@ class SigninForm extends React.Component {
   }
 
   render() {
-    const { login, password, actions } = this.props;
+    const { username, password, actions } = this.props;
     return (
       <form
         method="post"
         onSubmit={this.submitForm}
       >
-        <label for="login">Login</label>
+        <label for="username">Login</label>
         <input
-          id="login"
+          id="username"
           type="text"
           name="username"
           onChange={({ target }) => actions.changeLoginForm(target.value)}
-          value={login}
+          value={username}
         />
         <label for="password">Mot de passe</label>
         <input
