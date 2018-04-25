@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import ArrowRight from 'react-icons/lib/fa/arrow-right';
 /**
 * Local import
 */
@@ -38,9 +39,8 @@ class SigninForm extends React.Component {
           onChange={({ target }) => actions.changePasswordForm(target.value)}
           value={password}
         />
-        <button id="buttonSubmit">Envoyer</button>
-
         <a href="#" id="forgotPassword">Mot de passe perdu?</a>
+        <button id="buttonSubmit"><ArrowRight /></button>
       </form>
     );
   }

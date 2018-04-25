@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
  */
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
 import HomeMember from 'frontend/src/components/HomeMember';
+import GameList from 'frontend/src/components/GameList';
 /*
  * Code
  */
@@ -22,6 +23,8 @@ const App = () => (
       <Switch>
         <Route exact path={Routing.generate('home_visitor')} component={HomeVisiter} />
         <Route exact path={Routing.generate('home_user')} component={HomeMember} />
+        <Route exact path={Routing.generate('games_list')} component={GameList} />
+        <Route exact path={Routing.generate('announcements_list')} component={() => (<div>Announcements</div>)} />
       </Switch>
     </div>
   </Router>

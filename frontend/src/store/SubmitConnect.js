@@ -14,9 +14,8 @@ export default store => next => (action) => {
         },
       }).then((response) => {
         alert('Requête de connexion envoyée');
-        console.log(response);
       }).catch((error) => {
-        console.log(`Echec de l'envoie de la requête :${error}`);
+        alert(`Echec de l'envoie de la requête :${error}`);
       });
       break;
     }
@@ -24,9 +23,8 @@ export default store => next => (action) => {
     case SIGNUP_SUBMIT: {
       // J'assigne les donnée que je veux a data
       var data = store.getState().signup;
-      // Je crée un objet FormData 
+      // Je crée un objet FormData
       var formData = new FormData();
-
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
       for (var key in data) {
         formData.append(key, data[key]);
@@ -35,9 +33,8 @@ export default store => next => (action) => {
       // Et j'envoie la donnée
       axios.post(Routing.generate('signup'), formData).then((response) => {
         alert('Requête inscription envoyée');
-        console.log(response);
       }).catch((error) => {
-        console.log(`Echec de l'envoie de la requête :${error}`);
+        alert(`Echec de l'envoie de la requête :${error}`);
       });
       break;
     }

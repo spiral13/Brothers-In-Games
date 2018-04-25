@@ -31075,6 +31075,44 @@ module.exports = exports['default'];
   })();
 });
 
+require.register("react-icons/lib/fa/arrow-right.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "react-icons");
+  (function() {
+    'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaArrowRight = function FaArrowRight(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm36.4 21.4q0 1.2-0.9 2.1l-14.5 14.5q-0.9 0.8-2 0.8-1.2 0-2-0.8l-1.7-1.7q-0.9-0.8-0.9-2t0.9-2l6.5-6.6h-15.7q-1.1 0-1.9-0.8t-0.7-2v-2.9q0-1.2 0.7-2t1.9-0.9h15.7l-6.5-6.5q-0.9-0.8-0.9-2t0.9-2l1.7-1.7q0.8-0.9 2-0.9 1.2 0 2 0.9l14.5 14.5q0.9 0.8 0.9 2z' })
+        )
+    );
+};
+
+exports.default = FaArrowRight;
+module.exports = exports['default'];
+  })();
+});
+
 require.register("react-icons/lib/fa/envelope.js", function(exports, require, module) {
   require = __makeRelativeRequire(require, {}, "react-icons");
   (function() {
@@ -38201,18 +38239,16 @@ var _HomeMember = require('frontend/src/components/HomeMember');
 
 var _HomeMember2 = _interopRequireDefault(_HomeMember);
 
+var _GameList = require('frontend/src/components/GameList');
+
+var _GameList2 = _interopRequireDefault(_GameList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * Code
  */
 
-/*
- * Local import
- */
-/*
- * Npm import
- */
 var App = function App() {
   return _react2.default.createElement(
     _reactRouterDom.BrowserRouter,
@@ -38224,7 +38260,15 @@ var App = function App() {
         _reactRouterDom.Switch,
         null,
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: Routing.generate('home_visitor'), component: _HomeVisiter2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: Routing.generate('home_user'), component: _HomeMember2.default })
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: Routing.generate('home_user'), component: _HomeMember2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: Routing.generate('games_list'), component: _GameList2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: Routing.generate('announcements_list'), component: function component() {
+            return _react2.default.createElement(
+              'div',
+              null,
+              'Announcements'
+            );
+          } })
       )
     )
   );
@@ -38233,7 +38277,60 @@ var App = function App() {
 /*
  * Export default
  */
+
+
+/*
+ * Local import
+ */
+/*
+ * Npm import
+ */
 exports.default = App;
+});
+
+require.register("frontend/src/components/GameList/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Sidebar = require('frontend/src/components/Navigation_sidebar/Sidebar');
+
+var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+var _Navbar = require('frontend/src/components/Navigation_sidebar/Navbar');
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Code
+ */
+
+/**
+* Local import
+*/
+var GameList = function GameList() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'gameList' },
+    _react2.default.createElement(_Navbar2.default, null),
+    _react2.default.createElement(_Sidebar2.default, null)
+  );
+};
+/**
+ * Export
+ */
+/**
+ * Npm import
+ */
+exports.default = GameList;
 });
 
 require.register("frontend/src/components/HomeMember/index.js", function(exports, require, module) {
@@ -38362,7 +38459,12 @@ var Header = function (_React$Component) {
             _react2.default.createElement(
               'span',
               null,
-              'inGames'
+              _react2.default.createElement(
+                'i',
+                null,
+                'in'
+              ),
+              'Games'
             )
           ),
           _react2.default.createElement(
@@ -38418,7 +38520,7 @@ exports.default = Header;
 });
 
 require.register("frontend/src/components/HomeVisiter/SigninForm/index.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -38426,9 +38528,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _arrowRight = require('react-icons/lib/fa/arrow-right');
+
+var _arrowRight2 = _interopRequireDefault(_arrowRight);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38469,7 +38575,7 @@ var SigninForm = function (_React$Component) {
   }
 
   _createClass(SigninForm, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       var _props = this.props,
           login = _props.login,
@@ -38477,20 +38583,20 @@ var SigninForm = function (_React$Component) {
           actions = _props.actions;
 
       return _react2.default.createElement(
-        "form",
+        'form',
         {
-          method: "post",
+          method: 'post',
           onSubmit: this.submitForm
         },
         _react2.default.createElement(
-          "label",
-          { "for": "login" },
-          "Login"
+          'label',
+          { 'for': 'login' },
+          'Login'
         ),
-        _react2.default.createElement("input", {
-          id: "login",
-          type: "text",
-          name: "login",
+        _react2.default.createElement('input', {
+          id: 'login',
+          type: 'text',
+          name: 'login',
           onChange: function onChange(_ref2) {
             var target = _ref2.target;
             return actions.changeLoginForm(target.value);
@@ -38498,14 +38604,14 @@ var SigninForm = function (_React$Component) {
           value: login
         }),
         _react2.default.createElement(
-          "label",
-          { "for": "password" },
-          "Mot de passe"
+          'label',
+          { 'for': 'password' },
+          'Mot de passe'
         ),
-        _react2.default.createElement("input", {
-          id: "password",
-          type: "password",
-          name: "password",
+        _react2.default.createElement('input', {
+          id: 'password',
+          type: 'password',
+          name: 'password',
           onChange: function onChange(_ref3) {
             var target = _ref3.target;
             return actions.changePasswordForm(target.value);
@@ -38513,14 +38619,14 @@ var SigninForm = function (_React$Component) {
           value: password
         }),
         _react2.default.createElement(
-          "button",
-          { id: "buttonSubmit" },
-          "Envoyer"
+          'a',
+          { href: '#', id: 'forgotPassword' },
+          'Mot de passe perdu?'
         ),
         _react2.default.createElement(
-          "a",
-          { href: "#", id: "forgotPassword" },
-          "Mot de passe perdu?"
+          'button',
+          { id: 'buttonSubmit' },
+          _react2.default.createElement(_arrowRight2.default, null)
         )
       );
     }
@@ -39254,9 +39360,8 @@ exports.default = function (store) {
               params: _extends({}, store.getState().signin)
             }).then(function (response) {
               alert('Requête de connexion envoyée');
-              console.log(response);
             }).catch(function (error) {
-              console.log('Echec de l\'envoie de la requ\xEAte :' + error);
+              alert('Echec de l\'envoie de la requ\xEAte :' + error);
             });
             break;
           }
@@ -39265,9 +39370,8 @@ exports.default = function (store) {
           {
             // J'assigne les donnée que je veux a data
             var data = store.getState().signup;
-            // Je crée un objet FormData 
+            // Je crée un objet FormData
             var formData = new FormData();
-
             // Je boucle pour y stocker tout à l'interieur de l'objet FormData
             for (var key in data) {
               formData.append(key, data[key]);
@@ -39276,9 +39380,8 @@ exports.default = function (store) {
             // Et j'envoie la donnée
             _axios2.default.post(Routing.generate('signup'), formData).then(function (response) {
               alert('Requête inscription envoyée');
-              console.log(response);
             }).catch(function (error) {
-              console.log('Echec de l\'envoie de la requ\xEAte :' + error);
+              alert('Echec de l\'envoie de la requ\xEAte :' + error);
             });
             break;
           }
