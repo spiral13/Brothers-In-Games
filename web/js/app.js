@@ -38496,7 +38496,7 @@ var LastActu = function LastActu() {
 exports.default = LastActu;
 });
 
-require.register("frontend/src/components/HomeMember/Main/index.js", function(exports, require, module) {
+require.register("frontend/src/components/HomeMember/Main/Content.js", function(exports, require, module) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38527,6 +38527,71 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Code
  */
+var Content = function (_React$Component) {
+  _inherits(Content, _React$Component);
+
+  function Content() {
+    _classCallCheck(this, Content);
+
+    return _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).apply(this, arguments));
+  }
+
+  _createClass(Content, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { id: "content-new" },
+        "Content"
+      );
+    }
+  }]);
+
+  return Content;
+}(_react2.default.Component);
+/**
+ * Export
+ */
+
+
+exports.default = Content;
+});
+
+require.register("frontend/src/components/HomeMember/Main/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Content = require('frontend/src/components/HomeMember/Main/Content');
+
+var _Content2 = _interopRequireDefault(_Content);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/**
+* Local import
+*/
+
+
+/**
+ * Code
+ */
 var Main = function (_React$Component) {
   _inherits(Main, _React$Component);
 
@@ -38537,12 +38602,12 @@ var Main = function (_React$Component) {
   }
 
   _createClass(Main, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
-        { id: "main-member" },
-        "Main"
+        'div',
+        { id: 'main-member' },
+        'Content'
       );
     }
   }]);
@@ -39578,7 +39643,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Npm import
  */
 var mapStateToProps = function mapStateToProps(state, ownProp) {
-  return {};
+  return {
+    news: state.news
+  };
 };
 /**
 * Local import
@@ -39964,7 +40031,14 @@ exports.default = function (store) {
       switch (action.type) {
         case _reducer.GET_NEWS:
           {
-            console.log('GET_NEWS');
+            _axios2.default.get(Routing.generate('get_home_articles')).then(function (response) {
+              alert('Requête de connexion envoyée');
+              // Ici, faire un dispatch.
+              store.dispatch((0, _reducer.addNews)(response));
+            }).catch(function (error) {
+              alert('Echec de l\'envoie de la requ\xEAte :' + error);
+              console.log(error);
+            });
           }
           break;
       }
@@ -40046,7 +40120,6 @@ exports.default = function (store) {
               console.log(key, data[key]);
               formData.append(key, data[key]);
             }
-            console.log(formData);
             _axios2.default.post(Routing.generate('login'), formData).then(function (response) {
               console.warn('Requête de connexion envoyée');
             }).catch(function (error) {
@@ -40191,7 +40264,8 @@ var initialState = {
     title: 'Warframe',
     cover: '',
     description: ''
-  }]
+  }],
+  news: [{}]
 };
 
 /**
@@ -40208,6 +40282,7 @@ var CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
 var SUBMIT_CONNECT = exports.SUBMIT_CONNECT = "SUBMIT_CONNECT";
 
 var GET_NEWS = exports.GET_NEWS = "GET_NEWS";
+var ADD_NEWS = "ADD_NEWS";
 
 var GAMESLIST_DISPLAY_TITLE = 'GAMESLIST_DISPLAY_TITLE';
 var GAMESLIST_DISPLAY_COVER = 'GAMESLIST_DISPLAY_COVER';
@@ -40272,8 +40347,12 @@ var reducer = function reducer() {
       return _extends({}, state);
 
     case GET_NEWS:
-      // Ajouter dans le state toutes les news.
       return _extends({}, state);
+
+    case ADD_NEWS:
+      return _extends({}, state, {
+        news: action.news.data
+      });
 
     case GAMESLIST_DISPLAY_TITLE:
       return _extends({}, state, {
@@ -40363,6 +40442,13 @@ var getAllNews = exports.getAllNews = function getAllNews() {
   };
 };
 
+var addNews = exports.addNews = function addNews(news) {
+  return {
+    type: ADD_NEWS,
+    news: news
+  };
+};
+
 var displayTitleGame = exports.displayTitleGame = function displayTitleGame(title) {
   return {
     type: GAMESLIST_DISPLAY_TITLE,
@@ -40382,6 +40468,7 @@ var displayDescriptionGame = exports.displayDescriptionGame = function displayDe
     description: description
   };
 };
+
 /**
  * Export
  */

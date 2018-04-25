@@ -17,7 +17,6 @@ export default store => next => (action) => {
         console.log(key, data[key]);
         formData.append(key, data[key]);
       }
-              console.log(formData);
       axios.post(Routing.generate('login'), formData).then((response) => {
         console.warn('Requête de connexion envoyée');
       }).catch((error) => {
