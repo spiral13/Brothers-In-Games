@@ -40053,9 +40053,9 @@ exports.default = function (store) {
               formData.append(key, data[key]);
             }
             _axios2.default.post(Routing.generate('login'), formData).then(function (response) {
-              alert('Requête de connexion envoyée');
+              console.warn('Requête de connexion envoyée');
             }).catch(function (error) {
-              alert('Echec de l\'envoie de la requ\xEAte :' + error);
+              console.error('Echec de l\'envoie de la requ\xEAte :' + error);
             });
             break;
           }
@@ -40073,9 +40073,9 @@ exports.default = function (store) {
 
             // Et j'envoie la donnée
             _axios2.default.post(Routing.generate('signup'), formData).then(function (response) {
-              alert('Requête inscription envoyée');
+              console.warn('Requête inscription envoyée');
             }).catch(function (error) {
-              alert('Echec de l\'envoie de la requ\xEAte :' + error);
+              console.error('Echec de l\'envoie de la requ\xEAte :' + error);
             });
             break;
           }

@@ -63,7 +63,7 @@ class User implements UserInterface, \Serializable
      */
     private $messengerSend;
 
-     /**
+    /**
      * @var Message
      */
     private $messageRead;
@@ -110,7 +110,10 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
+<<<<<<< HEAD
+=======
 
+>>>>>>> b534453f4019bedf5817132e63c149458b8efd58
         return serialize(array(
             $this->id,
             $this->username,
@@ -129,7 +132,7 @@ class User implements UserInterface, \Serializable
             $this->password,
             // see section on salt below
             // $this->salt
-        ) = unserialize($serialized, ['allowed_classes' => false]);
+        ) = unserialize($serialized);
     }
 
     /* *************** **
@@ -263,7 +266,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array($this->getRole()->getCode());
     }
 
     /* JOIN */

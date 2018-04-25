@@ -18,9 +18,9 @@ export default store => next => (action) => {
         formData.append(key, data[key]);
       }
       axios.post(Routing.generate('login'), formData).then((response) => {
-        alert('Requête de connexion envoyée');
+        console.warn('Requête de connexion envoyée');
       }).catch((error) => {
-        alert(`Echec de l'envoie de la requête :${error}`);
+        console.error(`Echec de l'envoie de la requête :${error}`);
       });
       break;
     }
@@ -37,9 +37,9 @@ export default store => next => (action) => {
 
       // Et j'envoie la donnée
       axios.post(Routing.generate('signup'), formData).then((response) => {
-        alert('Requête inscription envoyée');
+        console.warn('Requête inscription envoyée');
       }).catch((error) => {
-        alert(`Echec de l'envoie de la requête :${error}`);
+        console.error(`Echec de l'envoie de la requête :${error}`);
       });
       break;
     }

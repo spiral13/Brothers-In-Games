@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Article;
 
-class ArticleController
+class ArticleController extends Controller
 {
 	public function getHomeArticleAction()
 	{

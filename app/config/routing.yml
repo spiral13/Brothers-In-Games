@@ -26,6 +26,10 @@ login:
     defaults: { _controller: AppBundle:User:login }
     options:
         expose: true
+logout:
+    path: /logout
+    options:
+        expose: true
 
 games_list:
     path: /games
