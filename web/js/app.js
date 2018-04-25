@@ -38343,19 +38343,21 @@ exports.default = App;
 });
 
 require.register("frontend/src/components/GameList/Game/index.js", function(exports, require, module) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _propTypes = require('prop-types');
 
-// import Gamepad from 'react-icons/lib/fa/gamepad';
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
 * Local import
@@ -38364,28 +38366,40 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Code
  */
-var Game = function Game() {
+/**
+ * Npm import
+ */
+var Game = function Game(_ref) {
+  var title = _ref.title,
+      cover = _ref.cover,
+      description = _ref.description;
   return _react2.default.createElement(
-    "div",
-    { id: "game" },
-    _react2.default.createElement("img", { src: "https://media.koreus.com/201701/allez-faire-loutre.jpg", alt: "Titre du jeu", id: "gamePicture" }),
+    'div',
+    { id: 'game' },
+    _react2.default.createElement('img', { src: cover, alt: title, id: 'gamePicture' }),
     _react2.default.createElement(
-      "h2",
-      { id: "gameTitle" },
-      "Titre du jeu"
+      'h2',
+      { id: 'gameTitle' },
+      title
     ),
     _react2.default.createElement(
-      "p",
-      { id: "gameInfo" },
-      "130 personnes recherchent des joueurs"
+      'p',
+      { id: 'gameInfo' },
+      description
     )
   );
 };
+// import Gamepad from 'react-icons/lib/fa/gamepad';
+
+
+Game.propTypes = {
+  title: _propTypes2.default.string.isRequired,
+  cover: _propTypes2.default.string.isRequired,
+  description: _propTypes2.default.string.isRequired
+};
+
 /**
  * Export
- */
-/**
- * Npm import
  */
 exports.default = Game;
 });
@@ -38397,9 +38411,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _Sidebar = require('frontend/src/components/Navigation_sidebar/Sidebar');
 
@@ -38415,44 +38435,78 @@ var _Game2 = _interopRequireDefault(_Game);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Code
- */
-/*
- * Npm import
- */
-var GameList = function GameList() {
-  return _react2.default.createElement(
-    'div',
-    { id: 'gameList' },
-    _react2.default.createElement(_Navbar2.default, null),
-    _react2.default.createElement(_Sidebar2.default, null),
-    _react2.default.createElement(
-      'main',
-      { id: 'games' },
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null),
-      _react2.default.createElement(_Game2.default, null)
-    )
-  );
-};
-/**
- * Export
- */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 /**
 * Local import
 */
+
+
+/**
+ * Code
+ */
+
+var GameList = function (_React$Component) {
+  _inherits(GameList, _React$Component);
+
+  function GameList() {
+    _classCallCheck(this, GameList);
+
+    return _possibleConstructorReturn(this, (GameList.__proto__ || Object.getPrototypeOf(GameList)).apply(this, arguments));
+  }
+
+  _createClass(GameList, [{
+    key: 'componentWillMount',
+
+    /*
+     * Lifecycle
+     */
+    value: function componentWillMount() {
+      document.addEventListener('keyup', this.handleKey);
+    }
+
+    /*
+     * Rendu
+     */
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var games = this.props.games;
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'gameList' },
+        _react2.default.createElement(_Navbar2.default, null),
+        _react2.default.createElement(_Sidebar2.default, null),
+        _react2.default.createElement(
+          'main',
+          { id: 'games' },
+          games.map(function (game, index) {
+            return _react2.default.createElement(_Game2.default, { key: index, Game: _Game2.default });
+          })
+        )
+      );
+    }
+  }]);
+
+  return GameList;
+}(_react2.default.Component);
+
+/**
+ * Export
+ */
+
+
+GameList.propTypes = {
+  games: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
+};
 exports.default = GameList;
 });
 
@@ -38496,7 +38550,7 @@ var LastActu = function LastActu() {
 exports.default = LastActu;
 });
 
-require.register("frontend/src/components/HomeMember/Main/index.js", function(exports, require, module) {
+require.register("frontend/src/components/HomeMember/Main/Content.js", function(exports, require, module) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38527,6 +38581,71 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Code
  */
+var Content = function (_React$Component) {
+  _inherits(Content, _React$Component);
+
+  function Content() {
+    _classCallCheck(this, Content);
+
+    return _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).apply(this, arguments));
+  }
+
+  _createClass(Content, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { id: "content-new" },
+        "Content"
+      );
+    }
+  }]);
+
+  return Content;
+}(_react2.default.Component);
+/**
+ * Export
+ */
+
+
+exports.default = Content;
+});
+
+require.register("frontend/src/components/HomeMember/Main/index.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Content = require('frontend/src/components/HomeMember/Main/Content');
+
+var _Content2 = _interopRequireDefault(_Content);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Npm import
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/**
+* Local import
+*/
+
+
+/**
+ * Code
+ */
 var Main = function (_React$Component) {
   _inherits(Main, _React$Component);
 
@@ -38537,12 +38656,12 @@ var Main = function (_React$Component) {
   }
 
   _createClass(Main, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
-        { id: "main-member" },
-        "Main"
+        'div',
+        { id: 'main-member' },
+        'Content'
       );
     }
   }]);
@@ -39578,7 +39697,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Npm import
  */
 var mapStateToProps = function mapStateToProps(state, ownProp) {
-  return {};
+  return {
+    news: state.news
+  };
 };
 /**
 * Local import
@@ -39938,6 +40059,49 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 });
 
+require.register("frontend/src/store/GameList.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _reducer = require('./reducer');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Middleware
+ */
+exports.default = function (store) {
+  return function (next) {
+    return function (action) {
+
+      // Code
+      switch (action.type) {
+        case _reducer.GET_GAMES:
+          {
+            console.log('GET_GAMES');
+          }
+
+        case _reducer.ADD_GAMES:
+          {
+            console.log('ADD_GAMES');
+          }
+          break;
+      }
+
+      // On passe au voisin
+      next(action);
+    };
+  };
+};
+});
+
 require.register("frontend/src/store/GetNews.js", function(exports, require, module) {
 'use strict';
 
@@ -39964,7 +40128,14 @@ exports.default = function (store) {
       switch (action.type) {
         case _reducer.GET_NEWS:
           {
-            console.log('GET_NEWS');
+            _axios2.default.get(Routing.generate('get_home_articles')).then(function (response) {
+              alert('Requête de connexion envoyée');
+              // Ici, faire un dispatch.
+              store.dispatch((0, _reducer.addNews)(response));
+            }).catch(function (error) {
+              alert('Echec de l\'envoie de la requ\xEAte :' + error);
+              console.log(error);
+            });
           }
           break;
       }
@@ -40046,11 +40217,10 @@ exports.default = function (store) {
               console.log(key, data[key]);
               formData.append(key, data[key]);
             }
-            console.log(formData);
             _axios2.default.post(Routing.generate('login'), formData).then(function (response) {
-              alert('Requête de connexion envoyée');
+              console.warn('Requête de connexion envoyée');
             }).catch(function (error) {
-              alert('Echec de l\'envoie de la requ\xEAte :' + error);
+              console.error('Echec de l\'envoie de la requ\xEAte :' + error);
             });
             break;
           }
@@ -40068,9 +40238,9 @@ exports.default = function (store) {
 
             // Et j'envoie la donnée
             _axios2.default.post(Routing.generate('signup'), formData).then(function (response) {
-              alert('Requête inscription envoyée');
+              console.warn('Requête inscription envoyée');
             }).catch(function (error) {
-              alert('Echec de l\'envoie de la requ\xEAte :' + error);
+              console.error('Echec de l\'envoie de la requ\xEAte :' + error);
             });
             break;
           }
@@ -40165,33 +40335,40 @@ var initialState = {
   },
   games: [{
     title: 'Overwatch',
-    cover: '',
-    description: ''
+    cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+    description: 'titi'
   }, {
     title: 'Fortnite',
-    cover: '',
-    description: ''
+    cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+    description: 'toto'
   }, {
     title: 'League of Legends',
-    cover: '',
-    description: ''
+    cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+    description: 'tata'
   }, {
     title: 'Dota 2',
-    cover: '',
-    description: ''
+    cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+    description: 'tutu'
   }, {
     title: 'Counter Strike: Global offensive',
-    cover: '',
-    description: ''
+    cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+    description: 'tyty'
   }, {
     title: 'Hearthstone',
-    cover: '',
-    description: ''
+    cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+    description: 'tata'
   }, {
     title: 'Warframe',
+<<<<<<< HEAD
+    cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+    description: 'tete'
+  }]
+=======
     cover: '',
     description: ''
-  }]
+  }],
+  news: [{}]
+>>>>>>> 6644c5239e03bfb0b209f8cfb340b5ca4ee7df9a
 };
 
 /**
@@ -40208,10 +40385,10 @@ var CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
 var SUBMIT_CONNECT = exports.SUBMIT_CONNECT = "SUBMIT_CONNECT";
 
 var GET_NEWS = exports.GET_NEWS = "GET_NEWS";
+var ADD_NEWS = "ADD_NEWS";
 
-var GAMESLIST_DISPLAY_TITLE = 'GAMESLIST_DISPLAY_TITLE';
-var GAMESLIST_DISPLAY_COVER = 'GAMESLIST_DISPLAY_COVER';
-var GAMESLIST_DISPLAY_DESCRIPTION = 'GAMESLIST_DISPLAY_DESCRIPTION';
+var GET_GAMES = exports.GET_GAMES = "GET_GAMES";
+var ADD_GAMES = exports.ADD_GAMES = "ADD_GAMES";
 
 /**
  * Reducer
@@ -40272,8 +40449,15 @@ var reducer = function reducer() {
       return _extends({}, state);
 
     case GET_NEWS:
-      // Ajouter dans le state toutes les news.
       return _extends({}, state);
+
+<<<<<<< HEAD
+    case GET_GAMES:
+=======
+    case ADD_NEWS:
+      return _extends({}, state, {
+        news: action.news.data
+      });
 
     case GAMESLIST_DISPLAY_TITLE:
       return _extends({}, state, {
@@ -40283,15 +40467,16 @@ var reducer = function reducer() {
       });
 
     case GAMESLIST_DISPLAY_COVER:
+>>>>>>> 6644c5239e03bfb0b209f8cfb340b5ca4ee7df9a
       return _extends({}, state, {
-        games: _extends({}, state.cover, {
-          cover: action.cover
-        })
+        games: _extends({}, state.games)
       });
 
-    case GAMESLIST_DISPLAY_DESCRIPTION:
+    case ADD_GAMES:
       return _extends({}, state, {
-        games: _extends({}, state.description, {
+        games: _extends({}, state.games, {
+          title: action.title,
+          cover: action.cover,
           description: action.description
         })
       });
@@ -40363,25 +40548,29 @@ var getAllNews = exports.getAllNews = function getAllNews() {
   };
 };
 
-var displayTitleGame = exports.displayTitleGame = function displayTitleGame(title) {
+<<<<<<< HEAD
+var getAllGames = exports.getAllGames = function getAllGames() {
+=======
+var addNews = exports.addNews = function addNews(news) {
   return {
-    type: GAMESLIST_DISPLAY_TITLE,
-    title: title
+    type: ADD_NEWS,
+    news: news
   };
 };
 
-var displayCoverGame = exports.displayCoverGame = function displayCoverGame(cover) {
+var displayTitleGame = exports.displayTitleGame = function displayTitleGame(title) {
+>>>>>>> 6644c5239e03bfb0b209f8cfb340b5ca4ee7df9a
   return {
-    type: GAMESLIST_DISPLAY_COVER,
-    cover: cover
+    type: GET_GAMES
   };
 };
-var displayDescriptionGame = exports.displayDescriptionGame = function displayDescriptionGame(description) {
+
+var addAllGames = exports.addAllGames = function addAllGames() {
   return {
-    type: GAMESLIST_DISPLAY_DESCRIPTION,
-    description: description
+    type: ADD_GAMES
   };
 };
+
 /**
  * Export
  */

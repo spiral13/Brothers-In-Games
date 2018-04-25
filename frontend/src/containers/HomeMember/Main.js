@@ -10,7 +10,9 @@ import Main from 'frontend/src/components/HomeMember/Main';
  * Code
  */
 
-const mapStateToProps = (state, ownProp) => ({});
+const mapStateToProps = (state, ownProp) => ({
+  news: state.news,
+});
 
 const mapDispatchToProps = dispatch => ({
   // changeClick: () => {
