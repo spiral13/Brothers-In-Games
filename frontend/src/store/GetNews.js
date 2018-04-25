@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { GET_NEWS } from './reducer';
+import { GET_NEWS, addNews } from './reducer';
 /*
  * Middleware
  */
@@ -11,7 +11,8 @@ export default store => next => (action) => {
     case GET_NEWS: {
       axios.get(Routing.generate('get_home_articles')).then((response) => {
         alert('Requête de connexion envoyée');
-        console.log(response);
+        // Ici, faire un dispatch.
+        store.dispatch(addNews(response));
       }).catch((error) => {
         alert(`Echec de l'envoie de la requête :${error}`);
         console.log(error);

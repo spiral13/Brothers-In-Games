@@ -49,6 +49,11 @@ const initialState = {
       description: '',
     },
   ],
+  news: [
+    {
+
+    },
+  ],
 };
 
 /**
@@ -65,6 +70,7 @@ const CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
 export const SUBMIT_CONNECT = "SUBMIT_CONNECT";
 
 export const GET_NEWS = "GET_NEWS";
+const ADD_NEWS = "ADD_NEWS";
 
 const GAMESLIST_DISPLAY_TITLE = 'GAMESLIST_DISPLAY_TITLE';
 const GAMESLIST_DISPLAY_COVER = 'GAMESLIST_DISPLAY_COVER';
@@ -141,9 +147,14 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case GET_NEWS:
-    // Ajouter dans le state toutes les news.
       return {
         ...state,
+      };
+
+    case ADD_NEWS:
+      return {
+        ...state,
+        news: action.news.data,
       };
 
       case GAMESLIST_DISPLAY_TITLE:
@@ -223,6 +234,10 @@ export const getAllNews = () => ({
   type: GET_NEWS,
 });
 
+export const addNews = news => ({
+  type: ADD_NEWS,
+  news,
+});
 
 
 export const displayTitleGame = title => ({
@@ -238,6 +253,7 @@ export const displayDescriptionGame = description => ({
   type: GAMESLIST_DISPLAY_DESCRIPTION,
   description,
 });
+
 /**
  * Export
  */
