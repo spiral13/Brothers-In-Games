@@ -21,7 +21,7 @@ class ArticleController extends Controller
 
 	public function getHomeArticleSidebarAction()
 	{
-		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast(0, 10, 30);
+		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast(10, 30);
 
 		$serializer = SerializerBuilder::create()->build();
 		$jsonContent = $serializer->serialize($news, 'json');
