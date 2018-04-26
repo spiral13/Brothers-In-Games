@@ -14,7 +14,7 @@ class GameController extends Controller
 		return $this->render('game/list.html.twig');
 	}
 
-	public function getAllGames()
+	public function getAllGamesAction()
 	{
 		$games = $this->getDoctrine()->getRepository(Game::class)->findAll();
 
