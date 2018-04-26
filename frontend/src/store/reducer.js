@@ -15,38 +15,38 @@ const initialState = {
   games: [
     {
       title: 'Overwatch',
-      cover: '',
-      description: '',
+      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+      description: '10',
     },
     {
       title: 'Fortnite',
-      cover: '',
-      description: '',
+      cover: 'http://www.prodiges.fr/wp-content/uploads/2016/09/vampirechat.jpg',
+      description: '20',
     },
     {
       title: 'League of Legends',
-      cover: '',
-      description: '',
+      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+      description: '30',
     },
     {
       title: 'Dota 2',
-      cover: '',
-      description: '',
+      cover: 'http://rayanegh92.a.r.f.unblog.fr/files/2009/03/m407y5cqkvchat01bin.jpg',
+      description: '40',
     },
     {
       title: 'Counter Strike: Global offensive',
-      cover: '',
-      description: '',
+      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+      description: '50',
     },
     {
       title: 'Hearthstone',
-      cover: '',
-      description: '',
+      cover: 'http://rayanegh92.a.r.f.unblog.fr/files/2009/03/m407y5cqkvchat01bin.jpg',
+      description: '60',
     },
     {
       title: 'Warframe',
-      cover: '',
-      description: '',
+      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
+      description: '70',
     },
   ],
   news: [
@@ -72,9 +72,9 @@ export const SUBMIT_CONNECT = "SUBMIT_CONNECT";
 export const GET_NEWS = "GET_NEWS";
 const ADD_NEWS = "ADD_NEWS";
 
-const GAMESLIST_DISPLAY_TITLE = 'GAMESLIST_DISPLAY_TITLE';
-const GAMESLIST_DISPLAY_COVER = 'GAMESLIST_DISPLAY_COVER';
-const GAMESLIST_DISPLAY_DESCRIPTION = 'GAMESLIST_DISPLAY_DESCRIPTION';
+export const GET_GAMES = "GET_GAMES";
+const ADD_GAMES = "ADD_GAMES";
+
 
 /**
  * Reducer
@@ -157,32 +157,18 @@ const reducer = (state = initialState, action = {}) => {
         news: action.news.data,
       };
 
-      case GAMESLIST_DISPLAY_TITLE:
+    case GET_GAMES:
       return {
         ...state,
-        games: {
-          ...state.title,
-          title: action.title,
-        }
       };
 
-    case GAMESLIST_DISPLAY_COVER:
+    case ADD_GAMES:
       return {
         ...state,
-        games: {
-          ...state.cover,
-          cover: action.cover,
-        }
+        games: action.games.data,
       };
 
-    case GAMESLIST_DISPLAY_DESCRIPTION:
-      return {
-        ...state,
-        games: {
-          ...state.description,
-          description: action.description,
-        }
-      };
+
 
     default:
       return state;
@@ -239,21 +225,14 @@ export const addNews = news => ({
   news,
 });
 
-
-export const displayTitleGame = title => ({
-  type: GAMESLIST_DISPLAY_TITLE,
-  title,
+export const getAllGames = () => ({
+  type: GET_GAMES,
 });
 
-export const displayCoverGame = cover => ({
-  type: GAMESLIST_DISPLAY_COVER,
-  cover,
+export const addAllGames = games => ({
+  type: ADD_GAMES,
+  games,
 });
-export const displayDescriptionGame = description => ({
-  type: GAMESLIST_DISPLAY_DESCRIPTION,
-  description,
-});
-
 /**
  * Export
  */
