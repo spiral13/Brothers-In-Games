@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { GET_NEWS, addNews } from './reducer';
+import { GET_NEWS, addNews, GET_ACTUS, addActus } from './reducer';
 /*
  * Middleware
  */
@@ -17,6 +17,16 @@ export default store => next => (action) => {
       });
     }
     break;
+
+    case GET_ACTUS: {
+      axios.get(Routing.generate('get_sidebar_articles')).then((response) => {
+        console.log(response);
+        // Ici, faire un dispatch.
+        store.dispatch(addActus(response));
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
   // On passe au voisin

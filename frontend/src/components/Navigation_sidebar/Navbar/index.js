@@ -15,7 +15,7 @@ import Signout from 'react-icons/lib/fa/sign-out';
  */
 const Navbar = () => (
   <div id="navbar">
-    <h1>Les jeux</h1>
+    <h1><a href={Routing.generate('games_list')}>Les jeux</a></h1>
     <nav id="nav-rubrique">
       <ul>
         <li>
@@ -32,7 +32,7 @@ const Navbar = () => (
         </li>
         <li>
           <Signout className="nav-fig" />
-          <a href="#">Déconnexion</a>
+          <a href={Routing.generate('logout')}>Déconnexion</a>
         </li>
       </ul>
     </nav>

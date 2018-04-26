@@ -2,47 +2,57 @@
  * Npm import
  */
 import React from 'react';
-import PropTypes from 'prop-types';
+
 /**
 * Local import
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import Game from 'frontend/src/components/GameList/Game';
+import Main from 'frontend/src/containers/GameList/Main';
+import Loading from 'frontend/src/components/Loading';
 
 /**
  * Code
  */
 
 class GameList extends React.Component {
-  static propTypes = {
-    games: PropTypes.arrayOf(PropTypes.string).isRequired,
-  };
+
+  // mise en place d'un state pour un petit loading
+  // pour laisser le temps au serveur de répondre
+  state = {
+    loading: true,
+  }
+
   /*
    * Lifecycle
    */
   componentWillMount() {
-    document.addEventListener('keyup', this.handleKey);
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
+    console.log(this.props);
+    this.props.actions.getAllGames();
   }
 
   /*
    * Rendu
    */
   render() {
-    const { games } = this.props;
-    return (
-      <div id="gameList">
-        <Navbar />
-        <Sidebar />
-        <main id="games">
-          {games.map((game, index) => (
-            <Game key={index} Game={game} />
-          ))}
-         </main>
-      </div>
-    );
+    if (this.state.loading) {
+      return <Loading />;
+    }
+    else {
+      return (
+        <div className="gameList">
+          <Navbar />
+          <Sidebar />
+          <Main />
+        </div>
+      );
+    }
   }
 }
+
 
 /**
  * Export

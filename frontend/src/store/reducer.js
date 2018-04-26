@@ -14,46 +14,10 @@ const initialState = {
   },
   games: [
     {
-      title: 'Overwatch',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '10',
-    },
-    {
-      title: 'Fortnite',
-      cover: 'http://www.prodiges.fr/wp-content/uploads/2016/09/vampirechat.jpg',
-      description: '20',
-    },
-    {
-      title: 'League of Legends',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '30',
-    },
-    {
-      title: 'Dota 2',
-      cover: 'http://rayanegh92.a.r.f.unblog.fr/files/2009/03/m407y5cqkvchat01bin.jpg',
-      description: '40',
-    },
-    {
-      title: 'Counter Strike: Global offensive',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '50',
-    },
-    {
-      title: 'Hearthstone',
-      cover: 'http://rayanegh92.a.r.f.unblog.fr/files/2009/03/m407y5cqkvchat01bin.jpg',
-      description: '60',
-    },
-    {
-      title: 'Warframe',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '70',
-    },
-  ],
-  news: [
-    {
 
     },
   ],
+  news: [{}],
 };
 
 /**
@@ -74,6 +38,9 @@ const ADD_NEWS = "ADD_NEWS";
 
 export const GET_GAMES = "GET_GAMES";
 const ADD_GAMES = "ADD_GAMES";
+
+export const GET_ACTUS = "GET_ACTUS";
+const ADD_ACTUS = "ADD_ACTUS";
 
 
 /**
@@ -168,7 +135,16 @@ const reducer = (state = initialState, action = {}) => {
         games: action.games.data,
       };
 
+    case GET_ACTUS:
+      return {
+        ...state,
+      }
 
+    case ADD_ACTUS:
+      return {
+        ...state,
+        sidebarActus: action.actus.data,
+      };
 
     default:
       return state;
@@ -232,6 +208,15 @@ export const getAllGames = () => ({
 export const addAllGames = games => ({
   type: ADD_GAMES,
   games,
+});
+
+export const getAllActus = () => ({
+  type: GET_ACTUS,
+});
+
+export const addActus = actus => ({
+  type: ADD_ACTUS,
+  actus,
 });
 /**
  * Export
