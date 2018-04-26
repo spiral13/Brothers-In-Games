@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 /**
 * Local import
 */
-import Sidebar from 'frontend/src/components/Navigation_sidebar/Sidebar';
-import Navbar from 'frontend/src/components/Navigation_sidebar/Navbar';
+import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
+import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Game from 'frontend/src/components/GameList/Game';
 
 /**
@@ -36,7 +36,7 @@ class GameList extends React.Component {
         <Sidebar />
         <main id="games">
           {games.map((game, index) => (
-            <Game key={index} Game={Game} />
+            <Game key={index} Game={game} />
           ))}
          </main>
       </div>

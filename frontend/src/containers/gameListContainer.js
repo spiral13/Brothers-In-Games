@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 /*
  * Import Local
  */
- import GameList from 'frontend/src/components/Gamelist';
+ import GameList from 'frontend/src/components/GameList';
 
 // actionsCreators
  import { getAllGames, addAllGames} from 'frontend/src/store/reducer';
@@ -21,18 +21,18 @@ const mapStateToProps = state => ({
 });
 
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({ getAllGames, addAllGames}, dispatch)
-);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ getAllGames, addAllGames}, dispatch),
+});
 
 
 // Container
-const LettersContainer = connect(
+const GameListContainers = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Letters);
+)(GameList);
 
 /*
  * Export
  */
-export default LettersContainer;
+export default GameListContainers;

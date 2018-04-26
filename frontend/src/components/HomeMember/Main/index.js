@@ -6,7 +6,6 @@ import React from 'react';
 * Local import
 */
 import Content from 'frontend/src/components/HomeMember/Main/Content';
-import ReactLoading from 'react-loading';
 /**
  * Code
  */

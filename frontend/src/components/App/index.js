@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
  */
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
 import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
-import GameList from 'frontend/src/components/GameList';
+import GameList from 'frontend/src/containers/gameListContainer';
 /*
  * Code
  */

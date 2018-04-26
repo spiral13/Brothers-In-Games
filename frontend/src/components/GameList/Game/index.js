@@ -12,12 +12,12 @@ import PropTypes from 'prop-types';
 /**
  * Code
  */
-const Game = ({title, cover, description}) => (
+const Game = ({ Game }) => (
   <div id="game">
-    <img src={cover} alt={title} id="gamePicture"/>
+    <img src={Game.cover} alt={Game.title} id="gamePicture"/>
     {/* <Gamepad className="nav-fig" id="gamePicture"/> */}
-    <h2 id="gameTitle">{title}</h2>
-    <p id="gameInfo">{description}</p>
+    <h2 id="gameTitle">{Game.title}</h2>
+    <p id="gameInfo">{Game.description}</p>
   </div>
 );
 
