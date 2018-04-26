@@ -14,39 +14,7 @@ const initialState = {
   },
   games: [
     {
-      title: 'Overwatch',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '10',
-    },
-    {
-      title: 'Fortnite',
-      cover: 'http://www.prodiges.fr/wp-content/uploads/2016/09/vampirechat.jpg',
-      description: '20',
-    },
-    {
-      title: 'League of Legends',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '30',
-    },
-    {
-      title: 'Dota 2',
-      cover: 'http://rayanegh92.a.r.f.unblog.fr/files/2009/03/m407y5cqkvchat01bin.jpg',
-      description: '40',
-    },
-    {
-      title: 'Counter Strike: Global offensive',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '50',
-    },
-    {
-      title: 'Hearthstone',
-      cover: 'http://rayanegh92.a.r.f.unblog.fr/files/2009/03/m407y5cqkvchat01bin.jpg',
-      description: '60',
-    },
-    {
-      title: 'Warframe',
-      cover: 'https://media.koreus.com/201701/allez-faire-loutre.jpg',
-      description: '70',
+
     },
   ],
   news: [
