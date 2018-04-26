@@ -19,7 +19,8 @@ export default store => next => (action) => {
     break;
 
     case GET_ACTUS: {
-      axios.get(Routing.generate('get_home_articles')).then((response) => {
+      axios.get(Routing.generate('get_sidebar_articles')).then((response) => {
+        console.log(response);
         // Ici, faire un dispatch.
         store.dispatch(addActus(response));
       }).catch((error) => {

@@ -12,6 +12,7 @@ import MainReducer from 'frontend/src/store/MainReducer';
 // Middleware
 import SubmitConnect from './SubmitConnect';
 import GetNews from './GetNews';
+import GetGames from './GetGames';
 /*
  * Code
  */
@@ -22,7 +23,7 @@ if (window.devToolsExtension) {
 }
 
 // Middleware vers Enhancers
-const middlewares = applyMiddleware(SubmitConnect, GetNews);
+const middlewares = applyMiddleware(SubmitConnect, GetNews, GetGames);
 const enhancers = compose(middlewares, ...devTools);
 
 // createStore
