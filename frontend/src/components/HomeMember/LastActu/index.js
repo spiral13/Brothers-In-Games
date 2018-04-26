@@ -9,9 +9,15 @@ import React from 'react';
 /**
  * Code
  */
-const LastActu = () => (
-  <div className="lastActu">
-    <a href="">Content</a>
+const style = (image) => {
+  return ({
+    backgroundImage: `url(${image})`,
+  });
+};
+
+const LastActu = ({ title, image }) => (
+  <div className="lastActu" style={style(image)}>
+    <a href="">{title}</a>
   </div>
 );
 /**
