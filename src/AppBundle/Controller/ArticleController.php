@@ -11,7 +11,17 @@ class ArticleController extends Controller
 {
 	public function getHomeArticleAction()
 	{
-		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast();
+		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast(0, 9);
+
+		$serializer = SerializerBuilder::create()->build();
+		$jsonContent = $serializer->serialize($news, 'json');
+
+		return new Response($jsonContent);
+	}
+
+	public function getHomeArticleSidebarAction()
+	{
+		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast(10, 30);
 
 		$serializer = SerializerBuilder::create()->build();
 		$jsonContent = $serializer->serialize($news, 'json');
