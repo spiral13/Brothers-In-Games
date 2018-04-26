@@ -43,10 +43,15 @@ announcements_list:
     options:
         expose: true
 
-
+# Récupération des donnée 
 get_home_articles:
     path: /home/get/articles
     defaults: { _controller: AppBundle:Article:getHomeArticle }
+    options:
+        expose: true
+get_sidebar_articles:
+    path: /home/get/articles/sidebar
+    defaults: { _controller: AppBundle:Article:getHomeArticleSidebar }
     options:
         expose: true
 get_all_games:
