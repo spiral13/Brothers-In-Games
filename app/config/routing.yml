@@ -4,6 +4,8 @@ app:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
+
+#---------------------- Home
 home_visitor:
     path: /
     defaults: { _controller: AppBundle:Home:homeVisitor }
@@ -15,6 +17,7 @@ home_user:
   options:
         expose: true
 
+#---------------------- User
 signup:
     path: /user/create
     defaults: { _controller: AppBundle:User:create }
@@ -30,20 +33,100 @@ logout:
     path: /logout
     options:
         expose: true
+account_show:
+    path: /account
+    defaults: { _controller: AppBundle:User:read }
+    options:
+        expose: true
 
+#---------------------- Friend
+friends_list:
+    path: /friends
+    defaults: { _controller: AppBundle:Friend:list }
+    options:
+        expose: true
+
+#---------------------- Profile
+profile_show:
+    path: /profile/{slug}
+    defaults: { _controller: AppBundle:Profile:otherProfileShow }
+    options:
+        expose: true
+my_profile_show:
+    path: /my-profile
+    defaults: { _controller: AppBundle:Profile:show }
+    options:
+        expose: true
+
+#---------------------- Mail
+mail_list_receive:
+    path: /mail/receive
+    defaults: { _controller: AppBundle:Mail:listReceive }
+    options:
+        expose: true
+mail_list_send:
+    path: /mail/send
+    defaults: { _controller: AppBundle:Mail:listSend }
+    options:
+        expose: true
+mail_show:
+    path: /mail/show/{id}
+    defaults: { _controller: AppBundle:Mail:read }
+    options:
+        expose: true
+
+#---------------------- Messenger
+messenger_show:
+    path: /messenger/{id}
+    defaults: { _controller: AppBundle:Messenger:read }
+    options:
+        expose: true
+messenger_list:
+    path: /messenger
+    defaults: { _controller: AppBundle:Messenger:list }
+    options:
+        expose: true
+
+#---------------------- Announcements
+announcements_list:
+    path: /annoucements
+    defaults: { _controller: AppBundle:Announcement:list }
+    options:
+            expose: true
+announcements_list_game:
+    path: /annoucements/{slug}
+    defaults: { _controller: AppBundle:Announcement:listByGame }
+    options:
+            expose: true
+announcements_show:
+    path: /annoucement/{slug}/{id}
+    defaults: { _controller: AppBundle:Announcement:read }
+    options:
+            expose: true
+
+#---------------------- Games
 games_list:
     path: /games
     defaults: { _controller: AppBundle:Game:list }
     options:
         expose: true
-
-announcements_list:
-    path: /annoucements
-    defaults: { _controller: AppBundle:Announcement:list }
+my_games:
+    path: /my-games
+    defaults: { _controller: AppBundle:Game:listByUser }
     options:
         expose: true
 
-# Récupération des donnée
+#---------------------- News
+article_show:
+    path: /article/{slug}
+    defaults: { _controller: AppBundle:News:read }
+    options:
+        expose: true
+
+
+###########################
+# Récupération des donnée #
+###########################
 get_home_articles:
     path: /home/get/articles
     defaults: { _controller: AppBundle:Article:getHomeArticle }
@@ -53,6 +136,11 @@ get_home_articles:
 get_sidebar_articles:
     path: /home/get/articles/sidebar
     defaults: { _controller: AppBundle:Article:getHomeArticleSidebar }
+    options:
+        expose: true
+get_article:
+    path: /home/get/articles/{id}
+    defaults: { _controller: AppBundle:Article:getArticle }
     options:
         expose: true
 
