@@ -50,9 +50,6 @@ export default store => next => (action) => {
       });
       break;
     }
-
-    default:
-      return;
   }
 
   // On passe au voisin

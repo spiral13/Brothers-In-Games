@@ -16,6 +16,7 @@ module.exports = {
         "no-param-reassign": ["error", { "props": false }],
         "brace-style": ["error", "stroustrup"],
         "linebreak-style": "off",
+        "import/no-unresolved": "off",
         "import/extensions": ["error", "never", { "svg": "always" }],
     },
     "settings": {
