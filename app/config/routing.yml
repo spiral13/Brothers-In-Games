@@ -61,3 +61,4 @@ get_all_games:
     defaults: { _controller: AppBundle:Game:getAllGames }
     options:
         expose: true
+    

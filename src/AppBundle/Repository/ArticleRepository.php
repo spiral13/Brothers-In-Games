@@ -13,11 +13,12 @@ use Doctrine\ORM\EntityRepository;
 
 class ArticleRepository extends EntityRepository
 {
-	public function findSoMuchFormTheLast()
+	public function findSoMuchFormTheLast($min, $max)
 	{
 		$qb = $this->createQueryBuilder('a')
 		->orderBy('a.published', 'DESC')
-		->setMaxResults(9)
+		->setFirstResults($min)
+		->setMaxResults($max)
 		->getQuery()
 		->getResult()
 		;
