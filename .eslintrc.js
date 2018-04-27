@@ -17,6 +17,7 @@ module.exports = {
         "brace-style": ["error", "stroustrup"],
         "linebreak-style": "off",
         "import/no-unresolved": "off",
+        "default-case": "off",
         "import/extensions": ["error", "never", { "svg": "always" }],
     },
     "settings": {
