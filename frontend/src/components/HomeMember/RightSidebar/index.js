@@ -21,7 +21,7 @@ class RightSidebar extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 1000);
+    }, 2000);
     if (this.state.currentBar === "actus-bar") {
       this.props.actions.getAllActus();
     // } else if {

@@ -3,14 +3,14 @@
  */
 const initialState = {
   signup: {
-    username: "",
-    newpassword: "",
-    confirmpassword: "",
-    email: "",
+    username: '',
+    newpassword: '',
+    confirmpassword: '',
+    email: '',
   },
   signin: {
-    _username: "Login",
-    _password: "Password",
+    _username: 'Login',
+    _password: 'Password',
   },
   games: [
     {
