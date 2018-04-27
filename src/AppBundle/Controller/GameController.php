@@ -28,7 +28,7 @@ class GameController extends Controller
 	{
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "https://api-endpoint.igdb.com/games/?limit=50&offset=1000&fields=name,slug,cover,game_modes",
+		  CURLOPT_URL => "https://api-endpoint.igdb.com/games/?limit=50&offset=1000&fields=name,slug,cover.url,game_modes",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
 		  CURLOPT_MAXREDIRS => 10,
@@ -48,11 +48,18 @@ class GameController extends Controller
 
 		curl_close($curl);
 
-		$serializer = SerializerBuilder::create()->build();
-		$object = $serializer->deserialize($response, 'GameController\getApiAction', 'json');
+		$data = json_decode($response, true);
+		dump($data);
 
-		dump($object);
-
+		$array = [];
+		foreach($data as $key => $value)
+		{ 
+			if(isset($value['cover']))
+			{
+				dump($value['cover']);
+			}
+		}
+		exit;
 		if ($err) {
 		  echo "cURL Error #:" . $err;
 		} else {

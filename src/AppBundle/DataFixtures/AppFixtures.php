@@ -2,11 +2,12 @@
 
 namespace AppBundle\DataFixtures;
 
+use AppBundle\DataFixtures\Fakers\GamesProvider;
+use AppBundle\Entity\Role;
+use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use AppBundle\Entity\Role;
-use AppBundle\Entity\User;
 
 class AppFixtures extends Fixture
 {
@@ -56,12 +57,12 @@ class AppFixtures extends Fixture
         ));
 
         $populator->addEntity('AppBundle\Entity\Game', 20, array(
-            'title' => function() use ($generator) { return $generator->sentence($nbWords = 10, $variableNbWords = true); },
-            'cover' => function() use ($generator) { return $generator->imageUrl($width = 200, $height = 250); }
-        ));
+            'title' => function() use ($generator) { return $generator->unique()->gameTitle(); },
+            'cover' => function() use ($generator) { return $generator->unique()->gameCover(); }
+        ));reviewImage
 
         $populator->addEntity('AppBundle\Entity\GameCategory', 5, array(
-            'title' => function() use ($generator) { return $generator->jobTitle(); },
+            'title' => function() use ($generator) { return $generator->unique()->categoryTitle(); },
         ));
 
         $populator->addEntity('AppBundle\Entity\Announcement', 20, array(
