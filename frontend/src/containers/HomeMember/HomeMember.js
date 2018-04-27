@@ -12,7 +12,7 @@ import { getAllNews } from 'frontend/src/store/reducer';
  * Code
  */
 
-const mapStateToProps = (state, ownProp) => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ getAllNews }, dispatch),

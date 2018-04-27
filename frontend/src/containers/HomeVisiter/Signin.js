@@ -13,7 +13,9 @@ import { changePasswordForm, changeLoginForm, submitConnect } from 'frontend/src
  */
 
 const mapStateToProps = state => ({
+  // eslint-disable-next-line
   username: state.signin._username,
+  // eslint-disable-next-line
   password: state.signin._password,
 });
 

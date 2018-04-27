@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
  */
 const Game = ({ title, cover, description }) => (
   <div className="game">
-    <img src={cover} alt={title} id="gamePicture"/>
+    <img src={cover} alt={title} id="gamePicture" />
     {/* <Gamepad className="nav-fig" id="gamePicture"/> */}
     <h2 id="gameTitle">{title}</h2>
     <p id="gameInfo">{description}</p>

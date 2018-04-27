@@ -12,7 +12,7 @@ import { getAllActus } from 'frontend/src/store/reducer';
  * Code
  */
 
-const mapStateToProps = (state, ownProp) => ({
+const mapStateToProps = state => ({
   actus: state.sidebarActus,
 });
 

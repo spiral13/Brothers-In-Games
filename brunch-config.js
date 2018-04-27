@@ -12,6 +12,6 @@ exports.config = {
   },
   paths: {
     public: 'web',
-    watched: ['frontend']
-  }
+    watched: ['frontend'],
+  },
 };
