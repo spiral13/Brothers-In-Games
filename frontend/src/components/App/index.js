@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
 import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
-// import Article from 'frontend/src/components/Article';
 /*
  * Code
  */
@@ -29,7 +28,6 @@ const App = () => (
         <Route exact path={Routing.generate('games_list')} component={GameList} />
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('announcements_list')} component={() => (<div>Announcements</div>)} />
-        <Route exact path={Routing.generate('article')} component={() => (<div>Article</div>)} />
       </Switch>
     </div>
   </Router>
