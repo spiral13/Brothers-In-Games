@@ -33,6 +33,10 @@ class AppFixtures extends Fixture
         $admin = $manager->getRepository(User::class)->findOneBy(['username' => 'admin']);
 
         $generator = \Faker\Factory::create('fr_FR');
+
+        $generator->addProvider(new GamesProvider);
+
+
         $populator = new \Faker\ORM\Doctrine\Populator($generator, $manager);
 
         $populator->addEntity('AppBundle\Entity\User', 10, array(
