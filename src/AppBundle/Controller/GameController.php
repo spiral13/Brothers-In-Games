@@ -24,6 +24,6 @@ class GameController extends Controller
 		$serializer = SerializerBuilder::create()->build();
 		$json = $serializer->serialize($games, 'json');
 
-		return new Response($encoder);
+		return new Response($json);
 	}
 }
