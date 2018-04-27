@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class GameRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findAllInArray()
+	{
+		$qb = $this->createQueryBuilder('g')
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
 }
