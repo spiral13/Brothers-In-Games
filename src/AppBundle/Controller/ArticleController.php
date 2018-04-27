@@ -9,6 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends Controller
 {
+	public function readAction()
+	{
+		return $this->render('article/read.html.twig');
+	}
 	public function getHomeArticleAction()
 	{
 		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast(0, 9);
