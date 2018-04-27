@@ -12,19 +12,17 @@ import PropTypes from 'prop-types';
 /**
  * Code
  */
-const Game = ({ title, cover, description }) => (
+const Game = ({ game }) => (
   <div className="game">
-    <img src={cover} alt={title} id="gamePicture" />
-    {/* <Gamepad className="nav-fig" id="gamePicture"/> */}
-    <h2 id="gameTitle">{title}</h2>
-    <p id="gameInfo">{description}</p>
+    <img src={game.cover} alt={game.title} id="gamePicture" />
+    <h2 id="gameTitle">{game.title}}</h2>
+    <p id="gameInfo">0</p>
   </div>
 );
 
 Game.propTypes = {
-  title: PropTypes.string.isRequired,
-  cover: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  game: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  // description: PropTypes.string.isRequired,
 };
 
 
