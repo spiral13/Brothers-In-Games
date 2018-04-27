@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
         $populator->addEntity('AppBundle\Entity\Game', 20, array(
             'title' => function() use ($generator) { return $generator->unique()->gameTitle(); },
             'cover' => function() use ($generator) { return $generator->unique()->gameCover(); }
-        ));reviewImage
+        ));
 
         $populator->addEntity('AppBundle\Entity\GameCategory', 5, array(
             'title' => function() use ($generator) { return $generator->unique()->categoryTitle(); },

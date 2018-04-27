@@ -1,0 +1,525 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Reset perso */
+a, del, ins {
+	text-decoration: none;
+}
+a {
+	color: inherit;
+}
+label, button {
+	cursor: pointer;
+}
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+  font-size: 1.7em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/**
+ * Article principal
+ */
+.article {
+  width: 85%;
+  float: right;
+  background-color: #2c2c2c;
+  height: 100vh;
+  padding: 0.5em;
+  overflow: auto;
+}
+.imageArticle {
+  width: 100%;
+  height: 10em;
+}
+.contenuArticle {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+/**
+   * Carousel
+   */
+}
+.carousel {
+  display: flex;
+  flex-direction: row;
+}
+.unArticleCarousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 7em;
+  height: 7em;
+}
+.unArticleCarousel:hover {
+  box-shadow: 0px 0px 2px 2px #ec9c34;
+  cursor: pointer;
+}
+.imageCarouselArticle {
+  width: 100%;
+  height: 60%;
+}
+
+.game {
+  width: 13%;
+  margin: 0 1em;
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 2px solid #ec9c34;
+  box-shadow: 0px 10px 10px -5px #000;
+  margin-bottom: 1em;
+}
+.game:hover {
+  box-shadow: 0px 0px 2px 2px #ec9c34;
+  cursor: pointer;
+}
+#gamePicture {
+  width: 100%;
+  height: 60%;
+}
+#gameTitle {
+  font-size: 0.8em;
+  padding-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+}
+#gameInfo {
+  font-size: 0.4em;
+  padding: 1em;
+  color: #fff;
+  font-weight: lighter;
+}
+
+#games {
+  width: 85%;
+  float: right;
+  background-color: #2c2c2c;
+  height: 100vh;
+  display: flex;
+  padding: 0.5em;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+.lastActu {
+  border-left: 3px solid #ec9c34;
+  border-radius: 1px 0 0 1px;
+  height: 40px;
+  text-align: left;
+  margin-left: 5px;
+  box-shadow: 0px 0px 2px 2px #000;
+  font-size: 0.7em;
+  font-weight: lighter;
+  overflow: hidden;
+  line-height: 2em;
+}
+.lastActu a {
+  color: #fff;
+  display: block;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+  padding-left: 5px;
+}
+.lastActu a:hover {
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+}
+
+#main-member {
+  width: 70%;
+  float: left;
+  margin-left: 15%;
+  background-color: #2c2c2c;
+  color: #fff;
+  font-weight: lighter;
+  font-size: 0.7em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.content-new {
+  height: 322px;
+  margin: 7px;
+  box-shadow: 0px 0px 2px 2px #000;
+}
+.content-new:hover {
+  box-shadow: 0px 0px 2px 2px #ec9c34;
+  cursor: pointer;
+}
+.middle img {
+  height: 100%;
+}
+.middle {
+  position: relative;
+}
+.last {
+  position: relative;
+}
+.last img {
+  height: 100%;
+}
+.presentation {
+  position: absolute;
+  bottom: 0px;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+  padding: 10px;
+}
+
+#rightSidebar {
+  float: right;
+  width: 15%;
+  background-color: #2c2c2c;
+  height: 100vh;
+  box-shadow: 0px 0px 2px;
+}
+#rightBar-rubrique {
+  display: flex;
+  flex-direction: row;
+}
+#rightBar-rubrique a {
+  width: 50%;
+  font-size: 0.5em;
+  padding: 5px;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: uppercase;
+}
+.bar {
+  background-color: #ec9c34;
+  color: #2c2c2c;
+  line-height: 1.2em;
+}
+.selected-bar {
+  background-color: #2c2c2c;
+  color: #ec9c34;
+}
+.sidebar-loading {
+  background-color: #2c2c2c;
+  margin: auto;
+  width: 15%;
+  float: right;
+  height: 100vh;
+}
+
+#homeMembre {
+  background-color: #2c2c2c;
+}
+
+
+#buttonSubmit {
+  margin-left: 70%;
+  padding: 10px;
+  padding-top: 5px;
+  font-size: 1.1em;
+  border: none;
+  box-shadow: 0px 0px 1px 2px #000;
+  background-color: #000;
+  border-radius: 2px;
+  color: #ec9c34;
+}
+
+.signupForm {
+  width: 600px;
+  height: 500px;
+  margin: auto;
+  display: block;
+  position: fixed;
+  top: calc(50% - 200px);
+  left: calc(50% - 250px);
+  background-color: #ec9c34;
+  box-shadow: 0px 0px 10px 5px #000;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 10;
+}
+.signupForm input {
+  display: block;
+  width: 60%;
+  margin: auto;
+}
+.signupForm label {
+  display: block;
+  position: relative;
+  top: 35px;
+  width: 30%;
+  margin-bottom: 20px;
+  font-size: 0.8em;
+}
+.signupForm button {
+  margin: auto;
+  border: none;
+  width: 100px;
+  height: 30px;
+  box-shadow: 0px 0px 10px 5px #000;
+}
+
+header {
+  background-color: #ec9c34;
+}
+header h1 {
+  font-size: 4em;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 150px;
+}
+header h1 span {
+  margin-left: 50px;
+  position: relative;
+  top: -45px;
+  left: 30px;
+}
+header h1 span i {
+  font-size: 0.7em;
+  position: relative;
+  left: 5px;
+}
+.login_signin {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-left: 80px;
+  display: block;
+}
+.ajust {
+  margin-top: 40px;
+}
+label,
+input,
+button {
+  display: block;
+}
+form label,
+form a {
+  margin: 25px 0 0 30px;
+}
+#head_nav {
+  padding: 30px;
+  position: fixed;
+  right: 20px;
+  top: 30px;
+  text-align: center;
+  box-shadow: 2px 2px 5px 2px #000;
+  opacity: 0.7;
+  line-height: 1.3em;
+  background-color: #000;
+  z-index: 3;
+  color: #ec9c34;
+  font-weight: bold;
+}
+#leftSide {
+  width: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: #ec9c34;
+}
+.gamesList {
+  display: block;
+}
+form {
+  margin: 20px 0 10px 60px;
+  width: 500px;
+}
+input {
+  margin: 10px 0 10px 0;
+  width: 85%;
+  border-radius: 10px;
+  padding: 7px;
+  height: 35px;
+  border: none;
+}
+#forgotPassword {
+  font-size: 0.7em;
+  margin-top: -5px;
+  display: block;
+  margin-left: 30px;
+}
+.underplace {
+  clear: both;
+  text-align: center;
+  background-color: #ec9c34;
+  position: relative;
+  z-index: 4;
+}
+#tom_clancy {
+  float: right;
+  z-index: 0;
+  display: block;
+  height: 980px;
+  width: 80%;
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("../pictures/tom_clancy.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: 40px;
+}
+#left_angle {
+  position: absolute;
+  top: 200px;
+  left: -180px;
+  width: 1400px;
+  height: 400px;
+  background-color: #ec9c34;
+  z-index: 1;
+  transform: rotate(-64deg);
+  box-shadow: 0px 10px 10px -5px #000;
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  background-color: #2c2c2c;
+}
+
+.friend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4px;
+  font-size: 0.6em;
+  font-weight: lighter;
+}
+.friend:hover {
+  background-color: #f3b972;
+  cursor: pointer;
+}
+
+#friends h2 {
+  padding-left: 10px;
+  color: #ec9c34;
+  background-color: #2c2c2c;
+  padding: 10px;
+}
+
+#navbar {
+  float: right;
+  width: 85%;
+  height: 55px;
+  background-color: #2c2c2c;
+  font-size: 0.7em;
+  padding: 8px 20px;
+  font-weight: lighter;
+  color: #ec9c34;
+  border-bottom: 4px solid #ec9c34;
+  display: flex;
+  justify-content: space-between;
+}
+#navbar h1 {
+  margin-top: 7px;
+}
+#nav-rubrique ul {
+  display: flex;
+  flex-direction: row;
+}
+#nav-rubrique ul li {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+  margin-left: 20px;
+}
+#nav-rubrique ul li :hover {
+  color: #f3b972;
+}
+.nav-fig {
+  margin: auto;
+  font-size: 1.5em;
+}
+
+#sidebar {
+  width: 15%;
+  position: fixed;
+  left: 0px;
+  background-color: #ec9c34;
+  height: 100vh;
+}
+#sidebar-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  padding: 10px;
+  color: #2c2c2c;
+}
+#sidebar-title span {
+  font-size: 1.1em;
+  position: relative;
+  top: -19px;
+  left: 30px;
+}
+#sidebar-title i {
+  font-size: 0.7em;
+  position: relative;
+  left: 5px;
+}
+#sidebar-username {
+  padding: 10px;
+}
+#sidebar-form {
+  font-size: 0.7em;
+  margin: 10px;
+  width: 100%;
+  padding: 10px;
+}
+#sidebar-label {
+  margin: 0px;
+}
+
+
+
+/*# sourceMappingURL=app.css.map*/
