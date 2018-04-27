@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -16,7 +16,6 @@ import Loading from 'frontend/src/components/Loading';
  */
 
 class GameList extends React.Component {
-
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
   state = {
@@ -30,7 +29,6 @@ class GameList extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
-    console.log(this.props);
     this.props.actions.getAllGames();
   }
 
@@ -41,18 +39,19 @@ class GameList extends React.Component {
     if (this.state.loading) {
       return <Loading />;
     }
-    else {
-      return (
-        <div className="gameList">
-          <Navbar />
-          <Sidebar />
-          <Main />
-        </div>
-      );
-    }
+    return (
+      <div className="gameList">
+        <Navbar />
+        <Sidebar />
+        <Main />
+      </div>
+    );
   }
 }
 
+GameList.propTypes = {
+  actions: PropTypes.object.isRequired,
+};
 
 /**
  * Export

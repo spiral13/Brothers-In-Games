@@ -10,6 +10,7 @@ export default store => next => (action) => {
   // Code
   switch (action.type) {
     case GET_GAMES: {
+      // eslint-disable-next-line
       axios.get(Routing.generate('get_all_games')).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(addAllGames(response));

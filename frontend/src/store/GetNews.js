@@ -8,6 +8,7 @@ export default store => next => (action) => {
   // Code
   switch (action.type) {
     case GET_NEWS: {
+      // eslint-disable-next-line
       axios.get(Routing.generate('get_home_articles')).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(addNews(response));
@@ -18,6 +19,7 @@ export default store => next => (action) => {
     }
 
     case GET_ACTUS: {
+      // eslint-disable-next-line
       axios.get(Routing.generate('get_sidebar_articles')).then((response) => {
         console.log(response);
         // Ici, faire un dispatch.

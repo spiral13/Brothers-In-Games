@@ -61,6 +61,11 @@ label, button {
 	box-sizing: border-box;
 }
 
+body {
+  font-size: 1.7em;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .game {
   width: 13%;
   margin: 0 1em;

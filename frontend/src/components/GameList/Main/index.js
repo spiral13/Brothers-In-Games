@@ -2,32 +2,28 @@
  * Npm import
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
-// import Game from 'frontend/src/components/GameList/Game';
+import Game from 'frontend/src/components/GameList/Game';
 /**
  * Code
  */
-class Main extends React.Component {
-  render() {
-    const { games } = this.props;
-    console.log(games);
-    return (
-      <div id="games">
-        {/* {games.map((game, index) => (
-          <Game
-            index={index}
-            key={game.id}
-            game={game}
-          />
-        ))} */}
-      </div>
-    );
-  }
-}
-
+const Main = ({ games }) => (
+  <div id="games">
+    {games.map((game, index) => (
+      <Game
+        index={index}
+        key={game.id}
+        game={game}
+      />
+    ))}
+  </div>
+);
+Main.propTypes = {
+  games: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+};
 /**
  * Export
  */

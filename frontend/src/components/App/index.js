@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 /*
@@ -20,9 +20,13 @@ const App = () => (
     <div id="app">
       {/* Nous pouvons ajouter autant de pages que souhaité  */}
       <Switch>
+        {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('home_visitor')} component={HomeVisiter} />
+        {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('home_user')} component={HomeMember} />
+        {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('games_list')} component={GameList} />
+        {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('announcements_list')} component={() => (<div>Announcements</div>)} />
       </Switch>
     </div>

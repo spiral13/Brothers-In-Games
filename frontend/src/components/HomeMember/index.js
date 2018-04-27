@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -18,7 +19,7 @@ class HomeMember extends React.Component {
     loading: true,
   }
 
-  componentWillMount () {
+  componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
@@ -28,18 +29,21 @@ class HomeMember extends React.Component {
   render() {
     if (this.state.loading) {
       return <Loading />;
-    } else {
-      return (
-        <div id="homeMember">
-          <Navbar />
-          <Sidebar />
-          <Main />
-          <RightSidebar />
-        </div>
-      );
     }
+    return (
+      <div id="homeMember">
+        <Navbar />
+        <Sidebar />
+        <Main />
+        <RightSidebar />
+      </div>
+    );
   }
 }
+
+HomeMember.propTypes = {
+  actions: PropTypes.object.isRequired,
+};
 /**
  * Export
  */

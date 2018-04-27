@@ -15,6 +15,7 @@ import Signout from 'react-icons/lib/fa/sign-out';
  */
 const Navbar = () => (
   <div id="navbar">
+    {/* eslint-disable-next-line */}
     <h1><a href={Routing.generate('games_list')}>Les jeux</a></h1>
     <nav id="nav-rubrique">
       <ul>
@@ -32,6 +33,7 @@ const Navbar = () => (
         </li>
         <li>
           <Signout className="nav-fig" />
+          {/* eslint-disable-next-line */}
           <a href={Routing.generate('logout')}>Déconnexion</a>
         </li>
       </ul>
