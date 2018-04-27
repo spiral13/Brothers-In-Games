@@ -4,7 +4,11 @@ app:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-
+api:
+    path: /api
+    defaults: { _controller: AppBundle:Game:getApi }
+    options:
+        expose: true
 #---------------------- Home
 home_visitor:
     path: /
@@ -89,17 +93,17 @@ messenger_list:
 
 #---------------------- Announcements
 announcements_list:
-    path: /annoucements
+    path: /announcements
     defaults: { _controller: AppBundle:Announcement:list }
     options:
             expose: true
 announcements_list_game:
-    path: /annoucements/{slug}
+    path: /announcements/{slug}
     defaults: { _controller: AppBundle:Announcement:listByGame }
     options:
             expose: true
 announcements_show:
-    path: /annoucement/{slug}/{id}
+    path: /announcement/{slug}/{id}
     defaults: { _controller: AppBundle:Announcement:read }
     options:
             expose: true
@@ -118,8 +122,8 @@ my_games:
 
 #---------------------- News
 article_show:
-    path: /article/{slug}
-    defaults: { _controller: AppBundle:News:read }
+    path: /article
+    defaults: { _controller: AppBundle:Article:read }
     options:
         expose: true
 
