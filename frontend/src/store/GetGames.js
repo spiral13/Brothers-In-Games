@@ -1,11 +1,12 @@
+// Npm import
 import axios from 'axios';
 
+// Local import
 import { GET_GAMES, addAllGames } from './reducer';
 /*
  * Middleware
  */
 export default store => next => (action) => {
-
   // Code
   switch (action.type) {
     case GET_GAMES: {
@@ -15,8 +16,11 @@ export default store => next => (action) => {
       }).catch((error) => {
         console.log(error);
       });
+      break;
     }
-    break;
+
+    default:
+      break;
   }
 
   // On passe au voisin

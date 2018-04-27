@@ -1,6 +1,9 @@
-
-import { SUBMIT_CONNECT, SIGNUP_SUBMIT } from './reducer';
+// Npm import
 import axios from 'axios';
+
+// Local import
+import { SUBMIT_CONNECT, SIGNUP_SUBMIT } from './reducer';
+
 /*
  * Middleware
  */
@@ -9,12 +12,11 @@ export default store => next => (action) => {
   switch (action.type) {
     case SUBMIT_CONNECT: {
       // J'assigne les donnée que je veux a data
-      var data = store.getState().signin;
+      const data = store.getState().signin;
       // Je crée un objet FormData
-      var formData = new FormData();
+      const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
       for (var key in data) {
-        console.log(key, data[key]);
         formData.append(key, data[key]);
       }
       axios.post(Routing.generate('login'), formData).then((response) => {
@@ -27,9 +29,9 @@ export default store => next => (action) => {
 
     case SIGNUP_SUBMIT: {
       // J'assigne les donnée que je veux a data
-      var data = store.getState().signup;
+      const data = store.getState().signup;
       // Je crée un objet FormData
-      var formData = new FormData();
+      const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
       for (var key in data) {
         formData.append(key, data[key]);
@@ -43,6 +45,9 @@ export default store => next => (action) => {
       });
       break;
     }
+
+    default:
+      return;
   }
 
   // On passe au voisin

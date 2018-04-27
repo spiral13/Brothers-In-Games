@@ -7,10 +7,10 @@ import { bindActionCreators } from 'redux';
 /*
  * Import Local
  */
- import GameList from 'frontend/src/components/GameList';
+import GameList from 'frontend/src/components/GameList';
 
 // actionsCreators
- import { getAllGames } from 'frontend/src/store/reducer';
+import { getAllGames } from 'frontend/src/store/reducer';
 
 /*
  * Code

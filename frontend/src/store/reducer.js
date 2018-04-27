@@ -30,17 +30,17 @@ const SIGNUP_CHANGE_EMAIL_INPUT = 'SIGNUP_CHANGE_EMAIL_INPUT';
 export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 
 const CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
-const CHANGE_LOGIN_FORM = "CHANGE_LOGIN_FORM";
-export const SUBMIT_CONNECT = "SUBMIT_CONNECT";
+const CHANGE_LOGIN_FORM = 'CHANGE_LOGIN_FORM';
+export const SUBMIT_CONNECT = 'SUBMIT_CONNECT';
 
-export const GET_NEWS = "GET_NEWS";
-const ADD_NEWS = "ADD_NEWS";
+export const GET_NEWS = 'GET_NEWS';
+const ADD_NEWS = 'ADD_NEWS';
 
-export const GET_GAMES = "GET_GAMES";
-const ADD_GAMES = "ADD_GAMES";
+export const GET_GAMES = 'GET_GAMES';
+const ADD_GAMES = 'ADD_GAMES';
 
-export const GET_ACTUS = "GET_ACTUS";
-const ADD_ACTUS = "ADD_ACTUS";
+export const GET_ACTUS = 'GET_ACTUS';
+const ADD_ACTUS = 'ADD_ACTUS';
 
 
 /**
@@ -54,7 +54,7 @@ const reducer = (state = initialState, action = {}) => {
         signup: {
           ...state.signup,
           username: action.username,
-        }
+        },
       };
 
     case SIGNUP_CHANGE_NEWPASSWORD_INPUT:
@@ -63,7 +63,7 @@ const reducer = (state = initialState, action = {}) => {
         signup: {
           ...state.signup,
           newpassword: action.newpassword,
-        }
+        },
       };
 
     case SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT:
@@ -72,7 +72,7 @@ const reducer = (state = initialState, action = {}) => {
         signup: {
           ...state.signup,
           confirmpassword: action.confirmpassword,
-        }
+        },
       };
 
     case SIGNUP_CHANGE_EMAIL_INPUT:
@@ -81,7 +81,7 @@ const reducer = (state = initialState, action = {}) => {
         signup: {
           ...state.signup,
           email: action.email,
-        }
+        },
       };
 
     case SIGNUP_SUBMIT:
@@ -95,7 +95,7 @@ const reducer = (state = initialState, action = {}) => {
         signin: {
           ...state.signin,
           _password: action.value,
-        }
+        },
       };
     }
 
@@ -138,7 +138,7 @@ const reducer = (state = initialState, action = {}) => {
     case GET_ACTUS:
       return {
         ...state,
-      }
+      };
 
     case ADD_ACTUS:
       return {

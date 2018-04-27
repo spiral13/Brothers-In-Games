@@ -10,9 +10,9 @@ import Sidebar from 'frontend/src/components/Navigation_sidebar/Sidebar';
  * Code
  */
 
-const mapStateToProps = (state, ownProp) => ({});
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
   // changeClick: () => {
   //   console.log('test');
   // },

@@ -11,7 +11,7 @@ import Header from 'frontend/src/containers/HomeVisiter/Header';
  */
 const HomeVisiter = () => (
   <div id="homeVisiter">
-    <div id="left_angle"></div>
+    <div id="left_angle" />
     <Header />
   </div>
 );

@@ -14,7 +14,7 @@ const Sidebar = () => (
     <h1 id="sidebar-title"><a href={Routing.generate('home_user')}>Brothers<br /><span><i>in</i>Games</span></a></h1>
     <h2 id="sidebar-username">Robert Gudule</h2>
     <form id="sidebar-form">
-      <label id="sidebar-label" for="sidebar-input">Chercher un jeu / ami</label>
+      <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu / ami</label>
       <input id="sidebar-input" type="text" value="" placeholder="Recherche de joueurs/jeux" />
     </form>
     <Friends />

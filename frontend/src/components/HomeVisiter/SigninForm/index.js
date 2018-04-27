@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import ArrowRight from 'react-icons/lib/fa/arrow-right';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -23,7 +24,7 @@ class SigninForm extends React.Component {
         method="post"
         onSubmit={this.submitForm}
       >
-        <label for="username">Login</label>
+        <label htmlFor="username">Login</label>
         <input
           id="username"
           type="text"
@@ -31,7 +32,7 @@ class SigninForm extends React.Component {
           onChange={({ target }) => actions.changeLoginForm(target.value)}
           value={username}
         />
-        <label for="password">Mot de passe</label>
+        <label htmlFor="password">Mot de passe</label>
         <input
           id="password"
           type="password"
@@ -45,6 +46,12 @@ class SigninForm extends React.Component {
     );
   }
 }
+
+SigninForm.propTypes = {
+  actions: PropTypes.object.isRequired,
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+};
 /**
  * Export
  */

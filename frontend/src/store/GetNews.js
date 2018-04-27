@@ -5,7 +5,6 @@ import { GET_NEWS, addNews, GET_ACTUS, addActus } from './reducer';
  * Middleware
  */
 export default store => next => (action) => {
-
   // Code
   switch (action.type) {
     case GET_NEWS: {
@@ -15,8 +14,8 @@ export default store => next => (action) => {
       }).catch((error) => {
         console.log(error);
       });
+      break;
     }
-    break;
 
     case GET_ACTUS: {
       axios.get(Routing.generate('get_sidebar_articles')).then((response) => {
@@ -26,7 +25,11 @@ export default store => next => (action) => {
       }).catch((error) => {
         console.log(error);
       });
+      break;
     }
+
+    default:
+      return;
   }
 
   // On passe au voisin

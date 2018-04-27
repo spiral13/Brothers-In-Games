@@ -10,9 +10,9 @@ import Header from 'frontend/src/components/HomeVisiter/Header';
  * Code
  */
 
-const mapStateToProps = (state, ownProp) => ({});
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
   // changeClick: () => {
   //   console.log('test');
   // },

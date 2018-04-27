@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
  * Code
  */
 class SignupForm extends React.Component {
-
   static propTypes = {
     actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
     username: PropTypes.string.isRequired,
@@ -51,24 +50,32 @@ class SignupForm extends React.Component {
   handleSubmit = (evt) => {
     // J'empeche le comportement par défaut
     evt.preventDefault();
-    console.log(this.props);
     // J'exécute la fonction fournie par les props
     this.props.actions.signUpSubmit();
   }
 
   render() {
-    const { username, newpassword, confirmpassword, email } = this.props;
+    const {
+      username,
+      newpassword,
+      confirmpassword,
+      email,
+    } = this.props;
     return (
-      <form className="signupForm" method="post" onSubmit={this.handleSubmit}>
-        <label for="username">Username</label>
+      <form
+        className="signupForm"
+        method="post"
+        onSubmit={this.handleSubmit}
+      >
+        <label htmlFor="username">Username</label>
         <input
           id="username"
           type="text"
           name="username"
           value={username}
           onChange={this.userNameHandleChange}
-          />
-        <label for="newPassword">Password</label>
+        />
+        <label htmlFor="newPassword">Password</label>
         <input
           id="newPassword"
           type="password"
@@ -76,7 +83,7 @@ class SignupForm extends React.Component {
           value={newpassword}
           onChange={this.newPasswordHandleChange}
         />
-        <label for="confirmPassword">Confirm Password</label>
+        <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           id="confirmPassword"
           type="password"
@@ -84,7 +91,7 @@ class SignupForm extends React.Component {
           value={confirmpassword}
           onChange={this.confirmPasswordHandleChange}
         />
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           className="email"
           type="text"
@@ -92,7 +99,7 @@ class SignupForm extends React.Component {
           value={email}
           onChange={this.emailHandleChange}
         />
-        <label for="email">Confirm Email</label>
+        <label htmlFor="email">Confirm Email</label>
         <input className="email" type="text" name="confirmEmail" />
         <button>Envoyer</button>
         {/* <button id="buttonSubmit">Envoyer</button> */}
@@ -100,7 +107,7 @@ class SignupForm extends React.Component {
     );
   }
 }
- /**
- * Export
- */
+/**
+* Export
+*/
 export default SignupForm;

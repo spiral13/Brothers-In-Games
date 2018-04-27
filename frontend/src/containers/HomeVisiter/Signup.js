@@ -2,12 +2,12 @@
  * Npm import
  */
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 /**
 * Local import
 */
 import SignupForm from 'frontend/src/components/HomeVisiter/SignupForm';
-import {changeSignUpUserName, changeSignUpNewPassword, changeSignUpConfirmPassword, changeSignUpEmail, signUpSubmit} from 'frontend/src/store/reducer';
+import { changeSignUpUserName, changeSignUpNewPassword, changeSignUpConfirmPassword, changeSignUpEmail, signUpSubmit } from 'frontend/src/store/reducer';
 /**
  * Code
  */
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 
 const SignupFormContainer = connect(mapStateToProps, mapDispatchToProps)(SignupForm);
 
- /**
-  * Export
-  */
+/**
+* Export
+*/
 export default SignupFormContainer;

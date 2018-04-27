@@ -10,11 +10,11 @@ import Main from 'frontend/src/components/GameList/Main';
  * Code
  */
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   games: state.games,
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = () => ({});
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 
