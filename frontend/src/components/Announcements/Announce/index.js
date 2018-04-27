@@ -11,12 +11,14 @@ import PropTypes from 'prop-types';
  * Code
  */
 const Announce = ({ name, image, description }) => (
-  <div className="banner">
+  <div className="announce">
     <a href="#">
-      <h2>{name}</h2>
-      {/* eslint-disable-next-line */}
-      <img src={image} alt="image de profil" />
-      <p>{description}</p>
+      <img className="player-image" src={image} alt="image de profil" />
+      <div className="player-announce">
+        <h2 className="player-name">{name}</h2>
+        {/* eslint-disable-next-line */}
+        <p>{description}</p>
+      </div>
     </a>
   </div>
 );

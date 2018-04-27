@@ -16,13 +16,20 @@ const style = image => ({
 
 const Banner = ({ title, image }) => (
   <div className="banner" style={style(image)}>
-    <a href="">{title}</a>
+    <p className="pre-title-games">Recherche de joueur sur :</p>
+    <h2 className="game-title">{title}</h2>
+    <p className="number-of-search">{/* nombres d'annonces */} Annonces</p>
   </div>
 );
 
 Banner.propTypes = {
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  image: PropTypes.string,
+};
+
+Banner.defaultProps = {
+  title: 'League of Legends',
+  image: '',
 };
 /**
  * Export

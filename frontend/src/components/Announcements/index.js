@@ -9,7 +9,6 @@ import React from 'react';
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Loading from 'frontend/src/components/Loading';
-import Banner from 'frontend/src/components/Announcements/Banner';
 import Main from 'frontend/src/components/Announcements/Main';
 /**
  * Code
@@ -34,7 +33,6 @@ class Announcements extends React.Component {
       <div id="announcement">
         <Sidebar />
         <Navbar />
-        <Banner />
         <Main />
       </div>
     );
