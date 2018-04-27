@@ -61,6 +61,11 @@ label, button {
 	box-sizing: border-box;
 }
 
+.announcement-main {
+  width: 85%;
+  float: right;
+}
+
 body {
   font-size: 1.7em;
   font-family: 'Montserrat', sans-serif;

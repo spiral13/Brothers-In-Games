@@ -21,15 +21,18 @@ const Navbar = () => (
       <ul>
         <li>
           <Gamepad className="nav-fig" />
-          <a href="#">Mes jeux</a>
+          {/* eslint-disable-next-line */}
+          <a href={Routing.generate('my_games')}>Mes jeux</a>
         </li>
         <li>
           <Server className="nav-fig" />
-          <a href="#">Mon profil</a>
+          {/* eslint-disable-next-line */}
+          <a href={Routing.generate('my_profile_show')}>Mon profil</a>
         </li>
         <li>
           <User className="nav-fig" />
-          <a href="#">Mon compte</a>
+          {/* eslint-disable-next-line */}
+          <a href={Routing.generate('account_show')}>Mon compte</a>
         </li>
         <li>
           <Signout className="nav-fig" />

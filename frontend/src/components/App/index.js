@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
 import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
+import Announcements from 'frontend/src/components/Announcements';
 /*
  * Code
  */
@@ -27,7 +28,15 @@ const App = () => (
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('games_list')} component={GameList} />
         {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('announcements_list')} component={() => (<div>Announcements</div>)} />
+        <Route exact path={Routing.generate('announcements_list')} component={Announcements} />
+        {/* eslint-disable-next-line */}
+        <Route exact path={Routing.generate('account_show')} component={() => <div>Account show</div>} />
+        {/* eslint-disable-next-line */}
+        <Route exact path={Routing.generate('my_profile_show')} component={() => <div>My Profile show</div>} />
+        {/* eslint-disable-next-line */}
+        <Route exact path={Routing.generate('profile_show')} component={() => <div>Profile show</div>} />
+        {/* eslint-disable-next-line */}
+        <Route exact path={Routing.generate('my_games')} component={() => <div>My games</div>} />
       </Switch>
     </div>
   </Router>
