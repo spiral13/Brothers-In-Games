@@ -23,6 +23,11 @@ class Game
     /**
      * @var string
      */
+    private $slug;
+
+    /**
+     * @var string
+     */
     private $cover;
 
     /* JOIN */
@@ -89,6 +94,26 @@ class Game
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**

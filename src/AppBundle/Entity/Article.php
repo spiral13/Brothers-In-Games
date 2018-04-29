@@ -18,6 +18,11 @@ class Article
     private $title;
 
     /**
+     * @var string
+     */
+    private $slug;
+
+    /**
      * @var $image;
      */
     private $image;
@@ -75,6 +80,26 @@ class Article
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**

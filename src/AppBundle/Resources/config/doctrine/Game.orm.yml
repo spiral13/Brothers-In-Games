@@ -12,6 +12,9 @@ AppBundle\Entity\Game:
         title:
             type: string
             length: 255
+        slug:
+            type: string
+            length: 255
         cover:
             type: string
             length: 255

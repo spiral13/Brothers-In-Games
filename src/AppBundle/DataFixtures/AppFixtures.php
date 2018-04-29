@@ -1,10 +1,10 @@
 <?php
-
 namespace AppBundle\DataFixtures;
-
 use AppBundle\DataFixtures\Fakers\GamesProvider;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
+use AppBundle\Service\NormalizeValue;
+use AppBundle\Service\SlugConverter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -12,17 +12,19 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AppFixtures extends Fixture
 {
     private $encoder;
+    private $slug;
+    private $normalize;
     
-    public function __construct(UserPasswordEncoderInterface $encode) {
+    public function __construct(UserPasswordEncoderInterface $encode, SlugConverter $slug, NormalizeValue $normalize) {
         $this->encoder = $encode;
+        $this->slug = $slug;
+        $this->normalize = $normalize;
     }
-
     public function load(ObjectManager $manager)
     {
         $this->addRoles($manager, 'ROLE_USER', 'Utilisateur');
         $this->addRoles($manager, 'ROLE_MODERATOR', 'Modérateur');
         $this->addRoles($manager, 'ROLE_ADMIN', 'Administrateur');
-
         $roleUser = $manager->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
         $roleModo = $manager->getRepository(Role::class)->findOneBy(['code' => 'ROLE_MODERATOR']);
         $roleAdmin = $manager->getRepository(Role::class)->findOneBy(['code' => 'ROLE_ADMIN']);
@@ -30,16 +32,12 @@ class AppFixtures extends Fixture
         $this->addSimpleUsers($manager, 'admin', 'admin@oclock.com', 'admin', $roleAdmin);
         $this->addSimpleUsers($manager, 'modo', 'modo@oclock.com', 'modo', $roleModo);
         $this->addSimpleUsers($manager, 'user', 'user@oclock.com', 'user', $roleUser);
-
         $admin = $manager->getRepository(User::class)->findOneBy(['username' => 'admin']);
 
         $generator = \Faker\Factory::create('fr_FR');
-
         $generator->addProvider(new GamesProvider);
 
-
         $populator = new \Faker\ORM\Doctrine\Populator($generator, $manager);
-
         $populator->addEntity('AppBundle\Entity\User', 10, array(
             'username' => function() use ($generator) { return $generator->userName(); },
             'mail' => function() use ($generator) { return $generator->email(); },
@@ -47,33 +45,42 @@ class AppFixtures extends Fixture
             'isActive' => 1,
             'role' => $roleUser
         ));
-
         $populator->addEntity('AppBundle\Entity\Article', 20, array(
-            'title' => function() use ($generator) { return $generator->sentence($nbWords = 10, $variableNbWords = true); },
-            'image' => function() use ($generator) { return $generator->imageUrl($width = 800, $height = 600); },
-            'content' => function() use ($generator) { return $generator->paragraph($nbSentences = 3, $variableNbSentences = true); },
+            'title' => function() use ($generator) { return $generator->unique()->reviewTitle(); },
+            'image' => function() use ($generator) { return $generator->reviewImage(); },
+            'content' => function() use ($generator) { return $generator->text($maxNbChars = 2000); },
             'published' => function() use ($generator) { return $generator->dateTimeAD($max = 'now', $timezone = null); },
             'user' => $admin
+        ), array(
+            function($article) { 
+                $title = $this->normalize->deemphasizeString($article->getTitle());
+                $article->setSlug($this->slug->toSlug($title));
+                }
         ));
-
         $populator->addEntity('AppBundle\Entity\Game', 20, array(
             'title' => function() use ($generator) { return $generator->unique()->gameTitle(); },
             'cover' => function() use ($generator) { return $generator->unique()->gameCover(); }
+        ), array(
+            function($game) { 
+                $title = $this->normalize->deemphasizeString($game->getTitle());
+                $game->setSlug($this->slug->toSlug($title));
+                }
         ));
-
         $populator->addEntity('AppBundle\Entity\GameCategory', 5, array(
             'title' => function() use ($generator) { return $generator->unique()->categoryTitle(); },
+        ), array(
+            function($category) { 
+                $title = $this->normalize->deemphasizeString($category->getTitle());
+                $category->setSlug($this->slug->toSlug($title));
+                }
         ));
-
         $populator->addEntity('AppBundle\Entity\Announcement', 20, array(
             'content' => function() use ($generator) { return $generator->text($maxNbChars = 255) ; },
             'published' => function() use ($generator) { return $generator->dateTimeAD($max = 'now', $timezone = null); },
         ));
         $inserted = $populator->execute();
-
         $games = $inserted['AppBundle\Entity\Game'];
         $gameCategories = $inserted['AppBundle\Entity\GameCategory'];
-
         foreach($games as $game)
         {
             shuffle($gameCategories);
@@ -85,7 +92,6 @@ class AppFixtures extends Fixture
             $manager->persist($game);
         }
         $manager->flush();
-
     }
     
     private function addRoles($manager, $code, $name)

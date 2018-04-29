@@ -13,6 +13,9 @@ AppBundle\Entity\GameCategory:
             type: string
             length: '45'
             unique: true
+        slug:
+            type: string
+            length: '45'
     manyToMany:
         games:
             targetEntity: Game
