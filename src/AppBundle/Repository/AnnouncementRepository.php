@@ -17,7 +17,7 @@ class AnnouncementRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('a')
 		->join('a.user', 'u')
 		->addSelect('u')
-		->join('g.game', 'g')
+		->join('a.game', 'g')
 		->addSelect('g')
 		->getQuery()
 		->getArrayResult()
