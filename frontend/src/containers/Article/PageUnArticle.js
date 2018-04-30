@@ -13,7 +13,7 @@ import PageUnArticle from 'frontend/src/components/Article/PageUnArticle';
  */
 
 const mapStateToProps = state => ({
-  article: state.reducer.article,
+  article: state.Articlereducer.article,
 });
 
 

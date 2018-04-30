@@ -51,7 +51,7 @@ class Article extends React.Component {
 }
 
 Article.propTypes = {
-  actions: PropTypes.object.isRequired,
+  actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
 };
 
 

@@ -13,7 +13,7 @@ import Aside from 'frontend/src/components/Article/Aside';
  */
 
 const mapStateToProps = state => ({
-  article: state.reducer.article,
+  article: state.Articlereducer.article,
 });
 
 
