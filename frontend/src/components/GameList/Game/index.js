@@ -4,6 +4,8 @@
 import React from 'react';
 // import Gamepad from 'react-icons/lib/fa/gamepad';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Announcements from 'frontend/src/containers/Announcements/Announcements';
 
 /**
 * Local import
@@ -13,13 +15,11 @@ import PropTypes from 'prop-types';
  * Code
  */
 const Game = ({ game }) => (
-  <a href={`Routing.generate('games_list')/${game.slug}`}>
-    <div id="game">
-      <img src={game.cover} alt={game.title} id="gamePicture" />
-      <h2 id="gameTitle">{game.title}</h2>
-      <p id="gameInfo">0</p>
-    </div>
-  </a>
+  <div id="game">
+    <img src={game.cover} alt={game.title} id="gamePicture" />
+    <h2 id="gameTitle">{game.title}</h2>
+    <p id="gameInfo">0</p>
+  </div>
 );
 
 Game.propTypes = {
