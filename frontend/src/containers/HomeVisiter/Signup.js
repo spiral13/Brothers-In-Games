@@ -9,8 +9,8 @@ import { bindActionCreators } from 'redux';
 import SignupForm from 'frontend/src/components/HomeVisiter/SignupForm';
 import { changeSignUpUserName, changeSignUpNewPassword, changeSignUpConfirmPassword, changeSignUpEmail, signUpSubmit } from 'frontend/src/store/reducer';
 /**
- * Code
- */
+* Code
+*/
 
 const mapStateToProps = state => ({
   username: state.signup.username,

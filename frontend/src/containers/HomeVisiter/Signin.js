@@ -9,8 +9,8 @@ import { bindActionCreators } from 'redux';
 import SigninForm from 'frontend/src/components/HomeVisiter/SigninForm';
 import { changePasswordForm, changeLoginForm, submitConnect } from 'frontend/src/store/reducer';
 /**
- * Code
- */
+* Code
+*/
 
 const mapStateToProps = state => ({
   // eslint-disable-next-line
