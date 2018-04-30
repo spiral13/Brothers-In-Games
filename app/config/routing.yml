@@ -96,17 +96,22 @@ announcements_list:
     path: /announcements
     defaults: { _controller: AppBundle:Announcement:list }
     options:
-            expose: true
+        expose: true
 announcements_list_game:
     path: /announcements/{slug}
     defaults: { _controller: AppBundle:Announcement:listByGame }
     options:
-            expose: true
+         expose: true
 announcements_show:
     path: /announcement/{slug}/{id}
     defaults: { _controller: AppBundle:Announcement:read }
     options:
-            expose: true
+        expose: true
+announcements_create:
+    path: /announcement/create
+    defaults: { _controller: AppBundle:Announcement:create }
+    options:
+        expose: true
 
 #---------------------- Games
 games_list:
@@ -131,12 +136,13 @@ article_show:
 ###########################
 # Récupération des donnée #
 ###########################
+
+#---------------------- News
 get_home_articles:
     path: /get/home/articles
     defaults: { _controller: AppBundle:Article:getHomeArticle }
     options:
         expose: true
-
 get_sidebar_articles:
     path: /get/home/articles/sidebar
     defaults: { _controller: AppBundle:Article:getHomeArticleSidebar }
@@ -148,14 +154,26 @@ get_article:
     options:
         expose: true
 
+#---------------------- Games
 get_all_games:
     path: /get/games
     defaults: { _controller: AppBundle:Game:getAllGames }
     options:
         expose: true
 
+#---------------------- Announcements
 get_announcement_by_game:
     path: /get/announcements/games
     defaults: { _controller: AppBundle:Announcement:getAnnouncementByGameSlug }
     options:
-        expose: true    
+        expose: true
+get_all_announcement:
+    path: /get/announcements
+    defaults: { _controller: AppBundle:Announcement:getAllAnnouncements }
+    options:
+        expose: true
+get_announcement:
+    path: /get/announcement
+    defaults: { _controller: AppBundle:Announcement:getAnnouncement }
+    options:
+        expose: true

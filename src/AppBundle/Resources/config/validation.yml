@@ -15,3 +15,7 @@ AppBundle\Entity\User:
             - Length:
                 min: 6
                 minMessage: 'Your first name must be at least {{ limit }} characters long'
+AppBundle\Entity\Announcement:
+    properties:
+        game:
+            - NotBlank: ~
