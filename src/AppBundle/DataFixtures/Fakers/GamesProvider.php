@@ -68,104 +68,54 @@ class GamesProvider
 	{
 		
 		$array = [
-			'Star Wars : Battlefront II' => 'https://media.senscritique.com/media/000010565692/source_big/Star_Wars_Battlefront_II.jpg',
-			'Battlefield 3' => 
 			'https://media.senscritique.com/media/000010092278/source_big/Battlefield_3.jpg',
-			'GoldenEye 007' => 
 			'https://media.senscritique.com/media/000007120097/source_big/Golden_Eye_007.jpg',
-			'Battlefield 4' => 
 			'https://media.senscritique.com/media/000010092073/source_big/Battlefield_4.jpg',
-			'Crash Team Racing' => 
 			'https://media.senscritique.com/media/000017056143/source_big/Crash_Team_Racing.jpg',
-			'Super Smash Bros. Melee' => 
 			'https://media.senscritique.com/media/000007333712/source_big/Super_Smash_Bros_Melee.png',
-			'Mario Kart 64' => 
 			'https://media.senscritique.com/media/000007105526/source_big/Mario_Kart_64.png',
-			'Super Mario Kart' => 
 			'https://media.senscritique.com/media/000017711178/source_big/Super_Mario_Kart.jpg',
-			'Mario Party' => 
 			'https://media.senscritique.com/media/000006342285/source_big/Mario_Party.jpg',
-			'Counter-Strike' => 
 			'https://media.senscritique.com/media/000000098881/source_big/Counter_Strike.jpg',
-			'The Legend of Zelda: Four Swords Adventures' => 
 			'https://media.senscritique.com/media/000016679064/source_big/The_Legend_of_Zelda_Four_Swords_Adventures.jpg',
-			'Mario Kart : Double Dash !!' => 
 			'https://media.senscritique.com/media/000016414862/source_big/Mario_Kart_Double_Dash.png',
-			'Perfect Dark' => 
 			'https://media.senscritique.com/media/000016377541/source_big/Perfect_Dark.jpg',
-			'Mario Kart Wii' => 
 			'https://media.senscritique.com/media/000004251582/source_big/Mario_Kart_Wii.jpg',
-			'Left 4 Dead 2' => 
 			'https://media.senscritique.com/media/000009701140/source_big/Left_4_Dead_2.png',
-			'Splinter Cell : Conviction' => 
 			'https://media.senscritique.com/media/000009718473/source_big/Splinter_Cell_Conviction.jpg',
-			'Minecraft' => 
 			'https://media.senscritique.com/media/000010502754/source_big/Minecraft.png',
-			'Call of Duty : Modern Warfare 2' => 
 			'https://media.senscritique.com/media/000007333682/source_big/Call_of_Duty_Modern_Warfare_2.png',
-			'Halo 3' => 
 			'https://media.senscritique.com/media/000007868138/source_big/Halo_3.jpg',
-			'Call of Duty : Black Ops' => 
 			'https://media.senscritique.com/media/000009740825/source_big/Call_of_Duty_Black_Ops.jpg',
-			'Super Smash Bros. Brawl' => 
 			'https://media.senscritique.com/media/000007333693/source_big/Super_Smash_Bros_Brawl.jpg',
-			'Monaco' => 
 			'https://media.senscritique.com/media/000004480527/source_big/Monaco.jpg',
-			'Rocket League' => 
 			'https://media.senscritique.com/media/000017569915/source_big/Rocket_League.jpg',
-			'Phantasy Star Online Episode I & II' => 
 			'https://media.senscritique.com/media/000000001768/source_big/Phantasy_Star_Online_Episode_I_II.jpg',
-			'Star Wars : Battlefront' => 
 			'https://media.senscritique.com/media/000007082539/source_big/Star_Wars_Battlefront.jpg',
-			'Resident Evil 5' => 
 			'https://media.senscritique.com/media/000010045473/source_big/Resident_Evil_5.jpg',
-			'Mario Kart DS' => 
 			'https://media.senscritique.com/media/000000065684/source_big/Mario_Kart_DS.jpg',
-			'Mario Party 5' => 
 			'https://media.senscritique.com/media/000007080652/source_big/Mario_Party_5.jpg',
-			'Monster Hunter 4 Ultimate' => 
 			'https://media.senscritique.com/media/000008989395/source_big/Monster_Hunter_4_Ultimate.png',
-			'Mario Kart 8' => 
 			'https://media.senscritique.com/media/000010874746/source_big/Mario_Kart_8.jpg',
-			'Call of Duty 4 : Modern Warfare' => 
 			'https://media.senscritique.com/media/000007333679/source_big/Call_of_Duty_4_Modern_Warfare.jpg',
-			'Broforce' => 
 			'https://media.senscritique.com/media/000014344608/source_big/Broforce.jpg',
-			'Star Wars : Battlefront' => 
 			'https://media.senscritique.com/media/000010070713/source_big/Star_Wars_Battlefront.jpg',
-			'Halo : Reach' => 
 			'https://media.senscritique.com/media/000000019599/source_big/Halo_Reach.jpg',
-			'Call of Duty : Black Ops II' => 
 			'https://media.senscritique.com/media/000010073639/source_big/Call_of_Duty_Black_Ops_II.jpg',
-			'Empire Earth' => 
 			'https://media.senscritique.com/media/000004353804/source_big/Empire_Earth.jpg',
-			'Portal 2' => 
 			'https://media.senscritique.com/media/000010089205/source_big/Portal_2.png',
-			'TimeSplitters 2' => 
 			'https://media.senscritique.com/media/000005155096/source_big/Time_Splitters_2.jpg',
-			'Micro Machines Turbo Tournament 96' => 
 			'https://media.senscritique.com/media/000000101612/source_big/Micro_Machines_Turbo_Tournament_96.jpg',
-			'Micro Machines V3' => 
 			'https://media.senscritique.com/media/000006918722/source_big/Micro_Machines_V3.jpg',
-			'Battlefield : Bad Company 2' => 
 			'https://media.senscritique.com/media/000010046015/source_big/Battlefield_Bad_Company_2.jpg',
-			'Final Fantasy Crystal Chronicles' => 
 			'https://media.senscritique.com/media/000009055286/source_big/Final_Fantasy_Crystal_Chronicles.jpg',
-			'Halo 3 : ODST' => 
 			'https://media.senscritique.com/media/000009939486/source_big/Halo_3_ODST.jpg',
-			'Call of Duty : Modern Warfare 3' => 
 			'https://media.senscritique.com/media/000000090681/source_big/Call_of_Duty_Modern_Warfare_3.jpg',
-			'Civilization IV : Beyond the Sword' => 
 			'https://media.senscritique.com/media/000000131584/source_big/Civilization_IV_Beyond_the_Sword.jpg',
-			'Streets of Rage II' => 
 			'https://media.senscritique.com/media/000017155572/source_big/Streets_of_Rage_II.jpg',
-			'Streets of Rage' => 
 			'https://media.senscritique.com/media/000017155557/source_big/Streets_of_Rage.jpg',
-			'Rock Band 3' => 
 			'https://media.senscritique.com/media/000004411973/source_big/Rock_Band_3.jpg',
-			'Worms Armageddon' => 
 			'https://media.senscritique.com/media/000000141516/source_big/Worms_Armageddon.png',
-			'Phantasy Star Online' => 
 			'https://media.senscritique.com/media/000009113071/source_big/Phantasy_Star_Online.jpg',
 		];
 
