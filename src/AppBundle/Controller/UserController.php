@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Profile;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,7 +14,8 @@ class UserController extends Controller
 {
 	public function loginAction(AuthenticationUtils $authenticationUtils){}
 
-	public function createAction(UserPasswordEncoderInterface $encoder, Request $request){
+	public function createAction(UserPasswordEncoderInterface $encoder, Request $request)
+    {
 
         $role = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
 
@@ -52,14 +54,26 @@ class UserController extends Controller
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($user);
                     $em->flush();
+
+                    $this->createAssociatedProfile($user);
+
                     return $this->json(array('valid' => true));
                 }
 
             }
             else
             {
-                return $this->json(array('valid' => false, 'errors' => $arrayErrors));
+                return $this->json(array('valid' => false));
             }
 		}
 	}
+
+    public function createAssociatedProfile($user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $profile = new Profile();
+        $profile->setUser($user);
+        $em->persist($profile);
+        $em->flush();
+    }
 }
