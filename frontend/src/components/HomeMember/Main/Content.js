@@ -10,17 +10,15 @@ import PropTypes from 'prop-types';
 /**
  * Code
  */
-const Content = ({ content }) => {
-  return (
-    <div className="content-new middle">
-      <img src={content.image} alt={content.title} />
-      <div className="presentation">
-        <h3>{content.title}</h3>
-        <p>Description de l'image</p>
-      </div>
+const Content = ({ content }) => (
+  <div className="content-new middle">
+    <img src={content.image} alt={content.title} />
+    <div className="presentation">
+      <h3>{content.title}</h3>
+      <p>Description de l'image</p>
     </div>
-  );
-};
+  </div>
+);
 
 Content.propTypes = {
   content: PropTypes.object.isRequired,

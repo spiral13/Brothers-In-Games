@@ -65,7 +65,6 @@ class RightSidebar extends React.Component {
         <div>
           {this.state.currentBar === 'actus-bar' && (actus.map(newContent => <LastActu key={newContent.id} type="article" id={newContent.id} title={newContent.title} image={newContent.image} slug={newContent.slug} />))}
           {/* Filer l'activité des joueurs avec les dernières actus ? */}
-          {console.log(playerNews)}
           {this.state.currentBar === 'player-bar' && (playerNews.map(newContent => (
             <LastActu
               key={newContent[0].id}

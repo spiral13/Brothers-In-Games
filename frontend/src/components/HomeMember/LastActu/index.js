@@ -23,7 +23,6 @@ const LastActu = ({
   id,
   type,
   username,
-  isActive,
 }) => (
   <div className="lastActu" style={style(image)}>
     {/* <a href={Routing.generate('announcements_list', { slug, id })}>{<span className="navbarRange-title">{title} - {username}</span>} <Circle className={Classnames({ green: isActive })} /></a> */}
@@ -42,7 +41,10 @@ LastActu.propTypes = {
   id: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   username: PropTypes.string,
-  isActive: PropTypes.bool,
+};
+
+LastActu.defaultProps = {
+  username: 'Not defined',
 };
 /**
  * Export
