@@ -31,6 +31,7 @@ export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 
 const CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
 const CHANGE_LOGIN_FORM = 'CHANGE_LOGIN_FORM';
+const CHANGE_FORM = 'CHANGE_FORM';
 export const SUBMIT_CONNECT = 'SUBMIT_CONNECT';
 
 export const GET_NEWS = 'GET_NEWS';
@@ -89,22 +90,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
-    case CHANGE_PASSWORD_FORM: {
+    case CHANGE_FORM:
       return {
         ...state,
         signin: {
           ...state.signin,
-          _password: action.value,
-        },
-      };
-    }
-
-    case CHANGE_LOGIN_FORM:
-      return {
-        ...state,
-        signin: {
-          ...state.signin,
-          _username: action.value,
+          [action.input]: action.value,
         },
       };
 
@@ -178,13 +169,9 @@ export const signUpSubmit = () => ({
   type: SIGNUP_SUBMIT,
 });
 
-export const changePasswordForm = value => ({
-  type: CHANGE_PASSWORD_FORM,
-  value,
-});
-
-export const changeLoginForm = value => ({
-  type: CHANGE_LOGIN_FORM,
+export const changeForm = (input, value) => ({
+  type: CHANGE_FORM,
+  input,
   value,
 });
 
