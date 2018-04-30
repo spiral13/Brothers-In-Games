@@ -42,19 +42,19 @@ class AppFixtures extends Fixture
         $generator->addProvider(new GamesProvider);
 
         $populator = new \Faker\ORM\Doctrine\Populator($generator, $manager);
-        $populator->addEntity('AppBundle\Entity\User', 10, array(
-            'username' => function() use ($generator) { return $generator->userName(); },
-            'mail' => function() use ($generator) { return $generator->email(); },
-            'password' => function() use ($generator) { return $generator->password(); },
-            'isActive' => 1,
-            'role' => $roleUser
-        ));
         $populator->addEntity('AppBundle\Entity\Profile', 10, array(
             'firstname' => function() use ($generator) { return $generator->firstName(); },
             'image' => function() use ($generator) { return $generator->imageUrl(); },
             'age' => function() use ($generator) { return $generator->numberBetween($min = 18, $max = 99); },
             'gender' => function() use ($generator) { return $generator->title(); },
             'description' => function() use ($generator) { return $generator->text($maxNbChars = 200); }
+        ));
+        $populator->addEntity('AppBundle\Entity\User', 10, array(
+            'username' => function() use ($generator) { return $generator->userName(); },
+            'mail' => function() use ($generator) { return $generator->email(); },
+            'password' => function() use ($generator) { return $generator->password(); },
+            'isActive' => 1,
+            'role' => $roleUser
         ));
         $populator->addEntity('AppBundle\Entity\Article', 20, array(
             'title' => function() use ($generator) { return $generator->unique()->reviewTitle(); },
