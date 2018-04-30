@@ -11,7 +11,7 @@ export default store => next => (action) => {
   switch (action.type) {
     case GET_ALL_ANNOUNCEMENTS: {
       // eslint-disable-next-line
-      axios.get(Routing.generate('announcements_list')).then((response) => {
+      axios.get(Routing.generate('get_all_announcement')).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(showAnnouncements(response));
       }).catch((error) => {
@@ -21,9 +21,11 @@ export default store => next => (action) => {
     }
 
     case GET_ANNOUNCEMENT_SELECTED: {
-      console.log(window.location);
+      const url = window.location.search.split('?slug=');
+      const formData = new FormData();
+      formData.append('slug', url[1]);
       // eslint-disable-next-line
-      axios.get(Routing.generate('announcements_list_game')).then((response) => {
+      axios.post(Routing.generate('get_announcement_by_game'), formData).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(showAnnouncements(response));
       }).catch((error) => {
