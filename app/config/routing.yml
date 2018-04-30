@@ -158,4 +158,4 @@ get_announcement_by_game:
     path: /get/announcements/games
     defaults: { _controller: AppBundle:Announcement:getAnnouncementByGameSlug }
     options:
-        expose: true    
+        expose: true

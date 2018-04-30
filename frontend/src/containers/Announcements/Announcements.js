@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 * Local import
 */
 import Announcements from 'frontend/src/components/Announcements';
-import { addAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReducer';
+import { addAllAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReducer';
 /**
  * Code
  */
@@ -15,7 +15,7 @@ import { addAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReduc
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ addAnnouncements }, dispatch),
+  actions: bindActionCreators({ addAllAnnouncements }, dispatch),
 });
 
 const AnnouncementsContainer = connect(mapStateToProps, mapDispatchToProps)(Announcements);

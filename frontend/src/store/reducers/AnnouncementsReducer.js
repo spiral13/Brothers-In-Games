@@ -12,7 +12,8 @@ const initialState = {
 /**
  * Types
  */
-export const GET_ANNOUNCEMENTS = 'GET_ANNOUNCEMENTS';
+export const GET_ALL_ANNOUNCEMENTS = 'GET_ALL_ANNOUNCEMENTS';
+export const GET_ANNOUNCEMENT_SELECTED = 'GET_ANNOUNCEMENT_SELECTED';
 export const SHOW_ANNOUNCEMENTS = 'SHOW_ANNOUNCEMENTS';
 
 /**
@@ -20,7 +21,12 @@ export const SHOW_ANNOUNCEMENTS = 'SHOW_ANNOUNCEMENTS';
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case GET_ANNOUNCEMENTS:
+    case GET_ALL_ANNOUNCEMENTS:
+      return {
+        ...state,
+      };
+
+    case GET_ANNOUNCEMENT_SELECTED:
       return {
         ...state,
       };
@@ -38,8 +44,8 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const addAnnouncements = () => ({
-  type: GET_ANNOUNCEMENTS,
+export const addAllAnnouncements = () => ({
+  type: GET_ALL_ANNOUNCEMENTS,
 });
 
 export const showAnnouncements = announcements => ({

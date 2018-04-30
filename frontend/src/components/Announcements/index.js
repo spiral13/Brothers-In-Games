@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -21,8 +21,9 @@ class Announcements extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 500);
+    }, 2000);
     console.log('Announcement OK');
+    this.props.actions.addAllAnnouncements();
   }
 
   render() {
@@ -38,7 +39,9 @@ class Announcements extends React.Component {
     );
   }
 }
-
+Announcements.propTypes = {
+  actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
+};
 // Announcements.propTypes = {
 //
 // };
