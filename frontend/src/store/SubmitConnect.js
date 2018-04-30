@@ -16,9 +16,6 @@ export default store => next => (action) => {
       // Je crée un objet FormData
       const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
-      // data.forEach((key) => {
-        // formData.append(key, data[key]);
-      // });
       for (var key in data) {
         formData.append(key, data[key]);
       }
@@ -37,12 +34,10 @@ export default store => next => (action) => {
       // Je crée un objet FormData
       const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
-      // data.forEach((key) => {
-        // formData.append(key, data[key]);
-      // });
       for (var key in data) {
         formData.append(key, data[key]);
       }
+
       // Et j'envoie la donnée
       // eslint-disable-next-line
       axios.post(Routing.generate('signup'), formData).then((response) => {

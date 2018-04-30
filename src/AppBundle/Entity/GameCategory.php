@@ -20,6 +20,11 @@ class GameCategory
      */
     private $title;
 
+    /**
+     * @var string
+     */
+    private $slug;
+
     /* JOIN */
 
     /**
@@ -72,6 +77,26 @@ class GameCategory
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /* JOIN */

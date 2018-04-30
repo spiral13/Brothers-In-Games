@@ -20,7 +20,18 @@ class ArticleRepository extends EntityRepository
 		->setFirstResult($min)
 		->setMaxResults($max)
 		->getQuery()
-		->getResult()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
+	public function findOneByInArray($slug)
+	{
+		$qb = $this->createQueryBuilder('a')
+		->where('a.slug = :slug')
+		->setParameter('slug', $slug)
+		->getQuery()
+		->getArrayResult()
 		;
 
 		return $qb;
