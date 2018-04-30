@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import PageUnArticle from 'frontend/src/components/Article/PageUnArticle';
+import PageUnArticle from 'frontend/src/containers/Article/PageUnArticle';
 import Loading from 'frontend/src/components/Loading';
 
 
