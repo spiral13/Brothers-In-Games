@@ -4,6 +4,7 @@
 import React from 'react';
 // import Gamepad from 'react-icons/lib/fa/gamepad';
 import PropTypes from 'prop-types';
+// import Aside from 'frontend/src/containers/Article/Aside';
 
 /**
 * Local import
@@ -32,7 +33,7 @@ class PageUnArticle extends React.PureComponent {
               {article.info}
             </p>
           </article>
-          <Aside />
+          {/* <Aside /> */}
         </div>
       </main>
     );
