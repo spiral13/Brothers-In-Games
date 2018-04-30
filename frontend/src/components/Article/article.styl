@@ -4,15 +4,18 @@
   background-color: #2C2C2C
   height: 100vh
   padding: 2em
+  margin: none
 
 
 .article
   display: block
+  background-color: #2C2C2C
+  background-size: auto
   width: 1617.55px
   height: 100vh
-  margin: 0 auto
   padding: 0 13em
 
+// Image /Titre/ categorie de présentation
 
 .containerH1etImageArticle
   width:50%
@@ -49,6 +52,9 @@
   font-size: 0.4em
   color: grey
 
+
+// Le contenu texte de l'article
+
 .contenuArticle
   width: 754.38px
   padding-top: 2em
@@ -59,22 +65,43 @@
 
 .texteArticle
   max-width: 100%
+  font-weight: lighter
+
+
+
+// Articles annexes
+aside
+  padding-top: 4em
+  width: 754.38px
+  height: 10em
+
+
+aside h2
+  text-align: center
+  padding-bottom: 1em
+  color: #EC9C34
+  font-size: 0.7em
+  font-weight: lighter
+
 
 .carousel
-  width: 100px
-  height: 10em
   display: flex
   flex-direction: row
-
+  justify-content: space-between
+  text-align: center
 
 .unArticleCarousel
-  display: flex
-  flex-direction: column
-  justify-content: flex-start
-  width: 30px
-  height: 20px
+  width: 150px
+  height: 180px
+  color: #EC9C34
+  font-size: 0.5em
 
+.unArticleCarousel:hover{
+  box-shadow: 0px 0px 2px 2px #ec9c34;
+  cursor: pointer;
+}
 
 .imageCarouselArticle
-  width: 10px
-  height: 10px
+  width: 150px
+  height: 150px
+  padding-bottom: .5em
