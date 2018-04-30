@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 /**
 * Local import
 */
-import Aside from 'frontend/src/components/Article/Aside';
+
 /**
  * Code
  */

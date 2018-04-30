@@ -99,7 +99,7 @@ announcements_list:
             expose: true
 announcements_list_game:
     path: /announcements/{slug}
-    defaults: { _controller: AppBundle:Announcement:listByGame }
+    defaults: { _controller: AppBundle:Announcement:list }
     options:
             expose: true
 announcements_show:
