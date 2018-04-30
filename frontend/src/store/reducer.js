@@ -4,13 +4,14 @@
 const initialState = {
   signup: {
     username: '',
-    newpassword: '',
-    confirmpassword: '',
+    newPassword: '',
+    confirmPassword: '',
     email: '',
+    confirmEmail: '',
   },
   signin: {
-    _username: 'Login',
-    _password: 'Password',
+    _username: '',
+    _password: '',
   },
   games: [
     {
@@ -23,15 +24,11 @@ const initialState = {
 /**
  * Types
  */
-const SIGNUP_CHANGE_USERNAME_INPUT = 'SIGNUP_CHANGE_USERNAME_INPUT';
-const SIGNUP_CHANGE_NEWPASSWORD_INPUT = 'SIGNUP_CHANGE_NEWPASSWORD_INPUT';
-const SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT = 'SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT';
-const SIGNUP_CHANGE_EMAIL_INPUT = 'SIGNUP_CHANGE_EMAIL_INPUT';
 export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 
-const CHANGE_PASSWORD_FORM = 'CHANGE_PASSWORD_FORM';
-const CHANGE_LOGIN_FORM = 'CHANGE_LOGIN_FORM';
-const CHANGE_FORM = 'CHANGE_FORM';
+const CHANGE_FORM_SIGNIN = 'CHANGE_FORM_SIGNIN';
+const CHANGE_FORM_SIGNUP = 'CHANGE_FORM_SIGNUP';
+
 export const SUBMIT_CONNECT = 'SUBMIT_CONNECT';
 
 export const GET_NEWS = 'GET_NEWS';
@@ -49,52 +46,25 @@ const ADD_ACTUS = 'ADD_ACTUS';
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SIGNUP_CHANGE_USERNAME_INPUT:
-      return {
-        ...state,
-        signup: {
-          ...state.signup,
-          username: action.username,
-        },
-      };
-
-    case SIGNUP_CHANGE_NEWPASSWORD_INPUT:
-      return {
-        ...state,
-        signup: {
-          ...state.signup,
-          newpassword: action.newpassword,
-        },
-      };
-
-    case SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT:
-      return {
-        ...state,
-        signup: {
-          ...state.signup,
-          confirmpassword: action.confirmpassword,
-        },
-      };
-
-    case SIGNUP_CHANGE_EMAIL_INPUT:
-      return {
-        ...state,
-        signup: {
-          ...state.signup,
-          email: action.email,
-        },
-      };
-
     case SIGNUP_SUBMIT:
       return {
         ...state,
       };
 
-    case CHANGE_FORM:
+    case CHANGE_FORM_SIGNIN:
       return {
         ...state,
         signin: {
           ...state.signin,
+          [action.input]: action.value,
+        },
+      };
+
+    case CHANGE_FORM_SIGNUP:
+      return {
+        ...state,
+        signup: {
+          ...state.signup,
           [action.input]: action.value,
         },
       };
@@ -144,33 +114,18 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const changeSignUpUserName = username => ({
-  type: SIGNUP_CHANGE_USERNAME_INPUT,
-  username,
-});
-
-export const changeSignUpNewPassword = newpassword => ({
-  type: SIGNUP_CHANGE_NEWPASSWORD_INPUT,
-  newpassword,
-});
-
-export const changeSignUpConfirmPassword = confirmpassword => ({
-  type: SIGNUP_CHANGE_CONFIRMPASSWORD_INPUT,
-  confirmpassword,
-});
-
-
-export const changeSignUpEmail = email => ({
-  type: SIGNUP_CHANGE_EMAIL_INPUT,
-  email,
-});
-
 export const signUpSubmit = () => ({
   type: SIGNUP_SUBMIT,
 });
 
 export const changeForm = (input, value) => ({
-  type: CHANGE_FORM,
+  type: CHANGE_FORM_SIGNIN,
+  input,
+  value,
+});
+
+export const changeFormSignup = (input, value) => ({
+  type: CHANGE_FORM_SIGNUP,
   input,
   value,
 });
