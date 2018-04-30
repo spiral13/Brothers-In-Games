@@ -73,6 +73,14 @@ class UpdateDBGameCommand extends Command
 			}
 		}
     }
+    
+	private function getDBData()
+	{
+			$data = $this->doctrine->getRepository(Game::class)->findAll();
+
+			return $data;
+				
+	}
 }
 
 

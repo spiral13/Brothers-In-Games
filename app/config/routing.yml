@@ -154,3 +154,10 @@ get_all_games:
     options:
         expose: true
     
+###########################
+# Récupération des donnée #
+###########################
+
+test:
+    path: /test
+    defaults: { _controller: AppBundle:Home:test }
