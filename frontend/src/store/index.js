@@ -7,12 +7,13 @@ import { createStore, compose, applyMiddleware } from 'redux';
  * Local import
  */
 // Reducer
-import MainReducer from 'frontend/src/store/MainReducer';
+import reducers from 'frontend/src/store/MainReducer';
 
 // Middleware
 import SubmitConnect from './SubmitConnect';
 import GetNews from './GetNews';
 import GetGames from './GetGames';
+import GetAnnouncements from './Middlewares/GetAnnouncements';
 /*
  * Code
  */
@@ -23,11 +24,11 @@ if (window.devToolsExtension) {
 }
 
 // Middleware vers Enhancers
-const middlewares = applyMiddleware(SubmitConnect, GetNews, GetGames);
+const middlewares = applyMiddleware(SubmitConnect, GetNews, GetGames, GetAnnouncements);
 const enhancers = compose(middlewares, ...devTools);
 
 // createStore
-const store = createStore(MainReducer, enhancers);
+const store = createStore(reducers, enhancers);
 
 /*
  * Export

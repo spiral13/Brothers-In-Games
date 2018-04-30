@@ -11,6 +11,7 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.get(Routing.generate('get_home_articles')).then((response) => {
         // Ici, faire un dispatch.
+        console.log(addNews(response));
         store.dispatch(addNews(response));
       }).catch((error) => {
         console.log(error);
