@@ -8,16 +8,18 @@ import { bindActionCreators } from 'redux';
 */
 import RightSidebar from 'frontend/src/components/HomeMember/RightSidebar';
 import { getAllActus } from 'frontend/src/store/reducer';
+import { addAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReducer';
 /**
  * Code
  */
 
 const mapStateToProps = state => ({
   actus: state.reducer.sidebarActus,
+  playerNews: state.AnnouncementsReducer.announcements,
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAllActus }, dispatch),
+  actions: bindActionCreators({ getAllActus, addAnnouncements }, dispatch),
 });
 
 const RightSidebarContainer = connect(mapStateToProps, mapDispatchToProps)(RightSidebar);

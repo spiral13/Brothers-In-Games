@@ -12,12 +12,14 @@ import Content from 'frontend/src/components/HomeMember/Main/Content';
  */
 const Main = ({ news }) => (
   <div id="main-member">
-    {news.map((newContent, index) => (
-      <Content
-        index={index}
-        key={newContent.id}
-        content={newContent}
-      />
+    {news.map(newContent => (
+      // eslint-disable-next-line
+      <a href={Routing.generate('article_show', { slug: newContent.slug, id: newContent.id })}>
+        <Content
+          key={`${newContent.id} news-member`}
+          content={newContent}
+        />
+      </a>
     ))}
   </div>
 );

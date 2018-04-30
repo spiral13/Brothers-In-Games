@@ -18,15 +18,12 @@ class RightSidebar extends React.Component {
     currentBar: 'actus-bar',
   }
 
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
-    if (this.state.currentBar === 'actus-bar') {
-      this.props.actions.getAllActus();
-    // } else if {
-      // this.props.actions.getAllPlayerActus();
-    }
+    this.props.actions.getAllActus();
+    this.props.actions.addAnnouncements();
   }
 
   changeBar = ({ target }) => {
@@ -44,7 +41,7 @@ class RightSidebar extends React.Component {
         </div>
       );
     }
-    const { actus } = this.props;
+    const { actus, playerNews } = this.props;
     return (
       <div id="rightSidebar">
         <div id="rightBar-rubrique">
@@ -66,9 +63,19 @@ class RightSidebar extends React.Component {
           </a>
         </div>
         <div>
-          {this.state.currentBar === 'actus-bar' && (actus.map(newContent => <LastActu key={newContent.id} title={newContent.title} image={newContent.image} />))}
+          {this.state.currentBar === 'actus-bar' && (actus.map(newContent => <LastActu key={newContent.id} type="article" id={newContent.id} title={newContent.title} image={newContent.image} slug={newContent.slug} />))}
           {/* Filer l'activité des joueurs avec les dernières actus ? */}
-          {/* {this.state.currentBar === "player-bar" && (actus.map((newContent) => <LastActu key={newContent.id} title={newContent.title} image={newContent.image} />))} */}
+          {this.state.currentBar === 'player-bar' && (playerNews.map(newContent => (
+            <LastActu
+              key={newContent[0].id}
+              type="announcements"
+              id={newContent[0].id}
+              title={newContent.title}
+              image={newContent.cover}
+              slug={newContent.slug}
+              username={newContent.username}
+              // isActive={newContent.user.isActive}
+            />)))}
         </div>
       </div>
     );
@@ -77,9 +84,19 @@ class RightSidebar extends React.Component {
 
 RightSidebar.propTypes = {
   actions: PropTypes.object.isRequired,
-  actus: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  actus: PropTypes.arrayOf(PropTypes.object.isRequired),
+  playerNews: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
+RightSidebar.defaultProps = {
+  actus: [
+    {
+      id: 1,
+      title: 'Nothing',
+      image: '#',
+    },
+  ],
+};
 /**
  * Export
  */

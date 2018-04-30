@@ -15,14 +15,7 @@ const Main = ({ datas }) => (
   <div className="announcement-main">
     <Banner />
     <div id="list_announce">
-      {datas.map(data => (
-        <Announce
-          key={data.id}
-          name={data.name}
-          image={data.image}
-          description={data.description}
-        />
-      ))}
+      {datas.map(data => <Announce key={data.id} {...data} />)}
     </div>
   </div>
 );
@@ -38,42 +31,49 @@ Main.defaultProps = {
       name: 'Jean pierre',
       image: '#',
       description: 'Cette description vient de <Main />',
+      slug: 'league-of-legends',
     },
     {
       id: 2,
       name: 'Jean pierre',
       image: '#',
       description: 'Cette description vient de <Main />',
+      slug: 'overwatch',
     },
     {
       id: 3,
       name: 'Jean pierre',
       image: '#',
       description: 'Cette description vient de <Main />',
+      slug: 'final-fantasy-XVI',
     },
     {
       id: 4,
       name: 'Jean pierre',
       image: '#',
       description: 'Cette description vient de <Main />',
+      slug: 'overwatch',
     },
     {
       id: 5,
       name: 'Jean pierre',
       image: '#',
       description: 'Cette description vient de <Main />',
+      slug: 'overwatch',
     },
     {
       id: 6,
       name: 'Jean pierre',
       image: '#',
       description: 'Cette description vient de <Main />',
+      slug: 'overwatch',
     },
     {
       id: 7,
       name: 'Jean pierre',
       image: '#',
       description: 'Cette description vient de <Main />',
+      slug: 'overwatch',
     },
   ],
 };

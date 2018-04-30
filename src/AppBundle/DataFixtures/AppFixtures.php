@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\DataFixtures;
 use AppBundle\DataFixtures\Fakers\GamesProvider;
+use AppBundle\Entity\Profile;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use AppBundle\Service\NormalizeValue;
@@ -8,17 +9,20 @@ use AppBundle\Service\SlugConverter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Common\Persistence\ManagerRegistry as Doctrine;
 
 class AppFixtures extends Fixture
 {
     private $encoder;
     private $slug;
     private $normalize;
+    private $doctrine;
     
-    public function __construct(UserPasswordEncoderInterface $encode, SlugConverter $slug, NormalizeValue $normalize) {
+    public function __construct(UserPasswordEncoderInterface $encode, SlugConverter $slug, NormalizeValue $normalize, Doctrine $doctrine) {
         $this->encoder = $encode;
         $this->slug = $slug;
         $this->normalize = $normalize;
+        $this->doctrine = $doctrine;
     }
     public function load(ObjectManager $manager)
     {
@@ -38,6 +42,13 @@ class AppFixtures extends Fixture
         $generator->addProvider(new GamesProvider);
 
         $populator = new \Faker\ORM\Doctrine\Populator($generator, $manager);
+        $populator->addEntity('AppBundle\Entity\Profile', 10, array(
+            'firstname' => function() use ($generator) { return $generator->firstName(); },
+            'image' => function() use ($generator) { return $generator->imageUrl(); },
+            'age' => function() use ($generator) { return $generator->numberBetween($min = 18, $max = 99); },
+            'gender' => function() use ($generator) { return $generator->title(); },
+            'description' => function() use ($generator) { return $generator->text($maxNbChars = 200); }
+        ));
         $populator->addEntity('AppBundle\Entity\User', 10, array(
             'username' => function() use ($generator) { return $generator->userName(); },
             'mail' => function() use ($generator) { return $generator->email(); },
@@ -79,6 +90,7 @@ class AppFixtures extends Fixture
             'published' => function() use ($generator) { return $generator->dateTimeAD($max = 'now', $timezone = null); },
         ));
         $inserted = $populator->execute();
+
         $games = $inserted['AppBundle\Entity\Game'];
         $gameCategories = $inserted['AppBundle\Entity\GameCategory'];
         foreach($games as $game)
@@ -91,7 +103,6 @@ class AppFixtures extends Fixture
             }
             $manager->persist($game);
         }
-        $manager->flush();
     }
     
     private function addRoles($manager, $code, $name)
