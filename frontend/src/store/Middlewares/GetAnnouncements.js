@@ -11,7 +11,7 @@ export default store => next => (action) => {
   switch (action.type) {
     case GET_ALL_ANNOUNCEMENTS: {
       // eslint-disable-next-line
-      axios.get(Routing.generate('announcements_list_game')).then((response) => {
+      axios.get(Routing.generate('announcements_list')).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(showAnnouncements(response));
       }).catch((error) => {

@@ -22,8 +22,7 @@ class Announcements extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
-    console.log('Announcement OK');
-    this.props.actions.addAllAnnouncements();
+    this.props.actions.addAnnouncements();
   }
 
   render() {

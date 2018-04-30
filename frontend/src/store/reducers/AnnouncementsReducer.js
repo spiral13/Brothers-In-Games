@@ -44,9 +44,10 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const addAllAnnouncements = () => ({
-  type: GET_ALL_ANNOUNCEMENTS,
-});
+export const addAnnouncements = () => {
+  if (window.location.search !== '') return ({ type: GET_ALL_ANNOUNCEMENTS });
+  return ({ type: GET_ANNOUNCEMENT_SELECTED });
+};
 
 export const showAnnouncements = announcements => ({
   type: SHOW_ANNOUNCEMENTS,
