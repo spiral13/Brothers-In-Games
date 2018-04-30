@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Loading from 'frontend/src/components/Loading';
-import Main from 'frontend/src/components/Announcements/Main';
+import Main from 'frontend/src/containers/Announcements/Main';
 /**
  * Code
  */
