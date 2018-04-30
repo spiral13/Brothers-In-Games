@@ -12,7 +12,7 @@ import HomeVisiter from 'frontend/src/components/HomeVisiter';
 import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
-import Article from 'frontend/src/components/Article';
+import Article from 'frontend/src/containers/Article/index';
 /*
  * Code
  */

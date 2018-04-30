@@ -12,12 +12,15 @@ import Game from 'frontend/src/components/GameList/Game';
  */
 const Main = ({ games }) => (
   <div id="games">
+    {console.log(Routing.generate('announcements_list', { slug: 'league-of-legends' }))}
     {games.map((game, index) => (
-      <Game
-        index={index}
-        key={game.id}
-        game={game}
-      />
+      <a href={Routing.generate('announcements_list', { slug: 'league-of-legends' })}>
+        <Game
+          index={index}
+          key={game.id}
+          game={game}
+        />
+      </a>
     ))}
   </div>
 );

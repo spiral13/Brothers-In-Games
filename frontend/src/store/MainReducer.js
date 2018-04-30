@@ -8,6 +8,7 @@ import { combineReducers } from 'redux';
  */
 import reducer from 'frontend/src/store/reducer';
 import AnnouncementsReducer from 'frontend/src/store/reducers/AnnouncementsReducer';
+import ArticleReducer from 'frontend/src/store/reducers/ArticleReducer';
 /*
  * Code
  */
@@ -18,4 +19,5 @@ import AnnouncementsReducer from 'frontend/src/store/reducers/AnnouncementsReduc
 export default combineReducers({
   reducer,
   AnnouncementsReducer,
+  ArticleReducer,
 });
