@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Circle from 'react-icons/lib/fa/circle';
-import Classnames from 'classnames';
+// import Circle from 'react-icons/lib/fa/circle';
+// import Classnames from 'classnames';
 /**
 * Local import
 */
@@ -26,8 +26,9 @@ const LastActu = ({
   isActive,
 }) => (
   <div className="lastActu" style={style(image)}>
+    {/* <a href={Routing.generate('announcements_list', { slug, id })}>{<span className="navbarRange-title">{title} - {username}</span>} <Circle className={Classnames({ green: isActive })} /></a> */}
     {type === 'announcements' ?
-      <a href={Routing.generate('announcements_list', { slug, id })}>{<span className="navbarRange-title">{title} - {username}</span>} <Circle className={Classnames({ green: isActive })} /></a>
+      <a href={Routing.generate('announcements_list', { slug, id })}>{<span className="navbarRange-title">{title} - {username}</span>}</a>
     :
       <a href={Routing.generate('article_show', { slug, id })}>{title}</a>
     }
