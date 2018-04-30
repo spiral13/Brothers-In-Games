@@ -25,11 +25,11 @@ class ArticleRepository extends EntityRepository
 
 		return $qb;
 	}
-	public function findOneByInArray($slug)
+	public function findOneByInArray($id)
 	{
 		$qb = $this->createQueryBuilder('a')
-		->where('a.slug = :slug')
-		->setParameter('slug', $slug)
+		->where('a.id = :id')
+		->setParameter('id', $id)
 		->getQuery()
 		->getArrayResult()
 		;

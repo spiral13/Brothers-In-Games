@@ -99,7 +99,7 @@ announcements_list:
         expose: true
 announcements_list_game:
     path: /announcements/{slug}
-    defaults: { _controller: AppBundle:Announcement:listByGame }
+    defaults: { _controller: AppBundle:Announcement:list }
     options:
          expose: true
 announcements_show:
@@ -110,6 +110,7 @@ announcements_show:
 announcements_create:
     path: /announcement/create
     defaults: { _controller: AppBundle:Announcement:create }
+    methods: [POST]
     options:
         expose: true
 
@@ -127,7 +128,7 @@ my_games:
 
 #---------------------- News
 article_show:
-    path: /article
+    path: /article/{slug}
     defaults: { _controller: AppBundle:Article:read }
     options:
         expose: true

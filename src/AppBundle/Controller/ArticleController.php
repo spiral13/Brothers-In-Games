@@ -14,6 +14,15 @@ class ArticleController extends Controller
 	{
 		return $this->render('article/read.html.twig');
 	}
+
+	/**
+	 * Find all articles between first & limit
+	 * set result in array
+	 * serialize to json
+	 * send it to Actios 
+	 * 
+	 * @return JSON
+	 */
 	public function getHomeArticleAction()
 	{
 		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast(0, 9);
@@ -24,6 +33,14 @@ class ArticleController extends Controller
 		return new Response($jsonContent);
 	}
 
+	/**
+	 * Find all articles between another first & limit
+	 * set result in array
+	 * serialize to json
+	 * send it to Actios 
+	 * 
+	 * @return JSON
+	 */
 	public function getHomeArticleSidebarAction()
 	{
 		$news = $this->getDoctrine()->getRepository(Article::class)->findSoMuchFormTheLast(10, 9);
@@ -34,10 +51,18 @@ class ArticleController extends Controller
 		return new Response($jsonContent);
 	}
 
+	/**
+	 * Find article By Id
+	 * set result in array
+	 * serialize to json
+	 * send it to Actios 
+	 * 
+	 * @return JSON
+	 */
 	public function getArticleAction(Request $request)
 	{
-		$slug = $request->Request->get('Slug');
-		$news = $this->getDoctrine()->getRepository(Article::class)->findOneByInArray($slug);
+		$slug = $request->Request->get('id');
+		$news = $this->getDoctrine()->getRepository(Article::class)->findOneByInArray($id);
 
 		$serializer = SerializerBuilder::create()->build();
 		$jsonContent = $serializer->serialize($news, 'json');
