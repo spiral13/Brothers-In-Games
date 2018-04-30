@@ -12,7 +12,7 @@ export default store => next => (action) => {
   switch (action.type) {
     case SUBMIT_CONNECT: {
       // J'assigne les donnée que je veux a data
-      const data = store.getState().signin;
+      const data = store.getState().reducer.signin;
       // Je crée un objet FormData
       const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
@@ -30,7 +30,7 @@ export default store => next => (action) => {
 
     case SIGNUP_SUBMIT: {
       // J'assigne les donnée que je veux a data
-      const data = store.getState().signup;
+      const data = store.getState().reducer.signup;
       // Je crée un objet FormData
       const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData

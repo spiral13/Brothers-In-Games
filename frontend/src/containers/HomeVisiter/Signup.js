@@ -13,10 +13,10 @@ import { changeSignUpUserName, changeSignUpNewPassword, changeSignUpConfirmPassw
 */
 
 const mapStateToProps = state => ({
-  username: state.signup.username,
-  newpassword: state.signup.newpassword,
-  confirmpassword: state.signup.confirmpassword,
-  email: state.signup.email,
+  username: state.reducer.signup.username,
+  newpassword: state.reducer.signup.newpassword,
+  confirmpassword: state.reducer.signup.confirmpassword,
+  email: state.reducer.signup.email,
 });
 
 const mapDispatchToProps = dispatch => ({

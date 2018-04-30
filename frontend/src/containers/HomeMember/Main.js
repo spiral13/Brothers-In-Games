@@ -11,7 +11,7 @@ import Main from 'frontend/src/components/HomeMember/Main';
  */
 
 const mapStateToProps = state => ({
-  news: state.news,
+  news: state.reducer.news,
 });
 
 const mapDispatchToProps = () => ({
