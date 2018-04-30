@@ -16,6 +16,11 @@ class AnnouncementController extends Controller
 		return $this->render('announcement/list.html.twig');
 	}
 
+	public function readAction()
+	{
+		return $this->render('announcement/read.html.twig');
+	}
+
 
 	public function createAction(Request $request)
 	{
