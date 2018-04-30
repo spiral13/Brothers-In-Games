@@ -29,7 +29,7 @@ class AnnouncementController extends Controller
 
 			if(!$game)
 			{
-				return $this->json(['valid' => false, 'message' => 'Le jeux n\'existe pas']);
+				return $this->json(['status' => false, 'message' => 'Le jeux n\'existe pas']);
 			}
 
 			$announcement = new Announcement();
@@ -50,7 +50,7 @@ class AnnouncementController extends Controller
 	                $arrayErrors[$error->getPropertyPath()] = $error->getMessage();
 	            }
 
-	            return $this->json(array('valid' => false, 'message' => 'Certaines données ne sont pas valide', 'errors' => $arrayErrors));
+	            return $this->json(array('status' => false, 'message' => 'Certaines données ne sont pas valide', 'errors' => $arrayErrors));
 			}
 			else
 			{
@@ -58,12 +58,12 @@ class AnnouncementController extends Controller
 				$em->persist($announcement);
 				$em->flush();
 
-				return $this->json(array('valid' => true, 'message' => 'Annonce ajouté avec succès'));
+				return $this->json(array('status' => true, 'message' => 'Annonce ajouté avec succès'));
 			}
 		}
 		else
         {
-            return $this->json(array('valid' => false, 'message' => 'Champ vide ou inexistant'));
+            return $this->json(array('status' => false, 'message' => 'Champ vide ou inexistant'));
         }
 	}
 
