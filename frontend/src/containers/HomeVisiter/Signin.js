@@ -9,14 +9,14 @@ import { bindActionCreators } from 'redux';
 import SigninForm from 'frontend/src/components/HomeVisiter/SigninForm';
 import { changePasswordForm, changeLoginForm, submitConnect } from 'frontend/src/store/reducer';
 /**
- * Code
- */
+* Code
+*/
 
 const mapStateToProps = state => ({
   // eslint-disable-next-line
-  username: state.signin._username,
+  username: state.reducer.signin._username,
   // eslint-disable-next-line
-  password: state.signin._password,
+  password: state.reducer.signin._password,
 });
 
 const mapDispatchToProps = dispatch => ({

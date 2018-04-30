@@ -13,7 +13,7 @@ import { getAllActus } from 'frontend/src/store/reducer';
  */
 
 const mapStateToProps = state => ({
-  actus: state.sidebarActus,
+  actus: state.reducer.sidebarActus,
 });
 
 const mapDispatchToProps = dispatch => ({

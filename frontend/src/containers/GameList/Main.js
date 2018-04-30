@@ -11,7 +11,7 @@ import Main from 'frontend/src/components/GameList/Main';
  */
 
 const mapStateToProps = state => ({
-  games: state.games,
+  games: state.reducer.games,
 });
 
 const mapDispatchToProps = () => ({});

@@ -8,54 +8,41 @@ import React from 'react';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import PageUnArticle from 'frontend/src/components/Article/PageUnArticle';
 import Loading from 'frontend/src/components/Loading';
-
-
+import Main from 'frontend/src/components/Announcements/Main';
 /**
  * Code
  */
-
-class Article extends React.Component {
-  // mise en place d'un state pour un petit loading
-  // pour laisser le temps au serveur de répondre
+class Announcements extends React.Component {
   state = {
     loading: true,
   }
 
-  /*
-   * Lifecycle
-   */
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
-    // this.props.actions.getAllGames();
+    }, 500);
+    console.log('Announcement OK');
   }
 
-  /*
-   * Rendu
-   */
   render() {
     if (this.state.loading) {
       return <Loading />;
     }
     return (
-      <div className="pageArticle">
-        <Navbar />
+      <div id="announcement">
         <Sidebar />
-        <PageUnArticle />
+        <Navbar />
+        <Main />
       </div>
     );
   }
 }
 
-// Article.propTypes = {
-//   actions: PropTypes.object.isRequired,
+// Announcements.propTypes = {
+//
 // };
-
-
 /**
  * Export
  */
-export default Article;
+export default Announcements;

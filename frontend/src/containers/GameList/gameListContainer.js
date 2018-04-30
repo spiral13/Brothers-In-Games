@@ -17,7 +17,7 @@ import { getAllGames, addAllGames } from 'frontend/src/store/reducer';
  */
 // State => composant
 const mapStateToProps = state => ({
-  games: state.games,
+  games: state.reducer.games,
 });
 
 
