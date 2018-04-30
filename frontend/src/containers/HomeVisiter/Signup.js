@@ -7,26 +7,21 @@ import { bindActionCreators } from 'redux';
 * Local import
 */
 import SignupForm from 'frontend/src/components/HomeVisiter/SignupForm';
-import { changeSignUpUserName, changeSignUpNewPassword, changeSignUpConfirmPassword, changeSignUpEmail, signUpSubmit } from 'frontend/src/store/reducer';
+import { signUpSubmit, changeFormSignup } from 'frontend/src/store/reducer';
 /**
 * Code
 */
 
 const mapStateToProps = state => ({
   username: state.reducer.signup.username,
-  newpassword: state.reducer.signup.newpassword,
-  confirmpassword: state.reducer.signup.confirmpassword,
+  newPassword: state.reducer.signup.newPassword,
+  confirmPassword: state.reducer.signup.confirmPassword,
   email: state.reducer.signup.email,
+  confirmEmail: state.reducer.signup.confirmEmail,
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({
-    changeSignUpUserName,
-    changeSignUpNewPassword,
-    changeSignUpConfirmPassword,
-    changeSignUpEmail,
-    signUpSubmit,
-  }, dispatch),
+  actions: bindActionCreators({ signUpSubmit, changeFormSignup }, dispatch),
 });
 
 const SignupFormContainer = connect(mapStateToProps, mapDispatchToProps)(SignupForm);

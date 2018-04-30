@@ -29,9 +29,6 @@ class SigninForm extends React.Component {
     if (this.props.username !== '' && this.props.password !== '') {
       this.props.actions.submitConnect();
     }
-    // else if (this.props.username !== '' && this.props.password === '') {
-    //
-    // }
   }
 
   changeInput = ({ target }) => {
@@ -39,14 +36,20 @@ class SigninForm extends React.Component {
       this.setState({
         [target.name]: {
           ...this.state[target.name],
-          agreed: true,
           error: true,
+          agreed: false,
         },
       });
     }
-    // else {
-    //   this.setState({ [target.name]: 'agreed' });
-    // }
+    else {
+      this.setState({
+        [target.name]: {
+          ...this.state[target.name],
+          agreed: true,
+          error: false,
+        },
+      });
+    }
     this.props.actions.changeForm(target.name, target.value);
   }
 
@@ -57,19 +60,23 @@ class SigninForm extends React.Component {
         method="post"
         onSubmit={this.submitForm}
       >
+        {/* Login username */}
         <label htmlFor="username">Login</label>
         <input
-          className={classNames({ error: this.state._username.error })}
+          className={classNames({ error: this.state._username.error, agreed: this.state._username.agreed })}
           id="username"
+          placeholder="Login"
           type="text"
           name="_username"
           onChange={this.changeInput}
           value={username}
         />
+        {/* Login Mot de passe */}
         <label htmlFor="password">Mot de passe</label>
         <input
-          className={classNames({ error: this.state._password.error })}
+          className={classNames({ error: this.state._password.error, agreed: this.state._password.agreed })}
           id="password"
+          placeholder="Password"
           type="password"
           name="_password"
           onChange={this.changeInput}
