@@ -13,11 +13,13 @@ import PropTypes from 'prop-types';
  * Code
  */
 const Game = ({ game }) => (
-  <div id="game">
-    <img src={game.cover} alt={game.title} id="gamePicture" />
-    <h2 id="gameTitle">{game.title}</h2>
-    <p id="gameInfo">0</p>
-  </div>
+  <a href={`Routing.generate('games_list')/${game.slug}`}>
+    <div id="game">
+      <img src={game.cover} alt={game.title} id="gamePicture" />
+      <h2 id="gameTitle">{game.title}</h2>
+      <p id="gameInfo">0</p>
+    </div>
+  </a>
 );
 
 Game.propTypes = {
