@@ -19,6 +19,8 @@ class AnnouncementRepository extends EntityRepository
 		->addSelect('u')
 		->join('a.game', 'g')
 		->addSelect('g')
+		->join('u.profile', 'p')
+		->addSelect('p')
 		->getQuery()
 		->getArrayResult()
 		;
