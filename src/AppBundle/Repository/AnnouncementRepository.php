@@ -15,6 +15,10 @@ class AnnouncementRepository extends EntityRepository
 	public function findAllInArray()
 	{
 		$qb = $this->createQueryBuilder('a')
+		->join('a.user', 'u')
+		->addSelect('u')
+		->join('g.game', 'g')
+		->addSelect('g')
 		->getQuery()
 		->getArrayResult()
 		;

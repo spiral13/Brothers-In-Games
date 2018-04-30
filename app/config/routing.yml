@@ -150,7 +150,7 @@ get_sidebar_articles:
     options:
         expose: true
 get_article:
-    path: /get/home/articles
+    path: /get/home/article
     defaults: { _controller: AppBundle:Article:getArticle }
     options:
         expose: true
