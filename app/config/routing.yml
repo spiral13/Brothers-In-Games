@@ -132,25 +132,30 @@ article_show:
 # Récupération des donnée #
 ###########################
 get_home_articles:
-    path: /home/get/articles
+    path: /get/home/articles
     defaults: { _controller: AppBundle:Article:getHomeArticle }
     options:
         expose: true
 
 get_sidebar_articles:
-    path: /home/get/articles/sidebar
+    path: /get/home/articles/sidebar
     defaults: { _controller: AppBundle:Article:getHomeArticleSidebar }
     options:
         expose: true
 get_article:
-    path: /home/get/articles
+    path: /get/home/articles
     defaults: { _controller: AppBundle:Article:getArticle }
     options:
         expose: true
 
 get_all_games:
-    path: /games/get
+    path: /get/games
     defaults: { _controller: AppBundle:Game:getAllGames }
     options:
         expose: true
-    
+
+get_announcement_by_game:
+    path: /get/announcements/games
+    defaults: { _controller: AppBundle:Announcement:getAnnouncementByGameSlug }
+    options:
+        expose: true    
