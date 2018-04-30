@@ -39,6 +39,11 @@ class User implements UserInterface, \Serializable
     /* JOIN */
 
     /**
+     * @var Profile
+     */
+    private $profile;
+
+    /**
      * @var Game
      */
     private $games;
@@ -364,9 +369,29 @@ class User implements UserInterface, \Serializable
      *
      * @return self
      */
-    public function setRole(Role $role)
+    public function setRole($role)
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return Profile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param Profile $profile
+     *
+     * @return self
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
 
         return $this;
     }
