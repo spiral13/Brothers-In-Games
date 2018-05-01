@@ -25,7 +25,7 @@ class Profile
     /**
      * @var int
      */
-    private $age;
+    private $birthdate;
 
     /**
      * @var string
@@ -104,27 +104,23 @@ class Profile
     }
 
     /**
-     * Set age
-     *
-     * @param integer $age
-     *
-     * @return Profile
+     * @return int
      */
-    public function setAge($age)
+    public function getBirthdate()
     {
-        $this->age = $age;
-
-        return $this;
+        return $this->birthdate;
     }
 
     /**
-     * Get age
+     * @param int $birthdate
      *
-     * @return int
+     * @return self
      */
-    public function getAge()
+    public function setBirthdate($birthdate)
     {
-        return $this->age;
+        $this->birthdate = $birthdate;
+
+        return $this;
     }
 
     /**

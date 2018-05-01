@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class ProfileRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findOneInArray($id)
+	{
+		$qb = $this->createQueryBuilder('p')
+		->join('p.user', 'u')
+		->addSelect('u.username')
+		->where('p.id = :id')
+		->setParameter('id', $id)
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
 }

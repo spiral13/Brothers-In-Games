@@ -21,4 +21,17 @@ class GameRepository extends EntityRepository
 
 		return $qb;
 	}
+
+	public function findAllInArrayByUser($user)
+	{
+		$qb = $this->createQueryBuilder('g')
+		->join('g.users', 'u')
+		->where('u = :user')
+		->setParameter('user', $user)
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
 }

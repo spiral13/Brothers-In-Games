@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
         $populator->addEntity('AppBundle\Entity\Profile', 10, array(
             'firstname' => function() use ($generator) { return $generator->firstName(); },
             'image' => function() use ($generator) { return $generator->imageUrl(); },
-            'age' => function() use ($generator) { return $generator->numberBetween($min = 18, $max = 99); },
+            'birthdate' => function() use ($generator) { return $generator->dateTimeBetween($startDate = '-80 years', $endDate = '-10 years', $timezone = null); },
             'gender' => function() use ($generator) { return $generator->title(); },
             'description' => function() use ($generator) { return $generator->text($maxNbChars = 200); }
         ));
@@ -93,16 +93,20 @@ class AppFixtures extends Fixture
 
         $games = $inserted['AppBundle\Entity\Game'];
         $gameCategories = $inserted['AppBundle\Entity\GameCategory'];
+        $users = $inserted['AppBundle\Entity\User'];
         foreach($games as $game)
         {
             shuffle($gameCategories);
-            
+            shuffle($users);
+
             for($i = 0; $i < mt_rand(1, 3); $i++)
             {
+                $game->addUsers($users[$i]);
                 $game->addGamecategories($gameCategories[$i]);
             }
             $manager->persist($game);
         }
+        $manager->flush();
     }
     
     private function addRoles($manager, $code, $name)

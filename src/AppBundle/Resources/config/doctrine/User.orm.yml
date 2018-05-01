@@ -11,7 +11,7 @@ AppBundle\Entity\User:
     fields:
         username:
             type: string
-            length: '45'
+            length: 45
             unique: true
         mail:
             type: string
@@ -35,7 +35,7 @@ AppBundle\Entity\User:
             inversedBy: users
             joinTable:
                 name: user_has_game
-                joinColumn:
+                joinColumns:
                     user_id:
                         referencedColumnName: id
                 inverseJoinColumns:
