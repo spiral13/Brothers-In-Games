@@ -17,8 +17,8 @@ AppBundle\Entity\Profile:
             type: string
             length: 255
             nullable: true
-        age:
-            type: integer
+        birthdate:
+            type: date
             nullable: true
         gender:
             type: string

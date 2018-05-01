@@ -21,9 +21,10 @@ class UserController extends Controller
 
 		if(!empty($request->request->all()))
 		{
+
             $username = trim($request->request->get('username'));
             $mail = trim($request->request->get('email'));
-            $plainPassword = trim($request->request->get('newpassword'));
+            $plainPassword = trim($request->request->get('newPassword'));
 
             $alreadyName = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => $username]);
             $alreadyMail = $this->getDoctrine()->getRepository(User::class)->findOneBy(['mail' => $mail]);
@@ -32,7 +33,7 @@ class UserController extends Controller
             {
                 $user = new User();
 
-			    $password = $encoder->encodePassword($user, $plainPassword);
+                $password = $encoder->encodePassword($user, $plainPassword);
                 $user->setUsername($username);
                 $user->setMail($mail);
                 $user->setPassword($password);
@@ -44,10 +45,11 @@ class UserController extends Controller
                 if(count($errors) > 0)
                 {
                     $arrayErrors = array();
-                    foreach ($errors as $key => $error) {
+                    foreach ($errors as $key => $error)
+                    {
                         $arrayErrors[$error->getPropertyPath()] = $error->getMessage();
                     }
-                    return $this->json(array('valid' => false, 'errors' => $arrayErrors));
+                    return $this->json(array('status' => false, 'errors' => $arrayErrors));
                 }
                 else
                 {
@@ -57,13 +59,13 @@ class UserController extends Controller
 
                     $this->createAssociatedProfile($user);
 
-                    return $this->json(array('valid' => true));
+                    return $this->json(array('status' => true));
                 }
 
             }
             else
             {
-                return $this->json(array('valid' => false));
+                return $this->json(array('status' => false));
             }
 		}
 	}
@@ -72,8 +74,11 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $profile = new Profile();
-        $profile->setUser($user);
         $em->persist($profile);
+        $em->flush();
+
+        $user->setProfile($profile);
+        $em->persist($user);
         $em->flush();
     }
 }

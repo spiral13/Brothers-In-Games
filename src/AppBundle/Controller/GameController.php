@@ -18,9 +18,6 @@ class GameController extends Controller
 	{
 		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArray();
 
-		$serializer = SerializerBuilder::create()->build();
-		$json = $serializer->serialize($games, 'json');
-
-		return new Response($json);
+		return $this->json($games);
 	}
 }

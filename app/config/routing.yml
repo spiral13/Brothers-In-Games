@@ -61,6 +61,9 @@ my_profile_show:
     defaults: { _controller: AppBundle:Profile:show }
     options:
         expose: true
+my_profile_update:
+    path: /my-profile/update
+    defaults: { _controller: AppBundle:Profile:update }
 
 #---------------------- Mail
 mail_list_receive:
@@ -103,7 +106,7 @@ announcements_list_game:
     options:
          expose: true
 announcements_show:
-    path: /announcement/{slug}/{id}
+    path: /announcement/{id}/{slug}
     defaults: { _controller: AppBundle:Announcement:read }
     options:
         expose: true
@@ -128,7 +131,7 @@ my_games:
 
 #---------------------- News
 article_show:
-    path: /article/{slug}
+    path: /article/{id}/{slug}
     defaults: { _controller: AppBundle:Article:read }
     options:
         expose: true
@@ -176,5 +179,12 @@ get_all_announcement:
 get_announcement:
     path: /get/announcement
     defaults: { _controller: AppBundle:Announcement:getAnnouncement }
+    options:
+        expose: true
+
+#---------------------- Profile
+get_profile:
+    path: /get/profile
+    defaults: { _controller: AppBundle:Profile:getProfile }
     options:
         expose: true
