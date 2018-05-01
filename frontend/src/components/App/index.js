@@ -32,8 +32,6 @@ const App = () => (
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('announcements_list')} component={Announcements} />
         {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('article_show')} component={Article} />
-        {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('account_show')} component={() => <div>Account show</div>} />
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('my_profile_show')} component={() => <div>My Profile show</div>} />
@@ -41,6 +39,10 @@ const App = () => (
         <Route exact path={Routing.generate('profile_show')} component={() => <div>Profile show</div>} />
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('my_games')} component={MyGames} />
+        {/* eslint-disable-next-line */}
+        <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
+        {/* eslint-disable-next-line */}
+        <Route exact path="/app_dev.php/announcement/:id/:slug" component={() => <div>Announce page</div>} />
       </Switch>
     </div>
   </Router>

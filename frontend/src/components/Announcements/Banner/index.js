@@ -27,7 +27,7 @@ const Banner = ({ datas, type }) => (
 );
 
 Banner.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.bool.isRequired,
   datas: PropTypes.array.isRequired,
 };
 /**
