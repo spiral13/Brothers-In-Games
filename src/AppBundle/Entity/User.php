@@ -4,12 +4,12 @@ namespace AppBundle\Entity;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var int
@@ -119,6 +119,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->isActive,
             // see section on salt below
             // $this->salt,
         ));
@@ -131,9 +132,30 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->isActive,
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
     }
 
     /* *************** **

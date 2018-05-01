@@ -123,7 +123,7 @@ class UserController extends Controller
                     {
                         $arrayErrors[$error->getPropertyPath()] = $error->getMessage();
                     }
-                    return $this->json(array('valid' => false, 'errors' => $arrayErrors));
+                    return $this->json(array('status' => false, 'errors' => $arrayErrors));
                 }
                 else
                 {
@@ -155,8 +155,21 @@ class UserController extends Controller
         }
         else
         {
-            return $this->json(array('valid' => false));
+            return $this->json(array('status' => false));
         }
+    }
+
+    public function deleteAction()
+    {
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user->setIsActive(0);
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('logout');
     }
 
     public function createAssociatedProfile($user)
