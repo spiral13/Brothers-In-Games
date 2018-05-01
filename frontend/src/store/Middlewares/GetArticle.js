@@ -10,9 +10,9 @@ export default store => next => (action) => {
   // Code
   switch (action.type) {
     case GET_ARTICLE: {
-      const url = window.location.search.split('/id=');
+      const url = window.location.search.split('?id=');
       const formData = new FormData();
-      formData.append('id', url[1]);
+      formData.append('id', url[0]);
       // eslint-disable-next-line
       axios.get(Routing.generate('get_article'), formData).then((response) => {
         console.log(response);
