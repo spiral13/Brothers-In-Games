@@ -44,7 +44,7 @@ class Article extends React.Component {
       <div className="pageArticle">
         <Navbar />
         <Sidebar />
-        {/* <PageUnArticle /> */}
+        <PageUnArticle />
       </div>
     );
   }

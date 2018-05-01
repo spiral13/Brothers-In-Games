@@ -18,6 +18,11 @@ import MyGames from 'frontend/src/components/MyGames';
  * Code
  */
 
+// const newUrl = [];
+// if (window.location.href.split('http://localhost:8000/app_dev.php/article')) {
+//   const url = window.location.pathname.split('/');
+//   newUrl.push(url[3], url[4]);
+// }
 const App = () => (
   <Router>
     <div id="app">
@@ -40,11 +45,11 @@ const App = () => (
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('my_games')} component={MyGames} />
         {/* eslint-disable-next-line */}
-        {/* <Route exact path="/app_dev.php/article/:id/:slug" component={Article} /> */}
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('article_show', { id: '50', slug: 'faeland-valide-sa-campagne-kickstarter' })} component={Article} />
+        <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
         {/* eslint-disable-next-line */}
         <Route exact path="/app_dev.php/announcement/:id/:slug" component={() => <div>Announce page</div>} />
+        {/* <Route exact path={Routing.generate('article_show', { id: newUrl[0], slug: newUrl[1] })} component={Article} /> */}
+        {/* eslint-disable-next-line */}
       </Switch>
     </div>
   </Router>
