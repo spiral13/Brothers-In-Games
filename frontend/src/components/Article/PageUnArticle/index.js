@@ -24,7 +24,7 @@ class PageUnArticle extends React.PureComponent {
             <div className="categorie">article</div>
             <img src={article[0].image} alt={article[0].title} className="imageArticle" />
             <h1 className="title">{article[0].title}</h1>
-            <p className="publicationDate">{article[0].published}</p>
+            <p className="publicationDate">{article[0].published.date}</p>
           </div>
 
           <article className="contenuArticle">
