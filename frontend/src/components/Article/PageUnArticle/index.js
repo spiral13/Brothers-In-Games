@@ -41,7 +41,7 @@ class PageUnArticle extends React.PureComponent {
 }
 
 PageUnArticle.propTypes = {
-  article: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  article: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   // description: PropTypes.string.isRequired,
 };
 
