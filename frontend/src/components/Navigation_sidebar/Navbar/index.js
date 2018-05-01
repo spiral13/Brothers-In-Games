@@ -6,6 +6,7 @@ import Gamepad from 'react-icons/lib/fa/gamepad';
 import User from 'react-icons/lib/fa/user';
 import Server from 'react-icons/lib/fa/server';
 import Signout from 'react-icons/lib/fa/sign-out';
+import Paper from 'react-icons/lib/fa/newspaper-o';
 /**
 * Local import
 */
@@ -15,10 +16,19 @@ import Signout from 'react-icons/lib/fa/sign-out';
  */
 const Navbar = () => (
   <div id="navbar">
-    {/* eslint-disable-next-line */}
-    <h1><a href={Routing.generate('games_list')}>Les jeux</a></h1>
+    <div className="titles">
+      {/* eslint-disable-next-line */}
+      <a href={Routing.generate('games_list')}>Les jeux</a>
+      {/* eslint-disable-next-line */}
+      <a href={Routing.generate('announcements_list')}>Les annonces</a>
+    </div>
     <nav id="nav-rubrique">
       <ul>
+        <li>
+          <Paper className="nav-fig" />
+          {/* eslint-disable-next-line */}
+          <a href="#">Mes annonces</a>
+        </li>
         <li>
           <Gamepad className="nav-fig" />
           {/* eslint-disable-next-line */}
