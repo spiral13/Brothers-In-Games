@@ -305,7 +305,6 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function addGames(Game $game)
     {
-        $game->addUsers($this);
         $this->games[] = $game;
 
         return $this;
