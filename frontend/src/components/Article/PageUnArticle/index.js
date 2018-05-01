@@ -22,15 +22,14 @@ class PageUnArticle extends React.PureComponent {
 
           <div className="containerH1etImageArticle">
             <div className="categorie">article</div>
-            <img src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt={article.title} className="imageArticle" />
+            <img src={article.image} alt={article.title} className="imageArticle" />
             <h1 className="title">{article.title}</h1>
-            <p className="publicationDate">Date et heure publication</p>
+            <p className="publicationDate">{article.published}</p>
           </div>
 
           <article className="contenuArticle">
-            <p className="introArticle" >Intro de l'article</p>
             <p className="texteArticle" >
-              {article.info}
+              {article.content}
             </p>
           </article>
           {/* <Aside /> */}
