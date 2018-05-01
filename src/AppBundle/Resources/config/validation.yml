@@ -8,7 +8,7 @@ AppBundle\Entity\User:
         mail:
             - NotBlank: ~
             - Email: 
-                message: The email "{{ value }}" is not a valid email.
+                message: The email {{ value }} is not a valid email.
                 checkMX: true
         password:
             - NotBlank: ~

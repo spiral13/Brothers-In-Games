@@ -62,12 +62,12 @@ class ProfileController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($profile);
 				$em->flush();
+
+				$id = $this->getUser()->getProfile()->getId();
+				$profile = $this->getDoctrine()->getRepository(Profile::class)->findOneInArray($id);
+
+				return $this->json(array('status' => true, 'data' => $profile));
 			}
-
-			$id = $this->getUser()->getProfile()->getId();
-			$profile = $this->getDoctrine()->getRepository(Profile::class)->findOneInArray($id);
-
-			return $this->json(array('status' => true, 'data' => $profile));
 		}
 		else
         {
