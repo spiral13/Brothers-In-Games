@@ -61,7 +61,7 @@ class ArticleController extends Controller
 	 */
 	public function getArticleAction(Request $request)
 	{
-		$slug = $request->request->get('id');
+		$id = $request->request->get('id');
 		$news = $this->getDoctrine()->getRepository(Article::class)->findOneByInArray($id);
 
 		$serializer = SerializerBuilder::create()->build();
