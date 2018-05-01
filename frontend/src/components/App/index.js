@@ -1,3 +1,9 @@
+// var client = new XMLHttpRequest();
+// client.open('GET', document.location, false);
+// client.send();
+// var headers = client.getResponseHeader('id');
+// console.log(headers);
+
 /*
  * Npm import
  */

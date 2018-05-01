@@ -13,6 +13,10 @@ class GameController extends Controller
 	{
 		return $this->render('game/list.html.twig');
 	}
+	public function listByUserAction()
+	{
+		return $this->render('game/user_games_list.html.twig');
+	}
 
 	public function getAllGamesAction()
 	{
@@ -23,4 +27,12 @@ class GameController extends Controller
 
 		return new Response($json);
 	}
+
+	public function getUserGameAction()
+	{
+		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArray($this->getUser());
+
+		
+	}
+
 }
