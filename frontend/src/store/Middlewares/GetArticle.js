@@ -17,7 +17,7 @@ export default store => next => (action) => {
       formData.append('slug', url[4]);
       console.log(formData);
       // eslint-disable-next-line
-      axios.get(Routing.generate('get_article'), formData).then((response) => {
+      axios.post(Routing.generate('get_article'), formData).then((response) => {
         console.log(response);
         // Ici, faire un dispatch.
         store.dispatch(addArticle(response));

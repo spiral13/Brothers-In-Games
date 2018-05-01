@@ -40,7 +40,9 @@ const App = () => (
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('my_games')} component={MyGames} />
         {/* eslint-disable-next-line */}
-        <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
+        {/* <Route exact path="/app_dev.php/article/:id/:slug" component={Article} /> */}
+        {/* eslint-disable-next-line */}
+        <Route exact path={Routing.generate('article_show', { id: '50', slug: 'faeland-valide-sa-campagne-kickstarter' })} component={Article} />
         {/* eslint-disable-next-line */}
         <Route exact path="/app_dev.php/announcement/:id/:slug" component={() => <div>Announce page</div>} />
       </Switch>
