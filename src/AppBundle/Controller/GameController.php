@@ -13,11 +13,26 @@ class GameController extends Controller
 	{
 		return $this->render('game/list.html.twig');
 	}
+	public function listByUserAction()
+	{
+		return $this->render('game/user_games_list.html.twig');
+	}
 
 	public function getAllGamesAction()
 	{
 		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArray();
 
-		return $this->json($games);
+		$serializer = SerializerBuilder::create()->build();
+		$json = $serializer->serialize($games, 'json');
+
+		return new Response($json);
 	}
+
+	public function getUserGameAction()
+	{
+		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArray($this->getUser());
+
+		
+	}
+
 }

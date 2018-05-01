@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 
+use AppBundle\Entity\Game;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
@@ -300,6 +301,14 @@ class User implements AdvancedUserInterface, \Serializable
     public function getGames()
     {
         return $this->games;
+    }
+
+    public function addGames(Game $game)
+    {
+        $game->addUsers($this);
+        $this->games[] = $game;
+
+        return $this;
     }
 
     /**

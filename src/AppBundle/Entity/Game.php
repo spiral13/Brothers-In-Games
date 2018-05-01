@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\GameCategory;
+use AppBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -163,6 +164,14 @@ class Game
     public function getUsers()
     {
         return $this->users;
+    }
+
+    public function addUsers(User $user)
+    {
+        $user->addGames($this);
+        $this->users[] = $user;
+
+        return $this;
     }
 
     /**
