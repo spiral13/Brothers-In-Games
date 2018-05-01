@@ -13,7 +13,7 @@ const initialState = {
  * Types
  */
 export const GET_ARTICLE = 'GET_ARTICLE';
-export const ADD_ARTICLE = 'ADD_ARTICLE';
+const ADD_ARTICLE = 'ADD_ARTICLE';
 
 /**
  * Reducer

@@ -15,7 +15,6 @@ const Content = ({ content }) => (
     <img src={content.image} alt={content.title} />
     <div className="presentation">
       <h3>{content.title}</h3>
-      <p>Description de l'image</p>
     </div>
   </div>
 );

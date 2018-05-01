@@ -3,8 +3,6 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Circle from 'react-icons/lib/fa/circle';
-import Classnames from 'classnames';
 /**
 * Local import
 */
@@ -14,20 +12,21 @@ import Classnames from 'classnames';
  */
 
 const Announce = ({
-  user,
+  username,
   image,
-  content,
+  title,
+  slug,
   id,
-  game,
+  content,
 }) => (
   <div className="announce">
     {/* Le slug sera à changer. */}
     {/* eslint-disable-next-line */}
-    <a href={Routing.generate('announcements_show', { slug: game.slug, id: id })}>
+    <a href={Routing.generate('announcements_show', { slug: slug, id: id })}>
       {/* eslint-disable-next-line */}
       <img className="player-image" src={image} alt="image de profil" />
       <div className="player-announce">
-        <h2 className="player-name">{user.username} - {game.title} <Circle className={Classnames({ green: user.isActive })} /></h2>
+        <h2 className="player-name">{title} - {username}</h2>
         {/* eslint-disable-next-line */}
         <p className="contentContain">{content}</p>
       </div>
@@ -36,18 +35,12 @@ const Announce = ({
 );
 
 Announce.propTypes = {
-  user: PropTypes.object,
-  image: PropTypes.string,
-  content: PropTypes.string,
+  content: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  game: PropTypes.object,
-};
-
-Announce.defaultProps = {
-  user: 'Jean pierre',
-  image: '#',
-  content: 'lorem ipsum',
-  game: 'overwatch',
 };
 /**
  * Export

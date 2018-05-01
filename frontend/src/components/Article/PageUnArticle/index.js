@@ -16,20 +16,21 @@ import PropTypes from 'prop-types';
 class PageUnArticle extends React.PureComponent {
   render() {
     const { article } = this.props;
+    console.log(article);
     return (
       <main className="containerArticle">
         <div className="article">
 
           <div className="containerH1etImageArticle">
             <div className="categorie">article</div>
-            <img src={article.image} alt={article.title} className="imageArticle" />
-            <h1 className="title">{article.title}</h1>
-            <p className="publicationDate">{article.published}</p>
+            <img src={article[0].image} alt={article[0].title} className="imageArticle" />
+            <h1 className="title">{article[0].title}</h1>
+            <p className="publicationDate">{article[0].published}</p>
           </div>
 
           <article className="contenuArticle">
             <p className="texteArticle" >
-              {article.content}
+              {article[0].content}
             </p>
           </article>
           {/* <Aside /> */}

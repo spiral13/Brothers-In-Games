@@ -14,7 +14,7 @@ const Main = ({ news }) => (
   <div id="main-member">
     {news.map(newContent => (
       // eslint-disable-next-line
-      <a href={Routing.generate('article_show', { slug: newContent.slug, id: newContent.id })}>
+      <a href={Routing.generate('article_show', { id: newContent.id, slug: newContent.slug })}>
         <Content
           key={`${newContent.id} news-member`}
           content={newContent}
