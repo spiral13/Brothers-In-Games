@@ -30,6 +30,9 @@ class GameController extends Controller
 
 	public function getUserGameAction()
 	{
-		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArray($this->getUser());	}
+		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArrayByUser($this->getUser());
+
+		return $this->json($games);
+	}
 
 }

@@ -169,6 +169,11 @@ get_all_games:
     defaults: { _controller: AppBundle:Game:getAllGames }
     options:
         expose: true
+get_user_games:
+    path: /get/user/games
+    defaults: { _controller: AppBundle:Game:getUserGame }
+    options:
+        expose: true
 
 #---------------------- Announcements
 get_announcement_by_game:
