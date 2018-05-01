@@ -63,7 +63,16 @@ class RightSidebar extends React.Component {
           </a>
         </div>
         <div>
-          {this.state.currentBar === 'actus-bar' && (actus.map(newContent => <LastActu key={newContent.id} type="article" id={newContent.id} title={newContent.title} image={newContent.image} slug={newContent.slug} />))}
+          {this.state.currentBar === 'actus-bar' && (actus.map(newContent => (
+            <LastActu
+              key={newContent.id}
+              type="article"
+              id={newContent.id}
+              title={newContent.title}
+              image={newContent.image}
+              slug={newContent.slug}
+            />
+          )))}
           {/* Filer l'activité des joueurs avec les dernières actus ? */}
           {this.state.currentBar === 'player-bar' && (playerNews.map(newContent => (
             <LastActu
@@ -74,7 +83,6 @@ class RightSidebar extends React.Component {
               image={newContent.cover}
               slug={newContent.slug}
               username={newContent.username}
-              // isActive={newContent.user.isActive}
             />)))}
         </div>
       </div>
@@ -84,18 +92,8 @@ class RightSidebar extends React.Component {
 
 RightSidebar.propTypes = {
   actions: PropTypes.object.isRequired,
-  actus: PropTypes.arrayOf(PropTypes.object.isRequired),
+  actus: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   playerNews: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-};
-
-RightSidebar.defaultProps = {
-  actus: [
-    {
-      id: 1,
-      title: 'Nothing',
-      image: '#',
-    },
-  ],
 };
 /**
  * Export

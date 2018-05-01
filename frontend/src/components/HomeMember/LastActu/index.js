@@ -24,7 +24,7 @@ const LastActu = ({
 }) => (
   <div className="lastActu" style={style(image)}>
     {type === 'announcements' ?
-      <a href={Routing.generate('announcements_list', { slug, id })}>{<span className="navbarRange-title">{title} - {username}</span>}</a>
+      <a href={Routing.generate('announcements_show', { slug, id })}>{<span className="navbarRange-title">{title} - {username}</span>}</a>
     :
       <a href={Routing.generate('article_show', { id, slug })}>{title}</a>
     }
