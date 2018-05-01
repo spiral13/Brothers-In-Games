@@ -42,6 +42,11 @@ account_show:
     defaults: { _controller: AppBundle:User:read }
     options:
         expose: true
+account_update:
+    path: /account/update
+    defaults: { _controller: AppBundle:User:update }
+    options:
+        expose: true
 
 #---------------------- Friend
 friends_list:
@@ -61,6 +66,9 @@ my_profile_show:
     defaults: { _controller: AppBundle:Profile:show }
     options:
         expose: true
+my_profile_update:
+    path: /my-profile/update
+    defaults: { _controller: AppBundle:Profile:update }
 
 #---------------------- Mail
 mail_list_receive:
@@ -176,5 +184,19 @@ get_all_announcement:
 get_announcement:
     path: /get/announcement
     defaults: { _controller: AppBundle:Announcement:getAnnouncement }
+    options:
+        expose: true
+
+#---------------------- Profile
+get_profile:
+    path: /get/profile
+    defaults: { _controller: AppBundle:Profile:getProfile }
+    options:
+        expose: true
+
+#---------------------- User
+get_user:
+    path: /get/user
+    defaults: { _controller: AppBundle:User:getUser }
     options:
         expose: true

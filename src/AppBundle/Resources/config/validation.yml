@@ -4,18 +4,36 @@ AppBundle\Entity\User:
             - NotBlank: ~
             - Length:
                 min: 4
-                minMessage: 'Your first name must be at least {{ limit }} characters long'
+                minMessage: Your first name must be at least {{ limit }} characters long
         mail:
             - NotBlank: ~
             - Email: 
-                message: The email "{{ value }}" is not a valid email.
+                message: The email {{ value }} is not a valid email.
                 checkMX: true
         password:
             - NotBlank: ~
             - Length:
                 min: 6
-                minMessage: 'Your first name must be at least {{ limit }} characters long'
+                minMessage: Your first name must be at least {{ limit }} characters long
 AppBundle\Entity\Announcement:
     properties:
         game:
             - NotBlank: ~
+AppBundle\Entity\Profile:
+    properties:
+        firstname:
+            - Regex:
+                pattern: '/[^a-zA-Z-]/'
+                match:   false
+                message: Votre nom ne peut contenir que des lettre en minuscule et majuscule et des tirets(-).
+        image:
+            - Url:
+                protocols: [http, https]
+                message: The url "{{ value }}" is not a valid url.
+        birthdate:
+            - Date: ~
+        gender:
+            - Regex:
+                pattern: '/[^a-zA-Z0-9-]/'
+                match:   false
+                message: Votre genre ne peut contenir que des lettre en minuscule et majuscule, des chiffres et des tirets(-).

@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Announcement;
 use AppBundle\Entity\Game;
-use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -84,10 +83,7 @@ class AnnouncementController extends Controller
 	{
 		$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findAllInArray();
 
-		$serializer = SerializerBuilder::create()->build();
-		$json = $serializer->serialize($announcement, 'json');
-
-		return new Response($json);
+		return $this->json($announcement);
 	}
 
 	/**
@@ -103,10 +99,7 @@ class AnnouncementController extends Controller
 		$slug = $request->request->get('slug');
 		$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findInArrayBySlug($slug);
 
-		$serializer = SerializerBuilder::create()->build();
-		$json = $serializer->serialize($announcement, 'json');
-
-		return new Response($json);
+		return $this->json($announcement);
 	}
 
 	/**
@@ -122,10 +115,7 @@ class AnnouncementController extends Controller
 		$id = $request->request->get('id');
 		$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneInArray($id);
 
-		$serializer = SerializerBuilder::create()->build();
-		$json = $serializer->serialize($announcement, 'json');
-
-		return new Response($json);
+		return $this->json($announcement);
 	}
 
 }
