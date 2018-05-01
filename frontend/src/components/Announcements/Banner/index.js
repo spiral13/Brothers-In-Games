@@ -12,24 +12,23 @@ import PropTypes from 'prop-types';
  */
 const style = image => ({
   backgroundImage: `url(${image})`,
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
 });
 
-const Banner = ({ title, image }) => (
-  <div className="banner" style={style(image)}>
-    <p className="pre-title-games">Recherche de joueur sur :</p>
-    <h2 className="game-title">{title}</h2>
-    <p className="number-of-search">{/* nombres d'annonces */} Annonces</p>
+const Banner = ({ datas, type }) => (
+  <div className="banner" style={type === false ? style(datas[0].cover) : { marginLeft: '0px' }}>
+    <div className="banner-container" style={type ? { marginLeft: '0px' } : { marginLeft: '130px' }}>
+      <p className="pre-title-games">Recherche de joueur sur :</p>
+      <h2 className="game-title">{type === false ? datas[0].title : 'Tout les jeux'}</h2>
+      <p className="number-of-search">{/* nombres d'annonces */} Annonces</p>
+    </div>
   </div>
 );
 
 Banner.propTypes = {
-  title: PropTypes.string,
-  image: PropTypes.string,
-};
-
-Banner.defaultProps = {
-  title: 'League of Legends',
-  image: '',
+  type: PropTypes.string.isRequired,
+  datas: PropTypes.array.isRequired,
 };
 /**
  * Export

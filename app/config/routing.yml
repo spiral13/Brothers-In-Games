@@ -103,7 +103,7 @@ announcements_list_game:
     options:
          expose: true
 announcements_show:
-    path: /announcement/{slug}/{id}
+    path: /announcement/{id}/{slug}
     defaults: { _controller: AppBundle:Announcement:read }
     options:
         expose: true
@@ -128,7 +128,7 @@ my_games:
 
 #---------------------- News
 article_show:
-    path: /article/{slug}
+    path: /article/{id}/{slug}
     defaults: { _controller: AppBundle:Article:read }
     options:
         expose: true
