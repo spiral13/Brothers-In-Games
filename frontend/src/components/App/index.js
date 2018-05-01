@@ -13,6 +13,7 @@ import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
 import Article from 'frontend/src/containers/Article/index';
+import MyGames from 'frontend/src/components/MyGames';
 /*
  * Code
  */
@@ -39,7 +40,7 @@ const App = () => (
         {/* eslint-disable-next-line */}
         <Route exact path={Routing.generate('profile_show')} component={() => <div>Profile show</div>} />
         {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('my_games')} component={() => <div>My games</div>} />
+        <Route exact path={Routing.generate('my_games')} component={MyGames} />
       </Switch>
     </div>
   </Router>

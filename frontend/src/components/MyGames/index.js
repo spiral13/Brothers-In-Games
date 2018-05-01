@@ -1,37 +1,36 @@
-/**
+/*
  * Npm import
  */
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 /**
 * Local import
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import PageUnArticle from 'frontend/src/containers/Article/PageUnArticle';
+// import Main from 'frontend/src/components/MyGames/Main';
 import Loading from 'frontend/src/components/Loading';
-
 
 /**
  * Code
  */
 
-class Article extends React.Component {
+class MyGames extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
   state = {
-    loading: true,
+    loading: false,
   }
 
-  /*
-   * Lifecycle
-   */
-  componentWillMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 2000);
-    this.props.actions.getArticle();
-  }
+  // /*
+  //  * Lifecycle
+  //  */
+  // componentWillMount() {
+  //   setTimeout(() => {
+  //     this.setState({ loading: false });
+  //   }, 2000);
+  //   this.props.actions.getAllGames();
+  // }
 
   /*
    * Rendu
@@ -41,21 +40,22 @@ class Article extends React.Component {
       return <Loading />;
     }
     return (
-      <div className="pageArticle">
+      <div className="MyGamesList">
         <Navbar />
         <Sidebar />
-        <PageUnArticle />
+        <div id="ContainerMyGamesList">
+          My Games List
+        </div>
       </div>
     );
   }
 }
 
-Article.propTypes = {
-  actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
-};
-
+// GameList.propTypes = {
+//   actions: PropTypes.object.isRequired,
+// };
 
 /**
  * Export
  */
-export default Article;
+export default MyGames;
