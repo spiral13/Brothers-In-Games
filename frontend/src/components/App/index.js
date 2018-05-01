@@ -19,7 +19,7 @@ import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
 import Article from 'frontend/src/containers/Article/index';
-import MyGames from 'frontend/src/components/MyGames';
+import MyGames from 'frontend/src/components/MyGames/index';
 /*
  * Code
  */

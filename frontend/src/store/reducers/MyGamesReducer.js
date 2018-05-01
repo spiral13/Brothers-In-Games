@@ -13,22 +13,22 @@ const initialState = {
  * Types
  */
 export const GET_ALL_MY_GAMES = 'GET_ALL_MY_GAMES';
-const ADD_ARTICLE = 'ADD_ARTICLE';
+export const ADD_ALL_MY_GAMES = 'ADD_ALL_MY_GAMES';
 
 /**
  * Reducer
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case GET_ARTICLE:
+    case GET_ALL_MY_GAMES:
       return {
         ...state,
       };
 
-    case ADD_ARTICLE:
+    case ADD_ALL_MY_GAMES:
       return {
         ...state,
-        article: action.article.data,
+        mygames: action.mygames.data,
       };
 
     default:
@@ -38,13 +38,13 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const getArticle = () => ({
-  type: GET_ARTICLE,
+export const getAllMyGames = () => ({
+  type: GET_ALL_MY_GAMES,
 });
 
-export const addArticle = article => ({
-  type: ADD_ARTICLE,
-  article,
+export const addAllMyGames = mygames => ({
+  type: ADD_ALL_MY_GAMES,
+  mygames,
 });
 
 /**

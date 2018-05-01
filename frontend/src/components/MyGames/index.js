@@ -19,18 +19,18 @@ class MyGames extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
   state = {
-    loading: false,
+    loading: true,
   }
 
   // /*
   //  * Lifecycle
   //  */
-  // componentWillMount() {
-  //   setTimeout(() => {
-  //     this.setState({ loading: false });
-  //   }, 2000);
-  //   this.props.actions.getAllGames();
-  // }
+  componentWillMount() {
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
+    // this.props.actions.getAllMyGames();
+  }
 
   /*
    * Rendu
@@ -44,7 +44,32 @@ class MyGames extends React.Component {
         <Navbar />
         <Sidebar />
         <div id="ContainerMyGamesList">
-          My Games List
+
+          <div id="infoIdentityProfile">
+            <img id="photoProfileOnMyGames" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" />
+            <h1 id="profileNameOnMyGames">Liste de jeux de Toto</h1>
+          </div>
+
+          <section id="sectionListingMyGames">
+            <div id="settings">
+              <h2 id="title">Vos jeux</h2>
+              <div id="triggerLegend">Ajouter un nouveau jeu à votre liste</div>
+              <span id="trigger"> + </span>
+            </div>
+            <div id="triggeredAddOneGameForm">
+              <form id="addOneGameForm">
+                <input
+                  type="text"
+                  placeholder="Ajouter un nouveau jeu à votre liste"
+                />
+              </form>
+            </div>
+
+            <div id="MyGames">
+              <img src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="titre du jeu" id="oneOfMyGamePicture" />
+              <h2 id="oneOfMyGameTitle">titre du jeu</h2>
+            </div>
+          </section>
         </div>
       </div>
     );

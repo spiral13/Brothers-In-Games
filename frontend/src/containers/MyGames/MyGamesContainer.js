@@ -10,19 +10,19 @@ import { bindActionCreators } from 'redux';
 import MyGames from 'frontend/src/components/MyGames';
 
 // actionsCreators
-import { getAllMyGames, addAllMyGames } from 'frontend/src/store/reducer';
+import { getAllMyGames, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
 
 /*
  * Code
  */
 // State => composant
 const mapStateToProps = state => ({
-  games: state.reducer.games,
+  mygames: state.MyGamesReducer.mygames,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAllGames, addAllGames }, dispatch),
+  actions: bindActionCreators({ getAllMyGames, addAllMyGames }, dispatch),
 });
 
 
