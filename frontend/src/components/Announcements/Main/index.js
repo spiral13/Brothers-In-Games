@@ -15,17 +15,7 @@ const Main = ({ datas }) => (
   <div className="announcement-main">
     <Banner />
     <div id="list_announce">
-      {datas.map(data => (
-        <Announce
-          key={data.id}
-          // id={data.id}
-          // name={data.name}
-          // image={data.image}
-          // description={data.description}
-          // slug={slug}
-          {...data}
-        />
-      ))}
+      {datas.map(data => <Announce key={data.id} {...data} />)}
     </div>
   </div>
 );

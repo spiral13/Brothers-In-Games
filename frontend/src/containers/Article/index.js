@@ -12,9 +12,7 @@ import { getArticle, addArticle } from 'frontend/src/store/reducers/ArticleReduc
  * Code
  */
 
-const mapStateToProps = state => ({
-  article: state.reducer.article,
-});
+const mapStateToProps = null;
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ getArticle, addArticle }, dispatch),

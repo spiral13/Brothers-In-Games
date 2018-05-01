@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 /**
 * Local import
 */
-import PageUnArticle from 'frontend/src/components/Article/PageUnArticle';
+import Aside from 'frontend/src/components/Article/Aside';
 
 /**
  * Code
@@ -19,9 +19,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = () => ({});
 
-const PageUnArticleContainer = connect(mapStateToProps, mapDispatchToProps)(PageUnArticle);
+const AsideContainer = connect(mapStateToProps, mapDispatchToProps)(Aside);
 
 /**
  * Export
  */
-export default PageUnArticleContainer;
+export default AsideContainer;
