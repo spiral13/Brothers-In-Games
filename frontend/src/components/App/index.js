@@ -1,3 +1,4 @@
+console.log(userSession);
 // var client = new XMLHttpRequest();
 // client.open('GET', document.location, false);
 // client.send();

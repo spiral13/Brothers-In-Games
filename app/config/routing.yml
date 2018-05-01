@@ -147,16 +147,27 @@ article_show:
 ###########################
 
 #---------------------- News
+# Get articles data
+# Return JSON data
+# No need parameters
 get_home_articles:
     path: /get/home/articles
     defaults: { _controller: AppBundle:Article:getHomeArticle }
     options:
         expose: true
+
+# Get articles data for the home right sidebar
+# Return JSON data
+# No need parameters
 get_sidebar_articles:
     path: /get/home/articles/sidebar
     defaults: { _controller: AppBundle:Article:getHomeArticleSidebar }
     options:
         expose: true
+
+# Get data to the article currently selected
+# Return JSON data
+# need ID of this article sending by post method
 get_article:
     path: /get/home/article
     defaults: { _controller: AppBundle:Article:getArticle }
@@ -164,11 +175,18 @@ get_article:
         expose: true
 
 #---------------------- Games
+# Get games data
+# Return JSON data
+# No need parameters
 get_all_games:
     path: /get/games
     defaults: { _controller: AppBundle:Game:getAllGames }
     options:
         expose: true
+
+# Get games data from the current user
+# Return JSON data
+# No need parameters
 get_user_games:
     path: /get/user/games
     defaults: { _controller: AppBundle:Game:getUserGame }
@@ -176,16 +194,27 @@ get_user_games:
         expose: true
 
 #---------------------- Announcements
-get_announcement_by_game:
-    path: /get/announcements/games
-    defaults: { _controller: AppBundle:Announcement:getAnnouncementByGameSlug }
-    options:
-        expose: true
+# Get announcements data
+# Return JSON data
+# No need parameters
 get_all_announcement:
     path: /get/announcements
     defaults: { _controller: AppBundle:Announcement:getAllAnnouncements }
     options:
         expose: true
+
+# Get announcements data filtered by game
+# Return JSON data
+# need SLUG of the concerned game sending by post method
+get_announcement_by_game:
+    path: /get/announcements/games
+    defaults: { _controller: AppBundle:Announcement:getAnnouncementByGameSlug }
+    options:
+        expose: true
+
+# Get data to the announcement currently selected
+# Return JSON data
+# need ID of this announcement sending by post method
 get_announcement:
     path: /get/announcement
     defaults: { _controller: AppBundle:Announcement:getAnnouncement }
@@ -193,6 +222,9 @@ get_announcement:
         expose: true
 
 #---------------------- Profile
+# Get profile data to the current user
+# Return JSON data
+# No need parameters
 get_profile:
     path: /get/profile
     defaults: { _controller: AppBundle:Profile:getProfile }
@@ -200,6 +232,9 @@ get_profile:
         expose: true
 
 #---------------------- User
+# Get current user data
+# Return JSON data
+# No need parameters
 get_user:
     path: /get/user
     defaults: { _controller: AppBundle:User:getUser }
