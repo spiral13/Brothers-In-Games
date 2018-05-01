@@ -16,7 +16,6 @@ import PropTypes from 'prop-types';
 class PageUnArticle extends React.PureComponent {
   render() {
     const { article } = this.props;
-    console.log(article);
     return (
       <main className="containerArticle">
         <div className="article">
@@ -41,8 +40,7 @@ class PageUnArticle extends React.PureComponent {
 }
 
 PageUnArticle.propTypes = {
-  article: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  // description: PropTypes.string.isRequired,
+  article: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 

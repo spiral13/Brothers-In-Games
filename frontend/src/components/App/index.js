@@ -14,6 +14,7 @@ import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
 import Article from 'frontend/src/containers/Article/index';
 import MyGames from 'frontend/src/components/MyGames';
+import Announce from 'frontend/src/containers/Announce';
 /*
  * Code
  */
@@ -47,7 +48,7 @@ const App = () => (
         {/* eslint-disable-next-line */}
         <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
         {/* eslint-disable-next-line */}
-        <Route exact path="/app_dev.php/announcement/:id/:slug" component={() => <div>Announce page</div>} />
+        <Route exact path="/app_dev.php/announcement/:id/:slug" component={Announce} />
         {/* <Route exact path={Routing.generate('article_show', { id: newUrl[0], slug: newUrl[1] })} component={Article} /> */}
         {/* eslint-disable-next-line */}
       </Switch>

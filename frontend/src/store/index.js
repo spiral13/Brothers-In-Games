@@ -15,6 +15,7 @@ import GetNews from './GetNews';
 import GetGames from './GetGames';
 import GetAnnouncements from './Middlewares/GetAnnouncements';
 import GetArticle from './Middlewares/GetArticle';
+import GetResponseToAnnounce from './Middlewares/GetResponseToAnnounce';
 /*
  * Code
  */
@@ -25,7 +26,14 @@ if (window.devToolsExtension) {
 }
 
 // Middleware vers Enhancers
-const middlewares = applyMiddleware(SubmitConnect, GetNews, GetGames, GetAnnouncements, GetArticle);
+const middlewares = applyMiddleware(
+  SubmitConnect,
+  GetNews,
+  GetGames,
+  GetAnnouncements,
+  GetArticle,
+  GetResponseToAnnounce,
+);
 const enhancers = compose(middlewares, ...devTools);
 
 // createStore
