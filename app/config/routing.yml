@@ -198,7 +198,24 @@ announcements_show:
 announcements_create:
     path: /announcement/create
     defaults: { _controller: AppBundle:Announcement:create }
-    methods: [POST]
+    options:
+        expose: true
+
+# Update announcement of the user currently connected
+# Return response in JSON format
+# Need data of the form and announcement-id of this announcement, sending by post method
+announcements_update:
+    path: /announcement/update
+    defaults: { _controller: AppBundle:Announcement:update }
+    options:
+        expose: true
+
+# Delete announcement of the user currently connected
+# Return response in JSON format
+# Need announcement-id of this announcement, sending by post method
+announcements_delete:
+    path: /announcement/delete
+    defaults: { _controller: AppBundle:Announcement:delete }
     options:
         expose: true
 
