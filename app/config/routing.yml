@@ -129,25 +129,36 @@ my_profile_update:
     path: /my-profile/update
     defaults: { _controller: AppBundle:Profile:update }
 
-#------------------------------------------------------------------ Mail
+#------------------------------------------------------------------ Message
 # currently not treat
-mail_list_receive:
-    path: /mail/receive
-    defaults: { _controller: AppBundle:Mail:listReceive }
+message_list_receive:
+    path: /message/receive
+    defaults: { _controller: AppBundle:Message:listReceive }
+    options:
+        expose: true
+
+# Create message for another user by user currently connected
+# return JSON response
+# Need ID of the receiver and form data, sending by post method
+message_send:
+    path: /message/send
+    defaults: { _controller: AppBundle:Message:create }
+    options:
+        expose: true
+
+# Delete message by receiver
+# return JSON response
+# Need ID of this message, sending by post method
+message_delete:
+    path: /message/delete
+    defaults: { _controller: AppBundle:Message:delete }
     options:
         expose: true
 
 # currently not treat
-mail_list_send:
-    path: /mail/send
-    defaults: { _controller: AppBundle:Mail:listSend }
-    options:
-        expose: true
-
-# currently not treat
-mail_show:
-    path: /mail/show/{id}
-    defaults: { _controller: AppBundle:Mail:read }
+message_show:
+    path: /message/show/{id}
+    defaults: { _controller: AppBundle:Message:read }
     options:
         expose: true
 

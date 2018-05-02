@@ -85,7 +85,11 @@ class AppFixtures extends Fixture
                 }
         ));
         $populator->addEntity('AppBundle\Entity\Announcement', 20, array(
-            'content' => function() use ($generator) { return $generator->text($maxNbChars = 255) ; },
+            'content' => function() use ($generator) { return $generator->text($maxNbChars = 255); },
+            'published' => function() use ($generator) { return $generator->dateTimeAD($max = 'now', $timezone = null); },
+        ));
+        $populator->addEntity('AppBundle\Entity\Message', 20, array(
+            'content' => function() use ($generator) { return $generator->text($maxNbChars = 255); },
             'published' => function() use ($generator) { return $generator->dateTimeAD($max = 'now', $timezone = null); },
         ));
         $inserted = $populator->execute();

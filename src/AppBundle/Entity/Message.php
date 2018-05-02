@@ -95,5 +95,45 @@ class Message
     {
         return $this->published;
     }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     *
+     * @return self
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    /**
+     * @param User $receiver
+     *
+     * @return self
+     */
+    public function setReceiver(User $receiver)
+    {
+        $this->receiver = $receiver;
+
+        return $this;
+    }
 }
 
