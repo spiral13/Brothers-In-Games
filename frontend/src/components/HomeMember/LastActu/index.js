@@ -14,22 +14,23 @@ const style = image => ({
   backgroundImage: `url(${image})`,
 });
 
-const LastActu = ({
-  title,
-  image,
-  slug,
-  id,
-  type,
-  username,
-}) => (
-  <div className="lastActu" style={style(image)}>
-    {type === 'announcements' ?
-      <a href={Routing.generate('announcements_show', { slug, id })}>{<span className="navbarRange-title">{title} - {username}</span>}</a>
-    :
-      <a href={Routing.generate('article_show', { id, slug })}>{title}</a>
-    }
-  </div>
-);
+class LastActu extends React.Component {
+  redirection = (value) => {
+    this.props.actions.redirect(value);
+  }
+
+  render() {
+    return (
+      <div className="lastActu" style={style(this.props.image)}>
+        {this.props.type === 'announcements' ?
+          <a href="#" onClick={() => this.redirection(`/app_dev.php/announcement/${this.props.id}/${this.props.slug}`)}>{<span className="navbarRange-title">{this.props.title} - {this.props.ownProps.username}</span>}</a>
+        :
+          <a href="#" onClick={() => this.redirection(`/app_dev.php/article/${this.props.id}/${this.props.slug}`)}>{this.props.title}</a>
+        }
+      </div>
+    );
+  }
+}
 
 LastActu.propTypes = {
   title: PropTypes.string.isRequired,
@@ -38,6 +39,7 @@ LastActu.propTypes = {
   id: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   username: PropTypes.string,
+  actions: PropTypes.object.isRequired,
 };
 
 LastActu.defaultProps = {

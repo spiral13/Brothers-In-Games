@@ -19,6 +19,10 @@ const initialState = {
     },
   ],
   news: [{}],
+  redirect: {
+    type: false,
+    route: '/app_dev.php',
+  },
 };
 
 /**
@@ -40,7 +44,9 @@ const ADD_GAMES = 'ADD_GAMES';
 export const GET_ACTUS = 'GET_ACTUS';
 const ADD_ACTUS = 'ADD_ACTUS';
 
+const REDIRECT = 'REDIRECT';
 
+const CHANGE_TYPE_ROUTING = 'CHANGE_TYPE_ROUTING';
 /**
  * Reducer
  */
@@ -57,6 +63,24 @@ const reducer = (state = initialState, action = {}) => {
         signin: {
           ...state.signin,
           [action.input]: action.value,
+        },
+      };
+
+    case REDIRECT:
+      return {
+        ...state,
+        redirect: {
+          type: true,
+          route: action.response,
+        },
+      };
+
+    case CHANGE_TYPE_ROUTING:
+      return {
+        ...state,
+        redirect: {
+          ...state.redirect,
+          type: false,
         },
       };
 
@@ -159,6 +183,15 @@ export const getAllActus = () => ({
 export const addActus = actus => ({
   type: ADD_ACTUS,
   actus,
+});
+
+export const redirect = response => ({
+  type: REDIRECT,
+  response,
+});
+
+export const changeTypeRouting = () => ({
+  type: CHANGE_TYPE_ROUTING,
 });
 /**
  * Export

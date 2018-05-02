@@ -48,7 +48,6 @@ class GameList extends React.Component {
     );
   }
 }
-
 GameList.propTypes = {
   actions: PropTypes.object.isRequired,
 };

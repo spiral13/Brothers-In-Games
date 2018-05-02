@@ -2,8 +2,8 @@
  * Npm import
  */
 import React from 'react';
-import Sidebar from 'frontend/src/components/Navigation_sidebar/Sidebar';
-import Navbar from 'frontend/src/components/Navigation_sidebar/Navbar';
+import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
+import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Loading from 'frontend/src/components/Loading';
 import Main from 'frontend/src/containers/Announce/Main';
 /**

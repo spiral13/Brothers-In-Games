@@ -11,28 +11,33 @@ import PropTypes from 'prop-types';
  * Code
  */
 
-const Announce = ({
-  username,
-  image,
-  title,
-  slug,
-  id,
-  content,
-}) => (
-  <div className="announce">
-    {/* Le slug sera à changer. */}
-    {/* eslint-disable-next-line */}
-    <a href={Routing.generate('announcements_show', { slug: slug, id: id })}>
-      {/* eslint-disable-next-line */}
-      <img className="player-image" src={image} alt="image de profil" />
-      <div className="player-announce">
-        <h2 className="player-name">{title} - {username}</h2>
-        {/* eslint-disable-next-line */}
-        <p className="contentContain">{content}</p>
+class Announce extends React.Component {
+  redirection = (value) => {
+    this.props.actions.redirect(value);
+  }
+
+  render() {
+    const {
+      username,
+      image,
+      title,
+      slug,
+      id,
+      content,
+    } = this.props;
+    return (
+      <div className="announce">
+        <a href="#" onClick={() => this.redirection(`/app_dev.php/announcement/${id}/${slug}`)}>
+          <image className="player-image" src={image} alt="image de profil" />
+          <div className="player-announce">
+            <h2 className="player-name">{title} - {username}</h2>
+            <p className="contentContain">{content}</p>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
-);
+    );
+  }
+}
 
 Announce.propTypes = {
   content: PropTypes.string.isRequired,
@@ -41,6 +46,7 @@ Announce.propTypes = {
   title: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 /**
  * Export

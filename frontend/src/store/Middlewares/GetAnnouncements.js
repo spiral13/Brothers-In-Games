@@ -33,6 +33,9 @@ export default store => next => (action) => {
       });
       break;
     }
+
+    default:
+      break;
   }
 
   // On passe au voisin

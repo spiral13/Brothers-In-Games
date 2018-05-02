@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 /**
 * Local import
 */
-import LastActu from 'frontend/src/components/HomeMember/LastActu';
+import LastActu from 'frontend/src/containers/HomeMember/LastActu';
 /**
  * Code
  */
@@ -21,7 +21,7 @@ class RightSidebar extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
     this.props.actions.getAllActus();
     this.props.actions.addAnnouncements();
   }
@@ -92,7 +92,7 @@ class RightSidebar extends React.Component {
 
 RightSidebar.propTypes = {
   actions: PropTypes.object.isRequired,
-  actus: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  actus: PropTypes.arrayOf(PropTypes.object.isRequired),
   playerNews: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 /**

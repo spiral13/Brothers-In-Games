@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { SUBMIT_CONNECT, SIGNUP_SUBMIT } from './reducer';
+import { SUBMIT_CONNECT, SIGNUP_SUBMIT, redirect } from './reducer';
 
 /*
  * Middleware
@@ -22,6 +22,9 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.post(Routing.generate('login'), formData).then((response) => {
         console.warn('Requête de connexion envoyée');
+        if (response.data.success) {
+          return store.dispatch(redirect('/app_dev.php/home'));
+        }
       }).catch((error) => {
         console.error(`Echec de l'envoie de la requête :${error}`);
       });
@@ -47,6 +50,9 @@ export default store => next => (action) => {
       });
       break;
     }
+
+    default:
+      break;
   }
 
   // On passe au voisin

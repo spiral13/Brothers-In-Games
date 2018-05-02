@@ -22,7 +22,7 @@ class HomeMember extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 500);
     this.props.actions.getAllNews();
   }
 

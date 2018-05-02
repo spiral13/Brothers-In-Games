@@ -10,22 +10,30 @@ import Content from 'frontend/src/components/HomeMember/Main/Content';
 /**
  * Code
  */
-const Main = ({ news }) => (
-  <div id="main-member">
-    {news.map(newContent => (
-      // eslint-disable-next-line
-      <a href={Routing.generate('article_show', { id: newContent.id, slug: newContent.slug })}>
-        <Content
-          key={`${newContent.id} news-member`}
-          content={newContent}
-        />
-      </a>
-    ))}
-  </div>
-);
+class Main extends React.Component {
+  redirection = (value) => {
+    this.props.actions.redirect(value);
+  }
+
+  render() {
+    return (
+      <div id="main-member">
+        {this.props.news.map(newContent => (
+          <a href="#" onClick={() => this.redirection(`/app_dev.php/article/${newContent.id}/${newContent.slug}`)}>
+            <Content
+              key={`${newContent.id} news-member`}
+              content={newContent}
+            />
+          </a>
+        ))}
+      </div>
+    );
+  }
+}
 
 Main.propTypes = {
   news: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  actions: PropTypes.object.isRequired,
 };
 /**
  * Export
