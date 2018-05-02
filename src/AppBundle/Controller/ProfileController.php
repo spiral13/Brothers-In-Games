@@ -13,14 +13,6 @@ class ProfileController extends Controller
 	{
 		return $this->render('user/profile.html.twig');
 	}
-
-	public function getProfileAction()
-	{
-		$id = $this->getUser()->getProfile()->getId();
-		$profile = $this->getDoctrine()->getRepository(Profile::class)->findOneInArray($id);
-
-		return $this->json($profile);
-	}
 	public function updateAction(Request $request)
 	{
 		if(!empty($request->request->all()))
@@ -74,6 +66,15 @@ class ProfileController extends Controller
             return $this->json(array('valid' => false));
         }
 	}
+
+	public function getProfileAction()
+	{
+		$id = $this->getUser()->getProfile()->getId();
+		$profile = $this->getDoctrine()->getRepository(Profile::class)->findOneInArray($id);
+
+		return $this->json($profile);
+	}
+
 	public function setDate($birthdate)
 	{
 		$date = new \DateTime();

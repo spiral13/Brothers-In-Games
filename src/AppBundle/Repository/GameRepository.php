@@ -22,6 +22,18 @@ class GameRepository extends EntityRepository
 		return $qb;
 	}
 
+	public function findOneInArray($id)
+	{
+		$qb = $this->createQueryBuilder('g')
+		->where('g.id = :id')
+		->setParameter('id', $id)
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
+
 	public function findAllInArrayByUser($user)
 	{
 		$qb = $this->createQueryBuilder('g')

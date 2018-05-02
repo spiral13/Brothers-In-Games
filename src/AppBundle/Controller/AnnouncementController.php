@@ -70,6 +70,15 @@ class AnnouncementController extends Controller
             return $this->json(array('status' => false, 'message' => 'Champ vide ou inexistant'));
         }
 	}
+	public function update()
+	{
+
+	}
+
+	public function delete()
+	{
+		
+	}
 
 	/**
 	 * Find all announcements
@@ -114,6 +123,7 @@ class AnnouncementController extends Controller
 	{
 		$id = $request->request->get('id');
 		$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneInArray($id);
+		unset($announcement[0]['user']['password']);
 
 		return $this->json($announcement);
 	}

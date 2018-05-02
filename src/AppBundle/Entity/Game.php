@@ -173,7 +173,7 @@ class Game
 
         return $this;
     }
-
+    
     /**
      * @return Announcement
      */
