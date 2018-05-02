@@ -2,12 +2,18 @@
  * Npm import
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 /**
 * Local import
 */
+
+// eslint-disable-next-line
 import AddOneGameForm from 'frontend/src/components/MyGames/AddOneGameForm';
+import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
+// eslint-disable-next-line
+// import GameList from 'frontend/src/containers/GameList/GameList';
+
 /**
  * Code
  */
@@ -17,6 +23,7 @@ class Main extends React.PureComponent {
    }
 
    render() {
+     const { mygames } = this.props;
      return (
        <div id="ContainerMyGamesList">
 
@@ -42,19 +49,30 @@ class Main extends React.PureComponent {
            </div>}
 
            <div id="containerAllMyGames">
-             <div id="oneOfMyGame">
-               <img src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="titre du jeu" id="oneOfMyGamePicture" />
-               <h2 id="oneOfMyGameTitle">titre du jeu</h2>
-             </div>
+             {mygames.map((mygame, index) => (
+               // <a href={Routing.generate('games_list', { id: mygame.id, slug: mygame.slug })}>
+               //   <OneOfMyGames
+               //     index={index}
+               //     key={mygame.id}
+               //     mygame={mygame}
+               //   />
+               // </a>
+               <OneOfMyGames
+                 index={index}
+                 key={mygame.id}
+                 mygame={mygame}
+               />
+             ))}
            </div>
+
          </section>
        </div>
      );
    }
 }
-// Main.propTypes = {
-//   games: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-// };
+Main.propTypes = {
+  mygames: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+};
 /**
  * Export
  */
