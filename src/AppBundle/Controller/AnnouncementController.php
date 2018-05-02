@@ -70,6 +70,15 @@ class AnnouncementController extends Controller
             return $this->json(array('status' => false, 'message' => 'Champ vide ou inexistant'));
         }
 	}
+	public function update()
+	{
+
+	}
+
+	public function delete()
+	{
+		
+	}
 
 	/**
 	 * Find all announcements

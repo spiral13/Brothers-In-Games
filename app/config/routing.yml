@@ -4,17 +4,28 @@ app:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
+###########################
+######### Routes ##########
+###########################
+
+#---------------------- API Test
 api:
     path: /api
     defaults: { _controller: AppBundle:Game:getApi }
     options:
         expose: true
+
 #---------------------- Home
+# Show home for the visitor
+# No need dynamic url
 home_visitor:
     path: /
     defaults: { _controller: AppBundle:Home:homeVisitor }
     options:
         expose: true
+
+# Show home for the user currently connected
+# No need dynamic url
 home_user:
   path: /home
   defaults: { _controller: AppBundle:Home:homeUser }
@@ -22,26 +33,46 @@ home_user:
         expose: true
 
 #---------------------- User
+# User sign up
+# Return response in JSON format
+# Need data of the form, sending by post method
 signup:
     path: /user/create
     defaults: { _controller: AppBundle:User:create }
     methods: [POST]
     options:
         expose: true
+
+# Connect the user
+# Return response in JSON format
+# Need data of the form, sending by post method
+# Redirect to route "home_user" with JS
 login:
     path: /connection
     defaults: { _controller: AppBundle:User:login }
     options:
         expose: true
+
+# Disconnect the user currently connected
+# No need dynamic url
+# Redirect to route "home_visitor" with PHP
 logout:
     path: /logout
     options:
         expose: true
+
+# Show account of the user currently connected
+# No need dynamic url
 account_show:
     path: /account
     defaults: { _controller: AppBundle:User:read }
     options:
         expose: true
+
+# Update account of the user currently connected
+# Return response in JSON format
+# Need data of the form, sending by post method
+# If empty input, return default data
 account_update:
     path: /account/update
     defaults: { _controller: AppBundle:User:update }
@@ -49,6 +80,7 @@ account_update:
         expose: true
 
 #---------------------- Friend
+# currently not treat
 friends_list:
     path: /friends
     defaults: { _controller: AppBundle:Friend:list }
@@ -56,31 +88,45 @@ friends_list:
         expose: true
 
 #---------------------- Profile
+# Show profile of the user selected
+# Need to send his SLUG into the url
 profile_show:
     path: /profile/{slug}
     defaults: { _controller: AppBundle:Profile:otherProfileShow }
     options:
         expose: true
+
+# Show profile of the user currently connected
+# No need dynamic url
 my_profile_show:
     path: /my-profile
     defaults: { _controller: AppBundle:Profile:show }
     options:
         expose: true
+
+# Update profile of the user currently connected
+# Return response in JSON format
+# Need data of the form, sending by post method
 my_profile_update:
     path: /my-profile/update
     defaults: { _controller: AppBundle:Profile:update }
 
 #---------------------- Mail
+# currently not treat
 mail_list_receive:
     path: /mail/receive
     defaults: { _controller: AppBundle:Mail:listReceive }
     options:
         expose: true
+
+# currently not treat
 mail_list_send:
     path: /mail/send
     defaults: { _controller: AppBundle:Mail:listSend }
     options:
         expose: true
+
+# currently not treat
 mail_show:
     path: /mail/show/{id}
     defaults: { _controller: AppBundle:Mail:read }
@@ -88,11 +134,14 @@ mail_show:
         expose: true
 
 #---------------------- Messenger
+# currently not treat
 messenger_show:
     path: /messenger/{id}
     defaults: { _controller: AppBundle:Messenger:read }
     options:
         expose: true
+
+# currently not treat
 messenger_list:
     path: /messenger
     defaults: { _controller: AppBundle:Messenger:list }
@@ -100,23 +149,34 @@ messenger_list:
         expose: true
 
 #---------------------- Announcements
+# Show all announcements
+# No need dynamic url
 announcements_list:
     path: /announcements
     defaults: { _controller: AppBundle:Announcement:list }
     options:
         expose: true
+
+# Show announcements filtered by game
+# Need to send the SLUG of concerned game into the url
 announcements_list_game:
     path: /announcements/{slug}
     defaults: { _controller: AppBundle:Announcement:list }
     options:
          expose: true
+
+# Show the announcement currently selected
+# Need to send the ID of this announcement
+# and the SLUG of his game into the url
 announcements_show:
     path: /announcement/{id}/{slug}
     defaults: { _controller: AppBundle:Announcement:read }
     options:
         expose: true
 
-
+# Create new announcement by the user currently connected
+# Return response in JSON format
+# Need data of the form, sending by post method
 announcements_create:
     path: /announcement/create
     defaults: { _controller: AppBundle:Announcement:create }
@@ -133,7 +193,7 @@ games_list:
     options:
         expose: true
 
-# Show games from the current user
+# Show games from the user currently connected
 # No need dynamic url
 my_games:
     path: /my-games
@@ -142,14 +202,13 @@ my_games:
         expose: true
 
 #---------------------- News
-# Show the article selected
+# Show the article currently selected
 # Need to send the ID of this article and her SLUG into the url
 article_show:
     path: /article/{id}/{slug}
     defaults: { _controller: AppBundle:Article:read }
     options:
         expose: true
-
 
 ###########################
 # Récupération des donnée #
@@ -176,7 +235,7 @@ get_sidebar_articles:
 
 # Get data to the article currently selected
 # Return JSON data
-# need ID of this article sending by post method
+# Need ID of this article, sending by post method
 get_article:
     path: /get/home/article
     defaults: { _controller: AppBundle:Article:getArticle }
@@ -193,7 +252,7 @@ get_all_games:
     options:
         expose: true
 
-# Get games data from the current user
+# Get games data from the user currently connected
 # Return JSON data
 # No need parameters
 get_user_games:
@@ -214,7 +273,7 @@ get_all_announcement:
 
 # Get announcements data filtered by game
 # Return JSON data
-# need SLUG of the concerned game sending by post method
+# Need SLUG of the concerned game, sending by post method
 get_announcement_by_game:
     path: /get/announcements/games
     defaults: { _controller: AppBundle:Announcement:getAnnouncementByGameSlug }
@@ -223,7 +282,7 @@ get_announcement_by_game:
 
 # Get data to the announcement currently selected
 # Return JSON data
-# need ID of this announcement sending by post method
+# Need ID of this announcement, sending by post method
 get_announcement:
     path: /get/announcement
     defaults: { _controller: AppBundle:Announcement:getAnnouncement }
@@ -231,7 +290,7 @@ get_announcement:
         expose: true
 
 #---------------------- Profile
-# Get profile data to the current user
+# Get profile  user currently connected
 # Return JSON data
 # No need parameters
 get_profile:
@@ -241,7 +300,7 @@ get_profile:
         expose: true
 
 #---------------------- User
-# Get current user data
+# Get data to the user currently connected
 # Return JSON data
 # No need parameters
 get_user:
