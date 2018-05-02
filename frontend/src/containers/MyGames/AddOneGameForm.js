@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 /**
 * Local import
 */
-import Main from 'frontend/src/components/Main';
+import AddOneGameForm from 'frontend/src/components/MyGames/AddOneGameForm';
 /**
  * Code
  */
@@ -16,9 +16,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = () => ({});
 
-const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
+const AddOneGameFormContainer = connect(mapStateToProps, mapDispatchToProps)(AddOneGameForm);
 
 /**
  * Export
  */
-export default MainContainer;
+export default AddOneGameFormContainer;

@@ -2,13 +2,13 @@
  * Npm import
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import Main from 'frontend/src/components/MyGames/Main';
+import Main from 'frontend/src/containers/MyGames/Main';
 import Loading from 'frontend/src/components/Loading';
 
 /**
@@ -29,7 +29,7 @@ class MyGames extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
-    // this.props.actions.getAllMyGames();
+    this.props.actions.getAllMyGames();
   }
 
   /*
@@ -49,9 +49,9 @@ class MyGames extends React.Component {
   }
 }
 
-// GameList.propTypes = {
-//   actions: PropTypes.object.isRequired,
-// };
+MyGames.propTypes = {
+  actions: PropTypes.object.isRequired,
+};
 
 /**
  * Export
