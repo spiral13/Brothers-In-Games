@@ -115,6 +115,8 @@ announcements_show:
     defaults: { _controller: AppBundle:Announcement:read }
     options:
         expose: true
+
+
 announcements_create:
     path: /announcement/create
     defaults: { _controller: AppBundle:Announcement:create }
@@ -123,11 +125,16 @@ announcements_create:
         expose: true
 
 #---------------------- Games
+# Show all games containing announcements
+# No need dynamic url
 games_list:
     path: /games
     defaults: { _controller: AppBundle:Game:list }
     options:
         expose: true
+
+# Show games from the current user
+# No need dynamic url
 my_games:
     path: /my-games
     defaults: { _controller: AppBundle:Game:listByUser }
@@ -135,6 +142,8 @@ my_games:
         expose: true
 
 #---------------------- News
+# Show the article selected
+# Need to send the ID of this article and her SLUG into the url
 article_show:
     path: /article/{id}/{slug}
     defaults: { _controller: AppBundle:Article:read }
