@@ -3,9 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Game;
-use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends Controller
 {
@@ -22,10 +20,7 @@ class GameController extends Controller
 	{
 		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArray();
 
-		$serializer = SerializerBuilder::create()->build();
-		$json = $serializer->serialize($games, 'json');
-
-		return new Response($json);
+		return $this->json($games);
 	}
 
 	public function getUserGameAction()
