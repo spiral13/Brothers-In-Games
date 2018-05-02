@@ -53,6 +53,12 @@ class AnnouncementRepository extends EntityRepository
 	public function findOneInArray($id)
 	{
 		$qb = $this->createQueryBuilder('a')
+		->join('a.game', 'g')
+		->addSelect('g')
+		->join('a.user', 'u')
+		->Join('u.profile', 'p')
+		->addSelect('u')
+		->addSelect('p')
 		->where('a.id = :id')
 		->setParameter('id', $id)
 		->getQuery()
