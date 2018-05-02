@@ -25,4 +25,18 @@ class UserRepository extends EntityRepository
 
 		return $qb;
 	}
+
+	public function findFriendByCurrentUserIdInArray($id)
+	{
+		$qb = $this->createQueryBuilder('u')
+		->join('u.myFriend', 'f')
+		->addSelect('f')
+		->where('u.id = :id')
+		->setParameter('id', $id)
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
 }

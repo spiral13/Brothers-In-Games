@@ -1,15 +1,16 @@
 <?php
 namespace AppBundle\DataFixtures;
 use AppBundle\DataFixtures\Fakers\GamesProvider;
+use AppBundle\Entity\Announcement;
 use AppBundle\Entity\Profile;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use AppBundle\Service\NormalizeValue;
 use AppBundle\Service\SlugConverter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Persistence\ManagerRegistry as Doctrine;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Doctrine\Common\Persistence\ManagerRegistry as Doctrine;
 
 class AppFixtures extends Fixture
 {
@@ -27,15 +28,13 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->addRoles($manager, 'ROLE_USER', 'Utilisateur');
-        $this->addRoles($manager, 'ROLE_MODERATOR', 'Modérateur');
         $this->addRoles($manager, 'ROLE_ADMIN', 'Administrateur');
         $roleUser = $manager->getRepository(Role::class)->findOneBy(['code' => 'ROLE_USER']);
-        $roleModo = $manager->getRepository(Role::class)->findOneBy(['code' => 'ROLE_MODERATOR']);
         $roleAdmin = $manager->getRepository(Role::class)->findOneBy(['code' => 'ROLE_ADMIN']);
         
         $this->addSimpleUsers($manager, 'admin', 'admin@oclock.com', 'admin', $roleAdmin);
-        $this->addSimpleUsers($manager, 'modo', 'modo@oclock.com', 'modo', $roleModo);
         $this->addSimpleUsers($manager, 'user', 'user@oclock.com', 'user', $roleUser);
+        $devUser = $manager->getRepository(User::class)->findOneBy(['username' => 'user']);
         $admin = $manager->getRepository(User::class)->findOneBy(['username' => 'admin']);
 
         $generator = \Faker\Factory::create('fr_FR');
@@ -94,18 +93,64 @@ class AppFixtures extends Fixture
         $games = $inserted['AppBundle\Entity\Game'];
         $gameCategories = $inserted['AppBundle\Entity\GameCategory'];
         $users = $inserted['AppBundle\Entity\User'];
-        foreach($games as $game)
-        {
-            shuffle($gameCategories);
-            shuffle($users);
+        
+        $this->addCategories($manager, $games, $gameCategories, $users);
+        $this->addFriends($manager, $users);
+        
+        $this->fillDevUser($manager, $games, $devUser, $users);
+        $this->addAnnouncementForDevUser($manager, $generator, $devUser, $games);
+        $this->addProfileForDevUser($manager, $generator, $devUser);
+        
+        $this->fillDevUser($manager, $games, $admin, $users);
+        $this->addAnnouncementForDevUser($manager, $generator, $admin, $games);
+        $this->addProfileForDevUser($manager, $generator, $admin);
+    }
 
-            for($i = 0; $i < mt_rand(1, 3); $i++)
-            {
-                $game->addUsers($users[$i]);
-                $game->addGamecategories($gameCategories[$i]);
-            }
-            $manager->persist($game);
+    private function addProfileForDevUser($manager, $generator, $devUser)
+    {
+        $profile = new Profile();
+        $profile->setFirstname($generator->firstName());
+        $profile->setImage($generator->imageUrl());
+        $profile->setGender($generator->title());
+        $profile->setDescription($generator->text($maxNbChars = 200));
+        $profile->setBirthdate($generator->dateTimeBetween($startDate = '-80 years', $endDate = '-10 years', $timezone = null));
+        $manager->persist($profile);
+        $manager->flush();
+
+        $devUser->setProfile($profile);
+        $manager->persist($devUser);
+        $manager->flush();
+    }
+
+    private function addAnnouncementForDevUser($manager, $generator, $devUser, $games)
+    {
+        shuffle($games);
+
+        for ($i=0; $i < 10; $i++) {
+            $announcement = new Announcement();
+            $announcement->setGame($games[$i]);
+            $announcement->setUser($devUser);
+            $announcement->setContent($generator->text($maxNbChars = 255));
+            $announcement->setPublished($generator->dateTimeAD($max = 'now', $timezone = null));
+            $manager->persist($announcement);
         }
+        $manager->flush();
+    }
+
+    private function fillDevUser($manager, $games, $devUser, $users)
+    {
+        shuffle($games);
+        shuffle($users);
+
+        for ($i=0; $i < 10; $i++) {
+            $devUser->addGames($games[$i]);
+
+            if($devUser !== $users[$i])
+            {
+                $devUser->addMyFriend($users[$i]);
+            }
+        }
+        $manager->persist($devUser);
         $manager->flush();
     }
     
@@ -126,6 +171,43 @@ class AppFixtures extends Fixture
         $user->setPassword($this->encoder->encodePassword($user, $password));
         $user->setRole($role);
         $manager->persist($user);
+        $manager->flush();
+    }
+
+    private function addCategories($manager, $games, $gameCategories, $users)
+    {
+        foreach($games as $game)
+        {
+            shuffle($gameCategories);
+            shuffle($users);
+
+            for($i = 0; $i < mt_rand(1, 3); $i++)
+            {
+                $game->addUsers($users[$i]);
+                $game->addGamecategories($gameCategories[$i]);
+            }
+            $manager->persist($game);
+        }
+        $manager->flush();
+    }
+
+    private function addFriends($manager, $users)
+    {
+        $user1 = $users;
+        
+        foreach($users as $user)
+        {
+            shuffle($user1);
+
+            for($i = 0; $i < mt_rand(1, 10); $i++)
+            {   
+                if($user1[$i] !== $user)
+                {
+                    $user->addMyFriend($user1[$i]);
+                }
+            }
+            $manager->persist($user);
+        }
         $manager->flush();
     }
 }

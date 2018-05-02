@@ -87,6 +87,24 @@ friends_list:
     options:
         expose: true
 
+# Add friend to the user currently connected
+# Return response in JSON format
+# Need ID of the requested user as a friend, sending by post method
+addFriend:
+    path: /friend/add
+    defaults: { _controller: AppBundle:Friend:addFriend }
+    options:
+        expose: true
+
+# Remove friend to the user currently connected
+# Return response in JSON format
+# Need ID of the requested user as a remove, sending by post method
+removeFriend:
+    path: /friend/remove
+    defaults: { _controller: AppBundle:Friend:removeFriend }
+    options:
+        expose: true
+
 #------------------------------------------------------------------ Profile
 # Show profile of the user selected
 # Need to send his SLUG into the url
@@ -198,15 +216,6 @@ games_list:
 my_games:
     path: /my-games
     defaults: { _controller: AppBundle:Game:listByUser }
-    options:
-        expose: true
-
-# Add game to the user currently connected
-# Return response in JSON format
-# Need data of the form and ID of this game if is exist, sending by post method
-my_games_add:
-    path: /my-games/add
-    defaults: { _controller: AppBundle:Game:addUserGame }
     options:
         expose: true
 
@@ -333,5 +342,15 @@ get_profile:
 get_user:
     path: /get/user
     defaults: { _controller: AppBundle:User:getUser }
+    options:
+        expose: true
+
+#------------------------------------------------------------------ Friend
+# Get friends data to the user currently connected
+# Return JSON data
+# No need parameters
+getUserFriends:
+    path: /get/friends
+    defaults: { _controller: AppBundle:Friend:getUserFriends }
     options:
         expose: true
