@@ -7,15 +7,29 @@ import PropTypes from 'prop-types';
 * Local import
 */
 import Friends from 'frontend/src/components/Navigation_sidebar/Friends';
+import Loading from 'frontend/src/components/Loading';
 /**
  * Code
  */
 class Sidebar extends React.Component {
+  state = {
+    loading: true,
+  }
+
+  componentWillMount() {
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 500);
+  }
+
   redirection = (value) => {
     this.props.actions.redirect(value);
   }
 
   render() {
+    if (this.state.loading) {
+      return <Loading />;
+    }
     return (
       <div id="sidebar">
         <h1 id="sidebar-title">
