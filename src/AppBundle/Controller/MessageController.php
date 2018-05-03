@@ -18,6 +18,9 @@ class MessageController extends Controller
 
 	public function getListreceivedMessagesAction(Request $request)
 	{
+		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByReceiverInArray($this->getUser());
+
+		return $this->json($messages);
 	}
 
 	public function getMessageAction(Request $request)
@@ -28,8 +31,10 @@ class MessageController extends Controller
 			$id = $request->query->get('id');
 			$message = $this->getDoctrine()->getRepository(Message::class)->findOneBy(['id' => $id]);
 
-			if($message->getAuthor() === $user || $message->getReceiver() === $user)
+			if($message->getAuthor() == $user || $message->getReceiver() == $user)
 			{
+				$message = $this->getDoctrine()->getRepository(Message::class)->findOneByInArray($id);
+
 				return $this->json($message);
 			}
 			else

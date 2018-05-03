@@ -16,9 +16,32 @@ class MessageRepository extends EntityRepository
 	public function findAllByAuthorInArray($user)
 	{
 		$qb = $this->createQueryBuilder('m')
-		->join('m.author', 'a')
 		->where('m.author = :user')
 		->setParameter('user', $user)
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
+
+	public function findAllByReceiverInArray($user)
+	{
+		$qb = $this->createQueryBuilder('m')
+		->where('m.receiver = :user')
+		->setParameter('user', $user)
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
+
+	public function findOneByInArray($id)
+	{
+		$qb = $this->createQueryBuilder('m')
+		->where('m.id = :id')
+		->setParameter('id', $id)
 		->getQuery()
 		->getArrayResult()
 		;

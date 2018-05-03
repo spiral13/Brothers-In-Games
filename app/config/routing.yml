@@ -78,6 +78,11 @@ account_update:
     defaults: { _controller: AppBundle:User:update }
     options:
         expose: true
+account_delete:
+    path: /account/delete
+    defaults: { _controller: AppBundle:User:delete }
+    options:
+        expose: true
 
 #------------------------------------------------------------------ Friend
 # currently not treat
@@ -384,12 +389,21 @@ getUserFriends:
         expose: true
 
 #------------------------------------------------------------------ Message
-# Get list messages data of the user currently connected
+# Get list messages data send by the user currently connected
 # Return JSON data
 # No need parameters
 get_list_sended_messages:
     path: /get/list/sended/messages
     defaults: { _controller: AppBundle:Message:getListSendedMessages }
+    options:
+        expose: true
+
+# Get list messages data receive by the user currently connected
+# Return JSON data
+# No need parameters
+get_list_received_messages:
+    path: /get/list/received/messages
+    defaults: { _controller: AppBundle:Message:getListReceivedMessages }
     options:
         expose: true
 
