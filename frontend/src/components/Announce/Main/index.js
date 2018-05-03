@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 */
 import Banner from 'frontend/src/components/Announcements/Banner';
 import Contact from 'frontend/src/components/Announce/Contact';
-import ContactProfile from 'frontend/src/components/Announce/Contact/ContactProfile';
+import ContactProfile from 'frontend/src/containers/Announce/ContactProfile';
 /**
  * Code
  */
