@@ -1,15 +1,12 @@
-
 /**
  * Npm import
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /**
 * Local import
 */
-// import Announcements from 'frontend/src/containers/Announcements/Announcements';
 
 /**
  * Code
@@ -40,7 +37,6 @@ const Aside = ({ article }) => (
 
 Aside.propTypes = {
   article: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  // description: PropTypes.string.isRequired,
 };
 
 

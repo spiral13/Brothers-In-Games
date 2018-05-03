@@ -29,7 +29,7 @@ class Article extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 1500);
     this.props.actions.getArticle();
   }
 

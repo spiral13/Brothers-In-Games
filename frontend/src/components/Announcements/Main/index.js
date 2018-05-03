@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 /**
 * Local import
 */
-import Announce from 'frontend/src/components/Announcements/Announce';
+import Announce from 'frontend/src/containers/Announcements/Announce';
 import Banner from 'frontend/src/containers/Announcements/Banner';
 /**
  * Code

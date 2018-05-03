@@ -11,7 +11,6 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.get(Routing.generate('get_home_articles')).then((response) => {
         // Ici, faire un dispatch.
-        console.log(addNews(response));
         store.dispatch(addNews(response));
       }).catch((error) => {
         console.log(error);
@@ -22,7 +21,6 @@ export default store => next => (action) => {
     case GET_ACTUS: {
       // eslint-disable-next-line
       axios.get(Routing.generate('get_sidebar_articles')).then((response) => {
-        console.log(response);
         // Ici, faire un dispatch.
         store.dispatch(addActus(response));
       }).catch((error) => {
@@ -30,6 +28,9 @@ export default store => next => (action) => {
       });
       break;
     }
+
+    default:
+      break;
   }
 
   // On passe au voisin

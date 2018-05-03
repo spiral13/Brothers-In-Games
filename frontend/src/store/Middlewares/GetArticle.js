@@ -12,13 +12,10 @@ export default store => next => (action) => {
     case GET_ARTICLE: {
       const url = window.location.pathname.split('/');
       const formData = new FormData();
-      console.log(url);
       formData.append('id', url[3]);
       formData.append('slug', url[4]);
-      console.log(formData);
       // eslint-disable-next-line
       axios.post(Routing.generate('get_article'), formData).then((response) => {
-        console.log(response);
         // Ici, faire un dispatch.
         store.dispatch(addArticle(response));
       }).catch((error) => {
@@ -26,6 +23,9 @@ export default store => next => (action) => {
       });
       break;
     }
+
+    default:
+      break;
   }
 
   // On passe au voisin

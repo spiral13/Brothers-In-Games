@@ -15,8 +15,26 @@ class UserRepository extends EntityRepository
 	public function findOneInArray($id)
 	{
 		$qb = $this->createQueryBuilder('u')
-		->select('u.username')
-		->addSelect('u.mail')
+		->join('u.profile', 'p')
+		->addSelect('p')
+		->join('u.games', 'g')
+		->addSelect('g')
+		->where('u.id = :id')
+		->setParameter('id', $id)
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
+
+	public function findSessionInArray($id)
+	{
+		$qb = $this->createQueryBuilder('u')
+		->join('u.profile', 'p')
+		->addSelect('p')
+		->join('u.games', 'g')
+		->addSelect('g')
 		->where('u.id = :id')
 		->setParameter('id', $id)
 		->getQuery()

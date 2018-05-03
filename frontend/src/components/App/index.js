@@ -8,7 +8,8 @@
  * Npm import
  */
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 /*
@@ -19,50 +20,41 @@ import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
 import Article from 'frontend/src/containers/Article/index';
-import MyGames from 'frontend/src/components/MyGames';
+import MyGames from 'frontend/src/containers/MyGames/MyGamesContainer';
 import Announce from 'frontend/src/containers/Announce';
 /*
  * Code
  */
-
-// const newUrl = [];
-// if (window.location.href.split('http://localhost:8000/app_dev.php/article')) {
-//   const url = window.location.pathname.split('/');
-//   newUrl.push(url[3], url[4]);
-// }
-const App = () => (
-  <Router>
-    <div id="app">
-      {/* Nous pouvons ajouter autant de pages que souhaité  */}
-      <Switch>
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('home_visitor')} component={HomeVisiter} />
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('home_user')} component={HomeMember} />
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('games_list')} component={GameList} />
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('announcements_list')} component={Announcements} />
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('account_show')} component={() => <div>Account show</div>} />
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('my_profile_show')} component={() => <div>My Profile show</div>} />
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('profile_show')} component={() => <div>Profile show</div>} />
-        {/* eslint-disable-next-line */}
-        <Route exact path={Routing.generate('my_games')} component={MyGames} />
-        {/* eslint-disable-next-line */}
-        <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
-        {/* eslint-disable-next-line */}
-        <Route exact path="/app_dev.php/announcement/:id/:slug" component={Announce} />
-        {/* <Route exact path={Routing.generate('article_show', { id: newUrl[0], slug: newUrl[1] })} component={Article} /> */}
-        {/* eslint-disable-next-line */}
-      </Switch>
-    </div>
-  </Router>
-);
-
-
+const App = ({ redirect, actions }) => {
+  let bool = false;
+  if (redirect.type) {
+    bool = true;
+    actions.changeTypeRouting();
+  }
+  return (
+    <Router>
+      <div id="app">
+        {bool ? <Redirect to={redirect.route} /> : true }
+        <Switch>
+          <Route exact path="/app_dev.php" component={HomeVisiter} />
+          <Route exact path="/app_dev.php/home" component={HomeMember} />
+          <Route exact path="/app_dev.php/games" component={GameList} />
+          <Route exact path="/app_dev.php/my-games" component={MyGames} />
+          <Route exact path="/app_dev.php/announcements" component={Announcements} />
+          <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
+          <Route exact path="/app_dev.php/announcement/:id/:slug" component={Announce} />
+          <Route exact path="/app_dev.php/account" component={() => <div>Account show</div>} />
+          <Route exact path="/app_dev.php/my-profile" component={() => <div>My Profile show</div>} />
+          <Route exact path="/app_dev.php/profile/:slug" component={() => <div>Other Profile show</div>} />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
+App.propTypes = {
+  redirect: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+};
 /*
  * Export default
  */

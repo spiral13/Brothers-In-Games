@@ -2,13 +2,13 @@
  * Npm import
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-// import Main from 'frontend/src/components/MyGames/Main';
+import Main from 'frontend/src/containers/MyGames/Main';
 import Loading from 'frontend/src/components/Loading';
 
 /**
@@ -29,7 +29,7 @@ class MyGames extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
-    // this.props.actions.getAllMyGames();
+    this.props.actions.getAllMyGames();
   }
 
   /*
@@ -43,42 +43,15 @@ class MyGames extends React.Component {
       <div className="MyGamesList">
         <Navbar />
         <Sidebar />
-        <div id="ContainerMyGamesList">
-
-          <div id="infoIdentityProfile">
-            <img id="photoProfileOnMyGames" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" />
-            <h1 id="profileNameOnMyGames">Liste de jeux de Toto</h1>
-          </div>
-
-          <section id="sectionListingMyGames">
-            <div id="settings">
-              <h2 id="title">Vos jeux</h2>
-              <div id="triggerLegend">Ajouter un nouveau jeu à votre liste</div>
-              <span id="trigger"> + </span>
-            </div>
-            <div id="triggeredAddOneGameForm">
-              <form id="addOneGameForm">
-                <input
-                  type="text"
-                  placeholder="Ajouter un nouveau jeu à votre liste"
-                />
-              </form>
-            </div>
-
-            <div id="MyGames">
-              <img src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="titre du jeu" id="oneOfMyGamePicture" />
-              <h2 id="oneOfMyGameTitle">titre du jeu</h2>
-            </div>
-          </section>
-        </div>
+        <Main />
       </div>
     );
   }
 }
 
-// GameList.propTypes = {
-//   actions: PropTypes.object.isRequired,
-// };
+MyGames.propTypes = {
+  actions: PropTypes.object.isRequired,
+};
 
 /**
  * Export

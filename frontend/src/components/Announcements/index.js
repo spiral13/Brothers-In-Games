@@ -41,9 +41,6 @@ class Announcements extends React.Component {
 Announcements.propTypes = {
   actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
 };
-// Announcements.propTypes = {
-//
-// };
 /**
  * Export
  */

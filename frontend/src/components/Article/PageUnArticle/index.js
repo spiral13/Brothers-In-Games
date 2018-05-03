@@ -31,7 +31,6 @@ class PageUnArticle extends React.PureComponent {
               {article[0].content}
             </p>
           </article>
-          {/* <Aside /> */}
         </div>
       </main>
     );
@@ -40,7 +39,6 @@ class PageUnArticle extends React.PureComponent {
 
 PageUnArticle.propTypes = {
   article: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  // description: PropTypes.string.isRequired,
 };
 
 

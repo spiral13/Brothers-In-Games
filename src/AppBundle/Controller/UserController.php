@@ -189,6 +189,8 @@ class UserController extends Controller
         $id = $this->getUser()->getId();
         $user = $this->getDoctrine()->getRepository(User::class)->findOneInArray($id);
 
+        unset($user[0]['password']);
+
         return $this->json($user);
     }
 }
