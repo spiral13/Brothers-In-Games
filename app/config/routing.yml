@@ -382,3 +382,22 @@ getUserFriends:
     defaults: { _controller: AppBundle:Friend:getUserFriends }
     options:
         expose: true
+
+#------------------------------------------------------------------ Message
+# Get list messages data of the user currently connected
+# Return JSON data
+# No need parameters
+get_list_sended_messages:
+    path: /get/list/sended/messages
+    defaults: { _controller: AppBundle:Message:getListSendedMessages }
+    options:
+        expose: true
+
+# Get messages data of the user currently connected
+# Return JSON data
+# Need ID of this message, sending by post method
+get_messages:
+    path: /get/message
+    defaults: { _controller: AppBundle:Message:getMessage }
+    options:
+        expose: true

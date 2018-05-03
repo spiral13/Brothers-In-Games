@@ -9,6 +9,41 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MessageController extends Controller
 {
+	public function getListSendedMessagesAction()
+	{
+		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByAuthorInArray($this->getUser());
+
+		return $this->json($messages);
+	}
+
+	public function getListreceivedMessagesAction(Request $request)
+	{
+	}
+
+	public function getMessageAction(Request $request)
+	{
+		$user = $this->getUser();
+		if($request->query->all())
+		{
+			$id = $request->query->get('id');
+			$message = $this->getDoctrine()->getRepository(Message::class)->findOneBy(['id' => $id]);
+
+			if($message->getAuthor() === $user || $message->getReceiver() === $user)
+			{
+				return $this->json($message);
+			}
+			else
+			{
+				return $this->json(['status' => false, 'message' => 'Ce message n\'existe pas ou vous n\'avez pas l\'autorisation']);
+			}
+
+		}
+		else
+		{
+			return $this->json(['status' => false]);
+		}
+	}
+
 	public function createAction(Request $request)
 	{
 		if($request->query->all())
