@@ -20,7 +20,7 @@ const Game = ({ game }) => (
 );
 
 Game.propTypes = {
-  game: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  game: PropTypes.object.isRequired,
 };
 
 

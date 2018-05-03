@@ -16,8 +16,6 @@ import Loading from 'frontend/src/components/Loading';
  */
 
 class GameList extends React.Component {
-  // mise en place d'un state pour un petit loading
-  // pour laisser le temps au serveur de répondre
   state = {
     loading: true,
   }

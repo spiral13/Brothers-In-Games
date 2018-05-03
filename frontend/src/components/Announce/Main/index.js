@@ -20,7 +20,7 @@ const Main = ({ datas }) => (
   </div>
 );
 Main.propTypes = {
-  datas: PropTypes.object.isRequired,
+  datas: PropTypes.array.isRequired,
 };
 /**
  * Export

@@ -32,6 +32,7 @@ const ContactProfile = ({ datas }) => (
     <hr />
     <div className="gamesPlayed">
       {/* Mapper les jeux et les afficher */}
+      {console.log(datas)}
       <a href="#"><img src="#" />Un jeu</a>
     </div>
   </div>
