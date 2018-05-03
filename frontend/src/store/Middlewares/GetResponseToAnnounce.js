@@ -15,7 +15,6 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.post(Routing.generate('mail_list_send'), formData).then((response) => {
         console.log(response);
-        // Ici, faire un dispatch.
         // store.dispatch(sendResponse(response));
       }).catch((error) => {
         console.log(error);

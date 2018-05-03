@@ -12,7 +12,9 @@ import { redirect } from 'frontend/src/store/reducer';
  * Code
  */
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  playerName: state.FriendsReducer.friend[0].username,
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ redirect }, dispatch),

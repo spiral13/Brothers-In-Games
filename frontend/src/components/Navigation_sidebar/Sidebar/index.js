@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 * Local import
 */
 import Friends from 'frontend/src/containers/Navigation_sidebar/Friends';
-import Loading from 'frontend/src/components/Loading';
 /**
  * Code
  */
@@ -24,7 +23,6 @@ class Sidebar extends React.Component {
             Brothers<br /><span><i>in</i>Games</span>
           </a>
         </h1>
-        <h2 id="sidebar-username">Robert Gudule</h2>
         <form id="sidebar-form">
           <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu / ami</label>
           <input id="sidebar-input" type="text" value="" placeholder="Recherche de joueurs/jeux" />

@@ -16,8 +16,16 @@ import PropTypes from 'prop-types';
  * Code
  */
 class Navbar extends React.Component {
+  state = {
+    showPlayerInformations: false,
+  }
+
   redirection = (value) => {
     this.props.actions.redirect(value);
+  }
+
+  showInformations = () => {
+    this.setState({ showPlayerInformations: !this.state.showPlayerInformations });
   }
 
   render() {
@@ -41,15 +49,15 @@ class Navbar extends React.Component {
               {/* eslint-disable-next-line */}
               <a href="#" onClick={() => this.redirection("/app_dev.php/my-games")}>Mes jeux</a>
             </li>
-            <li>
-              <Server className="nav-fig" />
-              {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}>Mon profil</a>
-            </li>
+            {/* <li> */}
+              {/* <Server className="nav-fig" />
+              <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}>Mon profil</a> */}
+            {/* </li> */}
             <li>
               <User className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection('/app_dev.php/account')}>Mon compte</a>
+              <a href="#" onClick={() => this.showInformations()}>{this.props.playerName}</a>
+              {/* <a href="#" onClick={() => this.redirection('/app_dev.php/account')}>{this.props.playerName}</a> */}
             </li>
             <li>
               <Signout className="nav-fig" />
@@ -57,6 +65,22 @@ class Navbar extends React.Component {
               <a href={Routing.generate('logout')}>Déconnexion</a>
             </li>
           </ul>
+          {this.state.showPlayerInformations ?
+            <div className="showInformations">
+              <ul>
+                <li>
+                  <Server className="nav-fig" />
+                  {/* eslint-disable-next-line */}
+                  <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}>Mon profil</a>
+                </li>
+                <li>
+                  <User className="nav-fig" />
+                  {/* eslint-disable-next-line */}
+                  <a href="#" onClick={() => this.redirection('/app_dev.php/account')}>Mon compte</a>
+                </li>
+              </ul>
+            </div>
+          : true}
         </nav>
       </div>
     );
@@ -64,6 +88,7 @@ class Navbar extends React.Component {
 }
 Navbar.propTypes = {
   actions: PropTypes.object.isRequired,
+  playerName: PropTypes.string.isRequired,
 };
 /**
  * Export

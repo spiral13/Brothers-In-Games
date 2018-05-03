@@ -22,9 +22,9 @@ class MyGames extends React.Component {
     loading: true,
   }
 
-  // /*
-  //  * Lifecycle
-  //  */
+  /*
+   * Lifecycle
+   */
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });

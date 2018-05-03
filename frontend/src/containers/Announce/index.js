@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 */
 import Announce from 'frontend/src/components/Announce';
 import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
+import { getProfileAnnounce } from 'frontend/src/store/reducers/AnnouncementsReducer';
 /**
  * Code
  */
@@ -15,7 +16,7 @@ import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAllFriends }, dispatch),
+  actions: bindActionCreators({ getAllFriends, getProfileAnnounce }, dispatch),
 });
 
 const AnnounceContainer = connect(mapStateToProps, mapDispatchToProps)(Announce);
