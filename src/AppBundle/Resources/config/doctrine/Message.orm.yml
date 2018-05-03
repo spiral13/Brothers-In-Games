@@ -4,7 +4,7 @@ AppBundle\Entity\Message:
     repositoryClass: AppBundle\Repository\MessageRepository
     id:
         id:
-            type: integer
+            type: bigint
             id: true
             generator:
                 strategy: AUTO
