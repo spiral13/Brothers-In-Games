@@ -35,7 +35,7 @@ class MessageController extends Controller
 			{
 				$message = $this->getDoctrine()->getRepository(Message::class)->findOneByInArray($id);
 
-				return $this->json($message);
+				return $this->json(['status' => true, 'message' => $message]);
 			}
 			else
 			{
@@ -84,6 +84,8 @@ class MessageController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($message);
 				$em->flush();
+
+				$message = $this->getDoctrine()->getRepository(Message::class)->findOneByInArray($message->getId());
 
 				return $this->json(['status' => true, 'message' => $message]);
 			}

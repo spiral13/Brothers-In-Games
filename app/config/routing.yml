@@ -146,7 +146,7 @@ message_list_receive:
 # return JSON response
 # Need ID of the receiver and form data, sending by post method
 message_send:
-    path: /message/send
+    path: /message/create
     defaults: { _controller: AppBundle:Message:create }
     options:
         expose: true
@@ -170,15 +170,17 @@ message_show:
 #------------------------------------------------------------------ Messenger
 # currently not treat
 messenger_show:
-    path: /messenger/{id}
+    path: /messenger
     defaults: { _controller: AppBundle:Messenger:read }
     options:
         expose: true
 
-# currently not treat
-messenger_list:
-    path: /messenger
-    defaults: { _controller: AppBundle:Messenger:list }
+# create instant message data of the user currently connected
+# Return JSON data
+# Need ID of the interlocutor and data of the form, sending by post method
+messenger_send:
+    path: /messenger/create
+    defaults: { _controller: AppBundle:Messenger:create }
     options:
         expose: true
 
@@ -413,5 +415,15 @@ get_list_received_messages:
 get_messages:
     path: /get/message
     defaults: { _controller: AppBundle:Message:getMessage }
+    options:
+        expose: true
+
+#------------------------------------------------------------------ Message
+# Get instant messages data of the user currently connected
+# Return JSON data
+# Need ID of the interlocutor, sending by post method
+get_instance_messenger:
+    path: /get/instance
+    defaults: { _controller: AppBundle:Messenger:getInstance }
     options:
         expose: true
