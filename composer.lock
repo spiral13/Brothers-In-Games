@@ -64,16 +64,16 @@
         },
         {
             "name": "curl/curl",
-            "version": "1.8.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-mod/curl.git",
-                "reference": "16e8489b048ef57ffbf74591a201f7808155b2db"
+                "reference": "d4970cf3451de7688b90af77299548ada72b53dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-mod/curl/zipball/16e8489b048ef57ffbf74591a201f7808155b2db",
-                "reference": "16e8489b048ef57ffbf74591a201f7808155b2db",
+                "url": "https://api.github.com/repos/php-mod/curl/zipball/d4970cf3451de7688b90af77299548ada72b53dd",
+                "reference": "d4970cf3451de7688b90af77299548ada72b53dd",
                 "shasum": ""
             },
             "require": {
@@ -115,7 +115,7 @@
                 "curl",
                 "dot"
             ],
-            "time": "2017-08-12T11:44:08+00:00"
+            "time": "2018-05-02T16:32:35+00:00"
         },
         {
             "name": "doctrine/annotations",
