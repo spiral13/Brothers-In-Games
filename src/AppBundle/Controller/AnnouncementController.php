@@ -10,17 +10,29 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AnnouncementController extends Controller
 {
+	/**
+	 * Calling concerned template
+	 */
 	public function listAction()
 	{
 		return $this->render('announcement/list.html.twig');
 	}
-
+	
+	/**
+	 * Calling concerned template
+	 */
 	public function readAction()
 	{
 		return $this->render('announcement/read.html.twig');
 	}
 
-
+	/**
+	 * Find game announcements
+	 * create Announcement 
+	 * send a response in json
+	 * 
+	 * @return JSON
+	 */
 	public function createAction(Request $request)
 	{
 		if(!empty($request->request->all()))
@@ -70,14 +82,103 @@ class AnnouncementController extends Controller
             return $this->json(array('status' => false, 'message' => 'Champ vide ou inexistant'));
         }
 	}
-	public function update()
-	{
 
+	/**
+	 * Find concerned announcements
+	 * update result
+	 * send a response in json
+	 * 
+	 * @return JSON
+	 */
+	public function updateAction(Request $request)
+	{
+		if(!empty($request->request->all()))
+		{
+			$announcementId = $request->request->get('announcement-id');
+			$user = $this->getUser();
+			$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneBy(['id' => $announcementId]);
+
+			if($announcement && $announcement->getUser() === $user)
+			{
+				$gameId = (empty($request->request->get('game-id'))) ? $announcement->getGame() : $request->request->get('game-id');
+				$content = $request->request->get('content');
+				$game = $this->getDoctrine()->getRepository(Game::class)->findOneBy(['id' => $gameId]);
+
+				if(!$game)
+				{
+					return $this->json(['status' => false, 'message' => 'Le jeux n\'existe pas']);
+				}
+
+				$announcement->setGame($game);
+				$announcement->setContent($content);
+
+				$validator = $this->get('validator');
+				$errors = $validator->validate($announcement);
+
+				if(count($errors) > 0)
+				{
+					$arrayErrors = array();
+
+	            	foreach ($errors as $key => $error) {
+		                $arrayErrors[$error->getPropertyPath()] = $error->getMessage();
+		            }
+
+		            return $this->json(array('status' => false, 'message' => 'Certaines données ne sont pas valide', 'errors' => $arrayErrors));
+				}
+				else
+				{
+					$em = $this->getDoctrine()->getManager();
+					$em->persist($announcement);
+					$em->flush();
+
+					$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneInArray($announcement->getId());
+
+					return $this->json(array('status' => true, 'message' => 'Annonce modifié avec succès', 'annonce' => $announcement));
+				}
+			}
+			else
+	        {
+	            return $this->json(array('status' => false, 'message' => 'L\'annonce n\'exite pas ou vous n\'êtes pas le propriétaire'));
+	        }
+		}
+		else
+        {
+            return $this->json(array('status' => false));
+        }
 	}
 
-	public function delete()
+	/**
+	 * Find concerned announcements
+	 * delete result
+	 * send a response in json
+	 * 
+	 * @return JSON
+	 */
+	public function deleteAction(Request $request)
 	{
-		
+		if(!empty($request->query->all()))
+		{
+			$announcementId = $request->query->get('announcement-id');
+			$user = $this->getUser();
+			$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneBy(['id' => $announcementId]);
+
+			if($announcement && $announcement->getUser() === $user)
+			{
+				$em = $this->getDoctrine()->getManager();
+				$em->remove($announcement);
+				$em->flush();
+
+				return $this->json(array('status' => true, 'message' => 'Annonce supprimé avec succès'));
+			}
+			else
+	        {
+	            return $this->json(array('status' => false, 'message' => 'L\'annonce n\'exite pas ou vous n\'êtes pas le propriétaire'));
+	        }
+		}
+		else
+        {
+            return $this->json(array('status' => false));
+        }
 	}
 
 	/**

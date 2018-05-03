@@ -82,12 +82,12 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var Friend
      */
-    private $friend1;
+    private $me;
 
     /**
      * @var Friend
      */
-    private $friend2;
+    private $myFriend;
 
     /**
      * @var Role
@@ -109,8 +109,8 @@ class User implements AdvancedUserInterface, \Serializable
         $this->messengerSend = new ArrayCollection();
         $this->messageRead = new ArrayCollection();
         $this->messageSend = new ArrayCollection();
-        $this->friend1 = new ArrayCollection();
-        $this->friend2 = new ArrayCollection();
+        $this->me = new ArrayCollection();
+        $this->myFriend = new ArrayCollection();
     }
 
     /** @see \Serializable::serialize() */
@@ -371,22 +371,6 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return Friend
-     */
-    public function getFriend1()
-    {
-        return $this->friend1;
-    }
-
-    /**
-     * @return Friend
-     */
-    public function getFriend2()
-    {
-        return $this->friend2;
-    }
-
-    /**
      * @return Role
      */
     public function getRole()
@@ -422,6 +406,59 @@ class User implements AdvancedUserInterface, \Serializable
     public function setProfile($profile)
     {
         $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * @return Friend
+     */
+    public function getMyFriend()
+    {
+        return $this->myFriend;
+    }
+
+    /**
+     * @param Friend $myFriend
+     *
+     * @return self
+     */
+    public function addMyFriend(User $myFriend)
+    {
+        $myFriend->addMe($this);
+        $this->myFriend[] = $myFriend;
+
+        return $this;
+    }
+
+    /**
+     * @return Friend
+     */
+    public function getMe()
+    {
+        return $this->me;
+    }
+
+    /**
+     * @param Friend $me
+     *
+     * @return self
+     */
+    public function addMe(User $me)
+    {
+        $this->me[] = $me;
+
+        return $this;
+    }
+
+    /**
+     * @param Announcement $announcements
+     *
+     * @return self
+     */
+    public function setAnnouncements(Announcement $announcements)
+    {
+        $this->announcements = $announcements;
 
         return $this;
     }

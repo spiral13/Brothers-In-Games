@@ -41,6 +41,21 @@ AppBundle\Entity\User:
                 inverseJoinColumns:
                     game_id:
                         referencedColumnName: id
+        me:
+            targetEntity: User
+            mappedBy: myFriend
+            
+        myFriend:
+            targetEntity: User
+            inversedBy: me
+            joinTable:
+                name: friend
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    friend_id:
+                        referencedColumnName: id
     manyToOne:
         role:
             targetEntity: Role
@@ -67,10 +82,4 @@ AppBundle\Entity\User:
         messageSend:
             targetEntity: Message
             mappedBy: author        
-        friend1:
-            targetEntity: Friend
-            mappedBy: user1        
-        friend2:
-            targetEntity: Friend
-            mappedBy: user2
     lifecycleCallbacks: {  }

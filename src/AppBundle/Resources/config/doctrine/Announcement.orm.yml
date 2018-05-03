@@ -11,6 +11,7 @@ AppBundle\Entity\Announcement:
     fields:
         content:
             type: text
+            nullable: true
         published:
             type: datetime
     manyToOne:
