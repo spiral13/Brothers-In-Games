@@ -8,6 +8,7 @@ import { combineReducers } from 'redux';
  */
 import reducer from 'frontend/src/store/reducer';
 import AnnouncementsReducer from 'frontend/src/store/reducers/AnnouncementsReducer';
+import MyGamesReducer from 'frontend/src/store/reducers/MyGamesReducer';
 import ArticleReducer from 'frontend/src/store/reducers/ArticleReducer';
 import ResponseReducer from 'frontend/src/store/reducers/ResponseReducer';
 /*
@@ -22,4 +23,5 @@ export default combineReducers({
   AnnouncementsReducer,
   ArticleReducer,
   ResponseReducer,
+  MyGamesReducer,
 });
