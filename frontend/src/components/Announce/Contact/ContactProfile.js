@@ -17,7 +17,7 @@ const ContactProfile = ({ datas }) => (
     <div className="playerContent">
       <img src={datas.user.profile.image} alt="Photo de profil" />
       <div className="personality">
-        <h3>Nom du joueur:<span className="personality-player"> {datas.user.username}#{datas.user.profile.id}</span></h3>
+        <h3>Nom du joueur:<span className="personality-player"> {datas.user.username}</span></h3>
         <h4>Date de naissance:<span className="personality-player"> {datas.user.profile.birthdate.date}</span></h4>
         <h4>Genre:<span className="personality-player"> {datas.user.profile.gender}</span></h4>
         <h4>Spécialité:<span className="personality-player"> FPS, MMO</span></h4>
@@ -32,7 +32,6 @@ const ContactProfile = ({ datas }) => (
     <hr />
     <div className="gamesPlayed">
       {/* Mapper les jeux et les afficher */}
-      {console.log(datas)}
       <a href="#"><img src="#" />Un jeu</a>
     </div>
   </div>

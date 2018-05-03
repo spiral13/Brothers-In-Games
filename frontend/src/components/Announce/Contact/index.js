@@ -25,7 +25,6 @@ class Contact extends React.Component {
         <div id="announce-contact">
           <div id="announce-contact-show">
             <img className="playerPicture" src={this.props.datas.user.profile.image} alt="Photo de profil" />
-            <h2 className="searchGame">{this.props.datas.game.title}</h2>
             <p>{this.props.datas.content}</p>
           </div>
           {this.state.contact ? <ResponseComponent /> : true}
