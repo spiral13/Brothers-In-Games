@@ -226,6 +226,16 @@ class AnnouncementController extends Controller
 		$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneInArray($id);
 		unset($announcement[0]['user']['password']);
 
+		$now = new \datetime('now');
+		$birthdate = $announcement[0]['user']['profile']['birthdate'];
+		$diff = $now->format('Y') - $birthdate->format('Y');
+		
+		if($now->format('m') < $birthdate->format('m') && $now->format('d') < $birthdate->format('d'))
+		{
+			$diff += 1;
+		}
+		$announcement[0]['user']['profile']['birthdate'] = $diff;
+
 		return $this->json($announcement);
 	}
 

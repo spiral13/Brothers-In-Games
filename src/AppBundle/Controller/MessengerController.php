@@ -12,9 +12,9 @@ class MessengerController extends Controller
 	public function getInstanceAction(Request $request)
 	{
 		$user = $this->getUser();
-		if($request->query->all())
+		if($request->request->all())
 		{
-			$id = $request->query->get('id');
+			$id = $request->request->get('id');
 			$receiver = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $id]);
 
 			$validFriend = false;
@@ -44,10 +44,10 @@ class MessengerController extends Controller
 	public function createAction(Request $request)
 	{
 		$user = $this->getUser();
-		if($request->query->all())
+		if($request->request->all())
 		{
-			$receiverId = $request->query->get('id');
-			$content = $request->query->get('content');
+			$receiverId = $request->request->get('id');
+			$content = $request->request->get('content');
 			$published = new \Datetime();
 
 			$receiver = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $receiverId]);
