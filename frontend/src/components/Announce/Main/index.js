@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -11,13 +12,16 @@ import ContactProfile from 'frontend/src/components/Announce/Contact/ContactProf
 /**
  * Code
  */
-const Main = () => (
+const Main = ({ datas }) => (
   <div className="announcement-main">
     <Banner type />
-    <Contact />
-    <ContactProfile />
+    <Contact datas={datas[0]} />
+    <ContactProfile datas={datas[0]} />
   </div>
 );
+Main.propTypes = {
+  datas: PropTypes.object.isRequired,
+};
 /**
  * Export
  */

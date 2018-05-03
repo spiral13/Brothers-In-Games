@@ -20,12 +20,15 @@
 
 #announce-contact-show {
   color: white;
-  height: 80px;
+  height: auto;
   padding: 10px;
+  min-height: 120px;
+  text-align: justify;
 }
 
 #announce-contact-show img {
-  float: right;
+  float: left;
+  margin-right: 10px;
 }
 
 .responseComponent-form {
@@ -56,6 +59,10 @@
   box-shadow: 0px 0px 5px 2px black;
 }
 
+.playerPicture {
+  height: 100px;
+}
+
 .showPlayerProfile {
   color: #ec9c34;
   width: 1200px;
@@ -82,12 +89,17 @@
 .playerContent {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
-.playerContent image {
-  height: 100px;
-  width: auto;
+.playerContent img {
+  height: 200px;
+  padding: 10px;
+}
+
+.searchGame {
+  font-size: 1.3em;
+  text-decoration: underline;
+  padding-bottom: 10px;
 }
 
 .personality-player {
@@ -96,7 +108,7 @@
 }
 
 .personality {
-  width: 30%;
+  width: 40%;
 }
 
 .personality h3, .personality h4 {
@@ -104,7 +116,7 @@
 }
 
 .personalComment {
-  width: 30%;
+  width: 40%;
 }
 
 .personalComment p {

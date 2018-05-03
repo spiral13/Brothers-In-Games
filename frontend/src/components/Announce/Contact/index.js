@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -23,8 +24,9 @@ class Contact extends React.Component {
       <div id="contactPlayer">
         <div id="announce-contact">
           <div id="announce-contact-show">
-            <image src="#" alt="Photo de profil" />
-            <p>Lorem ipsum ...</p>
+            <img className="playerPicture" src={this.props.datas.user.profile.image} alt="Photo de profil" />
+            <h2 className="searchGame">{this.props.datas.game.title}</h2>
+            <p>{this.props.datas.content}</p>
           </div>
           {this.state.contact ? <ResponseComponent /> : true}
           {/* eslint-disable-next-line */}
@@ -34,6 +36,9 @@ class Contact extends React.Component {
     );
   }
 }
+Contact.propTypes = {
+  datas: PropTypes.object.isRequired,
+};
 /**
  * Export
  */

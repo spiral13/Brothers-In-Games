@@ -13,7 +13,6 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.get(Routing.generate('getUserFriends')).then((response) => {
         // Ici, faire un dispatch.
-        console.log(response);
         store.dispatch(addFriends(response));
       }).catch((error) => {
         console.log(error);

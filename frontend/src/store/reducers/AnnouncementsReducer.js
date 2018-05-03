@@ -7,6 +7,9 @@ const initialState = {
 
     },
   ],
+  profileAnnounce: {
+
+  },
 };
 
 /**
@@ -15,6 +18,8 @@ const initialState = {
 export const GET_ALL_ANNOUNCEMENTS = 'GET_ALL_ANNOUNCEMENTS';
 export const GET_ANNOUNCEMENT_SELECTED = 'GET_ANNOUNCEMENT_SELECTED';
 export const SHOW_ANNOUNCEMENTS = 'SHOW_ANNOUNCEMENTS';
+export const GET_PROFILE_ANNOUNCE = 'GET_PROFILE_ANNOUNCE';
+const ADD_PROFILE_ANNOUNCE = 'ADD_PROFILE_ANNOUNCE';
 
 /**
  * Reducer
@@ -37,6 +42,17 @@ const reducer = (state = initialState, action = {}) => {
         announcements: action.announcements.data,
       };
 
+    case GET_PROFILE_ANNOUNCE:
+      return {
+        ...state,
+      };
+
+    case ADD_PROFILE_ANNOUNCE:
+      return {
+        ...state,
+        profileAnnounce: action.profile.data,
+      };
+
     default:
       return state;
   }
@@ -54,6 +70,14 @@ export const showAnnouncements = announcements => ({
   announcements,
 });
 
+export const getProfileAnnounce = () => ({
+  type: GET_PROFILE_ANNOUNCE,
+});
+
+export const addProfileAnnounce = profile => ({
+  type: ADD_PROFILE_ANNOUNCE,
+  profile,
+});
 /**
  * Export
  */

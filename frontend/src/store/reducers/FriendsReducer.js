@@ -39,13 +39,10 @@ export const getAllFriends = () => ({
   type: GET_FRIENDS,
 });
 
-export const addFriends = friends => {
-  console.log(friends.data);
-  return ({
-    type: ADD_FRIENDS,
-    friends,
-  });
-}
+export const addFriends = friends => ({
+  type: ADD_FRIENDS,
+  friends,
+});
 
 
 /**

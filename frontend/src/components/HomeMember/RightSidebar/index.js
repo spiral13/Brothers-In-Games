@@ -18,7 +18,7 @@ class RightSidebar extends React.Component {
     currentBar: 'actus-bar',
   }
 
-  componentDidMount() {
+  componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 1500);
