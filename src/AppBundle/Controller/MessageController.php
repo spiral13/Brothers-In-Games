@@ -26,9 +26,9 @@ class MessageController extends Controller
 	public function getMessageAction(Request $request)
 	{
 		$user = $this->getUser();
-		if($request->query->all())
+		if($request->request->all())
 		{
-			$id = $request->query->get('id');
+			$id = $request->request->get('id');
 			$message = $this->getDoctrine()->getRepository(Message::class)->findOneBy(['id' => $id]);
 
 			if($message->getAuthor() == $user || $message->getReceiver() == $user)
@@ -51,10 +51,10 @@ class MessageController extends Controller
 
 	public function createAction(Request $request)
 	{
-		if($request->query->all())
+		if($request->request->all())
 		{
-			$receiverId = $request->query->get('receiver-id');
-			$content = $request->query->get('content');
+			$receiverId = $request->request->get('receiver-id');
+			$content = $request->request->get('content');
 			$published = new \Datetime();
 
 			$receiver = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $receiverId]);
@@ -100,9 +100,9 @@ class MessageController extends Controller
 
 	public function deleteAction(Request $request)
 	{
-		if(!empty($request->query->all()))
+		if(!empty($request->request->all()))
 		{
-			$messageId = $request->query->get('id');
+			$messageId = $request->request->get('id');
 			$user = $this->getUser();
 			$message = $this->getDoctrine()->getRepository(Message::class)->findOneBy(['id' => $messageId]);
 
