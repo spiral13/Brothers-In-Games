@@ -23,6 +23,7 @@ class Announcements extends React.Component {
       this.setState({ loading: false });
     }, 2000);
     this.props.actions.addAnnouncements();
+    this.props.actions.getAllFriends();
   }
 
   render() {

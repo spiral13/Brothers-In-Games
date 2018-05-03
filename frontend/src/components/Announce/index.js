@@ -22,6 +22,7 @@ class Announce extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
+    this.props.actions.getAllFriends();
   }
 
   render() {

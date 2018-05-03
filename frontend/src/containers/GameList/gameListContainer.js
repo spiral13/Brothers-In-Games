@@ -11,6 +11,8 @@ import GameList from 'frontend/src/components/GameList';
 
 // actionsCreators
 import { getAllGames, addAllGames } from 'frontend/src/store/reducer';
+import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
+
 
 /*
  * Code
@@ -22,7 +24,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAllGames, addAllGames }, dispatch),
+  actions: bindActionCreators({ getAllGames, addAllGames, getAllFriends }, dispatch),
 });
 
 

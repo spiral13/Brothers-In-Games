@@ -13,6 +13,7 @@ import Banner from 'frontend/src/containers/Announcements/Banner';
  */
 const Main = ({ datas }) => {
   let errors = 0;
+  if (datas.length === 0) return <div className="announcementsNotFound"><p>No announcements for this game</p></div>;
   datas.forEach((data) => {
     if (datas[0].slug !== data.slug) errors += 1;
   });

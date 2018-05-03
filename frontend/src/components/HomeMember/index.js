@@ -22,7 +22,8 @@ class HomeMember extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 500);
+    }, 1000);
+    this.props.actions.getAllFriends();
     this.props.actions.getAllNews();
   }
 

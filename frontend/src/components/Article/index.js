@@ -31,6 +31,7 @@ class Article extends React.Component {
       this.setState({ loading: false });
     }, 1500);
     this.props.actions.getArticle();
+    this.props.actions.getAllFriends();
   }
 
   /*

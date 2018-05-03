@@ -30,6 +30,7 @@ class GameList extends React.Component {
       this.setState({ loading: false });
     }, 2000);
     this.props.actions.getAllGames();
+    this.props.actions.getAllFriends();
   }
 
   /*

@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 */
 import HomeMember from 'frontend/src/components/HomeMember';
 import { getAllNews } from 'frontend/src/store/reducer';
+import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
 /**
  * Code
  */
@@ -15,7 +16,7 @@ import { getAllNews } from 'frontend/src/store/reducer';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAllNews }, dispatch),
+  actions: bindActionCreators({ getAllNews, getAllFriends }, dispatch),
 });
 
 const HomeMemberContainer = connect(mapStateToProps, mapDispatchToProps)(HomeMember);
