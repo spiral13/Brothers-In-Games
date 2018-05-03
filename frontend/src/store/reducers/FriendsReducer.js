@@ -2,9 +2,9 @@
  * Initial State
  */
 const initialState = {
-  friend: {
+  friend: [
 
-  },
+  ],
 };
 
 /**
@@ -25,7 +25,7 @@ const reducer = (state = initialState, action = {}) => {
     case ADD_FRIENDS:
       return {
         ...state,
-        friends: action.data.friends,
+        friend: action.friends.data,
       };
 
     default:
@@ -39,10 +39,14 @@ export const getAllFriends = () => ({
   type: GET_FRIENDS,
 });
 
-export const addFriends = friends => ({
-  type: ADD_FRIENDS,
-  friends,
-});
+export const addFriends = friends => {
+  console.log(friends.data);
+  return ({
+    type: ADD_FRIENDS,
+    friends,
+  });
+}
+
 
 /**
  * Export

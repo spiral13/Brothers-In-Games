@@ -16,6 +16,7 @@ import GetGames from './GetGames';
 import GetAnnouncements from './Middlewares/GetAnnouncements';
 import GetArticle from './Middlewares/GetArticle';
 import GetResponseToAnnounce from './Middlewares/GetResponseToAnnounce';
+import GetFriends from './Middlewares/GetFriends';
 /*
  * Code
  */
@@ -33,6 +34,7 @@ const middlewares = applyMiddleware(
   GetAnnouncements,
   GetArticle,
   GetResponseToAnnounce,
+  GetFriends,
 );
 const enhancers = compose(middlewares, ...devTools);
 

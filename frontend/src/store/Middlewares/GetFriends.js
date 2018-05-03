@@ -11,8 +11,9 @@ export default store => next => (action) => {
   switch (action.type) {
     case GET_FRIENDS: {
       // eslint-disable-next-line
-      axios.get(Routing.generate('my_friends')).then((response) => {
+      axios.get(Routing.generate('getUserFriends')).then((response) => {
         // Ici, faire un dispatch.
+        console.log(response);
         store.dispatch(addFriends(response));
       }).catch((error) => {
         console.log(error);

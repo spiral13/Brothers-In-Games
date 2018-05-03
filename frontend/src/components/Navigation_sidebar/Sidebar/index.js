@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 /**
 * Local import
 */
-import Friends from 'frontend/src/components/Navigation_sidebar/Friends';
+import Friends from 'frontend/src/containers/Navigation_sidebar/Friends';
 import Loading from 'frontend/src/components/Loading';
 /**
  * Code
@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 500);
+    }, 3000);
     this.props.actions.getAllFriends();
   }
 

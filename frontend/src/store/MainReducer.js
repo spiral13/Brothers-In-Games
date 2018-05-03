@@ -10,6 +10,7 @@ import reducer from 'frontend/src/store/reducer';
 import AnnouncementsReducer from 'frontend/src/store/reducers/AnnouncementsReducer';
 import ArticleReducer from 'frontend/src/store/reducers/ArticleReducer';
 import ResponseReducer from 'frontend/src/store/reducers/ResponseReducer';
+import FriendsReducer from 'frontend/src/store/reducers/FriendsReducer';
 /*
  * Code
  */
@@ -22,4 +23,5 @@ export default combineReducers({
   AnnouncementsReducer,
   ArticleReducer,
   ResponseReducer,
+  FriendsReducer,
 });
