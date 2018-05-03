@@ -156,9 +156,9 @@ class AnnouncementController extends Controller
 	 */
 	public function deleteAction(Request $request)
 	{
-		if(!empty($request->query->all()))
+		if(!empty($request->request->all()))
 		{
-			$announcementId = $request->query->get('announcement-id');
+			$announcementId = $request->request->get('id');
 			$user = $this->getUser();
 			$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneBy(['id' => $announcementId]);
 

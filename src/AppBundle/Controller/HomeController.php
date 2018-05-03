@@ -9,6 +9,10 @@ class HomeController extends Controller
 {
     public function homeVisitorAction()
     {
+    	if($this->getUser())
+    	{
+    		return $this->redirectToRoute('home_user');
+    	}
         return $this->render('home/visitor.html.twig');
     }
     public function homeUserAction()
