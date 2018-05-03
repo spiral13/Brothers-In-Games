@@ -20,6 +20,7 @@ class Sidebar extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 500);
+    this.props.actions.getAllFriends();
   }
 
   redirection = (value) => {
