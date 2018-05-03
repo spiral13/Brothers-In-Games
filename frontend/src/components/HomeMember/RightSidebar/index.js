@@ -37,7 +37,7 @@ class RightSidebar extends React.Component {
           <ReactLoading
             type="cylon"
             color="#EC9C34"
-          />;
+          />
         </div>
       );
     }
