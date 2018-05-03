@@ -20,7 +20,7 @@ const OneOfMyGames = ({ mygame }) => (
 );
 
 OneOfMyGames.propTypes = {
-  mygame: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  mygame: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 
 

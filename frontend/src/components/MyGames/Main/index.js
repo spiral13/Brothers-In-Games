@@ -58,8 +58,8 @@ class Main extends React.PureComponent {
                //   />
                // </a>
                <OneOfMyGames
-                 index={index}
-                 key={mygame.id}
+                 // index={index}
+                 key={index}
                  mygame={mygame}
                />
              ))}
