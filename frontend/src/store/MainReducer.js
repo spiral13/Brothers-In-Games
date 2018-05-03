@@ -11,6 +11,7 @@ import AnnouncementsReducer from 'frontend/src/store/reducers/AnnouncementsReduc
 import MyGamesReducer from 'frontend/src/store/reducers/MyGamesReducer';
 import ArticleReducer from 'frontend/src/store/reducers/ArticleReducer';
 import ResponseReducer from 'frontend/src/store/reducers/ResponseReducer';
+import FriendsReducer from 'frontend/src/store/reducers/FriendsReducer';
 /*
  * Code
  */
@@ -23,5 +24,6 @@ export default combineReducers({
   AnnouncementsReducer,
   ArticleReducer,
   ResponseReducer,
+  FriendsReducer,
   MyGamesReducer,
 });
