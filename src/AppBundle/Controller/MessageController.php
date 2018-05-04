@@ -65,6 +65,13 @@ class MessageController extends Controller
 			{
 				$message = $this->getDoctrine()->getRepository(Message::class)->findOneByInArray($id);
 
+				unset($message[0]['author']['isActive']);
+				unset($message[0]['author']['password']);
+				unset($message[0]['author']['mail']);
+				unset($message[0]['receiver']['isActive']);
+				unset($message[0]['receiver']['password']);
+				unset($message[0]['receiver']['mail']);
+
 				return $this->json(['status' => true, 'message' => $message]);
 			}
 			else
