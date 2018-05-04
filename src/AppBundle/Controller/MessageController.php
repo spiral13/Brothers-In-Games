@@ -21,10 +21,13 @@ class MessageController extends Controller
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByAuthorInArray($this->getUser());
 
-		foreach($messages as $messsage)
+		foreach($messages as $key => $message)
 		{
+			unset($message['receiver']['id']);
 			unset($message['receiver']['mail']);
 			unset($message['receiver']['password']);
+			unset($message['receiver']['isActive']);
+			$messages[$key] = $message;
 		}
 
 		return $this->json($messages);
@@ -34,12 +37,17 @@ class MessageController extends Controller
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByReceiverInArray($this->getUser());
 
-		foreach($messages as $messsage)
+		foreach($messages as $key => $message)
 		{
-			unset($message['receiver']['mail']);
-			unset($message['receiver']['password']);
+			unset($message['author']['id']);
+			unset($message['author']['mail']);
+			unset($message['author']['password']);
+			unset($message['author']['isActive']);
+			$messages[$key] = $message;
 		}
 
+		dump($messages);
+		exit;
 		return $this->json($messages);
 	}
 
