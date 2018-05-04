@@ -53,7 +53,7 @@ class MessageController extends Controller
 	{
 		if($request->request->all())
 		{
-			$receiverId = $request->request->get('receiver-id');
+			$receiverId = $request->request->get('id');
 			$content = $request->request->get('content');
 			$published = new \Datetime();
 
