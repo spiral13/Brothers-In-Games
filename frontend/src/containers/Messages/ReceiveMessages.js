@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 */
 import ReceiveMessages from 'frontend/src/components/Messages/ReceiveMessages';
 import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
-import { receivedMessages } from 'frontend/src/store/reducers/MessagesReducer';
+import { receivedMessages, sendedMessages } from 'frontend/src/store/reducers/MessagesReducer';
 /**
  * Code
  */
@@ -16,7 +16,7 @@ import { receivedMessages } from 'frontend/src/store/reducers/MessagesReducer';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAllFriends, receivedMessages }, dispatch),
+  actions: bindActionCreators({ getAllFriends, receivedMessages, sendedMessages }, dispatch),
 });
 
 const ReceiveMessagesContainer = connect(mapStateToProps, mapDispatchToProps)(ReceiveMessages);

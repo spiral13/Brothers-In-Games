@@ -3,6 +3,7 @@
  */
 const initialState = {
   receivedMails: [{}],
+  sendMails: [{}],
 };
 
 /**
@@ -10,6 +11,8 @@ const initialState = {
  */
 export const GET_ALL_RECEIVED_MESSAGES = 'GET_ALL_RECEIVED_MESSAGES';
 const ADD_MESSAGES = 'ADD_MESSAGES';
+export const GET_ALL_SEND_MESSAGES = 'GET_ALL_SEND_MESSAGES';
+const ADD_SENDED_MESSAGES = 'ADD_SENDED_MESSAGES';
 /**
  * Reducer
  */
@@ -20,10 +23,21 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
+    case GET_ALL_SEND_MESSAGES:
+      return {
+        ...state,
+      };
+
     case ADD_MESSAGES:
       return {
         ...state,
         receivedMails: action.messages.data,
+      };
+
+    case ADD_SENDED_MESSAGES:
+      return {
+        ...state,
+        sendMails: action.messages.data,
       };
 
     default:
@@ -40,6 +54,15 @@ export const receivedMessages = () => ({
 
 export const addMessages = messages => ({
   type: ADD_MESSAGES,
+  messages,
+});
+
+export const sendedMessages = () => ({
+  type: GET_ALL_SEND_MESSAGES,
+});
+
+export const sendReceiveMessages = messages => ({
+  type: ADD_SENDED_MESSAGES,
   messages,
 });
 

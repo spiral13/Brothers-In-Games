@@ -9,12 +9,11 @@ import PropTypes from 'prop-types';
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Loading from 'frontend/src/components/Loading';
-import Main from 'frontend/src/containers/Messages/Main';
 /**
  * Code
  */
 
-class ReceiveMessages extends React.Component {
+class ShowMessage extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
   state = {
@@ -29,8 +28,6 @@ class ReceiveMessages extends React.Component {
       this.setState({ loading: false });
     }, 2000);
     this.props.actions.getAllFriends();
-    this.props.actions.receivedMessages();
-    this.props.actions.sendedMessages();
   }
 
   /*
@@ -41,19 +38,18 @@ class ReceiveMessages extends React.Component {
       return <Loading />;
     }
     return (
-      <div className="ReceiveMessagesList">
+      <div className="ShowOneMessage">
         <Navbar />
         <Sidebar />
-        <Main />
       </div>
     );
   }
 }
 
-ReceiveMessages.propTypes = {
+ShowMessage.propTypes = {
   actions: PropTypes.object.isRequired,
 };
 /**
  * Export
  */
-export default ReceiveMessages;
+export default ShowMessage;
