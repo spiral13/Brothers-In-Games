@@ -72,7 +72,7 @@ class FillBDDCommand extends Command
         ]);
 
         // Define the limite of data (max: 50)
-        $limit = 1;
+        $limit = 2;
 
         //Get X-count in the header for $limit/page
         stream_context_set_default(
@@ -101,6 +101,7 @@ class FillBDDCommand extends Command
             $offset = $limit * $lastPage;
 
             $response = $this->getApiData($offset, $limit);
+            dump($response);exit;
             $array = json_decode($response, true);
             $api = array_merge($array, $api);
 
@@ -199,7 +200,10 @@ class FillBDDCommand extends Command
             $game->setTitle((!isset($data['name'])) ? 'undefined' : $data['name']);
             $game->setSlug($this->slug->toSlug($data['name']));
             $game->setCover((!isset($data['cover'])) ? null : $data['cover']['url']);
-            $game->addGamecategories($categories);
+            foreach($categories as $category)
+            {
+                $game->addGamecategories($category);
+            }
             $em->persist($game);
        
             $progressBar->advance();
@@ -224,7 +228,10 @@ class FillBDDCommand extends Command
             $game->setTitle((!isset($data['name'])) ? 'undefined' : $data['name']);
             $game->setSlug($this->slug->toSlug($data['name']));
             $game->setCover((!isset($data['cover'])) ? null : $data['cover']['url']);
-            $game->addGamecategories($categories);
+            foreach($categories as $category)
+            {
+                $game->addGamecategories($category);
+            }
             $em->persist($game);
        
             $progressBar->advance();
