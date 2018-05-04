@@ -17,7 +17,7 @@ class MessageController extends Controller
 	{
 		return $this->render('message/list.html.twig');
 	}
-	public function getListSendeMessageAction()
+	public function getListSendMessageAction()
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByAuthorInArray($this->getUser());
 

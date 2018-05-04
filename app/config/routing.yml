@@ -405,7 +405,7 @@ getUserFriends:
 # No need parameters
 get_list_sended_messages:
     path: /get/list/sended/messages
-    defaults: { _controller: AppBundle:Message:getListSendedMessages }
+    defaults: { _controller: AppBundle:Message:getListSendMessage }
     options:
         expose: true
 
@@ -414,7 +414,7 @@ get_list_sended_messages:
 # No need parameters
 get_list_received_messages:
     path: /get/list/received/messages
-    defaults: { _controller: AppBundle:Message:getListReceivedMessages }
+    defaults: { _controller: AppBundle:Message:getListreceivedMessage }
     options:
         expose: true
 
