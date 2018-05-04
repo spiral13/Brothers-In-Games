@@ -9,14 +9,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MessageController extends Controller
 {
-	public function getListSendedAction()
+	public function getListSendAction()
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByAuthorInArray($this->getUser());
 
 		return $this->json($messages);
 	}
 
-	public function getListreceivedAction(Request $request)
+	public function getListreceiveAction(Request $request)
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByReceiverInArray($this->getUser());
 

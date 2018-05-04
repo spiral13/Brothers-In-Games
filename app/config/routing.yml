@@ -137,9 +137,9 @@ my_profile_update:
 #------------------------------------------------------------------ Message
 # Show list messages received of the user currently connected
 # No need dynamic url
-message_list_receive:
-    path: /message/receive
-    defaults: { _controller: AppBundle:Message:listReceive }
+message_list_send:
+    path: /message/send
+    defaults: { _controller: AppBundle:Message:listsend }
     options:
         expose: true
 
