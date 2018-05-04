@@ -25,9 +25,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className="MainMessages">
-        {/* Mapper tout les messages */}
-        {console.log(this.props.messages)}
-        {this.props.messages.map(message => <Message key={message.id} content={message.content} />)}
+        {this.props.messages.map(message => <Message key={message.id} content={message.content} {...message} />)}
       </div>
     );
   }
