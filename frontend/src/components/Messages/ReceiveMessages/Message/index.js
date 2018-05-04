@@ -23,7 +23,7 @@ class Main extends React.Component {
    */
   render() {
     return (
-      <div className="Message">
+      <div className="ReceivedMessage">
         <h2>Nom du joueur</h2>
         <p>Preview</p>
       </div>
