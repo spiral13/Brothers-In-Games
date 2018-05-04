@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // Local import
 import { GET_ALL_MY_GAMES, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+
 /*
  * Middleware
  */
@@ -20,8 +21,14 @@ export default store => next => (action) => {
       });
       break;
     }
+    default:
+      break;
   }
 
   // On passe au voisin
   next(action);
 };
+// Pour ajout d'un jeu -Page MyGames
+//1- barre de recherche: aller chercher tous les jeux en fonction du slug
+//2- Utilisateur sélectionne un jeu dans la liste , le sélectionne ==> envoi requête en post  du slug + id
+//3- affichage d'un nouvel "carte" oneOfMyGames 

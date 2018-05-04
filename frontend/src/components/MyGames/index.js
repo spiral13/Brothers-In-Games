@@ -31,6 +31,7 @@ class MyGames extends React.Component {
     }, 2000);
     this.props.actions.getAllMyGames();
     this.props.actions.getAllFriends();
+    this.props.actions.getAllGames();
   }
 
   /*
