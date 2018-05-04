@@ -34,6 +34,12 @@ class MessageController extends Controller
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByReceiverInArray($this->getUser());
 
+		foreach($messages as $messsage)
+		{
+			unset($message['receiver']['mail']);
+			unset($message['receiver']['password']);
+		}
+
 		return $this->json($messages);
 	}
 
