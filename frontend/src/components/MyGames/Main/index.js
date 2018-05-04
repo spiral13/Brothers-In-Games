@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 */
 
 // eslint-disable-next-line
-import AddOneGameForm from 'frontend/src/components/MyGames/AddOneGameForm';
+import AddOneGameForm from 'frontend/src/containers/MyGames/AddOneGameForm';
 import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
 // eslint-disable-next-line
 // import GameList from 'frontend/src/containers/GameList/GameList';

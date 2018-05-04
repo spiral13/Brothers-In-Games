@@ -2,10 +2,11 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
-import Message from 'frontend/src/components/Messages/ReceiveMessages/Message';
+import Message from 'frontend/src/containers/Messages/Message';
 /**
  * Code
  */
@@ -24,18 +25,14 @@ class Main extends React.Component {
   render() {
     return (
       <div className="MainMessages">
-        {/* Mapper tout les messages */}
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
+        {this.props.messages.map(message => <Message key={message.id} content={message.content} {...message} />)}
       </div>
     );
   }
 }
+Main.propTypes = {
+  messages: PropTypes.array.isRequired,
+};
 /**
  * Export
  */

@@ -9,6 +9,8 @@ import { bindActionCreators } from 'redux';
 import Main from 'frontend/src/components/MyGames/Main';
 // actionsCreators
 import { getAllMyGames, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+import { getAllGames, addAllGames } from 'frontend/src/store/reducer';
+
 
 /*
  * Code
@@ -16,11 +18,17 @@ import { getAllMyGames, addAllMyGames } from 'frontend/src/store/reducers/MyGame
 // State => composant
 const mapStateToProps = state => ({
   mygames: state.MyGamesReducer.mygames,
+  games: state.reducer.games,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAllMyGames, addAllMyGames }, dispatch),
+  actions: bindActionCreators({
+    getAllMyGames,
+    addAllMyGames,
+    getAllGames,
+    addAllGames,
+  }, dispatch),
 });
 
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
