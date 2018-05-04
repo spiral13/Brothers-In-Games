@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_RESPONSE } from 'frontend/src/store/reducers/ResponseReducer';
+import { GET_RESPONSE, showResponse } from 'frontend/src/store/reducers/ResponseReducer';
 /*
  * Middleware
  */
@@ -16,7 +16,7 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.post(Routing.generate('message_send'), formData).then((response) => {
         console.log(response);
-        // store.dispatch(sendResponse(response));
+        store.dispatch(showResponse(response));
       }).catch((error) => {
         console.log(error);
       });
