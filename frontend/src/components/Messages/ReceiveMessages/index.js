@@ -29,6 +29,7 @@ class ReceiveMessages extends React.Component {
       this.setState({ loading: false });
     }, 2000);
     this.props.actions.getAllFriends();
+    this.props.actions.receivedMessages();
   }
 
   /*

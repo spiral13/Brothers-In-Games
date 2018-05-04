@@ -5,7 +5,7 @@ import React from 'react';
 /**
 * Local import
 */
-import Message from 'frontend/src/components/Messages/ReceiveMessages/Message';
+import Message from 'frontend/src/containers/Messages/Message';
 /**
  * Code
  */
