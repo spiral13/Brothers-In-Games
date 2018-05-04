@@ -42,6 +42,11 @@ class Navbar extends React.Component {
             <li>
               <Paper className="nav-fig" />
               {/* eslint-disable-next-line */}
+              <a href="#" onClick={() => this.redirection("/app_dev.php/message_list_receive")}>Mes messages</a>
+            </li>
+            <li>
+              <Paper className="nav-fig" />
+              {/* eslint-disable-next-line */}
               <a href="#" onClick={() => this.redirection("/app_dev.php/home")}>Mes annonces</a>
             </li>
             <li>
