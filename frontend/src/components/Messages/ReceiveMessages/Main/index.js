@@ -26,6 +26,12 @@ class Main extends React.Component {
       <div className="MainMessages">
         {/* Mapper tout les messages */}
         <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
       </div>
     );
   }
