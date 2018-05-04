@@ -45,9 +45,7 @@ class MessageController extends Controller
 			unset($message['author']['isActive']);
 			$messages[$key] = $message;
 		}
-
-		dump($messages);
-		exit;
+		
 		return $this->json($messages);
 	}
 
