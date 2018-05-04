@@ -16,8 +16,8 @@ class MessageRepository extends EntityRepository
 	public function findAllByAuthorInArray($user)
 	{
 		$qb = $this->createQueryBuilder('m')
-		->join('m.author', 'a')
-		->addSelect('a')
+		->join('m.receiver', 'r')
+		->addSelect('r')
 		->where('m.author = :user')
 		->setParameter('user', $user)
 		->getQuery()
@@ -30,8 +30,8 @@ class MessageRepository extends EntityRepository
 	public function findAllByReceiverInArray($user)
 	{
 		$qb = $this->createQueryBuilder('m')
-		->join('m.receiver', 'r')
-		->addSelect('r')
+		->join('m.author', 'a')
+		->addSelect('a')
 		->where('m.receiver = :user')
 		->setParameter('user', $user)
 		->getQuery()
