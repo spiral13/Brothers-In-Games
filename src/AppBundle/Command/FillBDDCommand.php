@@ -61,12 +61,49 @@ class FillBDDCommand extends Command
             ''
         ]);
 
-        $api = [
-            ['title' => 'title01', 'slug' => 'title-01', 'cover' => 'url-de-l\'image'],
-            ['title' => 'title02', 'slug' => 'title-02', 'cover' => 'url-de-l\'image'],
-            ['title' => 'title03', 'slug' => 'title-03', 'cover' => 'url-de-l\'image'],
-            ['title' => 'title04', 'slug' => 'title-04', 'cover' => 'url-de-l\'image']
-        ];
+        $limit = 50;
+
+        stream_context_set_default(
+            array(
+                'http' => array(
+                    'header'=> "user-key: 5194a756bcbf437b105edfc3ded3181d",
+                )
+            )
+        );
+        $array = get_headers('https://api-endpoint.igdb.com/games/?limit='.$limit.'&scroll=1', 1);
+
+        $MaxData = $array['X-Count'];
+
+        $totalPage = $MaxData / $limit;
+        $currentlyPage = ($currentlyPage+1 > $totalPage) ? 0 : $currentlyPage;
+        $page = $currentlyPage + 1;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api-endpoint.igdb.com/games/?limit='.$limit.'&scroll='.$page.'&fields=name,cover,slug,game_modes,themes&expand=themes,game_modes',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Cache-Control: no-cache',
+                'user-key: 5194a756bcbf437b105edfc3ded3181d'
+            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        $api = json_decode($response, true);
+
+        if ($err) 
+        {
+            dump($arrayErrors);exit;
+        }
 
         $em = $this->doctrine->getManager();
         $insert = '';
@@ -82,13 +119,13 @@ class FillBDDCommand extends Command
         foreach($api as $data)
         {
 
-            $output->writeln('"'. $data['title'] .'" - data processing ');
-            $insert = $insert . '- ' . $data['title'] . ' ';
+            $output->writeln(' "'. $data['name'] .'" - data processing ');
+            $insert = $insert . '- ' . $data['name'] . ' ';
 
             $game = new Game();
-            $game->setTitle($data['title']);
+            $game->setTitle($data['name']);
             $game->setSlug($data['slug']);
-            $game->setCover($data['cover']);
+            $game->setCover($data['cover']['url']);
             $em->persist($game);
             $progressBar->advance();
         }
@@ -102,10 +139,7 @@ class FillBDDCommand extends Command
             ''
         ]);
 
-
-        $page = $currentlyPage + 1;
         $date = new \Datetime();
-        $MaxData = 12000;
         $name = 'test';
         $url = 'test';
 
