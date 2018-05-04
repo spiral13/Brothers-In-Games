@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -25,6 +26,7 @@ class Main extends React.Component {
     return (
       <div className="MainMessages">
         {/* Mapper tout les messages */}
+        {console.log(this.props.messages)}
         <Message />
         <Message />
         <Message />
@@ -36,6 +38,9 @@ class Main extends React.Component {
     );
   }
 }
+Main.propTypes = {
+  messages: PropTypes.object.isRequired,
+};
 /**
  * Export
  */
