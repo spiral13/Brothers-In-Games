@@ -33,7 +33,7 @@ class Main extends React.Component {
   }
 }
 Main.propTypes = {
-  games: PropTypes.objectOf(PropTypes.object.isRequired).isRequired,
+  games: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
 };
 /**

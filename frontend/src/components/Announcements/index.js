@@ -16,14 +16,17 @@ import Main from 'frontend/src/containers/Announcements/Main';
 class Announcements extends React.Component {
   state = {
     loading: true,
+    load: true,
   }
 
   componentWillMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 2000);
-    this.props.actions.addAnnouncements();
-    this.props.actions.getAllFriends();
+    if (this.state.load) {
+      setTimeout(() => {
+        this.setState({ loading: false, load: false });
+      }, 2000);
+      this.props.actions.addAnnouncements();
+      this.props.actions.getAllFriends();
+    }
   }
 
   render() {

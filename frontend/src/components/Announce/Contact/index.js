@@ -19,13 +19,17 @@ class Contact extends React.Component {
     this.setState({ contact: !this.state.contact });
   }
 
+  onChange = () => {
+    this.props.actions.hideResponse();
+  }
+
   render() {
     return (
       <div id="contactPlayer">
+        {this.props.popup ? <div className="showResponse"><a href="#" className="closePopup" onClick={this.onChange}>X</a><h2>{this.props.response.status ? 'Votre message à bien été envoyé:' : 'Errer lors de l\'envoi du message:'}</h2><p className="messageSend">{this.props.response.content}</p></div> : true}
         <div id="announce-contact">
           <div id="announce-contact-show">
             <img className="playerPicture" src={this.props.datas.user.profile.image} alt="Photo de profil" />
-            <h2 className="searchGame">{this.props.datas.game.title}</h2>
             <p>{this.props.datas.content}</p>
           </div>
           {this.state.contact ? <ResponseComponent /> : true}
@@ -37,7 +41,10 @@ class Contact extends React.Component {
   }
 }
 Contact.propTypes = {
+  popup: PropTypes.bool.isRequired,
   datas: PropTypes.object.isRequired,
+  response: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 /**
  * Export

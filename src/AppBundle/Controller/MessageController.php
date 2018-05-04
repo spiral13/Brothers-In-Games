@@ -9,17 +9,43 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MessageController extends Controller
 {
-	public function getListSendedMessagesAction()
+	public function listSendAction()
+	{
+		return $this->render('message/list.html.twig');
+	}
+	public function listReceiveAction()
+	{
+		return $this->render('message/list.html.twig');
+	}
+	public function getListSendMessageAction()
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByAuthorInArray($this->getUser());
+
+		foreach($messages as $key => $message)
+		{
+			unset($message['receiver']['id']);
+			unset($message['receiver']['mail']);
+			unset($message['receiver']['password']);
+			unset($message['receiver']['isActive']);
+			$messages[$key] = $message;
+		}
 
 		return $this->json($messages);
 	}
 
-	public function getListreceivedMessagesAction(Request $request)
+	public function getListreceivedMessageAction(Request $request)
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByReceiverInArray($this->getUser());
 
+		foreach($messages as $key => $message)
+		{
+			unset($message['author']['id']);
+			unset($message['author']['mail']);
+			unset($message['author']['password']);
+			unset($message['author']['isActive']);
+			$messages[$key] = $message;
+		}
+		
 		return $this->json($messages);
 	}
 
@@ -53,7 +79,7 @@ class MessageController extends Controller
 	{
 		if($request->request->all())
 		{
-			$receiverId = $request->request->get('receiver-id');
+			$receiverId = $request->request->get('id');
 			$content = $request->request->get('content');
 			$published = new \Datetime();
 

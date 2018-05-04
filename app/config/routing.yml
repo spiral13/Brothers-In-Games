@@ -135,7 +135,16 @@ my_profile_update:
     defaults: { _controller: AppBundle:Profile:update }
 
 #------------------------------------------------------------------ Message
-# currently not treat
+# Show list messages sended of the user currently connected
+# No need dynamic url
+message_list_send:
+    path: /message/send
+    defaults: { _controller: AppBundle:Message:listSend }
+    options:
+        expose: true
+
+# Show list messages sended of the user currently connected
+# No need dynamic url
 message_list_receive:
     path: /message/receive
     defaults: { _controller: AppBundle:Message:listReceive }
@@ -396,7 +405,7 @@ getUserFriends:
 # No need parameters
 get_list_sended_messages:
     path: /get/list/sended/messages
-    defaults: { _controller: AppBundle:Message:getListSendedMessages }
+    defaults: { _controller: AppBundle:Message:getListSendMessage }
     options:
         expose: true
 
@@ -405,7 +414,7 @@ get_list_sended_messages:
 # No need parameters
 get_list_received_messages:
     path: /get/list/received/messages
-    defaults: { _controller: AppBundle:Message:getListReceivedMessages }
+    defaults: { _controller: AppBundle:Message:getListreceivedMessage }
     options:
         expose: true
 

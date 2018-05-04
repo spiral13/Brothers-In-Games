@@ -28,7 +28,7 @@ class Announce extends React.Component {
     return (
       <div className="announce">
         <a href="#" onClick={() => this.redirection(`/app_dev.php/announcement/${id}/${slug}`)}>
-          <image className="player-image" src={image} alt="image de profil" />
+          <img className="player-image" src={image} alt="image de profil" />
           <div className="player-announce">
             <h2 className="player-name">{title} - {username}</h2>
             <p className="contentContain">{content}</p>

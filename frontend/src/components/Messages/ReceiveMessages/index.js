@@ -8,14 +8,15 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import Main from 'frontend/src/containers/GameList/Main';
 import Loading from 'frontend/src/components/Loading';
-
+import Main from 'frontend/src/containers/Messages/Main';
 /**
  * Code
  */
 
-class GameList extends React.Component {
+class ReceiveMessages extends React.Component {
+  // mise en place d'un state pour un petit loading
+  // pour laisser le temps au serveur de répondre
   state = {
     loading: true,
   }
@@ -27,8 +28,8 @@ class GameList extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
-    this.props.actions.getAllGames();
     this.props.actions.getAllFriends();
+    this.props.actions.receivedMessages();
   }
 
   /*
@@ -39,7 +40,7 @@ class GameList extends React.Component {
       return <Loading />;
     }
     return (
-      <div className="gameList">
+      <div className="ReceiveMessagesList">
         <Navbar />
         <Sidebar />
         <Main />
@@ -47,11 +48,11 @@ class GameList extends React.Component {
     );
   }
 }
-GameList.propTypes = {
+
+ReceiveMessages.propTypes = {
   actions: PropTypes.object.isRequired,
 };
-
 /**
  * Export
  */
-export default GameList;
+export default ReceiveMessages;
