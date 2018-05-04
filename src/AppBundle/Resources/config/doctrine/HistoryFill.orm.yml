@@ -1,0 +1,26 @@
+AppBundle\Entity\HistoryFill:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\HistoryFillRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '70'
+        url:
+            type: string
+            length: 255
+        maxData:
+            type: integer
+        page:
+            type: integer
+        date:
+            type: datetime
+        log:
+            type: text
+    lifecycleCallbacks: {  }
