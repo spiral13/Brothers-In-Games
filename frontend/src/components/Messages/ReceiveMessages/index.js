@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
 * Local import
 */
@@ -27,6 +28,7 @@ class ReceiveMessages extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 2000);
+    this.props.actions.getAllFriends();
   }
 
   /*
@@ -45,6 +47,10 @@ class ReceiveMessages extends React.Component {
     );
   }
 }
+
+ReceiveMessages.propTypes = {
+  actions: PropTypes.object.isRequired,
+};
 /**
  * Export
  */

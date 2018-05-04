@@ -21,7 +21,7 @@ import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
 import Article from 'frontend/src/containers/Article/index';
 import MyGames from 'frontend/src/containers/MyGames/MyGamesContainer';
-import ReceiveMessages from 'frontend/src/components/Messages/ReceiveMessages';
+import ReceiveMessages from 'frontend/src/containers/Messages/ReceiveMessages';
 import Announce from 'frontend/src/containers/Announce';
 /*
  * Code
