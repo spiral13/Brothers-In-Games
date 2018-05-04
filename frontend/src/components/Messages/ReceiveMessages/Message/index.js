@@ -11,9 +11,6 @@ import PropTypes from 'prop-types';
  * Code
  */
 class Message extends React.Component {
-  state = {
-    test: '',
-  }
   /*
    * Lifecycle
    */
@@ -26,9 +23,11 @@ class Message extends React.Component {
    render() {
      return (
        <div className="ReceivedMessage">
+         {/* Ici, récupérer l'id de l'utilisateur */}
          <a href="#" onClick={() => this.redirection(`/app_dev.php/message/show/10`)}>
+            {/* this.props.user...username */}
            <h2>Nom du joueur</h2>
-           <p>Preview</p>
+           <p>{this.props.content}</p>
          </a>
        </div>
      );
@@ -36,6 +35,7 @@ class Message extends React.Component {
 }
 Message.propTypes = {
   actions: PropTypes.object.isRequired,
+  content: PropTypes.string.isRequired,
 };
 /**
  * Export

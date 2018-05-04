@@ -27,19 +27,13 @@ class Main extends React.Component {
       <div className="MainMessages">
         {/* Mapper tout les messages */}
         {console.log(this.props.messages)}
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
+        {this.props.messages.map(message => <Message key={message.id} content={message.content} />)}
       </div>
     );
   }
 }
 Main.propTypes = {
-  messages: PropTypes.object.isRequired,
+  messages: PropTypes.array.isRequired,
 };
 /**
  * Export

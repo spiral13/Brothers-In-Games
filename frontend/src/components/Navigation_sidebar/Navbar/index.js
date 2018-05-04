@@ -7,6 +7,7 @@ import User from 'react-icons/lib/fa/user';
 import Server from 'react-icons/lib/fa/server';
 import Signout from 'react-icons/lib/fa/sign-out';
 import Paper from 'react-icons/lib/fa/newspaper-o';
+import Envelope from 'react-icons/lib/fa/envelope-square';
 import PropTypes from 'prop-types';
 /**
 * Local import
@@ -40,7 +41,7 @@ class Navbar extends React.Component {
         <nav id="nav-rubrique">
           <ul>
             <li>
-              <Paper className="nav-fig" />
+              <Envelope className="nav-fig" />
               {/* eslint-disable-next-line */}
               <a href="#" onClick={() => this.redirection("/app_dev.php/message/receive")}>Mes messages</a>
             </li>
@@ -54,15 +55,10 @@ class Navbar extends React.Component {
               {/* eslint-disable-next-line */}
               <a href="#" onClick={() => this.redirection("/app_dev.php/my-games")}>Mes jeux</a>
             </li>
-            {/* <li> */}
-              {/* <Server className="nav-fig" />
-              <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}>Mon profil</a> */}
-            {/* </li> */}
             <li>
               <User className="nav-fig" />
               {/* eslint-disable-next-line */}
               <a href="#" onClick={() => this.showInformations()}>{this.props.playerName}</a>
-              {/* <a href="#" onClick={() => this.redirection('/app_dev.php/account')}>{this.props.playerName}</a> */}
             </li>
             <li>
               <Signout className="nav-fig" />
