@@ -135,11 +135,11 @@ my_profile_update:
     defaults: { _controller: AppBundle:Profile:update }
 
 #------------------------------------------------------------------ Message
-# Show list messages received of the user currently connected
+# Show list messages sended of the user currently connected
 # No need dynamic url
 message_list_send:
     path: /message/send
-    defaults: { _controller: AppBundle:Message:listsend }
+    defaults: { _controller: AppBundle:Message:listSend }
     options:
         expose: true
 

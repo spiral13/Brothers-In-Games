@@ -9,14 +9,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MessageController extends Controller
 {
-	public function getListSendAction()
+	public function listSendAction()
+	{
+		return $this->render('message/list.html.twig');
+	}
+	public function listReceiveAction()
+	{
+		return $this->render('message/list.html.twig');
+	}
+	public function getListSendeMessageAction()
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByAuthorInArray($this->getUser());
 
 		return $this->json($messages);
 	}
 
-	public function getListreceiveAction(Request $request)
+	public function getListreceivedMessageAction(Request $request)
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByReceiverInArray($this->getUser());
 
