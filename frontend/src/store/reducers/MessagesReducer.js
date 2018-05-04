@@ -4,6 +4,7 @@
 const initialState = {
   receivedMails: [{}],
   sendMails: [{}],
+  selectedMail: [{}],
 };
 
 /**
@@ -13,11 +14,24 @@ export const GET_ALL_RECEIVED_MESSAGES = 'GET_ALL_RECEIVED_MESSAGES';
 const ADD_MESSAGES = 'ADD_MESSAGES';
 export const GET_ALL_SEND_MESSAGES = 'GET_ALL_SEND_MESSAGES';
 const ADD_SENDED_MESSAGES = 'ADD_SENDED_MESSAGES';
+export const GET_ONE_MESSAGE = 'GET_ONE_MESSAGE';
+const ADD_SELECTED_MESSAGE = 'ADD_SELECTED_MESSAGE';
 /**
  * Reducer
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case GET_ONE_MESSAGE:
+      return {
+        ...state,
+      };
+
+    case ADD_SELECTED_MESSAGE:
+      return {
+        ...state,
+        selectedMail: action.message.data,
+      };
+
     case GET_ALL_RECEIVED_MESSAGES:
       return {
         ...state,
@@ -66,6 +80,14 @@ export const sendReceiveMessages = messages => ({
   messages,
 });
 
+export const getOneMessage = () => ({
+  type: GET_ONE_MESSAGE,
+});
+
+export const addMessageSelected = message => ({
+  type: ADD_SELECTED_MESSAGE,
+  message,
+});
 /**
  * Export
  */

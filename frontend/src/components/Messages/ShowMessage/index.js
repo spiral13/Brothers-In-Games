@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
+import OneMessage from 'frontend/src/containers/Messages/OneMessage';
 import Loading from 'frontend/src/components/Loading';
 /**
  * Code
@@ -28,6 +29,7 @@ class ShowMessage extends React.Component {
       this.setState({ loading: false });
     }, 2000);
     this.props.actions.getAllFriends();
+    this.props.actions.getOneMessage();
   }
 
   /*
@@ -41,6 +43,7 @@ class ShowMessage extends React.Component {
       <div className="ShowOneMessage">
         <Navbar />
         <Sidebar />
+        <OneMessage />
       </div>
     );
   }
