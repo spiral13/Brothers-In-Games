@@ -135,7 +135,16 @@ my_profile_update:
     defaults: { _controller: AppBundle:Profile:update }
 
 #------------------------------------------------------------------ Message
-# currently not treat
+# Show list messages received of the user currently connected
+# No need dynamic url
+message_list_receive:
+    path: /message/receive
+    defaults: { _controller: AppBundle:Message:listReceive }
+    options:
+        expose: true
+
+# Show list messages sended of the user currently connected
+# No need dynamic url
 message_list_receive:
     path: /message/receive
     defaults: { _controller: AppBundle:Message:listReceive }
