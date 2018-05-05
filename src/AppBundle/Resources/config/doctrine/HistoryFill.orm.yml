@@ -9,16 +9,26 @@ AppBundle\Entity\HistoryFill:
             generator:
                 strategy: AUTO
     fields:
+        maxData:
+            type: integer
+        remainingData:
+            type: integer
+        processedData:
+            type: integer
+        maxPage:
+            type: integer
+        remainingPage:
+            type: integer
+        processedPage:
+            type: integer
+        dataPerPage:
+            type: integer
         name:
             type: string
             length: '70'
         url:
             type: string
             length: 255
-        maxData:
-            type: integer
-        page:
-            type: integer
         date:
             type: datetime
         log:
