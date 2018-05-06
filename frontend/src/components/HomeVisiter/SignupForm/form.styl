@@ -3,20 +3,25 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+}
+
+.signupForm {
+  margin: 0;
+  z-index: 55;
+
 }
 
 .signupForm::before {
   content: '';
-  position: fixed;
   background-color: #2C2C2C;
   opacity: 0.7;
   margin: 0;
 }
 
 .signupForm fieldset {
-  width: 600px;
   margin: auto;
+  width: 600px;
   display: flex;
   flex-direction: column;
   // padding: 10px;
