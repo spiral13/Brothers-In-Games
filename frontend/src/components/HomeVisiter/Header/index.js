@@ -27,13 +27,12 @@ class Header extends React.Component {
           <p className="login_signin">Se connecter</p>
           <SigninForm />
           {/* eslint-disable-next-line */}
-          <a
-            href="#"
-            className="login_signin ajust"
+          <button
+            className="signup"
             onClick={() => this.setState({ isClicked: !this.state.isClicked })}
           >
             S'inscrire
-          </a>
+          </button>
           {this.state.isClicked &&
           <div>
             <SignupForm />

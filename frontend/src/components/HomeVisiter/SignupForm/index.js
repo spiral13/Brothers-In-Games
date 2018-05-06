@@ -89,50 +89,66 @@ class SignupForm extends React.Component {
         method="post"
         onSubmit={this.handleSubmit}
       >
-        <label htmlFor="username">Username</label>
-        <input
-          className={classNames({ error: this.state.username.error, agreed: this.state.username.agreed })}
-          id="username"
-          type="text"
-          name="username"
-          value={username}
-          onChange={this.changeInput}
-        />
-        <label htmlFor="newPassword">Password</label>
-        <input
-          className={classNames({ error: this.state.newPassword.error, agreed: this.state.newPassword.agreed })}
-          id="newPassword"
-          type="password"
-          name="newPassword"
-          value={newPassword}
-          onChange={this.changeInput}
-        />
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input
-          className={classNames({ error: this.state.confirmPassword.error, agreed: this.state.confirmPassword.agreed })}
-          id="confirmPassword"
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={this.changeInput}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          className={classNames('email', { error: this.state.email.error, agreed: this.state.email.agreed })}
-          type="text"
-          name="email"
-          value={email}
-          onChange={this.changeInput}
-        />
-        <label htmlFor="email">Confirm Email</label>
-        <input
-          className={classNames('email', { error: this.state.confirmEmail.error, agreed: this.state.confirmEmail.agreed })}
-          type="text"
-          name="confirmEmail"
-          value={confirmEmail}
-          onChange={this.changeInput}
-        />
-        <button>Envoyer</button>
+        <fieldset>
+          <legend>Inscription</legend>
+          <div className="wrap">
+            <label htmlFor="username">Username</label>
+            <input
+              className={classNames({ error: this.state.username.error, agreed: this.state.username.agreed })}
+              id="username"
+              type="text"
+              name="username"
+              value={username}
+              onChange={this.changeInput}
+            />
+          </div>
+          <div className="wrap">
+            <label htmlFor="newPassword">Password</label>
+            <input
+              className={classNames({ error: this.state.newPassword.error, agreed: this.state.newPassword.agreed })}
+              id="newPassword"
+              type="password"
+              name="newPassword"
+              value={newPassword}
+              onChange={this.changeInput}
+            />
+          </div>
+          <div className="wrap">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              className={classNames({ error: this.state.confirmPassword.error, agreed: this.state.confirmPassword.agreed })}
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={this.changeInput}
+            />
+          </div>
+          <div className="wrap">
+            <label htmlFor="email">Email</label>
+            <input
+              className={classNames('email', { error: this.state.email.error, agreed: this.state.email.agreed })}
+              type="text"
+              name="email"
+              value={email}
+              onChange={this.changeInput}
+            />
+          </div>
+          <div className="wrap">
+            <label htmlFor="email">Confirm Email</label>
+            <input
+              className={classNames('email', { error: this.state.confirmEmail.error, agreed: this.state.confirmEmail.agreed })}
+              type="text"
+              name="confirmEmail"
+              value={confirmEmail}
+              onChange={this.changeInput}
+            />
+          </div>
+          <div className="wrap">
+            <button>Annuler</button>
+            <button>Envoyer</button>
+          </div>
+        </fieldset>
         {/* <button id="buttonSubmit">Envoyer</button> */}
       </form>
     );
