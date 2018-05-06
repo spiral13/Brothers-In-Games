@@ -169,7 +169,8 @@ message_delete:
     options:
         expose: true
 
-# currently not treat
+# Show message of the user currently connected
+# Need ID of this message, sending by post method
 message_show:
     path: /message/show/{id}
     defaults: { _controller: AppBundle:Message:read }

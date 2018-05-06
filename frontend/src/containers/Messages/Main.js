@@ -11,7 +11,8 @@ import Main from 'frontend/src/components/Messages/ReceiveMessages/Main';
  */
 
 const mapStateToProps = state => ({
-  messages: state.MessagesReducer.receivedMails,
+  receivedMails: state.MessagesReducer.receivedMails,
+  sendMails: state.MessagesReducer.sendMails,
 });
 
 const mapDispatchToProps = () => ({});

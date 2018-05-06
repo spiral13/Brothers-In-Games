@@ -24,7 +24,7 @@ class Message extends React.Component {
      return (
        <div className="ReceivedMessage">
          <a href="#" onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>
-           <h2>{this.props.author.username}</h2>
+           <h2>{this.props.author !== undefined ? this.props.author.username : this.props.receiver.username }</h2>
            <p>{this.props.content}</p>
          </a>
        </div>
@@ -32,9 +32,11 @@ class Message extends React.Component {
    }
 }
 Message.propTypes = {
+  id: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
   content: PropTypes.string.isRequired,
   author: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
+  receiver: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 /**
  * Export

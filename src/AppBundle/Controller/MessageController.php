@@ -17,6 +17,10 @@ class MessageController extends Controller
 	{
 		return $this->render('message/list.html.twig');
 	}
+	public function readAction()
+	{
+		return $this->render('message/read.html.twig');
+	}
 	public function getListSendMessageAction()
 	{
 		$messages = $this->getDoctrine()->getRepository(Message::class)->findAllByAuthorInArray($this->getUser());
@@ -60,6 +64,13 @@ class MessageController extends Controller
 			if($message->getAuthor() == $user || $message->getReceiver() == $user)
 			{
 				$message = $this->getDoctrine()->getRepository(Message::class)->findOneByInArray($id);
+
+				unset($message[0]['author']['isActive']);
+				unset($message[0]['author']['password']);
+				unset($message[0]['author']['mail']);
+				unset($message[0]['receiver']['isActive']);
+				unset($message[0]['receiver']['password']);
+				unset($message[0]['receiver']['mail']);
 
 				return $this->json(['status' => true, 'message' => $message]);
 			}
