@@ -9,6 +9,9 @@ AppBundle\Entity\GameCategory:
             generator:
                 strategy: AUTO
     fields:
+        apiId:
+            type: integer
+            nullable: true
         title:
             type: string
             length: '45'
