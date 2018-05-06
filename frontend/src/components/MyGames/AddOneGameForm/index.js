@@ -17,14 +17,14 @@ class AddOneGameForm extends React.Component {
     selectedOption: '',
   }
 
-  handleChange = (selectedOption) => {
-    // this.setState({ selectedOption });
-    this.props.actions.selectedOption();
+  handleSelectedOptionToSend = (selectedOption) => {
+    this.setState({ selectedOption });
+    // this.props.actions.changeFormGameSelected(evt);
   }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    // this.props.actions.submit();
+    this.props.actions.submitSelectedGame();
   }
 
   render() {
@@ -42,10 +42,10 @@ class AddOneGameForm extends React.Component {
           id="inputaddOneGameForm"
           name="form-field-name"
           value={selectedOption}
-          onChange={this.handleChange}
+          onChange={this.handleSelectedOptionToSend}
           options={allOptions}
         />
-        <button>Envoyer</button>
+        <button id="addOneGameButton">Envoyer</button>
       </form>
     );
   }
@@ -53,6 +53,7 @@ class AddOneGameForm extends React.Component {
 
 AddOneGameForm.propTypes = {
   games: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string.isRequired).isRequired).isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 

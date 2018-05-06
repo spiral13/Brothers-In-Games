@@ -22,6 +22,15 @@ class Main extends React.PureComponent {
      isClicked: false,
    }
 
+  /*
+  * Lifecycle
+  */
+   // componentDidMount() {
+   //   setTimeout(() => {
+   //     this.props.actions.addAllMyGames();
+   //   }, 2000);
+   // }
+
    render() {
      const { mygames } = this.props;
      return (
@@ -72,6 +81,7 @@ class Main extends React.PureComponent {
 }
 Main.propTypes = {
   mygames: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  // actions: PropTypes.object.isRequired,
 };
 /**
  * Export

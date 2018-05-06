@@ -7,6 +7,7 @@ const initialState = {
 
     },
   ],
+  selectedOption: '',
 };
 
 /**
@@ -14,6 +15,8 @@ const initialState = {
  */
 export const GET_ALL_MY_GAMES = 'GET_ALL_MY_GAMES';
 export const ADD_ALL_MY_GAMES = 'ADD_ALL_MY_GAMES';
+export const CHANGE_FORM_GAME_SELECTED = 'CHANGE_FORM_GAME_SELECTED';
+export const SUBMIT_SELECTED_GAME = 'SUBMIT_SELECTED_GAME';
 
 /**
  * Reducer
@@ -31,6 +34,16 @@ const reducer = (state = initialState, action = {}) => {
         mygames: action.mygames.data,
       };
 
+    case CHANGE_FORM_GAME_SELECTED:
+      return {
+        ...state,
+        selectedOption: action.selectedOption.data,
+      };
+    case SUBMIT_SELECTED_GAME:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
@@ -45,6 +58,15 @@ export const getAllMyGames = () => ({
 export const addAllMyGames = mygames => ({
   type: ADD_ALL_MY_GAMES,
   mygames,
+});
+
+export const changeFormGameSelected = selectedOption => ({
+  type: CHANGE_FORM_GAME_SELECTED,
+  selectedOption,
+});
+
+export const submitSelectedGame = () => ({
+  type: SUBMIT_SELECTED_GAME,
 });
 
 /**

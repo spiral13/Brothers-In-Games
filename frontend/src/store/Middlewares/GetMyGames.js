@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_ALL_MY_GAMES, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+import { GET_ALL_MY_GAMES, ADD_THE_GAME_SELECTED, SUBMIT_SELECTED_GAME, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
 
 /*
  * Middleware
@@ -21,6 +21,35 @@ export default store => next => (action) => {
       });
       break;
     }
+    case ADD_THE_GAME_SELECTED: {
+      const url = window.location.search.split('?id=');
+      const formData = new FormData();
+      formData.append('id', url[1]);
+      // eslint-disable-next-line
+      axios.post(Routing.generate('my_games_add'), formData).then((response) => {
+        // Ici, faire un dispatch.
+        store.dispatch(addAllMyGames(response));
+      }).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
+    case SUBMIT_SELECTED_GAME: {
+      // J'assigne les donnée que je veux a data
+      const data = store.getState().MyGamesReducer.selectedOption;
+      // Je crée un objet FormData
+      const formData = new FormData();
+      // Je boucle pour y stocker tout à l'interieur de l'objet FormData
+      formData.append('id', data[1])
+      // eslint-disable-next-line
+      axios.post(Routing.generate('my_games_add'), formData).then((response) => {
+        // Ici, faire un dispatch.
+        store.dispatch(addAllMyGames(response));
+      }).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
     default:
       break;
   }
@@ -31,4 +60,4 @@ export default store => next => (action) => {
 // Pour ajout d'un jeu -Page MyGames
 //1- barre de recherche: aller chercher tous les jeux en fonction du slug
 //2- Utilisateur sélectionne un jeu dans la liste , le sélectionne ==> envoi requête en post  du slug + id
-//3- affichage d'un nouvel "carte" oneOfMyGames 
+//3- affichage d'un nouvel "carte" oneOfMyGames
