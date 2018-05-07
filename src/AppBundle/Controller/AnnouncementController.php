@@ -223,9 +223,7 @@ class AnnouncementController extends Controller
 	public function getAnnouncementAction(Request $request)
 	{
 		$id = $request->request->get('id');
-		dump($id);
 		$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneInArray($id);
-		dump($announcement);exit;
 		unset($announcement[0]['user']['password']);
 
 		$now = new \datetime('now');
