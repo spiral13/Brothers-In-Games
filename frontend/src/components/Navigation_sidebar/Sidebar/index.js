@@ -24,8 +24,9 @@ class Sidebar extends React.Component {
           </a>
         </h1>
         <form id="sidebar-form">
-          <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu / ami</label>
-          <input id="sidebar-input" type="text" value="" placeholder="Recherche de joueurs/jeux" />
+          <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu</label>
+          <input id="sidebar-input" type="text" value="" placeholder="Rechercher un jeu" />
+          <button>Rechercher</button>
         </form>
         <Friends />
       </div>
