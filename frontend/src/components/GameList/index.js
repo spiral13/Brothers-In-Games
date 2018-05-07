@@ -23,10 +23,10 @@ class GameList extends React.Component {
   /*
    * Lifecycle
    */
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 3000);
     this.props.actions.getAllGames();
     this.props.actions.getAllFriends();
   }

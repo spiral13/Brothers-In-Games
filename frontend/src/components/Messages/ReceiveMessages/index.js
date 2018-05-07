@@ -24,13 +24,14 @@ class ReceiveMessages extends React.Component {
   /*
    * Lifecycle
    */
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 3000);
     this.props.actions.getAllFriends();
     this.props.actions.receivedMessages();
     this.props.actions.sendedMessages();
+    this.props.actions.getAllGames();
   }
 
   /*
