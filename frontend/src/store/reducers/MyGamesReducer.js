@@ -37,7 +37,10 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_FORM_GAME_SELECTED:
       return {
         ...state,
-        selectedOption: action.selectedOption.data,
+        selectedOption: {
+          ...state.selectedOption,
+          [action.input]: action.value,
+        },
       };
     case SUBMIT_SELECTED_GAME:
       return {
@@ -60,9 +63,10 @@ export const addAllMyGames = mygames => ({
   mygames,
 });
 
-export const changeFormGameSelected = selectedOption => ({
+export const changeFormGameSelected = (input, value) => ({
   type: CHANGE_FORM_GAME_SELECTED,
-  selectedOption,
+  input,
+  value,
 });
 
 export const submitSelectedGame = () => ({

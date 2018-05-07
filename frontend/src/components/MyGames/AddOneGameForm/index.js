@@ -19,7 +19,7 @@ class AddOneGameForm extends React.Component {
 
   handleSelectedOptionToSend = (selectedOption) => {
     this.setState({ selectedOption });
-    // this.props.actions.changeFormGameSelected(evt);
+    // this.props.actions.changeFormGameSelected(evt.target);
   }
 
   handleSubmit = (evt) => {
@@ -32,7 +32,7 @@ class AddOneGameForm extends React.Component {
     const { games } = this.props;
     let allOptions = [];
     games.map((option) => {
-      allOptions = [...allOptions, { value: option.title, label: option.title }];
+      allOptions = [...allOptions, { value: option.title, label: option.title, id: option.id }];
       return true;
     });
     return (

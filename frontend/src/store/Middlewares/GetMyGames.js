@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_ALL_MY_GAMES, ADD_THE_GAME_SELECTED, SUBMIT_SELECTED_GAME, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
 
 /*
  * Middleware
@@ -14,19 +14,6 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.get(Routing.generate('get_user_games')).then((response) => {
         console.log(response);
-        // Ici, faire un dispatch.
-        store.dispatch(addAllMyGames(response));
-      }).catch((error) => {
-        console.log(error);
-      });
-      break;
-    }
-    case ADD_THE_GAME_SELECTED: {
-      const url = window.location.search.split('?id=');
-      const formData = new FormData();
-      formData.append('id', url[1]);
-      // eslint-disable-next-line
-      axios.post(Routing.generate('my_games_add'), formData).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(addAllMyGames(response));
       }).catch((error) => {
