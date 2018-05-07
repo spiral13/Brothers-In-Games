@@ -1,5 +1,5 @@
 /**
- * Initial State
+ * Initial State---------------------------------------------------------
  */
 const initialState = {
   mygames: [
@@ -8,22 +8,31 @@ const initialState = {
     },
   ],
   selectedOption: {},
+  selectedOptionToDelete: {},
 };
 
 /**
- * Types
+ * Types----------------------------------------------------------------
  */
 export const GET_ALL_MY_GAMES = 'GET_ALL_MY_GAMES';
 export const ADD_ALL_MY_GAMES = 'ADD_ALL_MY_GAMES';
+
 export const CHANGE_FORM_GAME_SELECTED = 'CHANGE_FORM_GAME_SELECTED';
 export const SUBMIT_SELECTED_GAME = 'SUBMIT_SELECTED_GAME';
 export const ADD_NEW_GAME_TO_LIST = 'ADD_NEW_GAME_TO_LIST';
 
+export const CHANGE_FORM_GAME_TO_DELETE = 'CHANGE_FORM_GAME_TO_DELETE';
+export const SUBMIT_GAME_TO_DELETE = 'SUBMIT_GAME_TO_DELETE';
+export const DELETE_GAME_FROM_LIST = 'DELETE_GAME_FROM_LIST';
+
 /**
- * Reducer
+ * Reducer-------------------------------------------------------------
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    /**
+     * Display after loading page
+     */
     case GET_ALL_MY_GAMES:
       return {
         ...state,
@@ -35,6 +44,9 @@ const reducer = (state = initialState, action = {}) => {
         mygames: action.mygames.data,
       };
 
+    /**
+     * Add a game to my games list
+     */
     case CHANGE_FORM_GAME_SELECTED:
       return {
         ...state,
@@ -56,13 +68,43 @@ const reducer = (state = initialState, action = {}) => {
         mygames: [...state.mygames, { ...action.game.data.game[0] }],
       };
 
+    /**
+     * Delete a one of my games from my list
+     */
+    case CHANGE_FORM_GAME_TO_DELETE:
+      return {
+        ...state,
+        selectedOptionToDelete: {
+          ...state.selectedOptionToDelete,
+          title: action.title,
+          id: action.id,
+        },
+      };
+
+    case SUBMIT_GAME_TO_DELETE:
+      return {
+        ...state,
+      };
+
+    case DELETE_GAME_FROM_LIST:
+      return {
+        ...state,
+        mygames: [...state.mygames, { ...action.mygame.data.mygame[0] }],
+      };
+
     default:
       return state;
   }
 };
+
+
 /**
- * Action Creators
+ * Action Creators------------------------------------------------------
  */
+
+/**
+  * Display after loading page
+  */
 export const getAllMyGames = () => ({
   type: GET_ALL_MY_GAMES,
 });
@@ -72,6 +114,9 @@ export const addAllMyGames = mygames => ({
   mygames,
 });
 
+/**
+ * Add a game to my games list
+ */
 export const changeFormGameSelected = (title, id) => ({
   type: CHANGE_FORM_GAME_SELECTED,
   title,
@@ -86,6 +131,25 @@ export const addNewGameToList = game => ({
   type: ADD_NEW_GAME_TO_LIST,
   game,
 });
+
+/**
+ * Delete a one of my games from my list
+ */
+export const changeFormGameToDelete = (title, id) => ({
+  type: CHANGE_FORM_GAME_TO_DELETE,
+  title,
+  id,
+});
+
+export const submitGameToDelete = () => ({
+  type: SUBMIT_GAME_TO_DELETE,
+});
+
+export const DeleteGameFromList = mygame => ({
+  type: DELETE_GAME_FROM_LIST,
+  mygame,
+});
+
 
 /**
  * Export
