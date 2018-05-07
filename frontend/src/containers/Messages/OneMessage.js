@@ -12,7 +12,9 @@ import { redirect } from 'frontend/src/store/reducer';
  * Code
  */
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  selectedMail: state.MessagesReducer.selectedMail,
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ redirect }, dispatch),
