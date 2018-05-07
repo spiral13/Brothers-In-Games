@@ -3,6 +3,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import FaTrashO from 'react-icons/lib/fa/trash-o';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
 /**
 * Local import
@@ -10,6 +12,7 @@ import PropTypes from 'prop-types';
 
 // eslint-disable-next-line
 import AddOneGameForm from 'frontend/src/containers/MyGames/AddOneGameForm';
+import DeleteGameForm from 'frontend/src/containers/MyGames/DeleteGameForm';
 import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
 // eslint-disable-next-line
 // import GameList from 'frontend/src/containers/GameList/GameList';
@@ -19,7 +22,8 @@ import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
  */
 class Main extends React.PureComponent {
    state = {
-     isClicked: false,
+     AddFormIsClicked: false,
+     DeleteFormIsClicked: false,
    }
 
   /*
@@ -44,17 +48,36 @@ class Main extends React.PureComponent {
          <section id="sectionListingMyGames">
            <div id="settings">
              <h2 id="title">Vos jeux</h2>
-             <div id="triggerLegend">Ajouter un nouveau jeu à votre liste</div>
-             <a
-               id="trigger"
-               onClick={() => this.setState({ isClicked: !this.state.isClicked })}
-             > +
-             </a>
+
+             <div className="trigger" >
+               <div className="triggerLegend">Ajouter un nouveau jeu à votre liste</div>
+               <a
+                 id="addTrigger"
+                 onClick={() =>
+                   this.setState({ AddFormIsClicked: !this.state.AddFormIsClicked })}
+               > <FaPlusCircle />
+               </a>
+             </div>
+
+             <div className="trigger">
+               <div className="triggerLegend">Supprimer un jeu de votre liste</div>
+               <a
+                 id="deleteTrigger"
+                 onClick={() =>
+                   this.setState({ DeleteFormIsClicked: !this.state.DeleteFormIsClicked })}
+               > <FaTrashO />
+               </a>
+             </div>
            </div>
 
-           {this.state.isClicked &&
-           <div id="triggeredAddOneGameForm" className={this.state.isClick ? 'fadeIn' : 'fadeOut'}>
+           {this.state.AddFormIsClicked &&
+           <div id="triggeredAddOneGameForm" className={this.state.AddFormIsClicked ? 'fadeIn' : 'fadeOut'}>
              <AddOneGameForm />
+           </div>}
+
+           {this.state.DeleteFormIsClicked &&
+           <div id="triggeredDeleteGameForm">
+             <DeleteGameForm />
            </div>}
 
            <div id="containerAllMyGames">

@@ -37,37 +37,61 @@
 
 #settings
   border-bottom: .5px solid #EC9C34
-  width:50vw
+  width:70vw
   padding-bottom: .5em
   display: flex;
+  justify-content: space-between
+  flex-direction: row
+  align-items: center
+
+.trigger
+  display: flex;
+  justify-content: flex-start
   flex-direction: row
   align-items: center
 
 
-#trigger
+
+#addTrigger
   width: 45px
   height: 45px
   font-size: 1.8em
-  background-color: black
   border-radius: 10px
   color: #EC9C34
   text-align: center
-  padding-bottom: 50px
-  margin-left: 20px
+  padding-bottom: 60px
+  padding-right: 30px
+  margin-left: 10px
 
-#trigger:hover{
-  box-shadow: 0px 0px 2px 2px #ec9c34;
-  cursor: pointer;
+
+#addTrigger:hover{
+  color: black
+  cursor: pointer
+}
+
+#deleteTrigger
+  width: 45px
+  height: 45px
+  font-size: 1.8em
+  border-radius: 10px
+  color: #EC9C34
+  text-align: center
+  padding-bottom: 60px
+  margin-left: 10px
+
+#deleteTrigger:hover{
+  color: black
+  cursor: pointer
 }
 
 
-#triggerLegend
+.triggerLegend
   color: white
   font-weight: lighter
   font-size: 0.5em
-  padding-left: 1em
+  // padding-left: 1em
   padding-top: 5px
-  margin-left: 485px
+
 
 #title
   color: #EC9C34
@@ -79,18 +103,31 @@
 #triggeredAddOneGameForm
   padding-bottom 1em
 
+
 // #triggeredAddOneGameForm.fadeIn
 //   opacity:1
-//   transition: 2s
+//   transition: 4s
 //   display: block
 //
 // #triggeredAddOneGameForm.fadeOut
 //   opacity:0
 //   width:0
 //   height:0
-//   transition: 2s
+//   transition: 4s
+
+#triggeredDeleteGameForm
+  padding-bottom 1em
 
 #addOneGameForm
+  padding: .5em 0
+  width:50vw
+  margin: 0
+  border-bottom: .5px solid #EC9C34
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+#deleteOneGameForm
   padding: .5em 0
   width:50vw
   margin: 0
@@ -110,7 +147,25 @@
   box-shadow: 0px 0px 2px 2px #ec9c34
 }
 
+#inputDeleteOneGameForm
+  font-size: 0.6em
+  border-color: black
+  width:42vw
+
+
+#inputDeleteOneGameForm:hover{
+  box-shadow: 0px 0px 2px 2px #ec9c34
+}
+
 #addOneGameButton
+    text-transform: uppercase
+    font-weight: bold
+    background-color: #ec9c34
+    border: 1px solid #ec9c34
+    border-radius: 5px
+    margin-left: 10px
+
+#deleteOneGameButton
     text-transform: uppercase
     font-weight: bold
     background-color: #ec9c34
