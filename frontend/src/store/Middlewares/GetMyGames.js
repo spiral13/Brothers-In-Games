@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, addAllMyGames, addNewGameToList } from 'frontend/src/store/reducers/MyGamesReducer';
 
 /*
  * Middleware
@@ -27,11 +27,13 @@ export default store => next => (action) => {
       // Je crée un objet FormData
       const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData
-      formData.append('id', data[1])
+      formData.append('id', data.id);
+      formData.append('title', data.title);
       // eslint-disable-next-line
       axios.post(Routing.generate('my_games_add'), formData).then((response) => {
         // Ici, faire un dispatch.
-        store.dispatch(addAllMyGames(response));
+        console.log(response);
+        store.dispatch(addNewGameToList(response));
       }).catch((error) => {
         console.log(error);
       });

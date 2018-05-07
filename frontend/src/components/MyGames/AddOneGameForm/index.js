@@ -19,7 +19,7 @@ class AddOneGameForm extends React.Component {
 
   handleSelectedOptionToSend = (selectedOption) => {
     this.setState({ selectedOption });
-    // this.props.actions.changeFormGameSelected(evt.target);
+    this.props.actions.changeFormGameSelected(selectedOption.label, selectedOption.id);
   }
 
   handleSubmit = (evt) => {
