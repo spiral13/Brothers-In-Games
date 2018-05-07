@@ -3,6 +3,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import FaSearch from 'react-icons/lib/fa/search';
+
 /**
 * Local import
 */
@@ -18,15 +20,18 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div id="sidebar">
-        <div className="wrap">
+        <div id="sidebar-wrap">
           <h1 id="sidebar-title">
             <a href="#" onClick={() => this.redirection('/app_dev.php/home')}>
               Brothers<br /><span><i>in</i>Games</span>
             </a>
           </h1>
           <form id="sidebar-form">
-            <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu / ami</label>
-            <input id="sidebar-input" type="text" value="" placeholder="Recherche de joueurs/jeux" />
+            <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu</label>
+            <div id="sidebar-form-wrap">
+              <input id="sidebar-input" type="text" value="" placeholder="Rechercher un jeu" />
+              <button><FaSearch /></button>
+            </div>
           </form>
           <Friends />
         </div>
