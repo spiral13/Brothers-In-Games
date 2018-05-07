@@ -5,7 +5,11 @@
   display: flex
   flex-direction: column
   padding: 1em 2em
-  overflow: auto;
+  overflow: auto
+
+#ContainerMyGamesList .true
+    background-color: black
+    opacity: 0.5
 
 // Profile
 #infoIdentityProfile
@@ -89,7 +93,6 @@
   color: white
   font-weight: lighter
   font-size: 0.5em
-  // padding-left: 1em
   padding-top: 5px
 
 
@@ -117,6 +120,27 @@
 
 #triggeredDeleteGameForm
   padding-bottom 1em
+  padding-left:0.5em
+  position: absolute
+  background-color: #EC9C34
+  display: flex
+  flex-direction: column
+  margin: -80px calc(10%)
+  border: 1px solid black
+  border-radius: 20px
+  // top:250px
+  // left: 550px
+
+#crossCancelDeleteForm
+  margin-left: 94%
+  margin-top:1%
+
+#labelDeleteGameForm
+  font-size: 0.8em
+  padding-top: 1em
+  padding-left: 1em
+  margin-bottom: none
+
 
 #addOneGameForm
   padding: .5em 0
@@ -128,13 +152,13 @@
   justify-content: space-between
 
 #deleteOneGameForm
-  padding: .5em 0
+  padding: 2em 0
   width:50vw
   margin: 0
-  border-bottom: .5px solid #EC9C34
+  border-radius: 10px
   display: flex
   flex-direction: row
-  justify-content: space-between
+  justify-content: space-around
 
 
 #inputaddOneGameForm
@@ -150,7 +174,7 @@
 #inputDeleteOneGameForm
   font-size: 0.6em
   border-color: black
-  width:42vw
+  width:40vw
 
 
 #inputDeleteOneGameForm:hover{
@@ -168,10 +192,10 @@
 #deleteOneGameButton
     text-transform: uppercase
     font-weight: bold
-    background-color: #ec9c34
+    color: #ec9c34
+    background-color: black
     border: 1px solid #ec9c34
     border-radius: 5px
-    margin-left: 10px
 
 // SectionListe: zone games
 #containerAllMyGames

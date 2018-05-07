@@ -5,6 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
+import MdCancel from 'react-icons/lib/md/cancel';
 
 /**
 * Local import
@@ -25,6 +26,9 @@ class Main extends React.PureComponent {
      AddFormIsClicked: false,
      DeleteFormIsClicked: false,
    }
+   redirection = (value) => {
+     this.props.actions.redirect(value);
+   }
 
   /*
   * Lifecycle
@@ -38,6 +42,7 @@ class Main extends React.PureComponent {
    render() {
      const { mygames } = this.props;
      return (
+
        <div id="ContainerMyGamesList">
 
          <div id="infoIdentityProfile">
@@ -77,23 +82,24 @@ class Main extends React.PureComponent {
 
            {this.state.DeleteFormIsClicked &&
            <div id="triggeredDeleteGameForm">
+             <MdCancel
+               onClick={() =>
+                 this.setState({ DeleteFormIsClicked: !this.state.DeleteFormIsClicked })}
+               id="crossCancelDeleteForm"
+             />
+             <span id="labelDeleteGameForm">Quel jeu voulez-vous supprimer de votre liste ?</span>
              <DeleteGameForm />
            </div>}
 
            <div id="containerAllMyGames">
              {mygames.map((mygame, index) => (
-               // <a href={Routing.generate('games_list', { id: mygame.id, slug: mygame.slug })}>
-               //   <OneOfMyGames
-               //     index={index}
-               //     key={mygame.id}
-               //     mygame={mygame}
-               //   />
-               // </a>
-               <OneOfMyGames
-                 // index={index}
-                 key={index}
-                 mygame={mygame}
-               />
+               <a href="#" onClick={() => this.redirection(`/app_dev.php/announcements?slug=${mygame.slug}`)}>
+                 <OneOfMyGames
+                   // index={index}
+                   key={index}
+                   mygame={mygame}
+                 />
+               </a>
              ))}
            </div>
 
@@ -104,7 +110,7 @@ class Main extends React.PureComponent {
 }
 Main.propTypes = {
   mygames: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  // actions: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 /**
  * Export

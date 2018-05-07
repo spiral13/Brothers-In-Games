@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 * Local import
 */
 import Main from 'frontend/src/components/MyGames/Main';
+import { redirect } from 'frontend/src/store/reducer';
 // actionsCreators
 import { getAllMyGames, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
 import { getAllGames, addAllGames } from 'frontend/src/store/reducer';
@@ -28,6 +29,7 @@ const mapDispatchToProps = dispatch => ({
     addAllMyGames,
     getAllGames,
     addAllGames,
+    redirect,
   }, dispatch),
 });
 
