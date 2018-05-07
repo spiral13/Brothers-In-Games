@@ -26,6 +26,7 @@ class Announcements extends React.Component {
       }, 2000);
       this.props.actions.addAnnouncements();
       this.props.actions.getAllFriends();
+      this.props.actions.getAllGames();
     }
   }
 

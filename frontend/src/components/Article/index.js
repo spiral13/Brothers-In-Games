@@ -32,6 +32,7 @@ class Article extends React.Component {
     }, 1500);
     this.props.actions.getArticle();
     this.props.actions.getAllFriends();
+    this.props.actions.getAllGames();
   }
 
   /*

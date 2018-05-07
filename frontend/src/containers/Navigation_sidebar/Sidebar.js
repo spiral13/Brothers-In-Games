@@ -13,7 +13,9 @@ import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
  * Code
  */
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  games: state.reducer.games,
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ redirect, getAllFriends }, dispatch),
