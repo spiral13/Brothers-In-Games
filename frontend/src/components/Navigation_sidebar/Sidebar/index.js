@@ -4,6 +4,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import {
+  Link
+} from 'react-router-dom'
 /**
 * Local import
 */
@@ -47,6 +50,7 @@ class Sidebar extends React.Component {
         <form id="sidebar-form" onSubmit={this.handleSubmit}>
           <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu</label>
           <Select
+            className="selectNavGame"
             placeholder="Ajouter un nouveau jeu à votre liste"
             name="sidebar-input"
             value={selectedOption}

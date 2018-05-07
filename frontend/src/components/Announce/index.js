@@ -19,10 +19,10 @@ class Announce extends React.Component {
     loading: true,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 3000);
     this.props.actions.getAllFriends();
     this.props.actions.getProfileAnnounce();
     this.props.actions.getAllGames();
