@@ -40,22 +40,37 @@ header h1 span i {
   margin-top: 40px;
 }
 
-label, input, button {
+#homeVisiter label, input, button {
   color: #2C2C2C;
 }
 
-label {
+#homeVisiter label {
   margin-left: 10px;
   align-self: left;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
+#homeVisiter form label{
+  margin-top: 25px;
 }
 
-form label{
-  margin-top: 25px;
+#homeVisiter form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 10px 60px;
+  width: 400px;
+}
+
+#homeVisiter input {
+  margin: 10px 0 0 0;
+  border-radius: 10px;
+  padding: 7px;
+  height: 35px;
+  border: none;
+}
+
+#homeVisiter input:hover, #homeVisiter input:focus {
+  transition: 0.2s;
+  box-shadow: 0 0 5px #ffffff;
 }
 
 #head_nav {
@@ -112,25 +127,6 @@ form label{
 
 .gamesList {
   display: block;
-}
-
-
-form {
-  margin: 20px 0 10px 60px;
-  width: 400px;
-}
-
-input {
-  margin: 10px 0 0 0;
-  border-radius: 10px;
-  padding: 7px;
-  height: 35px;
-  border: none;
-}
-
-input:hover {
-  transition: 0.2s;
-  box-shadow: 0 0 5px #ffffff;
 }
 
 #forgotPassword {

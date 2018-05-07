@@ -22,7 +22,7 @@ class HomeMember extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 3000);
     this.props.actions.getAllFriends();
     this.props.actions.getAllNews();
   }
@@ -33,10 +33,12 @@ class HomeMember extends React.Component {
     }
     return (
       <div id="homeMember">
-        <Navbar />
         <Sidebar />
-        <Main />
-        <RightSidebar />
+        <div className="right-side">
+          <Navbar />
+          <Main />
+          <RightSidebar />
+        </div>
       </div>
     );
   }

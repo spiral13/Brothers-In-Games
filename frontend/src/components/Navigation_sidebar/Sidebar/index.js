@@ -18,16 +18,18 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div id="sidebar">
-        <h1 id="sidebar-title">
-          <a href="#" onClick={() => this.redirection('/app_dev.php/home')}>
-            Brothers<br /><span><i>in</i>Games</span>
-          </a>
-        </h1>
-        <form id="sidebar-form">
-          <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu / ami</label>
-          <input id="sidebar-input" type="text" value="" placeholder="Recherche de joueurs/jeux" />
-        </form>
-        <Friends />
+        <div className="wrap">
+          <h1 id="sidebar-title">
+            <a href="#" onClick={() => this.redirection('/app_dev.php/home')}>
+              Brothers<br /><span><i>in</i>Games</span>
+            </a>
+          </h1>
+          <form id="sidebar-form">
+            <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu / ami</label>
+            <input id="sidebar-input" type="text" value="" placeholder="Recherche de joueurs/jeux" />
+          </form>
+          <Friends />
+        </div>
       </div>
     );
   }
