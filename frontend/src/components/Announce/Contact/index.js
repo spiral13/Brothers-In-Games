@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Close from 'react-icons/lib/fa/close';
 /**
 * Local import
 */
@@ -26,7 +27,7 @@ class Contact extends React.Component {
   render() {
     return (
       <div id="contactPlayer">
-        {this.props.popup ? <div className="showResponse"><a href="#" className="closePopup" onClick={this.onChange}>X</a><h2>{this.props.response.status ? 'Votre message à bien été envoyé:' : 'Errer lors de l\'envoi du message:'}</h2><p className="messageSend">{this.props.response.content}</p></div> : true}
+        {this.props.popup ? <div className="showResponse"><button className="closePopup" onClick={this.onChange}><Close /></button><h2>{this.props.response.status ? 'Votre message à bien été envoyé:' : 'Erreur lors de l\'envoi du message:'}</h2><p className="messageSend">{this.props.response.content}</p></div> : true}
         <div id="announce-contact">
           <div id="announce-contact-show">
             <img className="playerPicture" src={this.props.datas.user.profile.image} alt="Photo de profil" />

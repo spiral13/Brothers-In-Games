@@ -15,7 +15,6 @@ export default store => next => (action) => {
       formData.append('id', store.getState().AnnouncementsReducer.profileAnnounce[0].user.id);
       // eslint-disable-next-line
       axios.post(Routing.generate('message_send'), formData).then((response) => {
-        console.log(response);
         store.dispatch(showResponse(response));
       }).catch((error) => {
         console.log(error);

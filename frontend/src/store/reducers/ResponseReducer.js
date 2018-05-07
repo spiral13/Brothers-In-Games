@@ -24,7 +24,6 @@ const HIDE_RESPONSE = 'HIDE_RESPONSE';
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SHOW_RESPONSE: {
-      console.log(action);
       return {
         ...state,
         popup: true,

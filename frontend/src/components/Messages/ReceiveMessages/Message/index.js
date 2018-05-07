@@ -21,11 +21,15 @@ class Message extends React.Component {
    * Rendu
    */
    render() {
+     let content = '';
+     this.props.content.split('').forEach((letter, index) => {
+       if (index <= 70) content += letter;
+     });
      return (
        <div className="ReceivedMessage">
-         <a href="#" onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>
+         <a onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>
            <h2>{this.props.author !== undefined ? this.props.author.username : this.props.receiver.username }</h2>
-           <p>{this.props.content}</p>
+           <p>{content} ...</p>
          </a>
        </div>
      );
