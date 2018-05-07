@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_ALL_MY_GAMES, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, addAllMyGames, addNewGameToList } from 'frontend/src/store/reducers/MyGamesReducer';
 
 /*
  * Middleware
@@ -21,6 +21,24 @@ export default store => next => (action) => {
       });
       break;
     }
+    case SUBMIT_SELECTED_GAME: {
+      // J'assigne les donnée que je veux a data
+      const data = store.getState().MyGamesReducer.selectedOption;
+      // Je crée un objet FormData
+      const formData = new FormData();
+      // Je boucle pour y stocker tout à l'interieur de l'objet FormData
+      formData.append('id', data.id);
+      formData.append('title', data.title);
+      // eslint-disable-next-line
+      axios.post(Routing.generate('my_games_add'), formData).then((response) => {
+        // Ici, faire un dispatch.
+        console.log(response);
+        store.dispatch(addNewGameToList(response));
+      }).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
     default:
       break;
   }
@@ -31,4 +49,4 @@ export default store => next => (action) => {
 // Pour ajout d'un jeu -Page MyGames
 //1- barre de recherche: aller chercher tous les jeux en fonction du slug
 //2- Utilisateur sélectionne un jeu dans la liste , le sélectionne ==> envoi requête en post  du slug + id
-//3- affichage d'un nouvel "carte" oneOfMyGames 
+//3- affichage d'un nouvel "carte" oneOfMyGames

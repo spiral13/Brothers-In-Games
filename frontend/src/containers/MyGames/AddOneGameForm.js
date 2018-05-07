@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 */
 import AddOneGameForm from 'frontend/src/components/MyGames/AddOneGameForm';
 // actionsCreators
-import { getAllMyGames, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+import { getAllMyGames, addAllMyGames, changeFormGameSelected, submitSelectedGame } from 'frontend/src/store/reducers/MyGamesReducer';
 import { getAllGames, addAllGames } from 'frontend/src/store/reducer';
 
 
@@ -19,6 +19,7 @@ import { getAllGames, addAllGames } from 'frontend/src/store/reducer';
 const mapStateToProps = state => ({
   mygames: state.MyGamesReducer.mygames,
   games: state.reducer.games,
+  selectedOption: state.MyGamesReducer.selectedOption,
 });
 
 
@@ -28,6 +29,8 @@ const mapDispatchToProps = dispatch => ({
     addAllMyGames,
     getAllGames,
     addAllGames,
+    changeFormGameSelected,
+    submitSelectedGame,
   }, dispatch),
 });
 
