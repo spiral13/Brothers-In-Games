@@ -25,7 +25,10 @@ class Sidebar extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    this.redirection(`/app_dev.php/announcements?slug=${this.state.selectedOption.slug}`);
+    this.redirection('/app_dev.php/announcement');
+    setTimeout(() => {
+      this.redirection(`/app_dev.php/announcements?slug=${this.state.selectedOption.slug}`);
+    }, 500);
   }
 
   redirection = (value) => {
