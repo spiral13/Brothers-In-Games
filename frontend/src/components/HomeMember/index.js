@@ -15,14 +15,7 @@ import Loading from 'frontend/src/components/Loading';
  * Code
  */
 class HomeMember extends React.Component {
-  state = {
-    loading: true,
-  }
-
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 3000);
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
     this.props.actions.getAllNews();
@@ -31,7 +24,13 @@ class HomeMember extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
+    const {
+      loadingFriends,
+      loadingGames,
+      loadingNews,
+      loadingActus,
+    } = this.props.loadings;
+    if (!loadingFriends || !loadingGames || !loadingNews || !loadingActus) {
       return <Loading />;
     }
     return (
@@ -47,6 +46,7 @@ class HomeMember extends React.Component {
 
 HomeMember.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 /**
  * Export

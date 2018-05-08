@@ -13,6 +13,7 @@ import ArticleReducer from 'frontend/src/store/reducers/ArticleReducer';
 import ResponseReducer from 'frontend/src/store/reducers/ResponseReducer';
 import FriendsReducer from 'frontend/src/store/reducers/FriendsReducer';
 import MessagesReducer from 'frontend/src/store/reducers/MessagesReducer';
+import LoadingReducer from 'frontend/src/store/reducers/LoadingReducer';
 /*
  * Code
  */
@@ -28,4 +29,5 @@ export default combineReducers({
   FriendsReducer,
   MyGamesReducer,
   MessagesReducer,
+  LoadingReducer,
 });

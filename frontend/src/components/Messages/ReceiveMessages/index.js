@@ -17,17 +17,10 @@ import Main from 'frontend/src/containers/Messages/Main';
 class ReceiveMessages extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
-  state = {
-    loading: true,
-  }
-
   /*
    * Lifecycle
    */
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 3000);
     setInterval(() => {
       this.props.actions.receivedMessages();
       this.props.actions.sendedMessages();
@@ -42,7 +35,13 @@ class ReceiveMessages extends React.Component {
    * Rendu
    */
   render() {
-    if (this.state.loading) {
+    const {
+      loadingFriends,
+      loadingGames,
+      loadingReceiveMessages,
+      loadingSendedMessages,
+    } = this.props.loadings;
+    if (!loadingFriends || !loadingGames || !loadingReceiveMessages || !loadingSendedMessages) {
       return <Loading />;
     }
     return (
@@ -57,6 +56,7 @@ class ReceiveMessages extends React.Component {
 
 ReceiveMessages.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 /**
  * Export

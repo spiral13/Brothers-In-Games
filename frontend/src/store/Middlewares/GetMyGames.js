@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // Local import
 import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, SUBMIT_GAME_TO_DELETE, SUBMIT_ANNOUNCE, addAllMyGames, addNewGameToList, DeleteGameFromList } from 'frontend/src/store/reducers/MyGamesReducer';
+import { changeLoading } from 'frontend/src/store/reducers/LoadingReducer';
 
 /*
  * Middleware
@@ -28,6 +29,7 @@ export default store => next => (action) => {
         console.log(response);
         // Ici, faire un dispatch.
         store.dispatch(addAllMyGames(response));
+        store.dispatch(changeLoading('loadingMyGames'));
       }).catch((error) => {
         console.log(error);
       });
@@ -55,7 +57,6 @@ export default store => next => (action) => {
     case SUBMIT_GAME_TO_DELETE: {
       // J'assigne les donnée que je veux a data
       const data = store.getState().MyGamesReducer.selectedOptionToDelete;
-      const myGames = store.getState().MyGamesReducer.mygames;
       // Je crée un objet FormData
       const formData = new FormData();
       // Je boucle pour y stocker tout à l'interieur de l'objet FormData

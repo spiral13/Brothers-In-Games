@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import classNames from 'classnames';
-import ReactLoading from 'react-loading';
 import PropTypes from 'prop-types';
 /**
 * Local import
@@ -72,8 +71,7 @@ class RightSidebar extends React.Component {
 }
 
 RightSidebar.propTypes = {
-  actions: PropTypes.object.isRequired,
-  actus: PropTypes.arrayOf(PropTypes.object.isRequired),
+  actus: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   playerNews: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 /**

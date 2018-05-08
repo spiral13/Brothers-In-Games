@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // Local import
 import { GET_ALL_ANNOUNCEMENTS, GET_ANNOUNCEMENT_SELECTED, GET_PROFILE_ANNOUNCE, addProfileAnnounce, showAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReducer';
+import { changeLoading } from 'frontend/src/store/reducers/LoadingReducer';
 /*
  * Middleware
  */
@@ -14,6 +15,7 @@ export default store => next => (action) => {
       axios.get(Routing.generate('get_all_announcement')).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(showAnnouncements(response));
+        store.dispatch(changeLoading('loadingAnnouncements'));
       }).catch((error) => {
         console.log(error);
       });
@@ -21,6 +23,7 @@ export default store => next => (action) => {
     }
 
     case GET_ANNOUNCEMENT_SELECTED: {
+      console.log('OK');
       const url = window.location.search.split('?slug=');
       const formData = new FormData();
       formData.append('slug', url[1]);
@@ -28,6 +31,7 @@ export default store => next => (action) => {
       axios.post(Routing.generate('get_announcement_by_game'), formData).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(showAnnouncements(response));
+        store.dispatch(changeLoading('loadingAnnouncements'));
       }).catch((error) => {
         console.log(error);
       });
@@ -42,6 +46,7 @@ export default store => next => (action) => {
       axios.post(Routing.generate('get_announcement'), formData).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(addProfileAnnounce(response));
+        store.dispatch(changeLoading('loadingProfileAnnounce'));
       }).catch((error) => {
         console.log(error);
       });
