@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, SUBMIT_GAME_TO_DELETE, addAllMyGames, addNewGameToList, DeleteGameFromList } from 'frontend/src/store/reducers/MyGamesReducer';
+import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, SUBMIT_GAME_TO_DELETE, SUBMIT_ANNOUNCE, addAllMyGames, addNewGameToList, DeleteGameFromList } from 'frontend/src/store/reducers/MyGamesReducer';
 
 /*
  * Middleware
@@ -10,6 +10,22 @@ import { GET_ALL_MY_GAMES, SUBMIT_SELECTED_GAME, SUBMIT_GAME_TO_DELETE, addAllMy
 export default store => next => (action) => {
   // Code
   switch (action.type) {
+    case SUBMIT_ANNOUNCE: {
+      const formData = new FormData();
+      formData.append('content', store.getState().MyGamesReducer.textArea);
+      formData.append('game-id', store.getState().MyGamesReducer.selectedPostGame.id);
+      axios.post(Routing.generate('announcements_create'), formData).then((response) => {
+        console.log(response);
+        // if (response.data.success) {
+        alert(response.data.message);
+        // }
+        // store.dispatch(addAllMyGames(response));
+      }).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
+
     case GET_ALL_MY_GAMES: {
       // eslint-disable-next-line
       axios.get(Routing.generate('get_user_games')).then((response) => {
