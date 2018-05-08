@@ -1,28 +1,21 @@
-.MainMessages {
-  width: 85%;
-  float: right;
-}
+@require "frontend/styles/charte";
 
-.bannerMailing {
+.bannerMailing 
   padding: 20px;
-  color: #ec9c34;
-}
+  color: $main-color;
 
-.navmails {
+.navmails 
   font-size: 0.7em;
-}
-
-.navmails li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.navmails li a {
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.selectedMessage {
-  background-color: #ec9c34;
+  li 
+    display: inline-block;
+    margin-right: 10px;
+    a 
+      padding: 10px;
+      border-radius: 10px;
+    a:not(.selectedMessage):hover
+      background-color: $second-hover-color;
+  
+.selectedMessage
+  cursor: default;
+  background-color: $main-color;
   color: black;
-}

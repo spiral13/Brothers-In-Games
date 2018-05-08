@@ -1,89 +1,71 @@
-#homeVisiter .signupForm, .signupForm::before {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-}
+@require "frontend/styles/charte";
 
-#homeVisiter .signupForm {
-  margin: 0;
-  z-index: 55;
-
-}
-
-#homeVisiter .signupForm::before {
-  content: '';
-  background-color: #2C2C2C;
-  opacity: 0.7;
-  margin: 0;
-}
-
-#homeVisiter .signupForm fieldset {
-  margin: auto;
-  width: 600px;
-  display: flex;
-  flex-direction: column;
-  // padding: 10px;
-  background-color: #2C2C2C;
-  z-index: 550;
-  padding: 10px;
-}
-
-#homeVisiter .signupForm fieldset .wrap {
-  margin: 5px;
-  align-self: stretch;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-#homeVisiter .signupForm fieldset legend {
-  color: #EC9C34;
-  text-indent: 10px;
-  font-weight: bold;
-  text-shadow: 0px 0px 5px #2C2C2C;
-}
-
-#homeVisiter .signupForm input {
-  flex: 1;
-  width: auto;
-  border-radius: 0 5px 5px 0;
-  margin: 0;
-}
-
-#homeVisiter .signupForm label {
-  min-width: 158px;
-  margin: 0;
-  padding: 5px;
-  height: 35px;
-  border-radius:  5px 0 0 5px ;
-  background-color: #EC9C34;
-  color: #2C2C2C;
-  font-size: 0.6em;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-#homeVisiter .signupForm button {
-  flex: 1;
-  border: none;
-  height: 30px;
-  align-self: right;
-  background-color: #2C2C2C;
-  color: #EC9C34;
-  font-size: 0.7em;
-  border: 1px solid #EC9C34;
-}
-
-#homeVisiter .signupForm button:first-child {
-  border-right: none;
-}
-
-#homeVisiter .signupForm button:hover {
-  transition: 0.2s
-  background-color: #EC9C34;
-  color: #2C2C2C;
-}
+#homeVisiter 
+  .signupForm, .signupForm::before
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  .signupForm
+    margin: 0;
+    z-index: 55;
+  .signupForm::before
+    content: '';
+    background-color: $second-color;
+    opacity: 0.7;
+    margin: 0;
+  .signupForm 
+    fieldset
+      margin: auto;
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      // padding: 10px;
+      background-color: $second-color;
+      z-index: 550;
+      padding: 10px;
+      .wrap
+        margin: 5px;
+        align-self: stretch;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+      legend
+        color: $main-color;
+        text-indent: 10px;
+        font-weight: bold;
+        text-shadow: 0px 0px 5px $second-color;
+      input
+        flex: 1;
+        width: auto;
+        border-radius: 0 5px 5px 0;
+        margin: 0;
+      label
+        min-width: 158px;
+        margin: 0;
+        padding: 5px;
+        height: 35px;
+        border-radius:  5px 0 0 5px ;
+        background-color: $main-color;
+        color: $second-color;
+        font-size: 0.6em;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      button
+        flex: 1;
+        border: none;
+        height: 30px;
+        align-self: right;
+        background-color: $second-color;
+        color: $main-color;
+        font-size: 0.7em;
+        border: 1px solid $main-color;
+      button:first-child
+        border-right: none;
+      button:hover
+        transition: 0.2s
+        background-color: $main-color;
+        color: $second-color;

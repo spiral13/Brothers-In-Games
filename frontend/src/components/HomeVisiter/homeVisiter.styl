@@ -1,79 +1,63 @@
-header {
+@require "frontend/styles/charte";
+
+header 
   background-image: url("../pictures/tom_clancy.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 300px;
   min-height: 100vh;
   max-width: 100vw;
-}
+  h1 
+    font-size: 4em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 150px;
+    color: $second-color;
+    span 
+      margin-left: 50px;
+      position: relative;
+      top: -45px;
+      left: 30px;
+      i 
+        font-size: 0.7em;
+        position: relative;
+        left: 5px;
 
-header h1 {
-  font-size: 4em;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-left: 150px;
-  color: #2C2C2C;
-}
-
-header h1 span {
-  margin-left: 50px;
-  position: relative;
-  top: -45px;
-  left: 30px;
-}
-
-header h1 span i {
-  font-size: 0.7em;
-  position: relative;
-  left: 5px;
-}
-
-.login_signin {
+.login_signin 
   font-size: 1.2em;
   font-weight: bold;
   margin-top: 100px;
   margin-left: 80px;
-  color: #2C2C2C;
-}
+  color: $second-color;
 
-.ajust {
+.ajust 
   margin-top: 40px;
-}
 
-#homeVisiter label, input, button {
-  color: #2C2C2C;
-}
+#homeVisiter
+  form 
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 10px 60px;
+    width: 400px;
+    label, input 
+      color: $second-color;
+    button 
+      color: $main-color;
+    label 
+      margin-top: 25px;
+      margin-left: 10px;
+      align-self: left;
+    input 
+      margin: 10px 0 0 0;
+      border-radius: 10px;
+      padding: 7px;
+      height: 35px;
+      border: none;
+    input:hover, input:focus 
+      transition: 0.2s;
+      box-shadow: 0 0 5px #ffffff;
 
-#homeVisiter label {
-  margin-left: 10px;
-  align-self: left;
-}
-
-#homeVisiter form label{
-  margin-top: 25px;
-}
-
-#homeVisiter form {
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0 10px 60px;
-  width: 400px;
-}
-
-#homeVisiter input {
-  margin: 10px 0 0 0;
-  border-radius: 10px;
-  padding: 7px;
-  height: 35px;
-  border: none;
-}
-
-#homeVisiter input:hover, #homeVisiter input:focus {
-  transition: 0.2s;
-  box-shadow: 0 0 5px #ffffff;
-}
-
-#head_nav {
+#head_nav 
   padding: 30px;
   position: fixed;
   right: 20px;
@@ -84,103 +68,68 @@ header h1 span i {
   line-height: 1.3em;
   background-color: black;
   z-index: 3;
-  color: #EC9C34;
+  color: $main-color;
   font-weight: bold;
-}
 
-#angle {
+#angle 
   display: flex;
   width: 700px;
   min-height: 100vh;
   transform: skew(-20deg); 
-  background-color: #EC9C34;
+  background-color: $main-color;
   box-shadow: 4px 0px 9px 0px rgba(0,0,0,0.58);
-}
 
-#leftSide { 
+#leftSide  
   padding: 0 0 10px 0;
   transform: skew(20deg);
   width: 500px;
   min-height: 100vh;
   z-index: 50;
-  background-color: #EC9C34;
+  background-color: $main-color;
   display: flex;
   flex-direction:column;
-}
 
-#leftSide .signup {
-  align-self: flex-start;
-  padding: 10px;
-  font-size: 1.1em;
-  background-color: #2C2C2C;
-  border-radius: 3px;
-  color: #EC9C34;
-  margin: 5px 0 0 60px;
-  border: initial;
-}
+#leftSide 
+  .signup 
+    align-self: flex-start;
+    padding: 10px;
+    font-size: 1.1em;
+    background-color: $second-color;
+    border-radius: 3px;
+    color: $main-color;
+    margin: 5px 0 0 60px;
+    border: initial;
+  .signup:hover 
+    transition: 0.2s;
+    box-shadow: 0 0 5px #000000;
+    background-color: #000000;
 
-#leftSide .signup:hover {
-  transition: 0.2s;
-  box-shadow: 0 0 5px #000000;
-  background-color: #000000;
-}
-
-.gamesList {
+.gamesList 
   display: block;
-}
 
-#forgotPassword {
-  color: #2C2C2C;
+#forgotPassword 
+  color: $second-color;
   font-size: 0.6em;
   margin-top: 10px;
   margin-left: 30px;
   align-self: left;
-}
 
-#forgotPassword:hover {
+#forgotPassword:hover 
   color: #000000;
   text-decoration: underline;
-}
 
-.underplace {
+.underplace 
   display: none;
   z-index: 45;
   height: 100vh;
   clear: both;
   text-align: center;
-  background-color: #EC9C34;
-}
+  background-color: $main-color;
 
-#tom_clancy {
+#tom_clancy 
   display: none;
   height: 100vh;
-}
 
-
-
-/*#left_angle {
-  position: absolute;
-  top: 200px;
-  left: -180px;
-  width: 1400px;
-  height: 400px;
-  background-color: #EC9C34;
-  z-index: 1;
-  transform: rotate(-64deg);
-  box-shadow: 0px 10px 10px -5px black;
-}*/
-
-// #containerSignUpForm .true
-//    position: fixed;
-//    top: 0;
-//    left: 0;
-//    width: 100%;
-//    height: 100%;
-//    background-color: black;
-//    z-index: 1;
-//    opacity: 0.2;
-
-.test {
+.test 
   height: 100vh;
   max-width: 100vw;
-}

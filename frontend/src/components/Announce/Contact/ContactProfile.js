@@ -23,7 +23,7 @@ class ContactProfile extends React.Component {
         <div className="playerContent">
           <img src={this.props.datas.user.profile.image} alt="Photo de profil" />
           <div className="personality">
-            <h3>Nom du joueur:<span className="personality-player"> {this.props.datas.user.username}</span></h3>
+            <h4>Nom du joueur:<span className="personality-player"> {this.props.datas.user.username}</span></h4>
             <h4>Âge:<span className="personality-player"> {this.props.datas.user.profile.birthdate}</span></h4>
             <h4>Genre:<span className="personality-player"> {this.props.datas.user.profile.gender}</span></h4>
             <h4>Spécialité:<span className="personality-player"> FPS, MMO</span></h4>
@@ -39,6 +39,13 @@ class ContactProfile extends React.Component {
         <div className="gamesPlayed">
           {/* Mapper les jeux et les afficher */}
           {this.props.datas.user.games.map(data => <a onClick={() => this.redirection(`/app_dev.php/announcements?slug=${data.slug}`)}><Game game={data} /></a>)}
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
         </div>
       </div>
     );

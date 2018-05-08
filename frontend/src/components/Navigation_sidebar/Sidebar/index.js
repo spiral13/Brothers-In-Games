@@ -50,11 +50,11 @@ class Sidebar extends React.Component {
             </a>
           </h1>
           <form id="sidebar-form" onSubmit={this.handleSubmit}>
-            <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu</label>
+            <div id="sidebar-label" htmlFor="sidebar-input">Rechercher des annonces</div>
             <div id="sidebar-form-wrap">
               <Select
                 className="selectNavGame"
-                placeholder="Ajouter un nouveau jeu à votre liste"
+                placeholder="Tapez le nom d'un jeu ici."
                 name="sidebar-input"
                 value={selectedOption}
                 onChange={this.handleSelectedOptionToSend}

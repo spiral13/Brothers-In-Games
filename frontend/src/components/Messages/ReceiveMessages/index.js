@@ -43,7 +43,8 @@ class ReceiveMessages extends React.Component {
     }
     return (
       <div className="ReceiveMessagesList">
-        <Sidebar /><div className="right-side">
+        <Sidebar />
+        <div className="right-side">
           <Navbar />
           <Main />
         </div>

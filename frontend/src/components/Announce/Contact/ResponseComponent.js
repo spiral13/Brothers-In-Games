@@ -23,9 +23,9 @@ class ResponseComponent extends React.Component {
   render() {
     return (
       <div id="responseComponent">
-        <form className="responseComponent-form" onSubmit={this.onSubmit}>
-          <textarea className="responseComponent-textarea" placeholder="Répondre à l'annonce" value={this.props.textareaValue} onChange={this.changeArea} />
-          <button className="responseComponent-button">Envoyer</button>
+        <form id="responseComponent-form" onSubmit={this.onSubmit}>
+          <textarea id="responseComponent-textarea" className="message announcement" placeholder="Répondre à l'annonce" value={this.props.textareaValue} onChange={this.changeArea} />
+          <button id="responseComponent-button">Envoyer</button>
         </form>
       </div>
     );
