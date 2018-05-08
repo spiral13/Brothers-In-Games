@@ -129,13 +129,18 @@ class Navbar extends React.Component {
                 {/* Select */}
                 <Select
                   className="createAnnounce-Select"
-                  placeholder="Ajouter un nouveau jeu à votre liste"
+                  placeholder="Séléctionnez le jeu de l'annonce"
                   name="sidebar-input"
                   value={selectedOption}
                   onChange={this.handleSelectedOptionToSend}
                   options={allOptions}
                 />
-                <textarea className="createAnnounce-textarea" onChange={this.changeTextArea} value={this.props.textArea} />
+                <textarea
+                  className="createAnnounce-textarea"
+                  onChange={this.changeTextArea}
+                  value={this.props.textArea}
+                  placeholder="Message de l'annonce"
+                />
                 <button className="createAnnounce-button">Créer l'annonce</button>
               </form>
             </div>
