@@ -112,11 +112,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
-    case DELETE_GAME_FROM_LIST:
+    case DELETE_GAME_FROM_LIST: {
+      let newGames = [];
+      state.mygames.forEach((Onedata) => {
+        if (Onedata.title !== state.selectedOptionToDelete.title) newGames = [...newGames, { ...Onedata }];
+      });
       return {
         ...state,
-        mygames: [...state.mygames, { ...action.mygame.data.mygame[0] }],
+        mygames: [...newGames],
       };
+    }
 
     default:
       return state;
