@@ -1,0 +1,153 @@
+#ContainerMyGamesList
+  width: 85%
+  float: right
+  height: 100%
+  display: flex
+  flex-direction: column
+  padding: 1em 2em
+  overflow: auto
+
+#ContainerMyGamesList .true
+    background-color: black
+    opacity: 0.5
+
+// Profile
+#infoIdentityProfile
+  width: 500px
+  height:75px
+  display:flex
+  flex-direction: row
+  align-items: center;
+  background-color: #353232
+  border-radius: 50px
+  border: .5px solid #EC9C34
+
+#photoProfileOnMyGames
+  width: 50px
+  height: 50px
+  border-radius: 100%
+  margin-left: 1em
+
+#profileNameOnMyGames
+  padding-left: 1em
+  color: white
+  font-weight: lighter
+  font-size: 0.8em
+
+// Section Liste
+#sectionListingMyGames
+  width:100%
+  padding: 2em 0
+
+#settings
+  border-bottom: .5px solid #EC9C34
+  width:70vw
+  padding-bottom: .5em
+  display: flex;
+  justify-content: space-between
+  flex-direction: row
+  align-items: center
+
+.trigger
+  display: flex;
+  justify-content: flex-start
+  flex-direction: row
+  align-items: center
+
+
+
+#addTrigger
+  width: 45px
+  height: 45px
+  font-size: 1.8em
+  border-radius: 10px
+  color: #EC9C34
+  text-align: center
+  padding-bottom: 60px
+  padding-right: 30px
+  margin-left: 10px
+
+
+#addTrigger:hover{
+  color: black
+  cursor: pointer
+}
+
+#deleteTrigger
+  width: 45px
+  height: 45px
+  font-size: 1.8em
+  border-radius: 10px
+  color: #EC9C34
+  text-align: center
+  padding-bottom: 60px
+  margin-left: 10px
+
+#deleteTrigger:hover{
+  color: black
+  cursor: pointer
+}
+
+
+.triggerLegend
+  color: white
+  font-weight: lighter
+  font-size: 0.5em
+  padding-top: 5px
+
+
+#title
+  color: #EC9C34
+  width: 150px
+
+
+
+// Section liste - zone formulaire ajouter
+#triggeredAddOneGameForm
+  padding-bottom 1em
+
+
+// #triggeredAddOneGameForm.fadeIn
+//   opacity:1
+//   transition: 4s
+//   display: block
+//
+// #triggeredAddOneGameForm.fadeOut
+//   opacity:0
+//   width:0
+//   height:0
+//   transition: 4s
+
+#triggeredDeleteGameForm
+  padding-bottom 1em
+  padding-left:0.5em
+  position: absolute
+  background-color: #EC9C34
+  display: flex
+  flex-direction: column
+  margin: -80px calc(10%)
+  border: 1px solid black
+  border-radius: 20px
+  // top:250px
+  // left: 550px
+
+#crossCancelDeleteForm
+  margin-left: 94%
+  margin-top:1%
+
+#labelDeleteGameForm
+  font-size: 0.8em
+  padding-top: 1em
+  padding-left: 1em
+  margin-bottom: none
+
+
+
+// SectionListe: zone games
+#containerAllMyGames
+  width: 100%
+  height: 100%
+  display: flex
+  padding: .5em
+  flex-wrap: wrap
+  justify-content: flex-start
