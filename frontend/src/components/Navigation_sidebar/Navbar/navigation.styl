@@ -1,84 +1,66 @@
-#navbar {
+@require "frontend/styles/charte";
+
+#navbar 
+  position: sticky;
+  top: 0px;
+  z-index: 100;
   height: 55px;
-  background-color: #2c2c2c;
+  background-color: $second-color;
   font-size: 0.7em;
   font-weight: lighter;
-  color: #EC9C34;
-  border-bottom: 4px solid #EC9C34;
+  color: $main-color;
+  border-bottom: 4px solid $main-color;
   display: flex;
   justify-content: space-between;
-}
+  h1 
+    margin-top: 7px;
 
-#navbar h1 {
-  margin-top: 7px;
-}
-
-#nav-rubrique > ul {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#nav-rubrique ul li {
-  height: 100%;
-}
-
-#nav-rubrique ul li a{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.8em;
-  padding: 7px 15px;
-}
-
-#nav-rubrique ul li a:hover{
+#nav-rubrique 
+  > ul 
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  ul li 
+    height: 100%;
+  ul li a
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+    padding: 7px 15px;
+  ul li a:hover
     background-color: #393939;
-}
+  ul li :hover 
+    color: $main-hover-color;
 
-#nav-rubrique ul li :hover {
-  color: #f3b972;
-}
-
-.nav-fig {
-  margin: auto;
-  font-size: 1.5em;
-}
-
-.titles {
+.titles 
   font-weight: normal;
   display: flex;
   flex-direction: row;
   height: 100%;
-}
-
-.titles a{
-  display: flex;
-  align-items: center;
-  height: 100%;
-  font-size: 0.8em;
-  padding: 0 15px;
-}
-
-.titles a:hover{
+  a
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 0.8em;
+    padding: 0 15px;
+  a:hover
     background-color: #393939;
-}
 
-.titles :hover {
-  color: #f3b972;
-}
-
-.showInformations {
-  background-color: #2c2c2c;
+.showInformations 
+  background-color: $second-color;
   box-shadow: 0px 0px 5px black;
   width: 100%;
   position: absolute;
   top: 57px;
   left: 0;
-}
+  ul 
+    display: flex;
+    flex-direction: row;
 
-.showInformations ul {
-  display: flex;
-  flex-direction: row;
-}
+.nav-fig 
+  margin: auto;
+  font-size: 1.5em;
+
