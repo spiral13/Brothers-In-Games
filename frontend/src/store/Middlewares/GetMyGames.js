@@ -51,6 +51,11 @@ export default store => next => (action) => {
       formData.append('title', data.title);
       // eslint-disable-next-line
       axios.post(Routing.generate('my_games_remove'), formData).then((response) => {
+        data.forEach((Onedata, index) => {
+          if (Onedata.title === formData.title) {
+            delete data[index];
+          }
+        });
         // Ici, faire un dispatch.
         console.log(response);
         alert(response.data.status ? response.data.status : response.data.message);
@@ -67,7 +72,3 @@ export default store => next => (action) => {
   // On passe au voisin
   next(action);
 };
-// Pour ajout d'un jeu -Page MyGames
-//1- barre de recherche: aller chercher tous les jeux en fonction du slug
-//2- Utilisateur sélectionne un jeu dans la liste , le sélectionne ==> envoi requête en post  du slug + id
-//3- affichage d'un nouvel "carte" oneOfMyGames
