@@ -16,17 +16,10 @@ import Loading from 'frontend/src/components/Loading';
  */
 
 class GameList extends React.Component {
-  state = {
-    loading: true,
-  }
-
   /*
    * Lifecycle
    */
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 3000);
     this.props.actions.getAllGames();
     this.props.actions.getAllFriends();
   }
@@ -35,7 +28,11 @@ class GameList extends React.Component {
    * Rendu
    */
   render() {
-    if (this.state.loading) {
+    const {
+      loadingFriends,
+      loadingGames,
+    } = this.props.loadings;
+    if (!loadingFriends || !loadingGames) {
       return <Loading />;
     }
     return (
@@ -51,6 +48,7 @@ class GameList extends React.Component {
 }
 GameList.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 
 /**

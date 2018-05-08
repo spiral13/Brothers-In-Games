@@ -17,17 +17,11 @@ import Loading from 'frontend/src/components/Loading';
 class ShowMessage extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
-  state = {
-    loading: true,
-  }
-
   /*
    * Lifecycle
    */
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 3000);
+    this.props.actions.changeOneMessageToFalse();
     this.props.actions.getAllFriends();
     this.props.actions.getOneMessage();
     this.props.actions.getAllGames();
@@ -37,7 +31,12 @@ class ShowMessage extends React.Component {
    * Rendu
    */
   render() {
-    if (this.state.loading) {
+    const {
+      loadingFriends,
+      loadingGames,
+      loadingOneMessage,
+    } = this.props.loadings;
+    if (!loadingFriends || !loadingGames || !loadingOneMessage) {
       return <Loading />;
     }
     return (
@@ -54,6 +53,7 @@ class ShowMessage extends React.Component {
 
 ShowMessage.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 /**
  * Export

@@ -18,17 +18,10 @@ import Loading from 'frontend/src/components/Loading';
 class MyGames extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
-  state = {
-    loading: true,
-  }
-
   /*
    * Lifecycle
    */
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 3000);
     this.props.actions.getAllMyGames();
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
@@ -38,7 +31,12 @@ class MyGames extends React.Component {
    * Rendu
    */
   render() {
-    if (this.state.loading) {
+    const {
+      loadingGames,
+      loadingFriends,
+      loadingMyGames,
+    } = this.props.loadings;
+    if (!loadingFriends || !loadingGames || !loadingMyGames) {
       return <Loading />;
     }
     return (
@@ -55,6 +53,7 @@ class MyGames extends React.Component {
 
 MyGames.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 
 /**

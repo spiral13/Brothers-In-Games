@@ -14,7 +14,9 @@ import { addAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReduc
  * Code
  */
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  loadings: state.LoadingReducer.loadings,
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({

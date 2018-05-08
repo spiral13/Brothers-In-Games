@@ -14,39 +14,36 @@ import Main from 'frontend/src/containers/Announcements/Main';
  * Code
  */
 class Announcements extends React.Component {
-  state = {
-    loading: true,
-    load: true,
-  }
-
   componentDidMount() {
-    if (this.state.load) {
-      setTimeout(() => {
-        this.setState({ loading: false, load: false });
-      }, 3000);
-      this.props.actions.addAnnouncements();
-      this.props.actions.getAllFriends();
-      this.props.actions.getAllGames();
-    }
+    this.props.actions.changeAnnouncementsToFalse();
+    this.props.actions.getAllFriends();
+    this.props.actions.getAllGames();
+    this.props.actions.addAnnouncements();
   }
 
   render() {
-    if (this.state.loading) {
-      return <Loading />;
-    }
-    return (
-      <div id="announcement">
-        <Sidebar />
-        <div className="right-side">
-          <Navbar />
-          <Main />
+    const {
+      loadingFriends,
+      loadingGames,
+      loadingAnnouncements,
+      loadingAnnouncement,
+    } = this.props.loadings;
+    if (loadingFriends && loadingGames && (loadingAnnouncements || loadingAnnouncement)) {
+      return (
+        <div id="announcement">
+          <Sidebar />
+          <div className="right-side">
+            <Navbar />
+            <Main />
+          </div>
         </div>
-      </div>
-    );
-  }
+      );
+    return <Loading />;
+    }
 }
 Announcements.propTypes = {
   actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 /**
  * Export

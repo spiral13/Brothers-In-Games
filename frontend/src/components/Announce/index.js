@@ -15,21 +15,20 @@ import Main from 'frontend/src/containers/Announce/Main';
  * Code
  */
 class Announce extends React.Component {
-  state = {
-    loading: true,
-  }
-
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 3000);
+    this.props.actions.changeLoadingProfileAnnounce();
     this.props.actions.getAllFriends();
     this.props.actions.getProfileAnnounce();
     this.props.actions.getAllGames();
   }
 
   render() {
-    if (this.state.loading) {
+    const {
+      loadingFriends,
+      loadingGames,
+      loadingProfileAnnounce,
+    } = this.props.loadings;
+    if (!loadingFriends || !loadingGames || !loadingProfileAnnounce) {
       return <Loading />;
     }
     return (
@@ -45,6 +44,7 @@ class Announce extends React.Component {
 }
 Announce.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 /**
  * Export
