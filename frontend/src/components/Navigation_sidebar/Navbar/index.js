@@ -71,7 +71,7 @@ class Navbar extends React.Component {
             </li>
             <li>
               {/* eslint-disable-next-line */}
-              <a href="#" id="showAnnounce" onClick={this.showInformations}>Mes annonces</a>
+              <a href="#" id="showAnnounce" onClick={this.showInformations}><Paper className="nav-fig" />Mes annonces</a>
             </li>
             <li>
               {/* eslint-disable-next-line */}
@@ -79,7 +79,7 @@ class Navbar extends React.Component {
             </li>
             <li>
               {/* eslint-disable-next-line */}
-              <a href="#" id="showPlayerInformations" onClick={this.showInformations}>{this.props.playerName}</a>
+              <a href="#" id="showPlayerInformations" onClick={this.showInformations}><User className="nav-fig" />{this.props.playerName}</a>
             </li>
             <li>
               {/* eslint-disable-next-line */}
@@ -104,14 +104,12 @@ class Navbar extends React.Component {
             <div className="showInformations">
               <ul>
                 <li>
-                  <Server className="nav-fig" />
                   {/* eslint-disable-next-line */}
-                  <a onClick={() => this.redirection("/app_dev.php/home")}>Mes annonces</a>
+                  <a onClick={() => this.redirection("/app_dev.php/home")}><Server className="nav-fig" />Mes annonces</a>
                 </li>
                 <li>
-                  <User className="nav-fig" />
                   {/* eslint-disable-next-line */}
-                  <a id="createAnnounce" onClick={this.showInformations}>Créer une annonce</a>
+                  <a id="createAnnounce" onClick={this.showInformations}><User className="nav-fig" />Créer une annonce</a>
                 </li>
               </ul>
             </div>

@@ -42,18 +42,6 @@
     margin: 10px 0 0 0;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    label
-      align-self: flex-start;
-    input
-      flex: 1;
-      border-radius: 10px 0 0 10px;
-      padding: 7px;
-      height: 35px;
-      border: none;
-    input:focus, input:hover
-      transition: 0.2s;
-      box-shadow: 0 0 5px #ffffff;
     button
       display: flex;
       align-items: center;
@@ -61,8 +49,25 @@
       padding: 6px 10px;
       border: none;
       background-color: $second-color;
-      height: 35px;
+      height: 100%;
       color: $main-color;
-      border-radius: 0 10px 10px 0;
+      border-radius: 0 5px 5px 0;
     button:hover
       background-color: $second-hover-color;
+      align-items: center;
+  &-label
+      align-self: flex-start;
+      font-size: 0.8em;
+      
+.selectNavGame
+  flex: 1;
+  font-size: 0.5em;
+  > div
+    border-radius: 5px 0 0 5px;
+  > div:focus
+    border-color: black;
+    box-shadow: none;
+    
+@media (max-width: 1200px)
+  #sidebar
+    display: none;
