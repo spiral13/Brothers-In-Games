@@ -9,6 +9,8 @@ const initialState = {
   ],
   selectedOption: {},
   selectedOptionToDelete: {},
+  selectedPostGame: {},
+  textArea: '',
 };
 
 /**
@@ -25,11 +27,35 @@ export const CHANGE_FORM_GAME_TO_DELETE = 'CHANGE_FORM_GAME_TO_DELETE';
 export const SUBMIT_GAME_TO_DELETE = 'SUBMIT_GAME_TO_DELETE';
 export const DELETE_GAME_FROM_LIST = 'DELETE_GAME_FROM_LIST';
 
+const CHANGE_FORM_GAME_SELECTED_FOR_POST = 'CHANGE_FORM_GAME_SELECTED_FOR_POST';
+const CHANGE_TEXTAREA = 'CHANGE_TEXTAREA';
+export const SUBMIT_ANNOUNCE = 'SUBMIT_ANNOUNCE';
 /**
  * Reducer-------------------------------------------------------------
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHANGE_FORM_GAME_SELECTED_FOR_POST:
+      return {
+        ...state,
+        selectedPostGame: {
+          ...state.selectedPostGame,
+          title: action.title,
+          id: action.id,
+        },
+      };
+
+    case CHANGE_TEXTAREA:
+      return {
+        ...state,
+        textArea: action.value,
+      };
+
+    case SUBMIT_ANNOUNCE:
+      return {
+        ...state,
+      };
+
     /**
      * Display after loading page
      */
@@ -86,11 +112,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
-    case DELETE_GAME_FROM_LIST:
+    case DELETE_GAME_FROM_LIST: {
+      let newGames = [];
+      state.mygames.forEach((Onedata) => {
+        if (Onedata.title !== state.selectedOptionToDelete.title) newGames = [...newGames, { ...Onedata }];
+      });
       return {
         ...state,
-        mygames: [...state.mygames, { ...action.mygame.data.mygame[0] }],
+        mygames: [...newGames],
       };
+    }
 
     default:
       return state;
@@ -150,6 +181,20 @@ export const DeleteGameFromList = mygame => ({
   mygame,
 });
 
+export const changeFormGameSelectedForPost = (title, id) => ({
+  type: CHANGE_FORM_GAME_SELECTED_FOR_POST,
+  title,
+  id,
+});
+
+export const changeTextArea = value => ({
+  type: CHANGE_TEXTAREA,
+  value,
+});
+
+export const submitAnnounce = () => ({
+  type: SUBMIT_ANNOUNCE,
+});
 
 /**
  * Export

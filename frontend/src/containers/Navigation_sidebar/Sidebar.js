@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 */
 import Sidebar from 'frontend/src/components/Navigation_sidebar/Sidebar';
 import { redirect } from 'frontend/src/store/reducer';
-import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
 /**
  * Code
  */
@@ -18,7 +17,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ redirect, getAllFriends }, dispatch),
+  actions: bindActionCreators({ redirect }, dispatch),
 });
 
 const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar);

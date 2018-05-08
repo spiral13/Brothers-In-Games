@@ -28,6 +28,10 @@ class ReceiveMessages extends React.Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 3000);
+    setInterval(() => {
+      this.props.actions.receivedMessages();
+      this.props.actions.sendedMessages();
+    }, 60000);
     this.props.actions.getAllFriends();
     this.props.actions.receivedMessages();
     this.props.actions.sendedMessages();
