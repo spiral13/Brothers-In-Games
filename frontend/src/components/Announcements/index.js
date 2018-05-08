@@ -19,13 +19,14 @@ class Announcements extends React.Component {
     load: true,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.state.load) {
       setTimeout(() => {
         this.setState({ loading: false, load: false });
-      }, 2000);
+      }, 3000);
       this.props.actions.addAnnouncements();
       this.props.actions.getAllFriends();
+      this.props.actions.getAllGames();
     }
   }
 

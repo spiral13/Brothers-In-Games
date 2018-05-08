@@ -4,7 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FaSearch from 'react-icons/lib/fa/search';
-
+import Select from 'react-select';
 /**
 * Local import
 */
@@ -13,11 +13,34 @@ import Friends from 'frontend/src/containers/Navigation_sidebar/Friends';
  * Code
  */
 class Sidebar extends React.Component {
+  state = {
+    selectedOption: '',
+  }
+
+  handleSelectedOptionToSend = (selectedOption) => {
+    this.setState({ selectedOption });
+  }
+
+  handleSubmit = (evt) => {
+    evt.preventDefault();
+    this.redirection('/app_dev.php/announcement');
+    setTimeout(() => {
+      this.redirection(`/app_dev.php/announcements?slug=${this.state.selectedOption.slug}`);
+    }, 500);
+  }
+
   redirection = (value) => {
     this.props.actions.redirect(value);
   }
 
   render() {
+    const { selectedOption } = this.state;
+    const { games } = this.props;
+    let allOptions = [];
+    games.map((option) => {
+      allOptions = [...allOptions, { value: option.title, label: option.title, slug: option.slug }];
+      return true;
+    });
     return (
       <div id="sidebar">
         <div id="sidebar-wrap">
@@ -26,10 +49,17 @@ class Sidebar extends React.Component {
               Brothers<br /><span><i>in</i>Games</span>
             </a>
           </h1>
-          <form id="sidebar-form">
+          <form id="sidebar-form" onSubmit={this.handleSubmit}>
             <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu</label>
             <div id="sidebar-form-wrap">
-              <input id="sidebar-input" type="text" value="" placeholder="Rechercher un jeu" />
+              <Select
+                className="selectNavGame"
+                placeholder="Ajouter un nouveau jeu à votre liste"
+                name="sidebar-input"
+                value={selectedOption}
+                onChange={this.handleSelectedOptionToSend}
+                options={allOptions}
+              />
               <button><FaSearch /></button>
             </div>
           </form>
@@ -41,6 +71,7 @@ class Sidebar extends React.Component {
 }
 Sidebar.propTypes = {
   actions: PropTypes.object.isRequired,
+  games: PropTypes.object.isRequired,
 };
 /**
  * Export

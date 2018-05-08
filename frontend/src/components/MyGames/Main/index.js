@@ -3,6 +3,9 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import FaTrashO from 'react-icons/lib/fa/trash-o';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
+import MdCancel from 'react-icons/lib/md/cancel';
 
 /**
 * Local import
@@ -10,6 +13,7 @@ import PropTypes from 'prop-types';
 
 // eslint-disable-next-line
 import AddOneGameForm from 'frontend/src/containers/MyGames/AddOneGameForm';
+import DeleteGameForm from 'frontend/src/containers/MyGames/DeleteGameForm';
 import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
 // eslint-disable-next-line
 // import GameList from 'frontend/src/containers/GameList/GameList';
@@ -19,7 +23,11 @@ import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
  */
 class Main extends React.PureComponent {
    state = {
-     isClicked: false,
+     AddFormIsClicked: false,
+     DeleteFormIsClicked: false,
+   }
+   redirection = (value) => {
+     this.props.actions.redirect(value);
    }
 
   /*
@@ -34,6 +42,7 @@ class Main extends React.PureComponent {
    render() {
      const { mygames } = this.props;
      return (
+
        <div id="ContainerMyGamesList">
 
          <div id="infoIdentityProfile">
@@ -44,33 +53,53 @@ class Main extends React.PureComponent {
          <section id="sectionListingMyGames">
            <div id="settings">
              <h2 id="title">Vos jeux</h2>
-             <div id="triggerLegend">Ajouter un nouveau jeu à votre liste</div>
-             <a
-               id="trigger"
-               onClick={() => this.setState({ isClicked: !this.state.isClicked })}
-             > +
-             </a>
+
+             <div className="trigger" >
+               <div className="triggerLegend">Ajouter un nouveau jeu à votre liste</div>
+               <a
+                 id="addTrigger"
+                 onClick={() =>
+                   this.setState({ AddFormIsClicked: !this.state.AddFormIsClicked })}
+               > <FaPlusCircle />
+               </a>
+             </div>
+
+             <div className="trigger">
+               <div className="triggerLegend">Supprimer un jeu de votre liste</div>
+               <a
+                 id="deleteTrigger"
+                 onClick={() =>
+                   this.setState({ DeleteFormIsClicked: !this.state.DeleteFormIsClicked })}
+               > <FaTrashO />
+               </a>
+             </div>
            </div>
 
-           {this.state.isClicked &&
-           <div id="triggeredAddOneGameForm" className={this.state.isClick ? 'fadeIn' : 'fadeOut'}>
+           {this.state.AddFormIsClicked &&
+           <div id="triggeredAddOneGameForm" className={this.state.AddFormIsClicked ? 'fadeIn' : 'fadeOut'}>
              <AddOneGameForm />
+           </div>}
+
+           {this.state.DeleteFormIsClicked &&
+           <div id="triggeredDeleteGameForm">
+             <MdCancel
+               onClick={() =>
+                 this.setState({ DeleteFormIsClicked: !this.state.DeleteFormIsClicked })}
+               id="crossCancelDeleteForm"
+             />
+             <span id="labelDeleteGameForm">Quel jeu voulez-vous supprimer de votre liste ?</span>
+             <DeleteGameForm />
            </div>}
 
            <div id="containerAllMyGames">
              {mygames.map((mygame, index) => (
-               // <a href={Routing.generate('games_list', { id: mygame.id, slug: mygame.slug })}>
-               //   <OneOfMyGames
-               //     index={index}
-               //     key={mygame.id}
-               //     mygame={mygame}
-               //   />
-               // </a>
-               <OneOfMyGames
-                 // index={index}
-                 key={index}
-                 mygame={mygame}
-               />
+               <a href="#" onClick={() => this.redirection(`/app_dev.php/announcements?slug=${mygame.slug}`)}>
+                 <OneOfMyGames
+                   // index={index}
+                   key={index}
+                   mygame={mygame}
+                 />
+               </a>
              ))}
            </div>
 
@@ -81,7 +110,7 @@ class Main extends React.PureComponent {
 }
 Main.propTypes = {
   mygames: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  // actions: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 /**
  * Export

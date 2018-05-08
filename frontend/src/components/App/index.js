@@ -36,7 +36,7 @@ const App = ({ redirect, actions }) => {
   return (
     <Router>
       <div id="app">
-        {bool ? <Redirect to={redirect.route} /> : true }
+        {bool ? <Redirect strict to={redirect.route} /> : true }
         <Switch>
           <Route exact path="/app_dev.php" component={HomeVisiter} />
           <Route exact path="/app_dev.php/home" component={HomeMember} />

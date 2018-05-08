@@ -24,12 +24,13 @@ class ShowMessage extends React.Component {
   /*
    * Lifecycle
    */
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 2000);
+    }, 3000);
     this.props.actions.getAllFriends();
     this.props.actions.getOneMessage();
+    this.props.actions.getAllGames();
   }
 
   /*

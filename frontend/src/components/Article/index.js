@@ -26,12 +26,13 @@ class Article extends React.Component {
   /*
    * Lifecycle
    */
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: false });
-    }, 1500);
+    }, 2500);
     this.props.actions.getArticle();
     this.props.actions.getAllFriends();
+    this.props.actions.getAllGames();
   }
 
   /*

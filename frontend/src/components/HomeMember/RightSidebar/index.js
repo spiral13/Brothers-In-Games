@@ -14,16 +14,7 @@ import LastActu from 'frontend/src/containers/HomeMember/LastActu';
  */
 class RightSidebar extends React.Component {
   state = {
-    loading: true,
     currentBar: 'actus-bar',
-  }
-
-  componentWillMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 1500);
-    this.props.actions.getAllActus();
-    this.props.actions.addAnnouncements();
   }
 
   changeBar = ({ target }) => {
@@ -31,16 +22,6 @@ class RightSidebar extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <div className="sidebar-loading">
-          <ReactLoading
-            type="cylon"
-            color="#EC9C34"
-          />
-        </div>
-      );
-    }
     const { actus, playerNews } = this.props;
     return (
       <div id="rightSidebar">
