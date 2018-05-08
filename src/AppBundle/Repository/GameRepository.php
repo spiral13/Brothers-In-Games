@@ -47,7 +47,7 @@ class GameRepository extends EntityRepository
 		return $qb;
 	}
 
-	public function findAllGameByAnnouncementInArray()
+	public function findAllGameWithAnnouncementInArray()
 	{
 		$qb = $this->createQueryBuilder('g')
 		->join('g.announcements', 'a')
