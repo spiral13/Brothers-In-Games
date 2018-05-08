@@ -28,6 +28,13 @@ class Main extends React.Component {
             />
           </a>
         ))}
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
+          <div className="fake" />
       </div>
     );
   }
