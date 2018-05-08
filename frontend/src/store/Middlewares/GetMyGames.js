@@ -15,11 +15,7 @@ export default store => next => (action) => {
       formData.append('content', store.getState().MyGamesReducer.textArea);
       formData.append('game-id', store.getState().MyGamesReducer.selectedPostGame.id);
       axios.post(Routing.generate('announcements_create'), formData).then((response) => {
-        console.log(response);
-        // if (response.data.success) {
         alert(response.data.message);
-        // }
-        // store.dispatch(addAllMyGames(response));
       }).catch((error) => {
         console.log(error);
       });
@@ -49,7 +45,6 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.post(Routing.generate('my_games_add'), formData).then((response) => {
         // Ici, faire un dispatch.
-        console.log(response);
         store.dispatch(addNewGameToList(response));
       }).catch((error) => {
         console.log(error);
