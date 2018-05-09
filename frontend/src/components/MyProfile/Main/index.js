@@ -3,7 +3,8 @@
  */
 import React from 'react';
 // import PropTypes from 'prop-types';
-import FaCog from 'react-icons/lib/fa/cog';
+import FaPencil from 'react-icons/lib/fa/pencil';
+import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 
 /**
 * Local import
@@ -31,14 +32,14 @@ class Main extends React.Component {
       <div id="MyProfileContainer">
 
         <section id="MyProfilePresentation">
-          <div id="MyProfilePhoto">Photo du profil</div>
+          <img id="MyProfilePhoto" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" />
           <div id="MyProfileDescription">A word about you</div>
         </section>
         <a
           id="settingsForMyProfileTrigger"
           onClick={() =>
-            this.setState({ DeleteFormIsClicked: !this.state.DeleteFormIsClicked })}
-        > <FaCog />
+            this.setState({ settingsForMyProfilemIsClicked: !this.state.settingsForMyProfilemIsClicked })}
+        > <FaEllipsisH /> <FaPencil />
         </a>
 
         {this.state.settingsForMyProfilemIsClicked &&
