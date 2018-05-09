@@ -13,7 +13,6 @@ export default store => next => (action) => {
     case GET_FRIENDS: {
       // eslint-disable-next-line
       axios.get(Routing.generate('getUserFriends')).then((response) => {
-        // Ici, faire un dispatch.
         store.dispatch(addFriends(response));
         store.dispatch(changeLoading('loadingFriends'));
       }).catch((error) => {
@@ -25,12 +24,8 @@ export default store => next => (action) => {
     case DELETE_FRIEND: {
       const formData = new FormData();
       formData.append('id', store.getState().FriendsReducer.friendToDelete);
-      axios.post(Routing.generate('removeFriend'), formData).then((response) => {
-        // Ici, faire un dispatch.
-        console.log(response);
-        // store.dispatch(addFriends(response));
-        // store.dispatch(changeLoading('loadingFriends'));
-      }).catch((error) => {
+      // eslint-disable-next-line
+      axios.post(Routing.generate('removeFriend'), formData).catch((error) => {
         console.log(error);
       });
       break;

@@ -37,6 +37,7 @@ class Main extends React.Component {
   render() {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
+    const { user } = userInformation;
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
@@ -62,7 +63,9 @@ class Main extends React.Component {
 
         <section id="AddOrDeleteFriendFromMyProfile">
           <form id="AddFriendFromMyProfile" className="FriendsFromMyProfile">
-            add
+            {/* Ici mettre le nom du joueur à ajouter dans value puis avec le onChange envoyer le nom du joueur dans le reducer : FriendReducer */}
+            {/* <input value={} onChange={} /> */}
+            Test
           </form>
 
           <form
