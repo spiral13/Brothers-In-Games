@@ -26,12 +26,12 @@ class Message extends React.Component {
        if (index <= 70) content += letter;
      });
      return (
-       <div className="ReceivedMessage">
-         <a onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>
-           <h2>{this.props.author !== undefined ? this.props.author.username : this.props.receiver.username }</h2>
-           <p>{content} ...</p>
-         </a>
-       </div>
+      <tbody>
+        <tr>
+          <td><a onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>{this.props.author !== undefined ? this.props.author.username : this.props.receiver.username }</a></td>
+          <td><a onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>{content} ...</a></td>
+        </tr>
+      </tbody>
      );
    }
 }
