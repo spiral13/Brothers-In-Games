@@ -8,13 +8,14 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
+import Main from 'frontend/src/containers/MyAnnouncements/Main';
 import Loading from 'frontend/src/components/Loading';
 
 /**
  * Code
  */
 
-class ShowAccount extends React.Component {
+class MyAnnouncements extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
   /*
@@ -24,6 +25,7 @@ class ShowAccount extends React.Component {
     // this.props.actions.getAllMyAnnouncements();
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
+    this.props.actions.getAllMyAnnouncements();
   }
 
   /*
@@ -33,22 +35,24 @@ class ShowAccount extends React.Component {
     const {
       loadingGames,
       loadingFriends,
+      loadingMyAnnouncements,
     } = this.props.loadings;
-    if (!loadingFriends || !loadingGames) {
+    if (!loadingFriends || !loadingGames || !loadingMyAnnouncements) {
       return <Loading />;
     }
     return (
-      <div className="MyGamesList">
+      <div className="Sidebar">
         <Sidebar />
         <div className="right-side">
           <Navbar />
+          <Main />
         </div>
       </div>
     );
   }
 }
 
-ShowAccount.propTypes = {
+MyAnnouncements.propTypes = {
   actions: PropTypes.object.isRequired,
   loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
@@ -56,4 +60,4 @@ ShowAccount.propTypes = {
 /**
  * Export
  */
-export default ShowAccount;
+export default MyAnnouncements;

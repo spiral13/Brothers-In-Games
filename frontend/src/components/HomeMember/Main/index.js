@@ -19,20 +19,20 @@ class Main extends React.Component {
     return (
       <div id="main-member">
         {this.props.news.map(newContent => (
-          <a href="#" onClick={() => this.redirection(`/app_dev.php/article/${newContent.id}/${newContent.slug}`)}>
+          <a key={`OnClickKey${newContent.id}`} onClick={() => this.redirection(`/app_dev.php/article/${newContent.id}/${newContent.slug}`)}>
             <Content
               key={`${newContent.id} news-member`}
               content={newContent}
             />
           </a>
         ))}
-          <div className="fake" />
-          <div className="fake" />
-          <div className="fake" />
-          <div className="fake" />
-          <div className="fake" />
-          <div className="fake" />
-          <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
       </div>
     );
   }

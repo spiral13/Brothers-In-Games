@@ -7,12 +7,12 @@ import { bindActionCreators } from 'redux';
 /*
  * Import Local
  */
-import ShowAccount from 'frontend/src/components/ShowAccount';
+import MyAnnouncements from 'frontend/src/components/MyAnnouncements';
 
 // actionsCreators
 import { getAllGames } from 'frontend/src/store/reducer';
 import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
-
+import { getAllMyAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReducer';
 /*
  * Code
  */
@@ -26,17 +26,18 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     getAllFriends,
     getAllGames,
+    getAllMyAnnouncements,
   }, dispatch),
 });
 
 
 // Container
-const ShowAccountContainers = connect(
+const MyAnnouncementsContainers = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ShowAccount);
+)(MyAnnouncements);
 
 /*
  * Export
  */
-export default ShowAccountContainers;
+export default MyAnnouncementsContainers;
