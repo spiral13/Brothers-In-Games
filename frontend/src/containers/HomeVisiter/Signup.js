@@ -12,12 +12,13 @@ import { signUpSubmit, changeFormSignup } from 'frontend/src/store/reducer';
 * Code
 */
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   username: state.reducer.signup.username,
   newPassword: state.reducer.signup.newPassword,
   confirmPassword: state.reducer.signup.confirmPassword,
   email: state.reducer.signup.email,
   confirmEmail: state.reducer.signup.confirmEmail,
+  changeToggle: ownProps.func,
 });
 
 const mapDispatchToProps = dispatch => ({

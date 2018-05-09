@@ -19,6 +19,7 @@ class SignupForm extends React.Component {
     confirmPassword: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     confirmEmail: PropTypes.string.isRequired,
+    changeToggle: PropTypes.func.isRequired,
   };
 
   state = {
@@ -47,9 +48,20 @@ class SignupForm extends React.Component {
   handleSubmit = (evt) => {
     // J'empeche le comportement par défaut
     evt.preventDefault();
+    this.props.changeToggle();
     // J'exécute la fonction fournie par les props
     if (this.props.username !== '' && this.props.newPassword !== '' && this.props.confirmPassword !== '' && this.props.email !== '' && this.props.confirmEmail !== '') {
+      if (this.props.email.search('@') <= 0 ||
+      this.props.confirmEmail.search('@') <= 0 ||
+      this.props.email.search('@') !== this.props.confirmEmail.search('@') ||
+      this.props.email !== this.props.confirmEmail
+      ) {
+        return alert('Erreur lors de la saisie du mail');
+      }
+      else if (this.props.newPassword !== this.props.confirmPassword || this.props.newPassword.length < 7)
+        return alert('Erreur lors de la saisie du mot de passe, vérifiez bien que votre mot de passe fait au moins 7 lettres ou vérifiez si votre confirmation de mot de passe est bien identique');
       this.props.actions.signUpSubmit();
+      alert(`Un email de confirmation d'inscription vous a bien été envoyé à l'adresse suivante: ${this.props.email}`);
     }
   }
 
@@ -82,6 +94,7 @@ class SignupForm extends React.Component {
       confirmPassword,
       email,
       confirmEmail,
+      changeToggle,
     } = this.props;
     return (
       <form
@@ -145,7 +158,7 @@ class SignupForm extends React.Component {
             />
           </div>
           <div className="wrap">
-            <button>Annuler</button>
+            <button onClick={() => changeToggle()}>Annuler</button>
             <button>Envoyer</button>
           </div>
         </fieldset>
