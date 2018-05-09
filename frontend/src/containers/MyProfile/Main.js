@@ -8,13 +8,14 @@ import { bindActionCreators } from 'redux';
  * Import Local
  */
 import Main from 'frontend/src/components/MyProfile/Main';
-import { deleteFriend, changeOption } from 'frontend/src/store/reducers/FriendsReducer';
+import { deleteFriend, changeOption, changeAddOneFriend, submitAddFriend } from 'frontend/src/store/reducers/FriendsReducer';
 
 /*
  * Code
  */
 const mapStateToProps = state => ({
   userInformation: state.FriendsReducer.friend,
+  addOneFriend: state.FriendsReducer.addOneFriend,
 });
 
 
@@ -22,6 +23,8 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     deleteFriend,
     changeOption,
+    changeAddOneFriend,
+    submitAddFriend,
   }, dispatch),
 });
 

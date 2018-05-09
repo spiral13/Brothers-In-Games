@@ -34,6 +34,15 @@ class Main extends React.Component {
     this.props.actions.deleteFriend();
   }
 
+  addFriend = (evt) => {
+    evt.preventDefault();
+    this.props.actions.submitAddFriend();
+  }
+
+  changeAddFriend = ({ target }) => {
+    this.props.actions.changeAddOneFriend(target.value);
+  }
+
   render() {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
@@ -62,10 +71,18 @@ class Main extends React.Component {
         <MyProfileBasicsInformation />
 
         <section id="AddOrDeleteFriendFromMyProfile">
-          <form id="AddFriendFromMyProfile" className="FriendsFromMyProfile">
+          <form
+            id="AddFriendFromMyProfile"
+            className="FriendsFromMyProfile"
+            onSubmit={this.addFriend}
+          >
             {/* Ici mettre le nom du joueur à ajouter dans value puis avec le onChange envoyer le nom du joueur dans le reducer : FriendReducer */}
-            {/* <input value={} onChange={} /> */}
-            Test
+            <input
+              value={this.props.addOneFriend}
+              onChange={this.changeAddFriend}
+              placeholder="Ajouter un ami"
+            />
+            <button>Ajouter un ami</button>
           </form>
 
           <form
@@ -91,6 +108,7 @@ class Main extends React.Component {
 Main.propTypes = {
   userInformation: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  addOneFriend: PropTypes.string.isRequired,
 };
 /**
  * Export

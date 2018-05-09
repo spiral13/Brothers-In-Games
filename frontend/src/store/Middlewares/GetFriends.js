@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_FRIENDS, DELETE_FRIEND, addFriends } from 'frontend/src/store/reducers/FriendsReducer';
+import { GET_FRIENDS, DELETE_FRIEND, ADD_ONE_FRIEND, addFriends } from 'frontend/src/store/reducers/FriendsReducer';
 import { changeLoading } from 'frontend/src/store/reducers/LoadingReducer';
 /*
  * Middleware
@@ -26,6 +26,18 @@ export default store => next => (action) => {
       formData.append('id', store.getState().FriendsReducer.friendToDelete);
       // eslint-disable-next-line
       axios.post(Routing.generate('removeFriend'), formData).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
+
+    case ADD_ONE_FRIEND: {
+      const formData = new FormData();
+      formData.append('username', store.getState().FriendsReducer.addOneFriend);
+      // eslint-disable-next-line
+      axios.post(Routing.generate('addFriend'), formData).then((response) => {
+        console.log(response);
+      }).catch((error) => {
         console.log(error);
       });
       break;
