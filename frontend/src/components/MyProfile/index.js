@@ -44,8 +44,10 @@ class Myprofile extends React.Component {
     return (
       <div id="MyprofilePage">
         <Sidebar />
-        <Navbar />
-        <Main />
+        <div className="right-side">
+          <Navbar />
+          <Main />
+        </div>
       </div>
     );
   }
