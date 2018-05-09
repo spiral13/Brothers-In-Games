@@ -25,6 +25,7 @@ import ReceiveMessages from 'frontend/src/containers/Messages/ReceiveMessages';
 import ShowMessage from 'frontend/src/containers/Messages/ShowMessage';
 import Announce from 'frontend/src/containers/Announce';
 import MyProfile from 'frontend/src/containers/MyProfile/MyProfileContainer';
+import MyAnnouncements from 'frontend/src/containers/MyAnnouncements';
 /*
  * Code
  */
@@ -44,11 +45,11 @@ const App = ({ redirect, actions }) => {
           <Route exact path="/app_dev.php/games" component={GameList} />
           <Route exact path="/app_dev.php/my-games" component={MyGames} />
           <Route exact path="/app_dev.php/announcements" component={Announcements} />
+          <Route exact path="/app_dev.php/my-announcements" component={MyAnnouncements} />
           <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
           <Route exact path="/app_dev.php/announcement/:id/:slug" component={Announce} />
           <Route exact path="/app_dev.php/message/receive" component={ReceiveMessages} />
           <Route exact path="/app_dev.php/message/show/:id" component={ShowMessage} />
-          <Route exact path="/app_dev.php/account" component={() => <div>Account show</div>} />
           <Route exact path="/app_dev.php/my-profile" component={MyProfile} />
           <Route exact path="/app_dev.php/profile/:slug" component={() => <div>Other Profile show</div>} />
         </Switch>

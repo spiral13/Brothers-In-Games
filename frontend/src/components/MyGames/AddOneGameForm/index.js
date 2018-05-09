@@ -52,7 +52,7 @@ class AddOneGameForm extends React.Component {
 }
 
 AddOneGameForm.propTypes = {
-  games: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string.isRequired).isRequired).isRequired,
+  games: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   actions: PropTypes.object.isRequired,
 };
 

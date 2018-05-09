@@ -55,7 +55,7 @@ class DeleteGameForm extends React.Component {
 }
 
 DeleteGameForm.propTypes = {
-  mygames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string.isRequired).isRequired).isRequired,
+  mygames: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   actions: PropTypes.object.isRequired,
 };
 
