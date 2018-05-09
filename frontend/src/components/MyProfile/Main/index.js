@@ -10,8 +10,9 @@ import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 * Local import
 */
 
-// eslint-disable-next-line
-// import AddOneGameForm from 'frontend/src/containers/MyGames/AddOneGameForm';
+
+import MyProfileBasicsInformation from 'frontend/src/components/MyProfile/MyProfileBasicsInformation';
+import MyProfileSettings from 'frontend/src/components/MyProfile/MyProfileSettings';
 // import DeleteGameForm from 'frontend/src/containers/MyGames/DeleteGameForm';
 // import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
 // eslint-disable-next-line
@@ -43,17 +44,10 @@ class Main extends React.Component {
         </a>
 
         {this.state.settingsForMyProfilemIsClicked &&
-          <section id="settingsForMyProfile">
-            profileSettings
-          </section>
+        <MyProfileSettings />
         }
 
-        <section id="MyProfileBasicsInformation">
-          <div id="firstName" className="BasicsInformation">Prénom</div>
-          <div id="familyName" className="BasicsInformation">Nom</div>
-          <div id="nickName" className="BasicsInformation">Surnom de ton avatar</div>
-          <div id="age" className="BasicsInformation">âge</div>
-        </section>
+        <MyProfileBasicsInformation />
 
         <section id="AddOrDeleteFriendFromMyProfile">
           <form id="AddFriendFromMyProfile" className="FriendsFromMyProfile">
