@@ -34,9 +34,17 @@ class Main extends React.Component {
              <li><a href="#" className={ClassNames({ selectedMessage: this.state.message === 'sendedMessages' })} onClick={() => this.changebar('sendedMessages')}>Messages envoyés</a></li>
            </ul>
          </div>
+         <table className="ReceivedMessage">
+           <thead>
+              <tr>
+                <td>Contact</td>
+                <td>Aperçu du message</td>
+              </tr>
+            </thead>
          {this.state.message === 'receivedMessages' ? this.props.receivedMails.map(message => <Message key={message.id} content={message.content} {...message} />)
          :
          this.props.sendMails.map(message => <Message key={message.id} content={message.content} {...message} />)}
+         </table>
        </div>
      );
    }

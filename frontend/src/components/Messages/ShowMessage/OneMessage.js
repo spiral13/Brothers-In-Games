@@ -34,8 +34,10 @@ class OneMessage extends React.Component {
           </div>
           <p>{content}</p>
         </div>
-        <div className="title-response">Repondre</div>
+        <div className="OneMessage-response">
+          <div className="title-response">Repondre</div>
           <ResponseComponent />
+        </div>
       </div>
     );
   }
