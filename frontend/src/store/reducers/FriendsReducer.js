@@ -34,18 +34,11 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_FRIEND: {
       let newState = [];
       state.friend[0].myFriend.forEach((friend) => {
-        if (friend.id !== state.friendToDelete) {
-          newState = [...newState, { ...friend }];
-        }
+        if (friend.id !== state.friendToDelete) newState = [...newState, { ...friend }];
       });
       return {
         ...state,
-        friend: [
-          {
-            ...state.friend[0],
-            myFriend: [...newState],
-          },
-        ],
+        friend: [{ ...state.friend[0], myFriend: [...newState] }],
       };
     }
 
