@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Close from 'react-icons/lib/fa/close';
 /**
 * Local import
 */
@@ -18,7 +19,10 @@ class OneMessage extends React.Component {
   componentDidMount() {
     const newAuthor = [{ user: { id: 0 } }];
     newAuthor[0].user.id = this.props.selectedMail.message[0].author.id;
-    this.props.actions.changeProfileAnnounce(newAuthor);
+  }
+
+  onChange = () => {
+    this.props.actions.hideResponse();
   }
   /*
    * Rendu
@@ -38,6 +42,22 @@ class OneMessage extends React.Component {
           <div className="title-response">Repondre</div>
           <ResponseComponent />
         </div>
+        {this.props.popup ?
+          <div className="showResponse">
+            <div className="showResponse-wrap">
+              <button className="closePopup" onClick={this.onChange}>
+                <Close />
+              </button>
+              <h2>
+                {this.props.response.status ? 'Votre message à bien été envoyé:' : 'Erreur lors de l\'envoi du message:'}
+              </h2>
+              <p className="messageSend">
+                {this.props.response.content}
+              </p>
+              <button className="okButton" onClick={this.onChange}>Ok</button>
+            </div>
+          </div>
+          : true}
       </div>
     );
   }
@@ -45,6 +65,8 @@ class OneMessage extends React.Component {
 OneMessage.propTypes = {
   selectedMail: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
+  response: PropTypes.object.isRequired,
+  popup: PropTypes.bool.isRequired,
 };
 /**
  * Export

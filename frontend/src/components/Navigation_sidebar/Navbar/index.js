@@ -55,53 +55,12 @@ class Navbar extends React.Component {
       return true;
     });
     return (
-      <div id="navbar">
-        <div className="titles">
-          {/* eslint-disable-next-line */}
-          <a href="#" onClick={() => this.redirection("/app_dev.php/games")}>Liste des jeux</a>
-          {/* eslint-disable-next-line */}
-          <a href="#" onClick={() => this.redirection("/app_dev.php/announcements")}>Liste des annonces</a>
-        </div>
-        <nav id="nav-rubrique">
-          <ul>
-            <li>
-              {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection("/app_dev.php/message/receive")}><Envelope className="nav-fig" /> Mes messages</a>
-            </li>
-            <li>
-              {/* eslint-disable-next-line */}
-              <a href="#" id="showAnnounce" onClick={this.showInformations}><Paper className="nav-fig" />Mes annonces</a>
-            </li>
-            <li>
-              {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection("/app_dev.php/my-games")}><Gamepad className="nav-fig" />Mes jeux</a>
-            </li>
-            <li>
-              {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}><User className="nav-fig" />{this.props.playerName}</a>
-            </li>
-            <li>
-              {/* eslint-disable-next-line */}
-              <a href={Routing.generate('logout')}><Signout className="nav-fig" />Déconnexion</a>
-            </li>
-          </ul>
-          {this.state.showAnnounce ?
-            <div className="showInformations">
-              <ul>
-                <li>
-                  {/* eslint-disable-next-line */}
-                  <a onClick={() => this.redirection("/app_dev.php/my-announcements")}><Server className="nav-fig" />Mes annonces</a>
-                </li>
-                <li>
-                  {/* eslint-disable-next-line */}
-                  <a id="createAnnounce" onClick={this.showInformations}><User className="nav-fig" />Créer une annonce</a>
-                </li>
-              </ul>
-            </div>
-          : true }
-          {this.state.createAnnounce ?
-            <div className="createOneAnnounceAndPost">
-              <form onSubmit={this.submit}>
+      <div>
+        {this.state.createAnnounce ?
+          <div className="createOneAnnounceAndPost">
+            <form onSubmit={this.submit}>
+              <fieldset>
+                <legend>Créer une annonce</legend>
                 {/* Select */}
                 <Select
                   className="createAnnounce-Select"
@@ -117,11 +76,60 @@ class Navbar extends React.Component {
                   value={this.props.textArea}
                   placeholder="Message de l'annonce"
                 />
-                <button className="createAnnounce-button">Créer l'annonce</button>
-              </form>
-            </div>
-          : true }
-        </nav>
+                <div className="createAnnounce-wrap">
+                  <button className="createAnnounce-button">Annuler</button>
+                  <button className="createAnnounce-button">Créer l'annonce</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        : true }
+        <div id="navbar">
+          <div className="titles">
+            {/* eslint-disable-next-line */}
+            <a onClick={() => this.redirection("/app_dev.php/games")}>Liste des jeux</a>
+            {/* eslint-disable-next-line */}
+            <a onClick={() => this.redirection("/app_dev.php/announcements")}>Liste des annonces</a>
+          </div>
+          <nav id="nav-rubrique">
+            <ul>
+              <li>
+                {/* eslint-disable-next-line */}
+                <a onClick={() => this.redirection("/app_dev.php/message/receive")}><Envelope className="nav-fig" /> Mes messages</a>
+              </li>
+              <li>
+                {/* eslint-disable-next-line */}
+                <a id="showAnnounce" onClick={this.showInformations}><Paper className="nav-fig" />Mes annonces</a>
+              </li>
+              <li>
+                {/* eslint-disable-next-line */}
+                <a onClick={() => this.redirection("/app_dev.php/my-games")}><Gamepad className="nav-fig" />Mes jeux</a>
+              </li>
+              <li>
+                {/* eslint-disable-next-line */}
+                <a onClick={() => this.redirection('/app_dev.php/my-profile')}><User className="nav-fig" />{this.props.playerName}</a>
+              </li>
+              <li>
+                {/* eslint-disable-next-line */}
+                <a href={Routing.generate('logout')}><Signout className="nav-fig" />Déconnexion</a>
+              </li>
+            </ul>
+            {this.state.showAnnounce ?
+              <div className="showInformations">
+                <ul>
+                  <li>
+                    {/* eslint-disable-next-line */}
+                    <a onClick={() => this.redirection("/app_dev.php/my-announcements")}><Server className="nav-fig" />Mes annonces</a>
+                  </li>
+                  <li>
+                    {/* eslint-disable-next-line */}
+                    <a id="createAnnounce" onClick={this.showInformations}><User className="nav-fig" />Créer une annonce</a>
+                  </li>
+                </ul>
+              </div>
+            : true }
+          </nav>
+        </div>
       </div>
     );
   }

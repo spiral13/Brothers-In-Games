@@ -14,8 +14,8 @@ class FriendController extends Controller
 
 		if($request->request->all())
 		{
-			$name = $request->request->get('name');
-			$user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['name' => $name]);
+			$username = $request->request->get('username');
+			$user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => $username]);
 			if(!$user)
 			{
 				return $this->json(['status' => false, 'message' => 'Utilisateur inconnu dans la base de donnée']);
@@ -25,7 +25,7 @@ class FriendController extends Controller
 			{
 				if($user == $friend)
 				{
-					return $this->json(['status' => false, 'message' => 'Cette utilisateur est déjà dans la liste d\'amis']);
+					return $this->json(['status' => false, 'message' => 'Cet utilisateur est déjà dans la liste d\'amis']);
 				}
 			}
 
@@ -34,7 +34,9 @@ class FriendController extends Controller
 			$em->persist($currentUser);
 			$em->flush();
 
-			$user = $this->getDoctrine()->getRepository(User::class)->findOneInArray($id);
+			$user = $this->getDoctrine()->getRepository(User::class)->findOneInArray($user->getId());
+			unset($user[0]['password']);
+			unset($user[0]['mail']);
 
 			return $this->json(['status' => true, 'user' => $user]);
 		}
@@ -74,7 +76,7 @@ class FriendController extends Controller
                     return $this->json(['status' => true]);
 				}
 			}
-			return $this->json(['status' => false, 'message' => 'Cette utilisateur n\'est pas dans la liste d\'amis']);
+			return $this->json(['status' => false, 'message' => 'Cet utilisateur n\'est pas dans la liste d\'amis']);
 		}
 		else
 		{
@@ -87,6 +89,14 @@ class FriendController extends Controller
 		$userId = $this->getUser()->getId();
 
 		$friends = $this->getDoctrine()->getRepository(User::class)->findFriendByCurrentUserIdInArray($userId);
+		unset($friends[0]['password']);
+		unset($friends[0]['mail']);
+
+		foreach($friends[0]['myFriend'] as $key => $friend)
+		{
+			unset($friends[0]['myFriend'][$key]['password']);
+			unset($friends[0]['myFriend'][$key]['mail']);
+		}
 
 		return $this->json($friends);
 	}

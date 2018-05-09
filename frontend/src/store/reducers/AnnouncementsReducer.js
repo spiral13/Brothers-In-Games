@@ -100,10 +100,10 @@ export const addProfileAnnounce = profile => ({
   profile,
 });
 
-export const changeProfileAnnounce = profile => ({
-  type: CHANGE_PROFILE_ANNOUNCE,
-  profile,
-});
+// export const changeProfileAnnounce = profile => ({
+//   type: CHANGE_PROFILE_ANNOUNCE,
+//   profile,
+// });
 
 export const getAllMyAnnouncements = () => ({
   type: GET_ALL_MY_ANNOUNCEMENTS,
