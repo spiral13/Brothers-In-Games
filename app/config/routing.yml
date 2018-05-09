@@ -8,13 +8,6 @@ fos_js_routing:
 ######### Routes ##########
 ###########################
 
-#------------------------------------------------------------------ API Test
-api:
-    path: /api
-    defaults: { _controller: AppBundle:Game:getApi }
-    options:
-        expose: true
-
 #------------------------------------------------------------------ Home
 # Show home for the visitor
 # No need dynamic url
@@ -212,6 +205,14 @@ announcements_list:
     options:
         expose: true
 
+# Show all announcements for one user
+# No need dynamic url
+announcements_user_list:
+    path: /my-announcements
+    defaults: { _controller: AppBundle:Announcement:listUser }
+    options:
+        expose: true
+
 # Show announcements filtered by game
 # Need to send the SLUG of concerned game into the url
 announcements_list_game:
@@ -373,6 +374,15 @@ get_user_games:
 get_all_announcement:
     path: /get/announcements
     defaults: { _controller: AppBundle:Announcement:getAllAnnouncements }
+    options:
+        expose: true
+
+# Get announcements data for one user
+# Return JSON data
+# No need parameters
+get_all_user_announcement:
+    path: /get/my-announcements
+    defaults: { _controller: AppBundle:Announcement:getUserAnnouncement }
     options:
         expose: true
 
