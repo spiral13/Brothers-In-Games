@@ -37,7 +37,7 @@ class Main extends React.Component {
   render() {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
-    const { user } = userInformation;
+    const { user } = this.props.userInformation;
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
