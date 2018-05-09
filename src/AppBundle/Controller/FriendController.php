@@ -35,6 +35,8 @@ class FriendController extends Controller
 			$em->flush();
 
 			$user = $this->getDoctrine()->getRepository(User::class)->findOneInArray($user->getId());
+			unset($user[0]['password']);
+			unset($user[0]['mail']);
 
 			return $this->json(['status' => true, 'user' => $user]);
 		}
