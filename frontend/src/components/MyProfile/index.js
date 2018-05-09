@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import Main from 'frontend/src/components/MyProfile/Main';
+import Main from 'frontend/src/containers/MyProfile/Main';
 import Loading from 'frontend/src/components/Loading';
 
 /**
@@ -16,20 +16,10 @@ import Loading from 'frontend/src/components/Loading';
  */
 
 class Myprofile extends React.Component {
-  // mise en place d'un state pour un petit loading
-  // pour laisser le temps au serveur de répondre
-  state = {
-    loading: true,
-  }
-
   /*
    * Lifecycle
    */
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 4000);
-    this.props.actions.getAllMyGames();
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
   }
@@ -38,7 +28,8 @@ class Myprofile extends React.Component {
    * Rendu
    */
   render() {
-    if (this.state.loading) {
+    const { loadingFriends, loadingGames } = this.props.loadings;
+    if (!loadingFriends || !loadingGames) {
       return <Loading />;
     }
     return (
@@ -55,6 +46,7 @@ class Myprofile extends React.Component {
 
 Myprofile.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 
 /**

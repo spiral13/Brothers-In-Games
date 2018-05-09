@@ -2,9 +2,10 @@
  * Npm import
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
+import Select from 'react-select';
 
 /**
 * Local import
@@ -13,10 +14,6 @@ import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 
 import MyProfileBasicsInformation from 'frontend/src/components/MyProfile/MyProfileBasicsInformation';
 import MyProfileSettings from 'frontend/src/components/MyProfile/MyProfileSettings';
-// import DeleteGameForm from 'frontend/src/containers/MyGames/DeleteGameForm';
-// import OneOfMyGames from 'frontend/src/components/MyGames/OneOfMyGames';
-// eslint-disable-next-line
-// import GameList from 'frontend/src/containers/GameList/GameList';
 
 /**
  * Code
@@ -24,22 +21,36 @@ import MyProfileSettings from 'frontend/src/components/MyProfile/MyProfileSettin
 class Main extends React.Component {
   state = {
     settingsForMyProfilemIsClicked: false,
+    selectedOption: '',
+  }
+
+  handleSelectedOptionToSend = (selectedOption) => {
+    this.setState({ selectedOption });
+    this.props.actions.changeOption(selectedOption.id);
+  }
+
+  deleteFriend = (evt) => {
+    evt.preventDefault();
+    this.props.actions.deleteFriend();
   }
 
   render() {
-    // const { friends } = this.props;
+    const { selectedOption } = this.state;
+    const { myFriend } = this.props.userInformation[0];
+    let allOptions = [];
+    myFriend.map((option) => {
+      allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
+      return true;
+    });
     return (
-
       <div id="MyProfileContainer">
-
         <section id="MyProfilePresentation">
           <img id="MyProfilePhoto" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" />
           <div id="MyProfileDescription">A word about you</div>
         </section>
         <a
           id="settingsForMyProfileTrigger"
-          onClick={() =>
-            this.setState({ settingsForMyProfilemIsClicked: !this.state.settingsForMyProfilemIsClicked })}
+          onClick={() => this.setState({ settingsForMyProfilemIsClicked: !this.state.settingsForMyProfilemIsClicked })}
         > <FaEllipsisH /> <FaPencil />
         </a>
 
@@ -54,18 +65,30 @@ class Main extends React.Component {
             add
           </form>
 
-          <form id="DeleteFriendFromMyProfile" className="FriendsFromMyProfile">
-            delete
+          <form
+            id="DeleteFriendFromMyProfile"
+            className="FriendsFromMyProfile"
+            onSubmit={this.deleteFriend}
+          >
+            <Select
+              className="selectFriendToDelete"
+              placeholder="Supprimer un ami"
+              name="sidebar-input"
+              value={selectedOption}
+              onChange={this.handleSelectedOptionToSend}
+              options={allOptions}
+            />
+            <button>Supprimer</button>
           </form>
         </section>
       </div>
     );
   }
 }
-// Main.propTypes = {
-//   friends: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-//   // actions: PropTypes.object.isRequired,
-// };
+Main.propTypes = {
+  userInformation: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+};
 /**
  * Export
  */

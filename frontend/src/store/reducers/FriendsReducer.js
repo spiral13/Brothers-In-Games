@@ -5,6 +5,7 @@ const initialState = {
   friend: [
 
   ],
+  friendToDelete: '',
 };
 
 /**
@@ -12,6 +13,8 @@ const initialState = {
  */
 export const GET_FRIENDS = 'GET_FRIENDS';
 const ADD_FRIENDS = 'ADD_FRIENDS';
+export const DELETE_FRIEND = 'DELETE_FRIEND';
+const CHANGE_FRIEND_TO_DELETE = 'CHANGE_FRIEND_TO_DELETE';
 /**
  * Reducer
  */
@@ -21,6 +24,30 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
       };
+
+    case CHANGE_FRIEND_TO_DELETE:
+      return {
+        ...state,
+        friendToDelete: action.IdFriend,
+      };
+
+    case DELETE_FRIEND: {
+      let newState = [];
+      state.friend[0].myFriend.forEach((friend) => {
+        if (friend.id !== state.friendToDelete) {
+          newState = [...newState, { ...friend }];
+        }
+      });
+      return {
+        ...state,
+        friend: [
+          {
+            ...state.friend[0],
+            myFriend: [...newState],
+          },
+        ],
+      };
+    }
 
     case ADD_FRIENDS:
       return {
@@ -44,6 +71,14 @@ export const addFriends = friends => ({
   friends,
 });
 
+export const changeOption = IdFriend => ({
+  type: CHANGE_FRIEND_TO_DELETE,
+  IdFriend,
+});
+
+export const deleteFriend = () => ({
+  type: DELETE_FRIEND,
+});
 
 /**
  * Export
