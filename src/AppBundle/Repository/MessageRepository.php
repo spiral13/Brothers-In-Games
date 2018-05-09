@@ -20,6 +20,7 @@ class MessageRepository extends EntityRepository
 		->addSelect('r')
 		->where('m.author = :user')
 		->setParameter('user', $user)
+		->orderBy('m.id', 'DESC')
 		->getQuery()
 		->getArrayResult()
 		;
@@ -34,6 +35,7 @@ class MessageRepository extends EntityRepository
 		->addSelect('a')
 		->where('m.receiver = :user')
 		->setParameter('user', $user)
+		->orderBy('m.id', 'DESC')
 		->getQuery()
 		->getArrayResult()
 		;

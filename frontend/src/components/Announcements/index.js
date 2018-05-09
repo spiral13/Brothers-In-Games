@@ -38,8 +38,9 @@ class Announcements extends React.Component {
           </div>
         </div>
       );
-    return <Loading />;
     }
+    return <Loading />;
+  }
 }
 Announcements.propTypes = {
   actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
