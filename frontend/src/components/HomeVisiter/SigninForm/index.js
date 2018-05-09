@@ -83,7 +83,7 @@ class SigninForm extends React.Component {
           value={password}
         />
         <a href="#" id="forgotPassword">Mot de passe perdu?</a>
-        <button id="buttonSubmit"><ArrowRight /></button>
+        <button id="buttonSubmit">Se connecter <ArrowRight /></button>
       </form>
     );
   }

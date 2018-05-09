@@ -50,6 +50,7 @@ signup:
 login:
     path: /connection
     defaults: { _controller: AppBundle:User:login }
+    methods: [POST]
     options:
         expose: true
 
@@ -76,11 +77,13 @@ account_show:
 account_update:
     path: /account/update
     defaults: { _controller: AppBundle:User:update }
+    methods: [POST]
     options:
         expose: true
 account_delete:
     path: /account/delete
     defaults: { _controller: AppBundle:User:delete }
+    methods: [POST]
     options:
         expose: true
 
@@ -98,6 +101,7 @@ friends_list:
 addFriend:
     path: /friend/add
     defaults: { _controller: AppBundle:Friend:addFriend }
+    methods: [POST]
     options:
         expose: true
 
@@ -107,6 +111,7 @@ addFriend:
 removeFriend:
     path: /friend/remove
     defaults: { _controller: AppBundle:Friend:removeFriend }
+    methods: [POST]
     options:
         expose: true
 
@@ -133,6 +138,7 @@ my_profile_show:
 my_profile_update:
     path: /my-profile/update
     defaults: { _controller: AppBundle:Profile:update }
+    methods: [POST]
 
 #------------------------------------------------------------------ Message
 # Show list messages sended of the user currently connected
@@ -157,6 +163,7 @@ message_list_receive:
 message_send:
     path: /message/create
     defaults: { _controller: AppBundle:Message:create }
+    methods: [POST]
     options:
         expose: true
 
@@ -166,6 +173,7 @@ message_send:
 message_delete:
     path: /message/delete
     defaults: { _controller: AppBundle:Message:delete }
+    methods: [POST]
     options:
         expose: true
 
@@ -191,6 +199,7 @@ messenger_show:
 messenger_send:
     path: /messenger/create
     defaults: { _controller: AppBundle:Messenger:create }
+    methods: [POST]
     options:
         expose: true
 
@@ -226,6 +235,7 @@ announcements_show:
 announcements_create:
     path: /announcement/create
     defaults: { _controller: AppBundle:Announcement:create }
+    methods: [POST]
     options:
         expose: true
 
@@ -235,6 +245,7 @@ announcements_create:
 announcements_update:
     path: /announcement/update
     defaults: { _controller: AppBundle:Announcement:update }
+    methods: [POST]
     options:
         expose: true
 
@@ -244,6 +255,7 @@ announcements_update:
 announcements_delete:
     path: /announcement/delete
     defaults: { _controller: AppBundle:Announcement:delete }
+    methods: [POST]
     options:
         expose: true
 
@@ -270,6 +282,7 @@ my_games:
 my_games_add:
     path: /my-games/add
     defaults: { _controller: AppBundle:Game:addUserGame }
+    methods: [POST]
     options:
         expose: true
 
@@ -279,6 +292,7 @@ my_games_add:
 my_games_remove:
     path: /my-games/remove
     defaults: { _controller: AppBundle:Game:removeUserGame }
+    methods: [POST]
     options:
         expose: true
 
@@ -329,7 +343,17 @@ get_article:
 # No need parameters
 get_all_games:
     path: /get/games
-    defaults: { _controller: AppBundle:Game:getAllGames }
+    # defaults: { _controller: AppBundle:Game:getAllGames }
+    defaults: { _controller: AppBundle:Game:getAllGameWithAnnouncement }
+    options:
+        expose: true
+
+# Get games data
+# Return JSON data
+# No need parameters
+get_all_games_with_announcement:
+    path: /get/games/active
+    defaults: { _controller: AppBundle:Game:getAllGameWithAnnouncement }
     options:
         expose: true
 

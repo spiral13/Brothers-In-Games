@@ -1,19 +1,23 @@
-#buttonSubmit {
-  margin-left: 70%;
+@require "frontend/styles/charte";
+  
+#buttonSubmit
+  align-self: flex-start;
   padding: 10px;
   padding-top: 5px;
   font-size: 1.1em;
-  border: none;
-  box-shadow: 0px 0px 1px 2px #000;
-  background-color: black;
-  border-radius: 2px;
-  color: #EC9C34;
-}
+  border: initial;
+  background-color: #2C2C2C;
+  border-radius: 3px;
+  color: $main-color;
+  margin-top: 50px;
+  
+#buttonSubmit:hover
+  transition: 0.2s;
+  box-shadow: 0 0 5px #000000;
+  background-color: #000000;
 
-.error {
+.error
   border: 2px solid red;
-}
 
-.agreed {
+.agreed
   border: 2px solid green;
-}

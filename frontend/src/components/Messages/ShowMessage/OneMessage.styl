@@ -1,27 +1,37 @@
-.OneMessage {
-  float: right;
-  width: 85%;
-}
+@require "frontend/styles/charte";
 
-.currentMessage {
-  width: 70%;
+.OneMessage
+  box-shadow: 0 0 5px #000;
+  width: 1000px;
+  margin: 50px auto;
+  
+.currentMessage 
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
   padding: 30px;
   margin: auto;
-}
+  p
+    padding: 10px;
+    font-weight: lighter;
+    font-size: 0.8em;
+    color: #ffffff;
 
-.currentMessage img {
-  display: block;
-  max-width: 300px;
-  padding: 10px;
-}
-
-.userMessageProfile {
+.userMessageProfile
+  font-size: 0.7em;
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: white;
-  padding: 10px;
-  line-height: 1.5em;
-  font-weight: lighter;
-}
-
-.userMessageProfile h1 {
-  margin-bottom: 30px;
-}
+  padding: 10px 0;
+  line-height: 1em;
+  img 
+    display: block;
+    max-width: 60px;
+    margin-right: 20px;
+    
+.title-response
+  color: $main-color
+  text-indent: 30px;
+      

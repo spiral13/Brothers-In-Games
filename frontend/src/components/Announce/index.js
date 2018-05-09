@@ -34,8 +34,10 @@ class Announce extends React.Component {
     return (
       <div id="announcement">
         <Sidebar />
-        <Navbar />
-        <Main />
+        <div className="right-side">
+          <Navbar />
+          <Main />
+        </div>
       </div>
     );
   }

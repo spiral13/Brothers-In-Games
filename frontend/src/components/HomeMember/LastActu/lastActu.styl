@@ -1,37 +1,29 @@
-.lastActu {
-  border-left: 3px solid #EC9C34;
-  border-radius: 1px 0 0 1px;
+@require "frontend/styles/charte";
+  
+.lastActu
+  align-items: center;
+  border-top: 2px solid black;
+  display: flex;
+  flex-direction: row;
   height: 40px;
-  text-align: left;
   margin-left: 5px;
-  box-shadow: 0px 0px 2px 2px black;
-  font-size: 0.7em;
-  font-weight: lighter;
-  overflow: hidden;
-  line-height: 2em;
-}
+  a
+    border-left: 3px solid $main-color;
+    opacity: 1;
+    line-height: 40px;
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: block;
+    height: 100%;
+    flex: 1;
+    padding: 0 30px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.55em;
+    color: white;
+    padding-left: 5px;
+  a:hover
+    background-color: rgba(0, 0, 0, 0.3);
 
-.lastActu a {
-  color: white;
-  display: block;
-  background: linear-gradient(
-  rgba(0, 0, 0, 0.7),
-  rgba(0, 0, 0, 0.7)
-  );
-  padding-left: 5px;
-}
-
-.lastActu a:hover {
-  background: linear-gradient(
-  rgba(0, 0, 0, 0.3),
-  rgba(0, 0, 0, 0.3)
-  );
-}
-
-.navbarRange-title {
-  font-size: 0.7em;
-}
-
-.navbarRange-username {
-  font-size: 0.6em;
-}
+.navbarRange-title 
+  font-size: 0.9em;

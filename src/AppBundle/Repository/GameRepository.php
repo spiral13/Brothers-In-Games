@@ -46,4 +46,17 @@ class GameRepository extends EntityRepository
 
 		return $qb;
 	}
+
+	public function findAllGameWithAnnouncementInArray()
+	{
+		$qb = $this->createQueryBuilder('g')
+		->join('g.announcements', 'a')
+		->addSelect('a')
+		->having('a > 0')
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
 }

@@ -1,51 +1,73 @@
 @require "frontend/styles/charte";
 
 #sidebar
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-width: 280px;
+  max-width: 280px;
+  background-color: $main-color;
+  &-wrap 
+    position: sticky;
+    top: 0px;
+    z-index: 100;
   &-title
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
     font-size: 1.7em;
     font-weight: bold;
-    padding: 10px;
-    color: #2c2c2c;
+    color: $second-color;
+    padding: 15px 0;
+    a
+      letter-spacing: -0.06em;
+      line-height: 27px;
     i
       font-size: 0.7em;
-      position: relative;
-      left: 5px;
     span
+      margin-left: 20px;
       font-size: 1.1em;
-      position: relative;
-      top: -19px;
-      left: 30px;
   &-username
     padding: 10px;
     text-align: center;
   &-form
     font-size: 0.7em;
-    margin: -2px;
-    width: 100%;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  &-form-wrap
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-direction: row;
     button
-      padding: 6px;
+      display: flex;
+      align-items: center;
+      font-size: 1em;
+      padding: 6px 10px;
       border: none;
-      box-shadow: 0px 0px 1px 1px black;
-      background-color: #2c2c2c;
-      color: #ec9c34;
+      background-color: $second-color;
+      height: 100%;
+      color: $main-color;
+      border-radius: 0 5px 5px 0;
+    button:hover
+      background-color: $second-hover-color;
+      align-items: center;
   &-label
-    margin: 0px;
-
-.selectNavGame {
-  margin: 10px 0px;
-}
-
-
-#sidebar {
-  width: 15%;
-  position: fixed;
-  left: 0px;
-  background-color: #ec9c34;
-  height: 100vh;
-}
-
-#flexForm {
-  display: flex;
-  flex-direction: row;
-}
+      align-self: flex-start;
+      font-size: 0.8em;
+      
+.selectNavGame
+  flex: 1;
+  font-size: 0.5em;
+  > div
+    border-radius: 5px 0 0 5px;
+  > div:focus
+    border-color: black;
+    box-shadow: none;
+    
+@media (max-width: 1200px)
+  #sidebar
+    display: none;

@@ -28,13 +28,14 @@ class OneMessage extends React.Component {
     return (
       <div className="OneMessage">
         <div className="currentMessage">
-          <img src={author.profile.image} alt="Image de profil" />
           <div className="userMessageProfile">
+            <img src={author.profile.image} alt="Image de profil" />
             <h1>{author.username}</h1>
-            <p>{content}</p>
           </div>
+          <p>{content}</p>
         </div>
-        <ResponseComponent />
+        <div className="title-response">Repondre</div>
+          <ResponseComponent />
       </div>
     );
   }

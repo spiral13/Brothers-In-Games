@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import FaSearch from 'react-icons/lib/fa/search';
 import Select from 'react-select';
 /**
 * Local import
@@ -42,24 +43,28 @@ class Sidebar extends React.Component {
     });
     return (
       <div id="sidebar">
-        <h1 id="sidebar-title">
-          <a href="#" onClick={() => this.redirection('/app_dev.php/home')}>
-            Brothers<br /><span><i>in</i>Games</span>
-          </a>
-        </h1>
-        <form id="sidebar-form" onSubmit={this.handleSubmit}>
-          <label id="sidebar-label" htmlFor="sidebar-input">Chercher un jeu</label>
-          <Select
-            className="selectNavGame"
-            placeholder="Ajouter un nouveau jeu à votre liste"
-            name="sidebar-input"
-            value={selectedOption}
-            onChange={this.handleSelectedOptionToSend}
-            options={allOptions}
-          />
-          <button>Rechercher</button>
-        </form>
-        <Friends />
+        <div id="sidebar-wrap">
+          <h1 id="sidebar-title">
+            <a href="#" onClick={() => this.redirection('/app_dev.php/home')}>
+              Brothers<br /><span><i>in</i>Games</span>
+            </a>
+          </h1>
+          <form id="sidebar-form" onSubmit={this.handleSubmit}>
+            <div id="sidebar-label" htmlFor="sidebar-input">Rechercher des annonces</div>
+            <div id="sidebar-form-wrap">
+              <Select
+                className="selectNavGame"
+                placeholder="Tapez le nom d'un jeu ici."
+                name="sidebar-input"
+                value={selectedOption}
+                onChange={this.handleSelectedOptionToSend}
+                options={allOptions}
+              />
+              <button><FaSearch /></button>
+            </div>
+          </form>
+          <Friends />
+        </div>
       </div>
     );
   }

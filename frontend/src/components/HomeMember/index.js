@@ -35,10 +35,14 @@ class HomeMember extends React.Component {
     }
     return (
       <div id="homeMember">
-        <Navbar />
         <Sidebar />
-        <Main />
-        <RightSidebar />
+        <div id="homeMember-rightSide">
+          <Navbar />
+          <div id="homeMember-rightSide-body">
+            <Main />
+            <RightSidebar />
+          </div>
+        </div>
       </div>
     );
   }

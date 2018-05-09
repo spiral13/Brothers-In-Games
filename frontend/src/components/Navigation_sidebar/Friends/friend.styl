@@ -1,14 +1,13 @@
-.friend {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 4px;
-  font-size: 0.6em;
-  font-weight: lighter;
-}
+@require "frontend/styles/charte";
+	
+.friend
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 4px;
+	font-size: 0.6em;
+	font-weight: lighter;
 
-.friend:hover {
-  // box-shadow: 0px 0px 2px 5px black;
-  background-color: #f3b972;
-  cursor: pointer;
-}
+.friend:hover
+	background-color: $main-hover-color;
+	cursor: pointer;

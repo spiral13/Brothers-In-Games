@@ -29,6 +29,13 @@ const Main = ({ datas }) => {
             {...data}
           />
         ))}
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
+        <div className="fake" />
       </div>
     </div>
   );

@@ -59,50 +59,43 @@ class Navbar extends React.Component {
       <div id="navbar">
         <div className="titles">
           {/* eslint-disable-next-line */}
-          <a href="#" onClick={() => this.redirection("/app_dev.php/games")}>Les jeux</a>
+          <a href="#" onClick={() => this.redirection("/app_dev.php/games")}>Liste des jeux</a>
           {/* eslint-disable-next-line */}
-          <a href="#" onClick={() => this.redirection("/app_dev.php/announcements")}>Les annonces</a>
+          <a href="#" onClick={() => this.redirection("/app_dev.php/announcements")}>Liste des annonces</a>
         </div>
         <nav id="nav-rubrique">
           <ul>
             <li>
-              <Envelope className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection("/app_dev.php/message/receive")}>Mes messages</a>
+              <a href="#" onClick={() => this.redirection("/app_dev.php/message/receive")}><Envelope className="nav-fig" /> Mes messages</a>
             </li>
             <li>
-              <Paper className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href="#" id="showAnnounce" onClick={this.showInformations}>Mes annonces</a>
+              <a href="#" id="showAnnounce" onClick={this.showInformations}><Paper className="nav-fig" />Mes annonces</a>
             </li>
             <li>
-              <Gamepad className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection("/app_dev.php/my-games")}>Mes jeux</a>
+              <a href="#" onClick={() => this.redirection("/app_dev.php/my-games")}><Gamepad className="nav-fig" />Mes jeux</a>
             </li>
             <li>
-              <User className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href="#" id="showPlayerInformations" onClick={this.showInformations}>{this.props.playerName}</a>
+              <a href="#" id="showPlayerInformations" onClick={this.showInformations}><User className="nav-fig" />{this.props.playerName}</a>
             </li>
             <li>
-              <Signout className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href={Routing.generate('logout')}>Déconnexion</a>
+              <a href={Routing.generate('logout')}><Signout className="nav-fig" />Déconnexion</a>
             </li>
           </ul>
           {this.state.showPlayerInformations ?
             <div className="showInformations">
               <ul>
                 <li>
-                  <Server className="nav-fig" />
                   {/* eslint-disable-next-line */}
-                  <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}>Mon profil</a>
+                  <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}><Server className="nav-fig" />Mon profil</a>
                 </li>
                 <li>
-                  <User className="nav-fig" />
                   {/* eslint-disable-next-line */}
-                  <a href="#" onClick={() => this.redirection('/app_dev.php/account')}>Mon compte</a>
+                  <a href="#" onClick={() => this.redirection('/app_dev.php/account')}><User className="nav-fig" />Mon compte</a>
                 </li>
               </ul>
             </div>
@@ -111,14 +104,12 @@ class Navbar extends React.Component {
             <div className="showInformations">
               <ul>
                 <li>
-                  <Server className="nav-fig" />
                   {/* eslint-disable-next-line */}
-                  <a onClick={() => this.redirection("/app_dev.php/home")}>Mes annonces</a>
+                  <a onClick={() => this.redirection("/app_dev.php/home")}><Server className="nav-fig" />Mes annonces</a>
                 </li>
                 <li>
-                  <User className="nav-fig" />
                   {/* eslint-disable-next-line */}
-                  <a id="createAnnounce" onClick={this.showInformations}>Créer une annonce</a>
+                  <a id="createAnnounce" onClick={this.showInformations}><User className="nav-fig" />Créer une annonce</a>
                 </li>
               </ul>
             </div>

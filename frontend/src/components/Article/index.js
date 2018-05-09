@@ -42,9 +42,12 @@ class Article extends React.Component {
     }
     return (
       <div className="pageArticle">
-        <Navbar />
         <Sidebar />
-        <PageUnArticle />
+        <div className="right-side">
+          <Navbar />
+          <PageUnArticle />
+        </div>
+        
       </div>
     );
   }

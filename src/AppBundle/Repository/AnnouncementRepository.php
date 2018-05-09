@@ -23,6 +23,7 @@ class AnnouncementRepository extends EntityRepository
 		->addSelect('u.username')
 		->leftJoin('u.profile', 'p')
 		->addSelect('p.image')
+		->orderBy('a.id', 'DESC')
 		->getQuery()
 		->getArrayResult()
 		;
@@ -43,6 +44,7 @@ class AnnouncementRepository extends EntityRepository
 		->addSelect('p.image')
 		->where('g.slug = :slug')
 		->setParameter('slug', $slug)
+		->orderBy('a.id', 'DESC')
 		->getQuery()
 		->getArrayResult()
 		;

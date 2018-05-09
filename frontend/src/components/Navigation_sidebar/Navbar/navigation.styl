@@ -1,67 +1,69 @@
-#navbar {
-  float: right;
-  width: 85%;
+@require "frontend/styles/charte";
+
+#navbar 
+  position: sticky;
+  top: 0px;
+  z-index: 100;
   height: 55px;
-  background-color: #2c2c2c;
+  background-color: $second-color;
   font-size: 0.7em;
-  padding: 8px 20px;
   font-weight: lighter;
-  color: #EC9C34;
-  border-bottom: 4px solid #EC9C34;
+  color: $main-color;
+  border-bottom: 4px solid $main-color;
   display: flex;
   justify-content: space-between;
-}
+  h1 
+    margin-top: 7px;
 
-#navbar h1 {
-  margin-top: 7px;
-}
+#nav-rubrique 
+  > ul 
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  ul li 
+    height: 100%;
+  ul li a
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+    padding: 7px 15px;
+  ul li a:hover
+    background-color: $second-hover-color;
+  ul li :hover 
+    color: $main-hover-color;
 
-#nav-rubrique ul {
+.titles 
+  font-weight: normal;
   display: flex;
   flex-direction: row;
-}
+  height: 100%;
+  a
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 0.8em;
+    padding: 0 15px;
+  a:hover
+    background-color: $second-hover-color;
 
-#nav-rubrique ul li {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.8em;
-  margin-left: 20px;
-}
+.showInformations 
+  background-color: $second-color;
+  box-shadow: 0px 0px 5px black;
+  width: 100%;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  ul 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 
-#nav-rubrique ul li :hover {
-  color: #f3b972;
-}
-
-.nav-fig {
+.nav-fig 
   margin: auto;
   font-size: 1.5em;
-}
-
-.titles {
-  margin-top: 7px;
-}
-
-.titles a {
-  margin-right: 10px;
-}
-
-.showInformations {
-  margin: auto;
-  width: 400px;
-  text-align: center;
-  padding: 10px;
-  background-color: #2c2c2c;
-  box-shadow: 0px 0px 10px 7px black;
-  position: relative;
-  top: 30px;
-  z-index: 100;
-}
-
-.showInformations ul {
-  display: flex;
-  justify-content: space-around;
-}
 
 .createOneAnnounceAndPost {
   background-color: #2c2c2c;
@@ -82,3 +84,7 @@
     border: none;
     margin-top: 10px;
     border-radius: 4px;
+
+@media (max-width: 1200px)
+  #navbar 
+    display: none;

@@ -41,9 +41,11 @@ class ShowMessage extends React.Component {
     }
     return (
       <div className="ShowOneMessage">
-        <Navbar />
         <Sidebar />
-        <OneMessage />
+        <div className="right-side">
+          <Navbar />
+          <OneMessage />
+        </div>
       </div>
     );
   }

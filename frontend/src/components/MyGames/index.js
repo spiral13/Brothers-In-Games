@@ -41,9 +41,11 @@ class MyGames extends React.Component {
     }
     return (
       <div className="MyGamesList">
-        <Navbar />
         <Sidebar />
-        <Main />
+        <div className="right-side">
+          <Navbar />
+          <Main />
+        </div>
       </div>
     );
   }

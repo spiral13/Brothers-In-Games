@@ -1,41 +1,43 @@
-#rightSidebar {
-  float: right;
-  width: 15%;
-  background-color: #2c2c2c;
+@require "frontend/styles/charte";
+
+#rightSidebar 
+  width: 300px;
+  background-color: $second-color;
   box-shadow: 0px 0px 2px;
-}
+  &-rubrique 
+    display: flex;
+    flex-direction: row;
+    a 
+      font-size: 0.5em;
+      padding: 5px;
+      text-align:center;
+      text-transform: uppercase;
 
-#rightBar-rubrique {
-  display: flex;
-  flex-direction: row;
-}
-
-#rightBar-rubrique a {
-  width: 50%;
-  font-size: 0.5em;
-  padding: 5px;
-  font-weight:lighter;
-  text-align:center;
-  text-transform: uppercase;
-}
-
-.bar {
-  background-color: #EC9C34;
-  color: #2c2c2c;
+.bar 
+  font-weight: lighter;
+  background-color: $second-color;
+  color: $main-color;
   line-height: 1.2em;
-}
 
-.selected-bar {
-  background-color: #2c2c2c;
-  color: #EC9C34;
-}
-
-.sidebar-loading {
-  background-color: #2c2c2c;
-  // position: absolute;
-  // right: 0px;
+.bar:hover
+  background-color: rgba(255,255,255,0.1);
+  
+.selected-bar 
+  font-weight: normal;
+  cursor: default;
+  background-color: $main-color;
+  color: $second-color;
+  
+.selected-bar:hover
+  background-color: $main-color;
+  
+.sidebar-loading 
+  background-color: $second-color;
   margin: auto;
   width: 15%;
   float: right;
   height: 100vh;
-}
+
+@media (max-width: 1200px)
+  #rightSidebar 
+    display: none;

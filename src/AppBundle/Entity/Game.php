@@ -17,6 +17,11 @@ class Game
     private $id;
 
     /**
+     * @var int
+     */
+    private $apiId;
+
+    /**
      * @var string
      */
     private $title;
@@ -71,6 +76,26 @@ class Game
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getApiId()
+    {
+        return $this->apiId;
+    }
+
+    /**
+     * @param int $apiId
+     *
+     * @return self
+     */
+    public function setApiId($apiId)
+    {
+        $this->apiId = $apiId;
+
+        return $this;
     }
 
     /**

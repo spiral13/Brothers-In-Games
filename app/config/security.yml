@@ -24,7 +24,7 @@ security:
             anonymous: ~
             provider: user_provider
             form_login:
-                login_path: login
+                login_path: /
                 check_path: login
                 success_handler: AppBundle\Handler\AuthenticationHandler
                 failure_handler: AppBundle\Handler\AuthenticationHandler
@@ -42,6 +42,8 @@ security:
     access_control:
         # require ROLE_ADMIN for /admin*
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: /user/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /., roles: ROLE_USER }
     role_hierarchy:
         ROLE_MODERATOR: ROLE_USER
         ROLE_ADMIN: [ROLE_USER, ROLE_MODERATOR]

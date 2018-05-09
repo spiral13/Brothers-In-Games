@@ -24,7 +24,7 @@ class RightSidebar extends React.Component {
     const { actus, playerNews } = this.props;
     return (
       <div id="rightSidebar">
-        <div id="rightBar-rubrique">
+        <div id="rightSidebar-rubrique">
           <a
             id="actus-bar"
             href="#"
