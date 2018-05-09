@@ -71,7 +71,7 @@ class Sidebar extends React.Component {
 }
 Sidebar.propTypes = {
   actions: PropTypes.object.isRequired,
-  games: PropTypes.object.isRequired,
+  games: PropTypes.array.isRequired,
 };
 /**
  * Export

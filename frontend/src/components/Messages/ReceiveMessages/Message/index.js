@@ -39,8 +39,8 @@ Message.propTypes = {
   id: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
   content: PropTypes.string.isRequired,
-  author: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-  receiver: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
+  author: PropTypes.objectOf(PropTypes.string.isRequired),
+  receiver: PropTypes.objectOf(PropTypes.string.isRequired),
 };
 /**
  * Export

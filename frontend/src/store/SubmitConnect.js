@@ -25,6 +25,7 @@ export default store => next => (action) => {
         if (response.data.success) {
           return store.dispatch(redirect('/app_dev.php/home'));
         }
+        alert('Votre identifiant ou mot de passe est incorrect');
       }).catch((error) => {
         console.error(`Echec de l'envoie de la requête :${error}`);
       });
@@ -40,7 +41,6 @@ export default store => next => (action) => {
       for (var key in data) {
         formData.append(key, data[key]);
       }
-
       // Et j'envoie la donnée
       // eslint-disable-next-line
       axios.post(Routing.generate('signup'), formData).then((response) => {

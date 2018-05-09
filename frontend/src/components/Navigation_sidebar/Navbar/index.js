@@ -19,7 +19,6 @@ import Select from 'react-select';
  */
 class Navbar extends React.Component {
   state = {
-    showPlayerInformations: false,
     showAnnounce: false,
     createAnnounce: false,
     selectedOption: '',
@@ -79,33 +78,19 @@ class Navbar extends React.Component {
             </li>
             <li>
               {/* eslint-disable-next-line */}
-              <a href="#" id="showPlayerInformations" onClick={this.showInformations}><User className="nav-fig" />{this.props.playerName}</a>
+              <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}><User className="nav-fig" />{this.props.playerName}</a>
             </li>
             <li>
               {/* eslint-disable-next-line */}
               <a href={Routing.generate('logout')}><Signout className="nav-fig" />Déconnexion</a>
             </li>
           </ul>
-          {this.state.showPlayerInformations ?
-            <div className="showInformations">
-              <ul>
-                <li>
-                  {/* eslint-disable-next-line */}
-                  <a href="#" onClick={() => this.redirection('/app_dev.php/my-profile')}><Server className="nav-fig" />Mon profil</a>
-                </li>
-                <li>
-                  {/* eslint-disable-next-line */}
-                  <a href="#" onClick={() => this.redirection('/app_dev.php/account')}><User className="nav-fig" />Mon compte</a>
-                </li>
-              </ul>
-            </div>
-          : true}
           {this.state.showAnnounce ?
             <div className="showInformations">
               <ul>
                 <li>
                   {/* eslint-disable-next-line */}
-                  <a onClick={() => this.redirection("/app_dev.php/home")}><Server className="nav-fig" />Mes annonces</a>
+                  <a onClick={() => this.redirection("/app_dev.php/my-announcements")}><Server className="nav-fig" />Mes annonces</a>
                 </li>
                 <li>
                   {/* eslint-disable-next-line */}
@@ -144,7 +129,7 @@ class Navbar extends React.Component {
 Navbar.propTypes = {
   actions: PropTypes.object.isRequired,
   playerName: PropTypes.string.isRequired,
-  games: PropTypes.object.isRequired,
+  games: PropTypes.array.isRequired,
   textArea: PropTypes.string.isRequired,
 };
 /**

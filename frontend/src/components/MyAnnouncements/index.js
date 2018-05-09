@@ -8,41 +8,40 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import Main from 'frontend/src/components/MyProfile/Main';
+import Main from 'frontend/src/containers/MyAnnouncements/Main';
 import Loading from 'frontend/src/components/Loading';
 
 /**
  * Code
  */
 
-class Myprofile extends React.Component {
+class MyAnnouncements extends React.Component {
   // mise en place d'un state pour un petit loading
   // pour laisser le temps au serveur de répondre
-  state = {
-    loading: true,
-  }
-
   /*
    * Lifecycle
    */
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 4000);
-    this.props.actions.getAllMyGames();
+    // this.props.actions.getAllMyAnnouncements();
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
+    this.props.actions.getAllMyAnnouncements();
   }
 
   /*
    * Rendu
    */
   render() {
-    if (this.state.loading) {
+    const {
+      loadingGames,
+      loadingFriends,
+      loadingMyAnnouncements,
+    } = this.props.loadings;
+    if (!loadingFriends || !loadingGames || !loadingMyAnnouncements) {
       return <Loading />;
     }
     return (
-      <div id="MyprofilePage">
+      <div className="Sidebar">
         <Sidebar />
         <div className="right-side">
           <Navbar />
@@ -53,11 +52,12 @@ class Myprofile extends React.Component {
   }
 }
 
-Myprofile.propTypes = {
+MyAnnouncements.propTypes = {
   actions: PropTypes.object.isRequired,
+  loadings: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
 };
 
 /**
  * Export
  */
-export default Myprofile;
+export default MyAnnouncements;

@@ -15,13 +15,17 @@ class Header extends React.Component {
     isClicked: false,
   }
 
+  changeState = () => {
+    this.setState({ isClicked: !this.state.isClicked });
+  }
+
   render() {
     return (
       <header>
-            {this.state.isClicked &&
-            <div>
-              <SignupForm />
-            </div>}
+        {this.state.isClicked &&
+        <div>
+          <SignupForm func={this.changeState} />
+        </div>}
         <div id="angle">
           <div id="leftSide">
             <h1>

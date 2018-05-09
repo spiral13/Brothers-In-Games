@@ -2,8 +2,16 @@
 import axios from 'axios';
 
 // Local import
-import { GET_ALL_ANNOUNCEMENTS, GET_ANNOUNCEMENT_SELECTED, GET_PROFILE_ANNOUNCE, addProfileAnnounce, showAnnouncements } from 'frontend/src/store/reducers/AnnouncementsReducer';
 import { changeLoading } from 'frontend/src/store/reducers/LoadingReducer';
+import {
+  GET_ALL_ANNOUNCEMENTS,
+  GET_ANNOUNCEMENT_SELECTED,
+  GET_PROFILE_ANNOUNCE,
+  GET_ALL_MY_ANNOUNCEMENTS,
+  addProfileAnnounce,
+  showAnnouncements,
+  showMyAnnouncements,
+} from 'frontend/src/store/reducers/AnnouncementsReducer';
 /*
  * Middleware
  */
@@ -23,7 +31,6 @@ export default store => next => (action) => {
     }
 
     case GET_ANNOUNCEMENT_SELECTED: {
-      console.log('OK');
       const url = window.location.search.split('?slug=');
       const formData = new FormData();
       formData.append('slug', url[1]);
@@ -32,6 +39,17 @@ export default store => next => (action) => {
         // Ici, faire un dispatch.
         store.dispatch(showAnnouncements(response));
         store.dispatch(changeLoading('loadingAnnouncements'));
+      }).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
+
+    case GET_ALL_MY_ANNOUNCEMENTS: {
+      axios.get(Routing.generate('get_all_user_announcement')).then((response) => {
+        // Ici, faire un dispatch.
+        store.dispatch(showMyAnnouncements(response));
+        store.dispatch(changeLoading('loadingMyAnnouncements'));
       }).catch((error) => {
         console.log(error);
       });
