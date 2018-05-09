@@ -14,8 +14,8 @@ class FriendController extends Controller
 
 		if($request->request->all())
 		{
-			$name = $request->request->get('name');
-			$user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['name' => $name]);
+			$username = $request->request->get('username');
+			$user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => $username]);
 			if(!$user)
 			{
 				return $this->json(['status' => false, 'message' => 'Utilisateur inconnu dans la base de donnée']);
