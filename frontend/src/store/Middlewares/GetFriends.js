@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_FRIENDS, addFriends } from 'frontend/src/store/reducers/FriendsReducer';
+import { GET_FRIENDS, DELETE_FRIEND, addFriends } from 'frontend/src/store/reducers/FriendsReducer';
 import { changeLoading } from 'frontend/src/store/reducers/LoadingReducer';
 /*
  * Middleware
@@ -16,6 +16,20 @@ export default store => next => (action) => {
         // Ici, faire un dispatch.
         store.dispatch(addFriends(response));
         store.dispatch(changeLoading('loadingFriends'));
+      }).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
+
+    case DELETE_FRIEND: {
+      const formData = new FormData();
+      formData.append('id', store.getState().FriendsReducer.friendToDelete);
+      axios.post(Routing.generate('removeFriend'), formData).then((response) => {
+        // Ici, faire un dispatch.
+        console.log(response);
+        // store.dispatch(addFriends(response));
+        // store.dispatch(changeLoading('loadingFriends'));
       }).catch((error) => {
         console.log(error);
       });

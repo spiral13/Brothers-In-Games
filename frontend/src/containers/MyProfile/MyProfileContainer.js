@@ -10,8 +10,7 @@ import { bindActionCreators } from 'redux';
 import MyProfile from 'frontend/src/components/MyProfile';
 
 // actionsCreators
-import { getAllGames, addAllGames } from 'frontend/src/store/reducer';
-import { getAllMyGames, addAllMyGames } from 'frontend/src/store/reducers/MyGamesReducer';
+import { getAllGames } from 'frontend/src/store/reducer';
 import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
 
 
@@ -22,16 +21,14 @@ import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
 const mapStateToProps = state => ({
   games: state.reducer.games,
   friends: state.FriendsReducer.friends,
+  loadings: state.LoadingReducer.loadings,
 });
 
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     getAllGames,
-    addAllGames,
     getAllFriends,
-    getAllMyGames,
-    addAllMyGames,
   }, dispatch),
 });
 

@@ -1,36 +1,80 @@
 #MyProfileContainer
   width: 85%
-  float: right
   height: 100%
   display: flex
   flex-direction: column
   padding: 1em 4em
-  overflow: auto
+
 
 #MyProfilePresentation
   display: flex
   flex-direction: column
+  justify-content: center
   align-items: center
-  margin: 1em auto
+  width:400px
+  margin: 1em auto 1em
+  padding:1em
+  background-color: #EC9C34
+  border-radius: 10px
+
+#MyProfilePhoto
+  width: 100px
+  height: 100px
+  border-radius: 100%
+  margin-bottom: 1em
+
+#MyProfileDescription
+  opacity: .6
+  font-size: .7em
+
+
+#settingsForMyProfileTrigger
+  position: relative
+  color: #EC9C34
+  top: -10px
+  left:900px
+  width: 70px
+
+#settingsForMyProfileTrigger:hover
+  color: black
+  cursor: pointer
+  box-shadow: 0px 0px 2px 2px #ec9c34
+
 
 #MyProfileBasicsInformation
   display: flex
   flex-direction: row
   flex-wrap: wrap
   justify-content: space-around
-  margin: .5em
+  margin: .5em auto
+  padding: 1em 0
+  border-bottom: thick double #EC9C34
+  border-top: thick double #EC9C34
 
 .BasicsInformation
-  width:50%
-  padding: 1em 4em
+  width:40%
+  padding: .5em 2em
+  margin-bottom: 1em
+  background-color: black
+  color: white
+  opacity: .6
+  font-size: .8em
+  border-radius: 10px
 
 #AddOrDeleteFriendFromMyProfile
   display: flex
   flex-direction: row
   flex-wrap: nowrap
-  justify-content: space-between
-  margin: .5em
+  justify-content: space-around
+  margin: .5em auto
 
 .FriendsFromMyProfile
-  width:50%
-  padding: 1em 2em
+  width:40%
+  padding: .5em 2em
+  margin-bottom: 1em
+  border-radius: 10px
+
+#DeleteFriendFromMyProfile
+  width: 500px;
+  font-size: 0.6em;
+  height: 50px;
