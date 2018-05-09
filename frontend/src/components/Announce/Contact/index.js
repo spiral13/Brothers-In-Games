@@ -27,7 +27,7 @@ class Contact extends React.Component {
   render() {
     return (
       <div id="contactPlayer">
-        {this.props.popup ? 
+        {this.props.popup ?
           <div className="showResponse">
             <div className="showResponse-wrap">
               <button className="closePopup" onClick={this.onChange}>
@@ -41,7 +41,7 @@ class Contact extends React.Component {
               </p>
               <button className="okButton" onClick={this.onChange}>Ok</button>
             </div>
-          </div> 
+          </div>
           : true}
         <div id="announce-contact">
           <div id="announce-contact-show">
