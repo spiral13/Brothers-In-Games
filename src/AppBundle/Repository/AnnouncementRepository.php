@@ -31,6 +31,27 @@ class AnnouncementRepository extends EntityRepository
 		return $qb;
 	}
 
+	public function findAllByUserInArray($user)
+	{
+		$qb = $this->createQueryBuilder('a')
+		->leftjoin('a.game', 'g')
+		->addSelect('g.slug')
+		->addSelect('g.cover')
+		->addSelect('g.title')
+		->leftJoin('a.user', 'u')
+		->addSelect('u.username')
+		->leftJoin('u.profile', 'p')
+		->addSelect('p.image')
+		->where('a.user = ?1')
+		->setParameter('1', $user)
+		->orderBy('a.id', 'DESC')
+		->getQuery()
+		->getArrayResult()
+		;
+
+		return $qb;
+	}
+
 	public function findInArrayBySlug($slug)
 	{
 		$qb = $this->createQueryBuilder('a')

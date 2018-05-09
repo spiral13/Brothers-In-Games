@@ -17,6 +17,11 @@ class AnnouncementController extends Controller
 	{
 		return $this->render('announcement/list.html.twig');
 	}
+
+	public function listUserAction()
+	{
+		return $this->render('announcement/list.html.twig');
+	}
 	
 	/**
 	 * Calling concerned template
@@ -237,6 +242,15 @@ class AnnouncementController extends Controller
 		$announcement[0]['user']['profile']['birthdate'] = $diff;
 
 		return $this->json($announcement);
+	}
+
+	public function getUserAnnouncementAction(Request $request)
+	{
+		$user = $this->getUser();
+
+		$announcements = $this->getDoctrine()->getRepository(Announcement::class)->findAllByUserInArray($user);
+
+		return $this->json($announcements);
 	}
 
 }
