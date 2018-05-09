@@ -34,7 +34,7 @@ class FriendController extends Controller
 			$em->persist($currentUser);
 			$em->flush();
 
-			$user = $this->getDoctrine()->getRepository(User::class)->findOneInArray($id);
+			$user = $this->getDoctrine()->getRepository(User::class)->findOneInArray($user->getId());
 
 			return $this->json(['status' => true, 'user' => $user]);
 		}
