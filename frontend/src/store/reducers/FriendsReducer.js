@@ -18,6 +18,7 @@ export const ADD_ONE_FRIEND = 'ADD_ONE_FRIEND';
 const ADD_FRIENDS = 'ADD_FRIENDS';
 const CHANGE_FRIEND_TO_DELETE = 'CHANGE_FRIEND_TO_DELETE';
 const CHANGE_ADD_ONE_FRIEND = 'CHANGE_ADD_ONE_FRIEND';
+const SHOW_ONE_FRIEND = 'SHOW_ONE_FRIEND';
 /**
  * Reducer
  */
@@ -62,6 +63,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
+    case SHOW_ONE_FRIEND:
+      return {
+        ...state,
+        friend: [{ ...state.friend[0], myFriend: [...state.friend[0].myFriend, { ...action.friend.data.user[0] }] }],
+      };
+
     default:
       return state;
   }
@@ -95,6 +102,11 @@ export const changeAddOneFriend = friend => ({
   type: CHANGE_ADD_ONE_FRIEND,
   friend,
 });
+
+export const showOneFriend = friend => ({
+  type: SHOW_ONE_FRIEND,
+  friend,
+})
 
 /**
  * Export
