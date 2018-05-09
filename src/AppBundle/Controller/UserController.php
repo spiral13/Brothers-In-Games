@@ -87,7 +87,7 @@ class UserController extends Controller
 
     public function readAction()
     {
-        return $this->render('user/account.html.twig');
+        return $this->render('user/profile.html.twig');
     }
 
     public function updateAction(UserPasswordEncoderInterface $encoder, Request $request)
