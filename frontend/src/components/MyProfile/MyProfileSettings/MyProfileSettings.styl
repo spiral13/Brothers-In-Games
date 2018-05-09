@@ -1,4 +1,4 @@
-#settingsForMyProfile
+#triggeredSettingsForm
   position: absolute
   width: 1000px
   height: 700px
@@ -9,11 +9,44 @@
   padding: 1em 2em
   z-index:5
 
+
+
+#crossCancelSettingsForm
+  color: black
+
 #changeYourInformation
   font-size: 1em
 
+#settingsInputs
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  flex-wrap: wrap
+  margin: 3em 0
+
+#photoUploader
+  width:100%
+  padding: .5em 2em
+  margin-bottom: 1em
+  font-size: .8em
+  color: white
+
+.publicToggle
+  &-on
+    color: #1E90FF
+    width:50%
+    height:2em
+    margin-bottom: 1em
+  &-off
+    color: black
+    width:50%
+    height:2em
+    margin-bottom: 1em
+
+
+
 #inputFirstName, #inputFamilyName, #inputNickName, #inputAge
-  width:30%
+  width:50%
   padding: .5em 2em
   margin-bottom: 1em
   background-color: black
