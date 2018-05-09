@@ -20,6 +20,7 @@ import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
 // State => composant
 const mapStateToProps = state => ({
   games: state.reducer.games,
+  loadings: state.LoadingReducer.loadings,
 });
 
 

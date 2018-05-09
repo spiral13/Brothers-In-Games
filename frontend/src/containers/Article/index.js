@@ -15,7 +15,9 @@ import { getAllGames } from 'frontend/src/store/reducer';
  * Code
  */
 
-const mapStateToProps = null;
+const mapStateToProps = state => ({
+  loadings: state.LoadingReducer.loadings,
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({

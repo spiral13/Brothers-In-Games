@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // Local import
 import { GET_ARTICLE, addArticle } from 'frontend/src/store/reducers/ArticleReducer';
+import { changeLoading } from 'frontend/src/store/reducers/LoadingReducer';
 /*
  * Middleware
  */
@@ -18,6 +19,7 @@ export default store => next => (action) => {
       axios.post(Routing.generate('get_article'), formData).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(addArticle(response));
+        store.dispatch(changeLoading('loadingArticle'));
       }).catch((error) => {
         console.log(error);
       });

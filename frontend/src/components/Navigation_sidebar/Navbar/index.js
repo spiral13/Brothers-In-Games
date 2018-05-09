@@ -9,6 +9,7 @@ import Signout from 'react-icons/lib/fa/sign-out';
 import Paper from 'react-icons/lib/fa/newspaper-o';
 import Envelope from 'react-icons/lib/fa/envelope';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
 /**
 * Local import
 */
@@ -19,17 +20,41 @@ import PropTypes from 'prop-types';
 class Navbar extends React.Component {
   state = {
     showPlayerInformations: false,
+    showAnnounce: false,
+    createAnnounce: false,
+    selectedOption: '',
   }
 
   redirection = (value) => {
     this.props.actions.redirect(value);
   }
 
-  showInformations = () => {
-    this.setState({ showPlayerInformations: !this.state.showPlayerInformations });
+  showInformations = ({ target }) => {
+    this.setState({ [target.id]: !this.state[target.id] });
+  }
+
+  handleSelectedOptionToSend = (selectedOption) => {
+    this.setState({ selectedOption });
+    this.props.actions.changeFormGameSelectedForPost(selectedOption.value, selectedOption.id);
+  }
+
+  changeTextArea = ({ target }) => {
+    this.props.actions.changeTextArea(target.value);
+  }
+
+  submit = (evt) => {
+    evt.preventDefault();
+    this.props.actions.submitAnnounce();
   }
 
   render() {
+    const { selectedOption } = this.state;
+    const { games } = this.props;
+    let allOptions = [];
+    games.map((option) => {
+      allOptions = [...allOptions, { value: option.title, label: option.title, id: option.id }];
+      return true;
+    });
     return (
       <div id="navbar">
         <div className="titles">
@@ -48,7 +73,7 @@ class Navbar extends React.Component {
             <li>
               <Paper className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.redirection("/app_dev.php/home")}>Mes annonces</a>
+              <a href="#" id="showAnnounce" onClick={this.showInformations}>Mes annonces</a>
             </li>
             <li>
               <Gamepad className="nav-fig" />
@@ -58,7 +83,7 @@ class Navbar extends React.Component {
             <li>
               <User className="nav-fig" />
               {/* eslint-disable-next-line */}
-              <a href="#" onClick={() => this.showInformations()}>{this.props.playerName}</a>
+              <a href="#" id="showPlayerInformations" onClick={this.showInformations}>{this.props.playerName}</a>
             </li>
             <li>
               <Signout className="nav-fig" />
@@ -82,6 +107,44 @@ class Navbar extends React.Component {
               </ul>
             </div>
           : true}
+          {this.state.showAnnounce ?
+            <div className="showInformations">
+              <ul>
+                <li>
+                  <Server className="nav-fig" />
+                  {/* eslint-disable-next-line */}
+                  <a onClick={() => this.redirection("/app_dev.php/home")}>Mes annonces</a>
+                </li>
+                <li>
+                  <User className="nav-fig" />
+                  {/* eslint-disable-next-line */}
+                  <a id="createAnnounce" onClick={this.showInformations}>Créer une annonce</a>
+                </li>
+              </ul>
+            </div>
+          : true }
+          {this.state.createAnnounce ?
+            <div className="createOneAnnounceAndPost">
+              <form onSubmit={this.submit}>
+                {/* Select */}
+                <Select
+                  className="createAnnounce-Select"
+                  placeholder="Séléctionnez le jeu de l'annonce"
+                  name="sidebar-input"
+                  value={selectedOption}
+                  onChange={this.handleSelectedOptionToSend}
+                  options={allOptions}
+                />
+                <textarea
+                  className="createAnnounce-textarea"
+                  onChange={this.changeTextArea}
+                  value={this.props.textArea}
+                  placeholder="Message de l'annonce"
+                />
+                <button className="createAnnounce-button">Créer l'annonce</button>
+              </form>
+            </div>
+          : true }
         </nav>
       </div>
     );
@@ -90,6 +153,8 @@ class Navbar extends React.Component {
 Navbar.propTypes = {
   actions: PropTypes.object.isRequired,
   playerName: PropTypes.string.isRequired,
+  games: PropTypes.object.isRequired,
+  textArea: PropTypes.string.isRequired,
 };
 /**
  * Export
