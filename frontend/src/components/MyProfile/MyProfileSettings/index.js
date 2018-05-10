@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FaToggleOff from 'react-icons/lib/fa/toggle-off';
 import FaToggleOn from 'react-icons/lib/fa/toggle-on';
 // import ImageUploader from 'react-image-upload';
@@ -18,15 +18,47 @@ import FaToggleOn from 'react-icons/lib/fa/toggle-on';
 class MyProfileSettings extends React.Component {
   state = {
     firstNameIsPublic: false,
-    familyNameIsPublic: false,
     nickNameIsPublic: false,
+    username: '',
+
+    // pictures: [],
   }
+
+  // onDrop= (picture) => {
+  //   this.setState({
+  //     pictures: this.state.pictures.concat(picture),
+  //   });
+  // }
+
+  handleChangeInput = ({ target }) => {
+    if (target.value === '') {
+      this.setState({
+        [target.name]: {
+          ...this.state[target.name],
+          error: true,
+          agreed: false,
+        },
+      });
+    }
+    else {
+      this.setState({
+        [target.name]: {
+          ...this.state[target.name],
+          agreed: true,
+          error: false,
+        },
+      });
+    }
+    this.props.actions.changeFormSignup(target.name, target.value);
+  }
+
   render() {
+    const { user } = this.props;
     return (
       <section id="settingsForMyProfile">
         {/* <div >  x Téléchargez votre photo de profil </div> */}
 
-        <section id="settingsInputs">
+        <form id="settingsInputs" method="post" onSubmit={this.handleSubmit}>
           {/* <ImageUploader
             buttonText="Choose images"
             onChange={this.onDrop}
@@ -34,9 +66,11 @@ class MyProfileSettings extends React.Component {
             imgExtension={['.jpg', '.gif', '.png', '.gif']}
             maxFileSize={5242880}
           /> */}
+          <label htmlFor="inputFirstName" className="label">Prénom: </label>
           <input
             id="inputFirstName"
-            placeholder="Prénom"
+            placeholder={user.username}
+            onChange={this.handleChangeInput}
           />
           {this.state.firstNameIsPublic &&
             <FaToggleOn
@@ -52,28 +86,12 @@ class MyProfileSettings extends React.Component {
               this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
           />
           }
-          <input
-            id="inputFamilyName"
-            placeholder="Nom"
-          />
-          {this.state.familyNameIsPublic &&
-            <FaToggleOn
-              className="publicToggle-on"
-              onClick={() =>
-                this.setState({ familyNameIsPublic: !this.state.familyNameIsPublic })}
-            />
-          }
-          {!this.state.familyNameIsPublic &&
-          <FaToggleOff
-            className="publicToggle-off"
-            onClick={() =>
-              this.setState({ familyNameIsPublic: !this.state.familyNameIsPublic })}
-          />
-          }
 
+          <label htmlFor="inputNickName" className="label" >Pseudonyme: </label>
           <input
             id="inputNickName"
             placeholder="Surnom de ton avatar"
+            onChange={this.changeInput}
           />
           {this.state.nickNameIsPublic &&
             <FaToggleOn
@@ -92,16 +110,17 @@ class MyProfileSettings extends React.Component {
 
           <button id="confirmInformationButton">Validez vos informations</button>
 
-        </section>
+        </form>
         <span id="settingsHelp"> *Rendre visibles ou non vos informations auprès de vos amis avec <FaToggleOn /> </span>
       </section>
     );
   }
 }
 
-// Game.propTypes = {
-//   game: PropTypes.object.isRequired,
-// };
+MyProfileSettings.propTypes = {
+  actions: PropTypes.object.isRequired,
+  user: PropTypes.array.isRequired,
+};
 
 
 /**

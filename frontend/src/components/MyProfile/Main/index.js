@@ -7,6 +7,8 @@ import FaPencil from 'react-icons/lib/fa/pencil';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Select from 'react-select';
 import MdCancel from 'react-icons/lib/md/cancel';
+import FaGroup from 'react-icons/lib/fa/group';
+
 
 /**
 * Local import
@@ -47,7 +49,9 @@ class Main extends React.Component {
   render() {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
-    const user = this.props.userInformation;
+    const user = this.props.userInformation[0];
+    console.log(user);
+
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
@@ -73,7 +77,9 @@ class Main extends React.Component {
             id="crossCancelDeleteForm"
           />
           <div id="changeYourInformation">Modifiez vos informations</div>
-          <MyProfileSettings />
+          <MyProfileSettings
+            user={user}
+          />
         </div>}
 
         <MyProfileBasicsInformation
