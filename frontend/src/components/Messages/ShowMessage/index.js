@@ -25,7 +25,6 @@ class ShowMessage extends React.Component {
     this.props.actions.getAllFriends();
     this.props.actions.getOneMessage();
     this.props.actions.getAllGames();
-    this.props.actions.getProfileAnnounce(); // Loading profile announce
   }
 
   /*
@@ -36,9 +35,8 @@ class ShowMessage extends React.Component {
       loadingFriends,
       loadingGames,
       loadingOneMessage,
-      loadingProfileAnnounce,
     } = this.props.loadings;
-    if (!loadingFriends || !loadingGames || !loadingOneMessage || !loadingProfileAnnounce) {
+    if (!loadingFriends || !loadingGames || !loadingOneMessage) {
       return <Loading />;
     }
     return (
