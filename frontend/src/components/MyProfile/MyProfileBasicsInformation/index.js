@@ -20,14 +20,14 @@ const MyProfileBasicsInformation = ({ user }) => (
       id="firstName"
       className="BasicsInformation"
     >
-      {user.username}
+      Polodu33Questcekiya!
     </div>
 
     <span className="labelBasicInformation">Pseudonyme: </span>
     <div
       className="BasicsInformation"
     >
-      Polodu33Questcekiya!
+      {user.username}
     </div>
 
     <span className="labelBasicInformation">Plat préféré: </span>

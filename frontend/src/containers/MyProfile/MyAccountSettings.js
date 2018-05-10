@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 /*
  * Import Local
  */
-import MyProfileSettings from 'frontend/src/components/MyProfile/MyProfileSettings';
-import { changeName, submitChange } from 'frontend/src/store/reducers/ProfileReducer';
+import MyAccountSettings from 'frontend/src/components/MyProfile/MyAccountSettings';
+import { changeName, submitChangePrivateInformation } from 'frontend/src/store/reducers/ProfileReducer';
 
 
 /*
@@ -22,16 +22,16 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     changeName,
-    submitChange,
+    submitChangePrivateInformation,
   }, dispatch),
 });
 
-const MyProfileSettingsContainer = connect(
+const MyAccountSettingsContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MyProfileSettings);
+)(MyAccountSettings);
 
 /*
  * Export
  */
-export default MyProfileSettingsContainer;
+export default MyAccountSettingsContainer;

@@ -9,6 +9,7 @@ import Select from 'react-select';
 import MdCancel from 'react-icons/lib/md/cancel';
 import FaGroup from 'react-icons/lib/fa/group';
 import FaUser from 'react-icons/lib/fa/user';
+import FaWrench from 'react-icons/lib/fa/wrench';
 
 
 /**
@@ -17,7 +18,8 @@ import FaUser from 'react-icons/lib/fa/user';
 
 
 import MyProfileBasicsInformation from 'frontend/src/components/MyProfile/MyProfileBasicsInformation';
-import MyProfileSettings from 'frontend/src/components/MyProfile/MyProfileSettings';
+import MyProfileSettings from 'frontend/src/containers/MyProfile/MyProfileSettings';
+import MyAccountSettings from 'frontend/src/containers/MyProfile/MyAccountSettings';
 
 /**
  * Code
@@ -25,6 +27,7 @@ import MyProfileSettings from 'frontend/src/components/MyProfile/MyProfileSettin
 class Main extends React.Component {
   state = {
     settingsForMyProfileIsClicked: false,
+    settingsForMyAccountIsClicked: false,
     selectedOption: '',
   }
 
@@ -65,21 +68,42 @@ class Main extends React.Component {
         <a
           id="settingsForMyProfileTrigger"
           onClick={() => this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
-        > <FaEllipsisH /> <FaPencil />
+        >
+          <FaEllipsisH />
+          <FaPencil />
+        </a>
+        <a
+          id="settingsForMyAccountTrigger"
+          onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
+        >
+          <FaEllipsisH />
+          <FaWrench />
         </a>
 
         {this.state.settingsForMyProfileIsClicked &&
         <div id="triggeredSettingsForm">
           <MdCancel
-            onClick={() =>
-              this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
+            onClick={() => this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
             id="crossCancelDeleteForm"
           />
-          <div id="changeYourInformation">Modifiez vos informations</div>
+          <div id="changeYourInformation">Modifiez vos informations de profil</div>
           <MyProfileSettings
             user={user}
           />
         </div>}
+
+        {this.state.settingsForMyAccountIsClicked &&
+          <div id="settingsForMyAccount">
+            <MdCancel
+              onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
+              id="settingsForMyAccountDeleteForm"
+            />
+            <div id="changeYourInformation">Modifiez vos informations de compte</div>
+            <MyAccountSettings
+              user={user}
+            />
+          </div>
+        }
 
         <FaUser className="MyProfileSectionIcon" />
         <MyProfileBasicsInformation
