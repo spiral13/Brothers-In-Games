@@ -50,8 +50,6 @@ class Main extends React.Component {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
     const user = this.props.userInformation[0];
-    console.log(user);
-
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
@@ -97,6 +95,7 @@ class Main extends React.Component {
               value={this.props.addOneFriend}
               onChange={this.changeAddFriend}
               placeholder="Ajouter un ami"
+              className="addFriendInput"
             />
             <button>Ajouter un ami</button>
           </form>
