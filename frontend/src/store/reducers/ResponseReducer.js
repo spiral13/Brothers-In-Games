@@ -9,6 +9,7 @@ const initialState = {
     id: 0,
     content: '',
   },
+  sendByMailId: '',
 };
 
 /**
@@ -18,6 +19,8 @@ export const GET_RESPONSE = 'GET_RESPONSE';
 const CHANGE_AREA = 'CHANGE_AREA';
 const SHOW_RESPONSE = 'SHOW_RESPONSE';
 const HIDE_RESPONSE = 'HIDE_RESPONSE';
+const SEND_BY_MAIL = 'SEND_BY_MAIL';
+export const SUBMIT_BY_MAIL = 'SUBMIT_BY_MAIL';
 /**
  * Reducer
  */
@@ -34,6 +37,17 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
     }
+
+    case SUBMIT_BY_MAIL:
+      return {
+        ...state,
+      };
+
+    case SEND_BY_MAIL:
+      return {
+        ...state,
+        sendByMailId: action.id,
+      };
 
     case HIDE_RESPONSE:
       return {
@@ -76,6 +90,15 @@ export const showResponse = datas => ({
 
 export const hideResponse = () => ({
   type: HIDE_RESPONSE,
+});
+
+export const sendByMail = id => ({
+  type: SEND_BY_MAIL,
+  id,
+});
+
+export const submitByMail = () => ({
+  type: SUBMIT_BY_MAIL,
 });
 
 /**

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 * Local import
 */
 import ResponseComponent from 'frontend/src/components/Announce/Contact/ResponseComponent';
-import { getResponse, changeArea } from 'frontend/src/store/reducers/ResponseReducer';
+import { getResponse, changeArea, sendByMail, submitByMail } from 'frontend/src/store/reducers/ResponseReducer';
 /**
  * Code
  */
@@ -17,7 +17,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getResponse, changeArea }, dispatch),
+  actions: bindActionCreators({
+    getResponse,
+    changeArea,
+    sendByMail,
+    submitByMail,
+  }, dispatch),
 });
 
 const ResponseComponentContainer = connect(mapStateToProps, mapDispatchToProps)(ResponseComponent);

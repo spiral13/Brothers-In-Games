@@ -23,6 +23,7 @@ class ShowMessage extends React.Component {
   componentDidMount() {
     this.props.actions.changeOneMessageToFalse();
     this.props.actions.getAllFriends();
+    // Faire une requête pour récupérer le profil de l'annonce
     this.props.actions.getOneMessage();
     this.props.actions.getAllGames();
   }
