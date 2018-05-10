@@ -59,7 +59,14 @@ export default store => next => (action) => {
     case GET_PROFILE_ANNOUNCE: {
       const url = window.location.pathname.split('/');
       const formData = new FormData();
-      formData.append('id', url[3]);
+      if (url[3] === 'show') {
+        console.log(url[4]);
+        formData.append('id', url[4]);
+      }
+      else {
+        formData.append('id', url[3]);
+      }
+      console.log(formData);
       /* eslint-disable-next-line */
       axios.post(Routing.generate('get_announcement'), formData).then((response) => {
         // Ici, faire un dispatch.

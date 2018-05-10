@@ -16,6 +16,7 @@ export default store => next => (action) => {
         store.dispatch(addFriends(response));
         store.dispatch(changeLoading('loadingFriends'));
       }).catch((error) => {
+        store.dispatch(changeLoading('loadingFriends'));
         console.log(error);
       });
       break;

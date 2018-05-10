@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local import
-import { GET_RESPONSE, showResponse } from 'frontend/src/store/reducers/ResponseReducer';
+import { GET_RESPONSE, SUBMIT_BY_MAIL, showResponse } from 'frontend/src/store/reducers/ResponseReducer';
 /*
  * Middleware
  */
@@ -13,6 +13,19 @@ export default store => next => (action) => {
       const formData = new FormData();
       formData.append('content', store.getState().ResponseReducer.textArea);
       formData.append('id', store.getState().AnnouncementsReducer.profileAnnounce[0].user.id);
+      // eslint-disable-next-line
+      axios.post(Routing.generate('message_send'), formData).then((response) => {
+        store.dispatch(showResponse(response));
+      }).catch((error) => {
+        console.log(error);
+      });
+      break;
+    }
+
+    case SUBMIT_BY_MAIL: {
+      const formData = new FormData();
+      formData.append('content', store.getState().ResponseReducer.textArea);
+      formData.append('id', store.getState().ResponseReducer.sendByMailId);
       // eslint-disable-next-line
       axios.post(Routing.generate('message_send'), formData).then((response) => {
         store.dispatch(showResponse(response));

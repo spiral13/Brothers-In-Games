@@ -11,6 +11,8 @@ import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
 import { getOneMessage } from 'frontend/src/store/reducers/MessagesReducer';
 import { getAllGames } from 'frontend/src/store/reducer';
 import { changeOneMessageToFalse } from 'frontend/src/store/reducers/LoadingReducer';
+import { getProfileAnnounce } from 'frontend/src/store/reducers/AnnouncementsReducer';
+
 
 /**
  * Code
@@ -22,6 +24,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
+    getProfileAnnounce,
     getAllFriends,
     getOneMessage,
     getAllGames,

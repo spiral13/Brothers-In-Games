@@ -40,7 +40,7 @@ class OneMessage extends React.Component {
         </div>
         <div className="OneMessage-response">
           <div className="title-response">Repondre</div>
-          <ResponseComponent />
+          <ResponseComponent id={this.props.selectedMail.message[0].author.id} />
         </div>
         {this.props.popup ?
           <div className="showResponse">

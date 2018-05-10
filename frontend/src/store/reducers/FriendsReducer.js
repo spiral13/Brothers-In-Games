@@ -2,9 +2,9 @@
  * Initial State
  */
 const initialState = {
-  friend: [
-
-  ],
+  friend: [{
+    myFriend: [{ id: 0, username: "Vous n'avez pas d'amis" }],
+  }],
   friendToDelete: '',
   addOneFriend: '',
 };
@@ -106,7 +106,7 @@ export const changeAddOneFriend = friend => ({
 export const showOneFriend = friend => ({
   type: SHOW_ONE_FRIEND,
   friend,
-})
+});
 
 /**
  * Export
