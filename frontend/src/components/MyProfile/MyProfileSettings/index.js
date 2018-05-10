@@ -20,7 +20,6 @@ class MyProfileSettings extends React.Component {
     firstNameIsPublic: false,
     familyNameIsPublic: false,
     nickNameIsPublic: false,
-    ageIsPublic: false,
   }
   render() {
     return (
@@ -91,26 +90,10 @@ class MyProfileSettings extends React.Component {
           />
           }
 
-          <input
-            id="inputAge"
-            placeholder="âge"
-          />
-          {this.state.ageIsPublic &&
-            <FaToggleOn
-              className="publicToggle-on"
-              onClick={() =>
-                this.setState({ ageIsPublic: !this.state.ageIsPublic })}
-            />
-          }
-          {!this.state.ageIsPublic &&
-          <FaToggleOff
-            className="publicToggle-off"
-            onClick={() =>
-              this.setState({ ageIsPublic: !this.state.ageIsPublic })}
-          />
-          }
+          <button id="confirmInformationButton">Validez vos informations</button>
 
         </section>
+        <span id="settingsHelp"> *Rendre visibles ou non vos informations auprès de vos amis avec <FaToggleOn /> </span>
       </section>
     );
   }
