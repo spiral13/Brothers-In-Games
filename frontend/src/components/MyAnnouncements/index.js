@@ -22,7 +22,6 @@ class MyAnnouncements extends React.Component {
    * Lifecycle
    */
   componentDidMount() {
-    // this.props.actions.getAllMyAnnouncements();
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
     this.props.actions.getAllMyAnnouncements();
