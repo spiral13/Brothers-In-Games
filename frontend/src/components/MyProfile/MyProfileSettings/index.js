@@ -35,8 +35,6 @@ class MyProfileSettings extends React.Component {
       this.setState({
         [target.name]: {
           ...this.state[target.name],
-          error: true,
-          agreed: false,
         },
       });
     }
@@ -44,12 +42,10 @@ class MyProfileSettings extends React.Component {
       this.setState({
         [target.name]: {
           ...this.state[target.name],
-          agreed: true,
-          error: false,
         },
       });
     }
-    this.props.actions.changeFormSignup(target.name, target.value);
+    this.props.actions.changeInputSettings(target.name, target.value);
   }
 
   render() {

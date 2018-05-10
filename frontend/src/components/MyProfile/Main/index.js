@@ -8,6 +8,7 @@ import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Select from 'react-select';
 import MdCancel from 'react-icons/lib/md/cancel';
 import FaGroup from 'react-icons/lib/fa/group';
+import FaUser from 'react-icons/lib/fa/user';
 
 
 /**
@@ -82,10 +83,12 @@ class Main extends React.Component {
           />
         </div>}
 
+        <FaUser className="MyProfileSectionIcon" />
         <MyProfileBasicsInformation
           user={user}
         />
 
+        <FaGroup className="MyProfileSectionIcon" />
         <section id="AddOrDeleteFriendFromMyProfile">
           <form
             id="AddFriendFromMyProfile"
