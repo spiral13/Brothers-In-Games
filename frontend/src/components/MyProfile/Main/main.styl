@@ -43,23 +43,35 @@
 
 
 #AddOrDeleteFriendFromMyProfile
-  display: flex
-  flex-direction: row
-  flex-wrap: nowrap
-  justify-content: space-around
+  display: flex;
   margin: .5em auto
   width: 500px;
 
 .FriendsFromMyProfile
   width: 50%
   border-radius: 10px
+  height: 100px;
   padding:10px;
+  button
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 4px;
+    color: #ec9c34;
+    font-weight: bold;
+    background-color: #000;
+  button:hover
+    color: #000;
+    background-color: #ec9c34;
+    border: 2px solid #fff;
+    cursor: pointer;
 
 #DeleteFriendFromMyProfile
   font-size: 0.6em;
   height: 50px;
 
 .addFriendInput {
+  border-radius: 3px;
+  border: none;
   width: 100%;
   padding: 10px;
 }
