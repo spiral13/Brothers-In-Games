@@ -131,7 +131,7 @@ class GameController extends Controller
 	 */
 	public function getAllGamesAction()
 	{
-		$games = $this->getDoctrine()->getRepository(Game::class)->findOneInArray();
+		$games = $this->getDoctrine()->getRepository(Game::class)->findAllInArray();
 
 		return $this->json($games);
 	}

@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 /**
 * Local import
@@ -11,19 +11,18 @@ import React from 'react';
 /**
  * Code
  */
-const MyProfileBasicsInformation = () => (
+const MyProfileBasicsInformation = ({ user }) => (
   <section id="MyProfileBasicsInformation">
-    <div id="firstName" className="BasicsInformation">Prénom</div>
-    <div id="familyName" className="BasicsInformation">Nom</div>
-    <div id="nickName" className="BasicsInformation">Surnom de ton avatar</div>
+    <div id="firstName" className="BasicsInformation">{user.username}</div>
+    <div id="mailProfile" className="BasicsInformation">{user.mail}</div>
+    <div id="passwordProfile" className="BasicsInformation">{user.password}</div>
     <div id="age" className="BasicsInformation">âge</div>
   </section>
 );
 
-// Game.propTypes = {
-//   game: PropTypes.object.isRequired,
-// };
-
+MyProfileBasicsInformation.propTypes = {
+  user: PropTypes.array.isRequired,
+};
 
 /**
  * Export

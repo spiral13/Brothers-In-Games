@@ -12,7 +12,7 @@ export default store => next => (action) => {
   switch (action.type) {
     case GET_GAMES: {
       // eslint-disable-next-line
-      axios.get(Routing.generate('get_all_games')).then((response) => {
+      axios.get(Routing.generate('get_all_games_with_announcement')).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(addAllGames(response));
         store.dispatch(changeLoading('loadingGames'));

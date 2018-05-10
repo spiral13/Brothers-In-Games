@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import Select from 'react-select';
+import MdCancel from 'react-icons/lib/md/cancel';
 
 /**
 * Local import
@@ -20,7 +21,7 @@ import MyProfileSettings from 'frontend/src/components/MyProfile/MyProfileSettin
  */
 class Main extends React.Component {
   state = {
-    settingsForMyProfilemIsClicked: false,
+    settingsForMyProfileIsClicked: false,
     selectedOption: '',
   }
 
@@ -46,7 +47,7 @@ class Main extends React.Component {
   render() {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
-    const { user } = this.props.userInformation;
+    const user = this.props.userInformation;
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
@@ -60,15 +61,24 @@ class Main extends React.Component {
         </section>
         <a
           id="settingsForMyProfileTrigger"
-          onClick={() => this.setState({ settingsForMyProfilemIsClicked: !this.state.settingsForMyProfilemIsClicked })}
+          onClick={() => this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
         > <FaEllipsisH /> <FaPencil />
         </a>
 
-        {this.state.settingsForMyProfilemIsClicked &&
-        <MyProfileSettings />
-        }
+        {this.state.settingsForMyProfileIsClicked &&
+        <div id="triggeredSettingsForm">
+          <MdCancel
+            onClick={() =>
+              this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
+            id="crossCancelDeleteForm"
+          />
+          <div id="changeYourInformation">Modifiez vos informations</div>
+          <MyProfileSettings />
+        </div>}
 
-        <MyProfileBasicsInformation />
+        <MyProfileBasicsInformation
+          user={user}
+        />
 
         <section id="AddOrDeleteFriendFromMyProfile">
           <form
