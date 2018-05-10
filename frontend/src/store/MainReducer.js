@@ -14,6 +14,7 @@ import ResponseReducer from 'frontend/src/store/reducers/ResponseReducer';
 import FriendsReducer from 'frontend/src/store/reducers/FriendsReducer';
 import MessagesReducer from 'frontend/src/store/reducers/MessagesReducer';
 import LoadingReducer from 'frontend/src/store/reducers/LoadingReducer';
+import ProfileReducer from 'frontend/src/store/reducers/ProfileReducer';
 /*
  * Code
  */
@@ -30,4 +31,5 @@ export default combineReducers({
   MyGamesReducer,
   MessagesReducer,
   LoadingReducer,
+  ProfileReducer,
 });

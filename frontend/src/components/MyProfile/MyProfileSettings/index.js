@@ -19,42 +19,24 @@ class MyProfileSettings extends React.Component {
   state = {
     firstNameIsPublic: false,
     nickNameIsPublic: false,
-    username: '',
-
-    // pictures: [],
   }
 
-  // onDrop= (picture) => {
-  //   this.setState({
-  //     pictures: this.state.pictures.concat(picture),
-  //   });
-  // }
+  onSubmit = (evt) => {
+    evt.preventDefault();
+    this.props.actions.submitChange();
+  }
 
   handleChangeInput = ({ target }) => {
-    if (target.value === '') {
-      this.setState({
-        [target.name]: {
-          ...this.state[target.name],
-        },
-      });
-    }
-    else {
-      this.setState({
-        [target.name]: {
-          ...this.state[target.name],
-        },
-      });
-    }
-    this.props.actions.changeInputSettings(target.name, target.value);
+    this.props.actions.changeName(target.name, target.value);
   }
 
   render() {
-    const { user } = this.props;
+    // const { user } = this.props;
     return (
       <section id="settingsForMyProfile">
         {/* <div >  x Téléchargez votre photo de profil </div> */}
 
-        <form id="settingsInputs" method="post" onSubmit={this.handleSubmit}>
+        <form id="settingsInputs" onSubmit={this.onSubmit}>
           {/* <ImageUploader
             buttonText="Choose images"
             onChange={this.onDrop}
@@ -65,29 +47,31 @@ class MyProfileSettings extends React.Component {
           <label htmlFor="inputFirstName" className="label">Prénom: </label>
           <input
             id="inputFirstName"
-            placeholder={user.username}
+            name="firstname"
+            placeholder="Prénom"
             onChange={this.handleChangeInput}
+            value={this.props.user.firstname}
           />
           {this.state.firstNameIsPublic &&
             <FaToggleOn
               className="publicToggle-on"
-              onClick={() =>
-                this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
+              onClick={() => this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
             />
           }
           {!this.state.firstNameIsPublic &&
           <FaToggleOff
             className="publicToggle-off"
-            onClick={() =>
-              this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
+            onClick={() => this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
           />
           }
 
           <label htmlFor="inputNickName" className="label" >Pseudonyme: </label>
           <input
             id="inputNickName"
-            placeholder="Surnom de ton avatar"
-            onChange={this.changeInput}
+            name="username"
+            placeholder="Surnom"
+            onChange={this.handleChangeInput}
+            value={this.props.user.username}
           />
           {this.state.nickNameIsPublic &&
             <FaToggleOn
@@ -103,9 +87,7 @@ class MyProfileSettings extends React.Component {
               this.setState({ nickNameIsPublic: !this.state.nickNameIsPublic })}
           />
           }
-
           <button id="confirmInformationButton">Validez vos informations</button>
-
         </form>
         <span id="settingsHelp"> *Rendre visibles ou non vos informations auprès de vos amis avec <FaToggleOn /> </span>
       </section>
@@ -115,7 +97,7 @@ class MyProfileSettings extends React.Component {
 
 MyProfileSettings.propTypes = {
   actions: PropTypes.object.isRequired,
-  user: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 

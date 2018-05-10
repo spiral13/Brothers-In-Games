@@ -19,6 +19,7 @@ import GetArticle from './Middlewares/GetArticle';
 import GetResponseToAnnounce from './Middlewares/GetResponseToAnnounce';
 import GetFriends from './Middlewares/GetFriends';
 import GetMessages from './Middlewares/GetMessages';
+import GetMyprofile from './Middlewares/GetMyprofile';
 /*
  * Code
  */
@@ -39,6 +40,7 @@ const middlewares = applyMiddleware(
   GetFriends,
   GetMyGames,
   GetMessages,
+  GetMyprofile,
 );
 const enhancers = compose(middlewares, ...devTools);
 
