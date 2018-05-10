@@ -17,7 +17,7 @@ class UserRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('u')
 		->join('u.profile', 'p')
 		->addSelect('p')
-		->join('u.games', 'g')
+		->leftJoin('u.games', 'g')
 		->addSelect('g')
 		->where('u.id = :id')
 		->setParameter('id', $id)
@@ -47,7 +47,7 @@ class UserRepository extends EntityRepository
 	public function findFriendByCurrentUserIdInArray($id)
 	{
 		$qb = $this->createQueryBuilder('u')
-		->join('u.myFriend', 'f')
+		->leftJoin('u.myFriend', 'f')
 		->addSelect('f')
 		->where('u.id = :id')
 		->setParameter('id', $id)
