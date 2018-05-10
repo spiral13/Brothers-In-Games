@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import FaUser from 'react-icons/lib/fa/user';
+
 
 /**
 * Local import
@@ -15,7 +15,6 @@ import FaUser from 'react-icons/lib/fa/user';
 const MyProfileBasicsInformation = ({ user }) => (
   <section id="MyProfileBasicsInformation">
 
-    <FaUser />
     <span className="labelBasicInformation">Prénom: </span>
     <div
       id="firstName"
