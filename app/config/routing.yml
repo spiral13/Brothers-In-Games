@@ -345,7 +345,7 @@ get_article:
 get_all_games:
     path: /get/games
     # defaults: { _controller: AppBundle:Game:getAllGames }
-    defaults: { _controller: AppBundle:Game:getAllGameWithAnnouncement }
+    defaults: { _controller: AppBundle:Game:getAllGames }
     options:
         expose: true
 
