@@ -65,20 +65,29 @@ class Main extends React.Component {
           <img id="MyProfilePhoto" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" />
           <div id="MyProfileDescription">A word about you</div>
         </section>
-        <a
-          id="settingsForMyProfileTrigger"
-          onClick={() => this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
-        >
-          <FaEllipsisH />
-          <FaPencil />
-        </a>
-        <a
-          id="settingsForMyAccountTrigger"
-          onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
-        >
-          <FaEllipsisH />
-          <FaWrench />
-        </a>
+
+        <div id="settingsForMyAccountTrigger" >
+          <h1 id="labelMyAccountTrigger">Modifiez vos informations de compte</h1>
+          <a
+            onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
+            id="FaWrenchMyAccountTrigger"
+          >
+            <FaWrench />
+          </a>
+        </div>
+
+        {this.state.settingsForMyAccountIsClicked &&
+          <div id="settingsForMyAccount">
+            <MdCancel
+              onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
+              id="crossCancelSettingsForm"
+            />
+            <div id="changeYourInformation">Modifiez vos informations de compte</div>
+            <MyAccountSettings
+              user={user}
+            />
+          </div>
+        }
 
         {this.state.settingsForMyProfileIsClicked &&
         <div id="triggeredSettingsForm">
@@ -92,20 +101,15 @@ class Main extends React.Component {
           />
         </div>}
 
-        {this.state.settingsForMyAccountIsClicked &&
-          <div id="settingsForMyAccount">
-            <MdCancel
-              onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
-              id="settingsForMyAccountDeleteForm"
-            />
-            <div id="changeYourInformation">Modifiez vos informations de compte</div>
-            <MyAccountSettings
-              user={user}
-            />
-          </div>
-        }
 
         <FaUser className="MyProfileSectionIcon" />
+        <a
+          id="settingsForMyProfileTrigger"
+          onClick={() => this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
+        >
+          <FaEllipsisH />
+          <FaPencil />
+        </a>
         <MyProfileBasicsInformation
           user={user}
         />

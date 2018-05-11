@@ -36,7 +36,7 @@ class MyProfileSettings extends React.Component {
       <section id="settingsForMyProfile">
         {/* <div >  x Téléchargez votre photo de profil </div> */}
 
-        <form id="settingsInputs" onSubmit={this.onSubmit}>
+        <form className="settingsInputs" onSubmit={this.onSubmit}>
           {/* <ImageUploader
             buttonText="Choose images"
             onChange={this.onDrop}
