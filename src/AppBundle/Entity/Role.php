@@ -40,6 +40,11 @@ class Role
         $this->users = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     /* *************** **
     ** GETTER & SETTER **
     ** *************** */
@@ -112,4 +117,3 @@ class Role
         return $this->users;
     }
 }
-

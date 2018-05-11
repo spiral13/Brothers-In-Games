@@ -40,9 +40,10 @@ security:
             #form_login: ~
 
     access_control:
+        - { path: /BIG-master, roles: ROLE_ADMIN }
         - { path: /user/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /., roles: ROLE_USER }
     role_hierarchy:
         ROLE_MODERATOR: ROLE_USER
-        ROLE_ADMIN: [ROLE_USER, ROLE_MODERATOR]
+        ROLE_ADMIN: [ROLE_USER]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

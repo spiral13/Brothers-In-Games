@@ -23,7 +23,7 @@ class Article
     private $slug;
 
     /**
-     * @var $image;
+     * @var string
      */
     private $image;
 
@@ -171,5 +171,43 @@ class Article
 
         return $this;
     }
-}
 
+    /**
+     * Set the value of Id
+     *
+     * @param int id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Image
+     *
+     * @return $image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of Image
+     *
+     * @param $image
+     *
+     * @return self
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+}

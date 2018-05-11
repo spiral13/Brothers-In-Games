@@ -46,6 +46,11 @@ class GameCategory
         $this->games = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     /* *************** **
     ** GETTER & SETTER **
     ** *************** */
@@ -142,4 +147,3 @@ class GameCategory
         return $this;
     }
 }
-

@@ -24,10 +24,10 @@ class ProfileController extends Controller
 			$getBirthdate = trim(strip_tags($request->request->get('birthdate')));
 			$getGender = trim(strip_tags($request->request->get('gender')));
 			$getDescription = trim(strip_tags($request->request->get('description')));
-			
+
 			$firstname = (empty($getFirstname)) ? null : $getFirstname;
-			$image = (empty($getImage)) ? null : $this->setDate($getImage);
-			$birthdate = (empty($getBirthdate)) ? null : $getBirthdate;
+			$image = (empty($getImage)) ? null : $getImage;
+			$birthdate = (empty($getBirthdate)) ? null : $this->setDate($getBirthdate);
 			$gender = (empty($getGender)) ? null : $getGender;
 			$description = (empty($getDescription)) ? null : $getDescription;
 

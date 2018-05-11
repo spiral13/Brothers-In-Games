@@ -113,6 +113,11 @@ class User implements AdvancedUserInterface, \Serializable
         $this->myFriend = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {

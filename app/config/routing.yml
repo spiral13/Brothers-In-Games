@@ -3,6 +3,10 @@ app:
     type: annotation
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /BIG-master
 
 ###########################
 ######### Routes ##########
