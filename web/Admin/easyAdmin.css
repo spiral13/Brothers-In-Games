@@ -1,0 +1,49 @@
+.content-wrapper, .main-sidebar, .sidebar-menu > li > a{
+    background-color: #2C2C2C;
+}
+body.easyadmin h1.title {
+    color: #FFFFFF;
+}
+body.list table tbody td {
+    background-color: #2C2C2C;
+    color: #FFFFFF;
+}
+body.list table tbody tr:hover{
+    background-color: #393939;
+}
+
+body.list table tbody tr:hover td:not(.sorted){
+    background-color: #393939 !important;
+    color: #FFFFFF;
+}
+
+body.list table tbody .sorted {
+    color: #2C2C2C;
+}
+.control-label {
+    color: #EC9C34;
+}
+.sidebar-toggle {
+    color: #2C2C2C !important;
+}
+
+.checkbox, .nullable-control {
+    color: #FFFFFF;
+}
+.action-edit {
+    background-color: #EC9C34;
+    color: #FFFFFF !important;
+    padding: 5px 10px;
+    border-radius: 2px;
+}
+
+.action-delete {
+    background-color: #D42124;
+    color: #FFFFFF !important;
+    padding: 5px 10px;
+    border-radius: 2px;
+}
+
+.association  a {
+    color: #EC9C34;
+}

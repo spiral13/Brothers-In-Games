@@ -193,4 +193,3 @@ class Profile
         return $this;
     }
 }
-

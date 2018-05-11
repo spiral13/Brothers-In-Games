@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['en'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -65,3 +65,143 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# Easy admin Configuration
+easy_admin:
+    site_name: '<span style="color: #2C2C2C;">Brothers In Games</span>'
+    design:
+        menu:
+            - { entity: 'article', label: 'Articles', icon: 'file' }
+            - { entity: 'game', label: 'Jeux', icon: 'gamepad' }
+            - { entity: 'gameCategory', label: 'Catégories de jeu', icon: 'tags' }
+            - { entity: 'user', label: 'Utilisateurs', icon: 'user' }
+            - { entity: 'profile', label: 'Profile utilisateurs', icon: 'th-list ' }
+            - { entity: 'announcement', label: 'Annonces', icon: 'bullhorn' }
+        brand-color: '#EC9C34'
+        assets:
+            css:
+                - 'admin/easyAdmin.css'
+    list:
+        max_results: 30
+        actions:
+            - { name: 'new', label: 'Nouveau' }
+            - { name: 'edit', label: 'Modifier' }
+            - { name: 'search', label: 'Rerchercher' }
+            - { name: 'delete', label: 'supprimer' }
+    entities:
+        game:
+            class: AppBundle\Entity\Game
+            list:
+                title: "Liste des jeux"
+                fields:
+                    - id
+                    - { property: 'cover', label: 'Couverture', type: 'image'}
+                    - { property: 'title', label: 'Titre' }
+                    - slug
+                    - { property: 'announcements', label: 'Annonces' }
+                    - { property: 'gamecategories', label: 'Categories'}
+            form:
+                title: "Edition d'un jeux"
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - slug
+                    - { property: 'gamecategories', label: 'Categories' }
+                    - { property: 'cover', label: 'Couverture', type: 'url'}
+
+        gameCategory:
+            class: AppBundle\Entity\GameCategory
+            list:
+                title: "Liste des catégories de jeu"
+                fields:
+                    - id
+                    - { property: 'title', label: 'Titre' }
+                    - slug
+                    - { property: 'games', label: 'Jeux' }
+            form:
+                title: "Edition d'une catégorie"
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - slug
+        user:
+            class: AppBundle\Entity\User
+            list:
+                title: "Liste des utilisateurs"
+                actions: ['-new', '-delete']
+                fields:
+                    - id
+                    - { property: 'username', label: 'Pseudo' }
+                    - profile
+                    - { property: 'mail', label: 'E-Mail' }
+                    - { property: 'announcements', label: 'Annonces' }
+                    - { property: 'articles', label: 'Articles' }
+                    - role
+                    - { property: 'isActive', label: 'Activation'}
+
+            form:
+                title: "Edition d'un utilisateur"
+                fields:
+                    - { property: 'username', label: 'Pseudo' }
+                    - { property: 'mail', label: 'E-Mail' }
+                    - { property: 'isActive', label: 'Activation'}
+                    - role
+        profile:
+            class: AppBundle\Entity\Profile
+            list:
+                title: "Liste des profile utilisateurs"
+                actions:
+                    - '-new'
+                    - '-delete'
+                fields:
+                    - id
+                    - { property: 'user', label: 'Pseudo' }
+                    - { property: 'firstname', label: 'Prénom' }
+                    - { property: 'image', label: 'Avatar', type: 'image' }
+                    - { property: 'birthdate', label: 'Date de naissance' }
+                    - { property: 'gender', label: 'Genre'}
+
+            form:
+                title: "Edition d'un profile utilisateur"
+                fields:
+                    - { property: 'firstname', label: 'Prénom' }
+                    - { property: 'image', label: 'Avatar', type: 'url' }
+                    - { property: 'birthdate', label: 'Date de naissance' }
+                    - { property: 'gender', label: 'Genre'}
+                    - { property: 'description', label: 'Description'}
+        article:
+            class: AppBundle\Entity\Article
+            list:
+                title: "Liste des articles"
+                fields:
+                    - id
+                    - { property: 'image', label: 'Image', type: 'image' }
+                    - { property: 'user', label: 'Autheur' }
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'content', label: 'Contenu' }
+                    - { property: 'published', label: 'Date de publication' }
+
+            form:
+                title: "Edition d'un article"
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'user', label: 'Autheur' }
+                    - { property: 'slug', label: 'Slug' }
+                    - { property: 'image', label: 'Image', type: 'url' }
+                    - { property: 'content', label: 'Contenu'}
+                    - { property: 'published', label: 'Date de publication' }
+        announcement:
+            class: AppBundle\Entity\Announcement
+            list:
+                title: "Liste des annonces"
+                fields:
+                    - id
+                    - { property: 'game', label: 'Jeux' }
+                    - { property: 'user', label: 'Autheur' }
+                    - { property: 'content', label: 'Contenu' }
+                    - { property: 'published', label: 'Date de publication' }
+            form:
+                title: "Edition d'un annonce"
+                fields:
+                    - { property: 'game', label: 'Jeux' }
+                    - { property: 'user', label: 'Autheur' }
+                    - { property: 'content', label: 'Contenu' }
+                    - { property: 'published', label: 'Date de publication' }

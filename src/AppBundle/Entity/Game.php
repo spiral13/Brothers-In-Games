@@ -57,6 +57,11 @@ class Game
     ** VARIOUS FUNCTION **
     ** **************** */
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     public function __construct()
     {
         $this->gamecategories = new ArrayCollection();
@@ -198,7 +203,7 @@ class Game
 
         return $this;
     }
-    
+
     /**
      * @return Announcement
      */
@@ -207,4 +212,3 @@ class Game
         return $this->announcements;
     }
 }
-

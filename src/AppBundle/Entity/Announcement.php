@@ -34,6 +34,15 @@ class Announcement
      */
     private $user;
 
+    /* **************** **
+    ** VARIOUS FUNCTION **
+    ** **************** */
+
+    public function __toString()
+    {
+        return $this->getContent();
+    }
+
     /* *************** **
     ** GETTER & SETTER **
     ** *************** */
@@ -162,4 +171,3 @@ class Announcement
         return $this;
     }
 }
-
