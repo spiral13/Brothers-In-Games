@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
  */
 const Content = ({ content }) => (
   <div className="content-new middle">
-    <img src={content.image} alt={content.title} />
+    <img src={content.image} alt={content.title} className="resize-pic" />
     <div className="presentation">
       <h3>{content.title}</h3>
     </div>

@@ -26,18 +26,10 @@ class Main extends React.PureComponent {
      AddFormIsClicked: false,
      DeleteFormIsClicked: false,
    }
+
    redirection = (value) => {
      this.props.actions.redirect(value);
    }
-
-  /*
-  * Lifecycle
-  */
-   // componentDidMount() {
-   //   setTimeout(() => {
-   //     this.props.actions.addAllMyGames();
-   //   }, 2000);
-   // }
 
    render() {
      const { mygames } = this.props;
@@ -46,7 +38,7 @@ class Main extends React.PureComponent {
        <div id="ContainerMyGamesList">
 
          <div id="infoIdentityProfile">
-           <img id="photoProfileOnMyGames" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" />
+           <img id="photoProfileOnMyGames" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" className="resize-pic" />
            <h1 id="profileNameOnMyGames">Liste de jeux de Toto</h1>
          </div>
 
