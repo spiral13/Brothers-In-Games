@@ -22,7 +22,7 @@ class AnnouncementController extends Controller
 	{
 		return $this->render('announcement/list.html.twig');
 	}
-	
+
 	/**
 	 * Calling concerned template
 	 */
@@ -33,9 +33,9 @@ class AnnouncementController extends Controller
 
 	/**
 	 * Find game announcements
-	 * create Announcement 
+	 * create Announcement
 	 * send a response in json
-	 * 
+	 *
 	 * @return JSON
 	 */
 	public function createAction(Request $request)
@@ -92,7 +92,7 @@ class AnnouncementController extends Controller
 	 * Find concerned announcements
 	 * update result
 	 * send a response in json
-	 * 
+	 *
 	 * @return JSON
 	 */
 	public function updateAction(Request $request)
@@ -156,7 +156,7 @@ class AnnouncementController extends Controller
 	 * Find concerned announcements
 	 * delete result
 	 * send a response in json
-	 * 
+	 *
 	 * @return JSON
 	 */
 	public function deleteAction(Request $request)
@@ -190,8 +190,8 @@ class AnnouncementController extends Controller
 	 * Find all announcements
 	 * set result in array
 	 * serialize to json
-	 * send it to Actios 
-	 * 
+	 * send it to Actios
+	 *
 	 * @return JSON
 	 */
 	public function getAllAnnouncementsAction()
@@ -205,8 +205,8 @@ class AnnouncementController extends Controller
 	 * find all announcements for game
 	 * set result in array
 	 * serialize to json
-	 * send it to Actios 
-	 * 
+	 * send it to Actios
+	 *
 	 * @return JSON
 	 */
 	public function getAnnouncementByGameSlugAction(Request $request)
@@ -218,11 +218,11 @@ class AnnouncementController extends Controller
 	}
 
 	/**
-	 * Find one announcement by his id 
+	 * Find one announcement by his id
 	 * set result in array
 	 * serialize to json
-	 * send it to Actios 
-	 * 
+	 * send it to Actios
+	 *
 	 * @return JSON
 	 */
 	public function getAnnouncementAction(Request $request)
@@ -231,15 +231,18 @@ class AnnouncementController extends Controller
 		$announcement = $this->getDoctrine()->getRepository(Announcement::class)->findOneInArray($id);
 		unset($announcement[0]['user']['password']);
 
-		$now = new \datetime('now');
-		$birthdate = $announcement[0]['user']['profile']['birthdate'];
-		$diff = $now->format('Y') - $birthdate->format('Y');
-		
-		if($now->format('m') < $birthdate->format('m') && $now->format('d') < $birthdate->format('d'))
-		{
-			$diff += 1;
-		}
-		$announcement[0]['user']['profile']['birthdate'] = $diff;
+        if($announcement[0]['user']['profile']['birthdate'] !== null)
+        {
+            $now = new \datetime('now');
+            $birthdate = $announcement[0]['user']['profile']['birthdate'];
+            $diff = $now->format('Y') - $birthdate->format('Y');
+
+            if($now->format('m') < $birthdate->format('m') && $now->format('d') < $birthdate->format('d'))
+            {
+                $diff += 1;
+            }
+            $announcement[0]['user']['profile']['birthdate'] = $diff;
+        }
 
 		return $this->json($announcement);
 	}
