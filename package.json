@@ -41,6 +41,7 @@
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "eslint-brunch": "^3.12.0",
+    "moment": "^2.22.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

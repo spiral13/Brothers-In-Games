@@ -57,10 +57,12 @@ npm manifest:
       "babel-polyfill": "^6.26.0",
       "classnames": "^2.2.5",
       "eslint-brunch": "^3.12.0",
+      "moment": "^2.22.1",
       "prop-types": "^15.6.1",
       "react": "^16.3.2",
       "react-dom": "^16.3.2",
       "react-icons": "^2.2.7",
+      "react-image-upload": "^0.0.1",
       "react-loading": "^2.0.2",
       "react-redux": "^5.0.7",
       "react-router": "^4.2.0",
@@ -3606,6 +3608,10 @@ Lockfile:
       mkdirp "0.5.1"
       supports-color "4.4.0"
   
+  moment@^2.22.1:
+    version "2.22.1"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
+  
   mout@^1.0.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/mout/-/mout-1.1.0.tgz#0b29d41e6a80fa9e2d4a5be9d602e1d9d02177f6"
@@ -4342,6 +4348,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-2.2.7.tgz#d7860826b258557510dac10680abea5ca23cf650"
     dependencies:
       react-icon-base "2.1.0"
+  
+  react-image-upload@^0.0.1:
+    version "0.0.1"
+    resolved "https://registry.yarnpkg.com/react-image-upload/-/react-image-upload-0.0.1.tgz#691040bee33a865a06f379c9da79ea617209e9d0"
   
   react-input-autosize@^2.2.1:
     version "2.2.1"

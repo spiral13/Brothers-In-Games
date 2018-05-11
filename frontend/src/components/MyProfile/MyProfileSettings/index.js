@@ -7,11 +7,9 @@ import FaToggleOff from 'react-icons/lib/fa/toggle-off';
 import FaToggleOn from 'react-icons/lib/fa/toggle-on';
 // import ImageUploader from 'react-image-upload';
 
-
 /**
 * Local import
 */
-
 /**
  * Code
  */
@@ -35,7 +33,6 @@ class MyProfileSettings extends React.Component {
     return (
       <section id="settingsForMyProfile">
         {/* <div >  x Téléchargez votre photo de profil </div> */}
-
         <form className="settingsInputs" onSubmit={this.onSubmit}>
           {/* <ImageUploader
             buttonText="Choose images"
