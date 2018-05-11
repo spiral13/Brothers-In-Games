@@ -52,7 +52,7 @@ class Navbar extends React.Component {
   submit = (evt) => {
     evt.preventDefault();
     this.props.actions.submitAnnounce();
-    this.setState({ createAnnounce: false });
+    this.setState({ createAnnounce: false, showAnnounce: false });
   }
 
   render() {
@@ -86,7 +86,7 @@ class Navbar extends React.Component {
                   placeholder="Message de l'annonce"
                 />
                 <div className="createAnnounce-wrap">
-                  <button onClick={() => this.setState({ createAnnounce: false })} className="createAnnounce-button">Annuler</button>
+                  <button onClick={() => this.setState({ createAnnounce: false, showAnnounce: false })} className="createAnnounce-button">Annuler</button>
                   <button className="createAnnounce-button">Créer l'annonce</button>
                 </div>
               </fieldset>
