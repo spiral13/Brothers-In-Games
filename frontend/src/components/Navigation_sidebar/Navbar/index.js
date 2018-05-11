@@ -25,7 +25,15 @@ class Navbar extends React.Component {
   }
 
   redirection = (value) => {
-    this.props.actions.redirect(value);
+    if (window.location.pathname === value) {
+      this.props.actions.redirect('/app_dev.php/redirection');
+      setTimeout(() => {
+        this.props.actions.redirect(value);
+      }, 300);
+    }
+    else {
+      this.props.actions.redirect(value);
+    }
   }
 
   showInformations = ({ target }) => {
