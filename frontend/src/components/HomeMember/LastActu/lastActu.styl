@@ -1,5 +1,5 @@
 @require "frontend/styles/charte";
-  
+
 .lastActu
   align-items: center;
   border-top: 2px solid black;
@@ -7,11 +7,15 @@
   flex-direction: row;
   height: 40px;
   margin-left: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
   a
+    cursor: pointer;
     border-left: 3px solid $main-color;
     opacity: 1;
     line-height: 40px;
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7);
     display: block;
     height: 100%;
     flex: 1;
@@ -25,5 +29,5 @@
   a:hover
     background-color: rgba(0, 0, 0, 0.3);
 
-.navbarRange-title 
+.navbarRange-title
   font-size: 0.9em;
