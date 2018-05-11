@@ -25,11 +25,12 @@ class MyAccountSettings extends React.Component {
   render() {
     const { user } = this.props;
     return (
-      <section id="settingsForMyProfile">
-        <form id="settingsInputs" onSubmit={this.onSubmit}>
+      <section id="MyAccount">
+        <form className="settingsInputs" onSubmit={this.onSubmit}>
           <label htmlFor="inputPassword" className="label">Mot de passe: </label>
           <input
             id="inputPassword"
+            className="inputSettings"
             name="password"
             placeholder="Nouveau mot de passe"
             onChange={this.handleChangeInput}
@@ -38,6 +39,7 @@ class MyAccountSettings extends React.Component {
           <label htmlFor="inputEmail" className="label" >E-mail: </label>
           <input
             id="inputEmail"
+            className="inputSettings"
             name="mail"
             placeholder="E-mail"
             onChange={this.handleChangeInput}

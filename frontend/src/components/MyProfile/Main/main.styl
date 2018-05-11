@@ -1,9 +1,11 @@
 #MyProfileContainer
-  width: 85%
+  width: 50%
   height: 100%
   display: flex
+  align-items: baseline
   flex-direction: column
-  padding: 1em 4em
+  padding: 1em
+
 
 
 #MyProfilePresentation
@@ -28,17 +30,53 @@
   font-size: .7em
 
 
+#settingsForMyAccountTrigger
+  position: absolute
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin-left: 24em
+  margin-top: 1em
+  align-self: flex-end
+  width: 650px
+  height:80%
+  color: white
+  border-left: dotted  white
+  border-left-width: 2px 10px
+
+
+#labelMyAccountTrigger
+  font-size: .7em
+
+#FaWrenchMyAccountTrigger
+  border-radius: 0 0 100% 100%
+  background-color: black
+  width:50px
+  height:40px
+  text-align: center
+  justify-content: center
+  margin-top: 1em
+
+#FaWrenchMyAccountTrigger:hover
+  color: black
+  background-color: #EC9C34
+  cursor: pointer
+  font-size: .7em
+
+
 #settingsForMyProfileTrigger
-  position: relative
-  color: #EC9C34
-  top: -10px
-  left:900px
-  width: 70px
+  position: absolute
+  display: flex
+  justify-content: space-between
+  margin-left: 6.2em
+  margin-top: 1em
+  align-self: center
+  width: 50px
+  color: black
 
 #settingsForMyProfileTrigger:hover
-  color: black
+  color: white
   cursor: pointer
-  box-shadow: 0px 0px 2px 2px #ec9c34
 
 .MyProfileSectionIcon
   margin: .5em auto
@@ -48,33 +86,43 @@
 #AddOrDeleteFriendFromMyProfile
   display: flex;
   margin: .5em auto
-  width: 500px;
+  width: 500px
 
 .FriendsFromMyProfile
   width: 50%
   border-radius: 10px
-  height: 100px;
-  padding:10px;
+  height: 100px
+  padding:10px
   button
-    margin-top: 10px;
-    padding: 5px;
-    border-radius: 4px;
-    color: #ec9c34;
-    font-weight: bold;
-    background-color: #000;
+    margin-top: 10px
+    padding: 5px
+    border-radius: 4px
+    color: #ec9c34
+    font-weight: bold
+    background-color: #000
   button:hover
-    color: #000;
-    background-color: #ec9c34;
-    border: 2px solid #fff;
-    cursor: pointer;
+    color: #000
+    background-color: #ec9c34
+    border: 2px solid #fff
+    cursor: pointer
 
 #DeleteFriendFromMyProfile
-  font-size: 0.6em;
-  height: 50px;
+  font-size: 0.5em
+  height: 50px
+
+#AddFriendFromMyProfile
+  height: 50px
+
 
 .addFriendInput {
-  border-radius: 3px;
-  border: none;
-  width: 100%;
-  padding: 10px;
+  border-radius: 3px
+  border: none
+  width: 100%
+  height: 127%
+  padding: 10px
+  font-size: 0.5em
+  font-weight: bold
 }
+
+#crossCancelSettingsForm
+  color: #EC9C34

@@ -1,54 +1,33 @@
-#triggeredSettingsForm
+#settingsForMyAccount
   position: absolute
-  width: 1000px
+  align-self: flex-end
+  width: 700px
   height: 700px
-  background-color: #EC9C34
+  margin-left: 28em
+  margin-top: 5em
+  background-color: white
+  border: thick double #EC9C34
   border-radius: 10px
-  top: 5rem
-  left:30rem
   padding: 1em 2em
   z-index:5
 
-#crossCancelSettingsForm
-  color: black
+#MyAccount
+  display: flex
+  flex-wrap: wrap
+
 
 #changeYourInformation
   font-size: 1em
   font-weight: bold
 
-#settingsHelp
-  font-size: 0.6em
-  font-weight: lighter
-
-#settingsInputs
+.settingsInputs
   display: flex
   flex-direction: row
+  flex-wrap: wrap
   justify-content: flex-start
   flex-wrap: wrap
   margin: 3em 0
 
-#photoUploader
-  width:100%
-  padding: .5em 2em
-  margin-bottom: 1em
-  font-size: .8em
-  color: white
-
-.publicToggle
-  &-on
-    color: #1E90FF
-    width:40%
-    height:2em
-    margin-bottom: 1em
-  &-off
-    color: black
-    width:40%
-    height:2em
-    margin-bottom: 1em
-
-.publicToggle-on:hover, .publicToggle-off:hover
-    border: white
-    cursor: pointer
 
 .label
   color: black
@@ -58,13 +37,13 @@
   font-size: .8em
 
 
-#inputFirstName, #inputFamilyName, #inputNickName, #inputAge
-  width:40%
-  padding: .5em 2em
+.inputSettings
+  width:65%
+  padding: 1em 2em
   margin-bottom: 1em
   background-color: black
   color: white
-  opacity: .6
+  opacity:.8
   font-size: .8em
   border-radius: 10px
 
