@@ -50,8 +50,11 @@ class GameRepository extends EntityRepository
 	public function findAllGameWithAnnouncementInArray()
 	{
 		$qb = $this->createQueryBuilder('g')
-		->join('g.announcements', 'a')
+		->leftJoin('g.announcements', 'a')
 		->addSelect('a')
+		->addSelect('COUNT(a.id) as announcementcount')
+		->orderBy('announcementcount', 'DESC')
+		->groupBy('g.id')
 		->having('a > 0')
 		->getQuery()
 		->getArrayResult()

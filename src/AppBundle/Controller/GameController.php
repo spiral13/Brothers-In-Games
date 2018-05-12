@@ -149,6 +149,11 @@ class GameController extends Controller
 	{
 		$games = $this->getDoctrine()->getRepository(Game::class)->findAllGameWithAnnouncementInArray();
 
+		foreach ($games as $key => $value) {
+			$value[0]['announcementcount'] = $value['announcementcount'];
+			$games[$key] = $value[0];
+		}
+
 		return $this->json($games);
 	}
 
