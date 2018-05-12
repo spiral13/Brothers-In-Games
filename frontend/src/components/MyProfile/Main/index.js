@@ -9,6 +9,7 @@ import Select from 'react-select';
 import MdCancel from 'react-icons/lib/md/cancel';
 import FaGroup from 'react-icons/lib/fa/group';
 import FaUser from 'react-icons/lib/fa/user';
+import FaUserSecret from 'react-icons/lib/fa/user-secret';
 import FaWrench from 'react-icons/lib/fa/wrench';
 
 
@@ -18,6 +19,7 @@ import FaWrench from 'react-icons/lib/fa/wrench';
 
 
 import MyProfileBasicsInformation from 'frontend/src/components/MyProfile/MyProfileBasicsInformation';
+import MyAccountInformation from 'frontend/src/components/MyProfile/MyAccountInformation';
 import MyProfileSettings from 'frontend/src/containers/MyProfile/MyProfileSettings';
 import MyAccountSettings from 'frontend/src/containers/MyProfile/MyAccountSettings';
 
@@ -74,6 +76,11 @@ class Main extends React.Component {
           >
             <FaWrench />
           </a>
+
+          <FaUserSecret className="MyAccountSectionIcon" />
+          <MyAccountInformation
+            user={user}
+          />
         </div>
 
         {this.state.settingsForMyAccountIsClicked &&
