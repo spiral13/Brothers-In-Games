@@ -1,0 +1,38 @@
+#Entities menu
+game: jeux
+gameCategory: Catégories de jeu
+user: Utilisateurs
+profile: Profile utilisateurs
+announcement: Annonces
+
+#Action
+article: Articles
+action.edit: Modifier
+action.delete: Supprimer
+action.new: Nouveau
+action.search: Rechercher
+action.save: Sauvegarder
+action.list: Retour à la liste
+Leave empty: Laisser vide
+
+#properties
+Cover: Couverture
+Title: Titre
+Slug: Slug
+Announcements: Annonces
+Gamecategories: Catégories de jeu
+Games: Jeux
+Username: Pseudo
+Profile: Profile
+Mail: e-mail
+Role: Role
+Is active: Actif
+Birthdate: Date de naissance
+Gender: Genre
+Image: Image
+Published: Publié
+Description: Description
+Content: Contenu
+User: Utilisateur
+Firstname: Prénom
+

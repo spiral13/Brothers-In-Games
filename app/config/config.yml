@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi: ~
-    translator: { fallbacks: ['en'] }
+    translator: { fallbacks: ['fr'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -54,7 +54,7 @@ doctrine:
         #path: '%database_path%'
 
     orm:
-        auto_generate_proxy_classes: '%kernel.debug%'
+        auto_generate_proxy_classes: false
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
@@ -68,140 +68,148 @@ swiftmailer:
 
 # Easy admin Configuration
 easy_admin:
+    translation_domain: 'admin'
     site_name: '<span style="color: #2C2C2C;">Brothers In Games</span>'
     design:
         menu:
-            - { entity: 'article', label: 'Articles', icon: 'file' }
-            - { entity: 'game', label: 'Jeux', icon: 'gamepad' }
-            - { entity: 'gameCategory', label: 'Catégories de jeu', icon: 'tags' }
-            - { entity: 'user', label: 'Utilisateurs', icon: 'user' }
-            - { entity: 'profile', label: 'Profile utilisateurs', icon: 'th-list ' }
-            - { entity: 'announcement', label: 'Annonces', icon: 'bullhorn' }
+            - { entity: 'article', icon: 'file' }
+            - { entity: 'game', icon: 'gamepad' }
+            - { entity: 'gameCategory', icon: 'tags' }
+            - { entity: 'user', icon: 'user' }
+            - { entity: 'profile', icon: 'th-list ' }
+            - { entity: 'announcement', icon: 'bullhorn' }
         brand-color: '#EC9C34'
         assets:
             css:
                 - 'admin/easyAdmin.css'
     list:
         max_results: 30
-        actions:
-            - { name: 'new', label: 'Nouveau' }
-            - { name: 'edit', label: 'Modifier' }
-            - { name: 'search', label: 'Rerchercher' }
-            - { name: 'delete', label: 'supprimer' }
     entities:
         game:
             class: AppBundle\Entity\Game
             list:
-                title: "Liste des jeux"
+                title: 'Liste des jeux'
                 fields:
                     - id
-                    - { property: 'cover', label: 'Couverture', type: 'image'}
-                    - { property: 'title', label: 'Titre' }
+                    - { property: 'cover', type: 'image'}
+                    - title
                     - slug
-                    - { property: 'announcements', label: 'Annonces' }
-                    - { property: 'gamecategories', label: 'Categories'}
+                    - announcements
+                    - gamecategories
             form:
                 title: "Edition d'un jeux"
                 fields:
-                    - { property: 'title', label: 'Titre' }
+                    - title
                     - slug
-                    - { property: 'gamecategories', label: 'Categories' }
+                    - gamecategories
                     - { property: 'cover', label: 'Couverture', type: 'url'}
 
         gameCategory:
             class: AppBundle\Entity\GameCategory
             list:
-                title: "Liste des catégories de jeu"
+                title: 'Liste des catégories de jeu'
                 fields:
                     - id
-                    - { property: 'title', label: 'Titre' }
+                    - title
                     - slug
-                    - { property: 'games', label: 'Jeux' }
+                    - games
             form:
                 title: "Edition d'une catégorie"
                 fields:
-                    - { property: 'title', label: 'Titre' }
+                    - title
                     - slug
         user:
             class: AppBundle\Entity\User
             list:
-                title: "Liste des utilisateurs"
-                actions: ['-new', '-delete']
+                title: 'Liste des utilisateurs'
+                actions: 
+                    - '-new'
+                    - '-delete'
                 fields:
                     - id
-                    - { property: 'username', label: 'Pseudo' }
+                    - username
                     - profile
-                    - { property: 'mail', label: 'E-Mail' }
-                    - { property: 'announcements', label: 'Annonces' }
-                    - { property: 'articles', label: 'Articles' }
+                    - mail
+                    - announcements
+                    - articles
                     - role
-                    - { property: 'isActive', label: 'Activation'}
-
+                    - isActive
+            show:
+                actions: ['-delete']
+                fields:
+                    - id
+                    - username
+                    - profile
+                    - mail
+                    - role
             form:
                 title: "Edition d'un utilisateur"
+                actions: ['-delete']
                 fields:
-                    - { property: 'username', label: 'Pseudo' }
-                    - { property: 'mail', label: 'E-Mail' }
-                    - { property: 'isActive', label: 'Activation'}
+                    - username
+                    - mail
+                    - isActive
                     - role
         profile:
             class: AppBundle\Entity\Profile
             list:
-                title: "Liste des profile utilisateurs"
+                title: 'Liste des profile utilisateurs'
                 actions:
                     - '-new'
                     - '-delete'
                 fields:
                     - id
-                    - { property: 'user', label: 'Pseudo' }
-                    - { property: 'firstname', label: 'Prénom' }
-                    - { property: 'image', label: 'Avatar', type: 'image' }
-                    - { property: 'birthdate', label: 'Date de naissance' }
-                    - { property: 'gender', label: 'Genre'}
-
+                    - user
+                    - firstname
+                    - image
+                    - birthdate
+                    - gender
+            show:
+                actions: ['-delete']
             form:
                 title: "Edition d'un profile utilisateur"
+                actions: ['-delete']
                 fields:
-                    - { property: 'firstname', label: 'Prénom' }
-                    - { property: 'image', label: 'Avatar', type: 'url' }
-                    - { property: 'birthdate', label: 'Date de naissance' }
-                    - { property: 'gender', label: 'Genre'}
-                    - { property: 'description', label: 'Description'}
+                    - firstname
+                    - image
+                    - birthdate
+                    - gender
+                    - description
         article:
             class: AppBundle\Entity\Article
             list:
-                title: "Liste des articles"
+                title: 'Liste des articles'
                 fields:
                     - id
-                    - { property: 'image', label: 'Image', type: 'image' }
-                    - { property: 'user', label: 'Autheur' }
-                    - { property: 'title', label: 'Titre' }
-                    - { property: 'content', label: 'Contenu' }
-                    - { property: 'published', label: 'Date de publication' }
+                    - { property: 'image', type: 'image' }
+                    - user
+                    - title
+                    - content
+                    - published
 
             form:
                 title: "Edition d'un article"
                 fields:
-                    - { property: 'title', label: 'Titre' }
-                    - { property: 'user', label: 'Autheur' }
-                    - { property: 'slug', label: 'Slug' }
-                    - { property: 'image', label: 'Image', type: 'url' }
-                    - { property: 'content', label: 'Contenu'}
-                    - { property: 'published', label: 'Date de publication' }
+                    - title
+                    - user
+                    - slug
+                    - image
+                    - content
+                    - published
         announcement:
             class: AppBundle\Entity\Announcement
             list:
-                title: "Liste des annonces"
+                title: 'Liste des annonces'
                 fields:
                     - id
-                    - { property: 'game', label: 'Jeux' }
-                    - { property: 'user', label: 'Autheur' }
-                    - { property: 'content', label: 'Contenu' }
-                    - { property: 'published', label: 'Date de publication' }
+                    - game
+                    - user
+                    - content
+                    - published
             form:
-                title: "Edition d'un annonce"
+                title: "Edition d'une annonce"
                 fields:
-                    - { property: 'game', label: 'Jeux' }
-                    - { property: 'user', label: 'Autheur' }
-                    - { property: 'content', label: 'Contenu' }
-                    - { property: 'published', label: 'Date de publication' }
+                    - game
+                    - user
+                    - content
+                    - published

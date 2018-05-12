@@ -44,6 +44,15 @@ class Article
      */
     private $user;
 
+    /* **************** **
+    ** VARIOUS FUNCTION **
+    ** **************** */
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     /* *************** **
     ** GETTER & SETTER **
     ** *************** */
