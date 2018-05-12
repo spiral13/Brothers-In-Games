@@ -20,12 +20,15 @@ class FillGamesCommand extends Command
     private $doctrine;
     private $slug;
     private $insert;
+    private $baseUrl;
 
     public function __construct(Doctrine $doctrine, SlugConverter $slug)
     {
         $this->insert = '';
         $this->doctrine = $doctrine;
         $this->slug = $slug;
+        $this->baseUrl = 'http://localhost:8000';
+
         parent::__construct();
     }
 
@@ -50,7 +53,7 @@ class FillGamesCommand extends Command
         $command->run($fillInput, $output);
 
         // ******************************************
-        // ********** Fill GamesCategories **********
+        // ********** Fill Games **********
         // ******************************************
 
         // ********** Configuration **********
@@ -198,7 +201,7 @@ class FillGamesCommand extends Command
             $game->setApiId($data['id']);
             $game->setTitle($data['name']);
             $game->setSlug($this->slug->toSlug($data['name']));
-            $game->setCover((!isset($data['cover'])) ? null : $data['cover']['url']);
+            $game->setCover((!isset($data['cover'])) ? $this->baseUrl.'/pictures/games/cover/UnknowGame.jpg' : $data['cover']['url']);
             if($categories != null)
             {
                 foreach($categories as $category)
@@ -230,7 +233,7 @@ class FillGamesCommand extends Command
                 $game->setApiId($data['id']);
                 $game->setTitle($data['name']);
                 $game->setSlug($this->slug->toSlug($data['name']));
-                $game->setCover((!isset($data['cover'])) ? null : $data['cover']['url']);
+                $game->setCover((!isset($data['cover'])) ? $this->baseUrl.'/pictures/games/cover/UnknowGame.jpg' : $data['cover']['url']);
                 if($categories != null)
                 {
                     foreach($categories as $category)
@@ -287,7 +290,7 @@ class FillGamesCommand extends Command
                 $isset = false;
                 foreach($DBCategory->getGames() as $DBgame)
                 {
-                    if($game === $DBgame)
+                    if($game === $DBgame->getApiId())
                     {
                         $isset = true;
                     }
