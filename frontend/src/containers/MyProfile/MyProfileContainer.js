@@ -12,6 +12,7 @@ import MyProfile from 'frontend/src/components/MyProfile';
 // actionsCreators
 import { getAllGames } from 'frontend/src/store/reducer';
 import { getAllFriends } from 'frontend/src/store/reducers/FriendsReducer';
+import { getUserProfileInformation } from 'frontend/src/store/reducers/ProfileReducer';
 
 
 /*
@@ -29,6 +30,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     getAllGames,
     getAllFriends,
+    getUserProfileInformation,
   }, dispatch),
 });
 

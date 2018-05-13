@@ -29,7 +29,7 @@ class MyProfileSettings extends React.Component {
   }
 
   render() {
-    // const { user } = this.props;
+    const { user } = this.props;
     return (
       <section id="settingsForMyProfile">
         {/* <div >  x Téléchargez votre photo de profil </div> */}
@@ -47,7 +47,7 @@ class MyProfileSettings extends React.Component {
             name="firstname"
             placeholder="Prénom"
             onChange={this.handleChangeInput}
-            value={this.props.user.firstname}
+            value={user[0].firstname}
           />
           {this.state.firstNameIsPublic &&
             <FaToggleOn
@@ -68,7 +68,7 @@ class MyProfileSettings extends React.Component {
             name="username"
             placeholder="Surnom"
             onChange={this.handleChangeInput}
-            value={this.props.user.username}
+            value={user.username}
           />
           {this.state.nickNameIsPublic &&
             <FaToggleOn

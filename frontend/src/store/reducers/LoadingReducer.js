@@ -16,6 +16,8 @@ const initialState = {
     loadingReceiveMessages: false,
     loadingSendedMessages: false,
     loadingOneMessage: false,
+    loadingUserProfile: false,
+    loadingUserAccount: false,
   },
 };
 

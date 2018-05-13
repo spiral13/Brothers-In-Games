@@ -4,7 +4,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 /**
 * Local import
 */
@@ -20,7 +19,7 @@ const MyProfileBasicsInformation = ({ user }) => (
       id="firstName"
       className="BasicsInformation"
     >
-      Polodu33Questcekiya!
+      {user[0].firstname}
     </div>
 
     <span className="labelBasicInformation">Pseudonyme: </span>
@@ -30,39 +29,25 @@ const MyProfileBasicsInformation = ({ user }) => (
       {user.username}
     </div>
 
-    <span className="labelBasicInformation">Plat préféré: </span>
+    <span className="labelBasicInformation">Description: </span>
     <div
       className="BasicsInformation"
     >
-      Grand amateur de chili corn carne!
+      {user[0].description}
     </div>
 
-    <span className="labelBasicInformation">Jeu préféré: </span>
+    <span className="labelBasicInformation">Genre: </span>
     <div
       className="BasicsInformation"
     >
-      Just Dance
+      {user[0].gender}
     </div>
 
-    <span className="labelBasicInformation">Caractéristique: </span>
+    <span className="labelBasicInformation">Date de naissance: </span>
     <div
       className="BasicsInformation"
     >
-      SerialKiller
-    </div>
-
-    <span className="labelBasicInformation">Signe astrologique: </span>
-    <div
-      className="BasicsInformation"
-    >
-      Sagittaire ascendant girafe
-    </div>
-
-    <span className="labelBasicInformation">Philosophie de vie: </span>
-    <div
-      className="BasicsInformation"
-    >
-      Qui pisse contre le vent se rince les dents
+      {user[0].birthdate.date}
     </div>
 
     {/* <div id="mailProfile" className="BasicsInformation">{user.mail}</div>

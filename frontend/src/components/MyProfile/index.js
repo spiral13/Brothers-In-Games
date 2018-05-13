@@ -22,14 +22,26 @@ class Myprofile extends React.Component {
   componentDidMount() {
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
+    this.props.actions.getUserProfileInformation();
   }
 
   /*
    * Rendu
    */
   render() {
-    const { loadingFriends, loadingGames } = this.props.loadings;
-    if (!loadingFriends || !loadingGames) {
+    const {
+      loadingFriends,
+      loadingGames,
+      loadingUserProfile,
+      // loadingUserAccount,
+    } = this.props.loadings;
+
+    if (
+      !loadingFriends ||
+      !loadingGames ||
+      !loadingUserProfile
+      // !loadingUserAccount
+    ) {
       return <Loading />;
     }
     return (
