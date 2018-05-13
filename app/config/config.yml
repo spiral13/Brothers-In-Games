@@ -72,8 +72,9 @@ easy_admin:
     site_name: '<span style="color: #2C2C2C;">Brothers In Games</span>'
     design:
         menu:
-            - { entity: 'article', icon: 'file' }
+            - { label: 'Homepage', url: '../' }
             - { entity: 'game', icon: 'gamepad' }
+            - { entity: 'article', icon: 'file' }
             - { entity: 'gameCategory', icon: 'tags' }
             - { entity: 'user', icon: 'user' }
             - { entity: 'profile', icon: 'th-list ' }
