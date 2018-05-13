@@ -15,7 +15,7 @@ import { changeName, submitChange } from 'frontend/src/store/reducers/ProfileRed
  * Code
  */
 const mapStateToProps = (state, ownProps) => ({
-  user: state.ProfileReducer.user,
+  profileInformation: state.ProfileReducer.profile,
   ownProps,
 });
 

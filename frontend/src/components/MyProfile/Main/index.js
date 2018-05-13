@@ -55,7 +55,9 @@ class Main extends React.Component {
   render() {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
-    const user = this.props.userInformation[0];
+    const user = this.props.profileInformation[0];
+    const account = this.props.accountInformation[0];
+    console.log(account);
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
@@ -64,8 +66,8 @@ class Main extends React.Component {
     return (
       <div id="MyProfileContainer">
         <section id="MyProfilePresentation">
-          <img id="MyProfilePhoto" src="https://media.koreus.com/201701/allez-faire-loutre.jpg" alt="Toto" />
-          <div id="MyProfileDescription">A word about you</div>
+          <img id="MyProfilePhoto" src={user[0].image} alt={user[0].firstname} />
+          <div id="MyProfileDescription">{user.username}</div>
         </section>
 
         <div id="settingsForMyAccountTrigger" >
@@ -160,6 +162,8 @@ class Main extends React.Component {
 }
 Main.propTypes = {
   userInformation: PropTypes.array.isRequired,
+  profileInformation: PropTypes.array.isRequired,
+  accountInformation: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   addOneFriend: PropTypes.string.isRequired,
 };
