@@ -3,12 +3,16 @@
  */
 const initialState = {
   profile: {
-    username: '',
-    firstname: '',
-    image: '',
-    gender: '',
-    description: '',
-    birthday: [],
+    0: {
+      0: {
+        firstname: '',
+        image: '',
+        gender: '',
+        description: '',
+        birthday: [],
+      },
+      username: '',
+    },
   },
   account: {
     mail: '',
@@ -35,7 +39,7 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_NAME:
       return {
         ...state,
-        profile: { ...state.profile, [action.input]: action.value },
+        profile: { ...state.profile, 0: { ...state.profile[0], 0: { ...state.profile[0][0], [action.input]: action.value } } },
       };
 
     case SUBMIT_CHANGES:

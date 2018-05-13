@@ -11,7 +11,6 @@ export default store => next => (action) => {
   // Code
   switch (action.type) {
     case GET_PROFILE_INFORMATION: {
-      console.log('coco');
       // eslint-disable-next-line
       axios.get(Routing.generate('get_profile')).then((response) => {
         store.dispatch(addUserProfileInformation(response));
@@ -23,7 +22,6 @@ export default store => next => (action) => {
     }
 
     case GET_ACCOUNT_INFORMATION: {
-      console.log('coco');
       // eslint-disable-next-line
       axios.get(Routing.generate('get_user')).then((response) => {
         store.dispatch(addUserAccountInformation(response));
@@ -36,9 +34,9 @@ export default store => next => (action) => {
 
     case SUBMIT_CHANGES: {
       const formData = new FormData();
-      formData.append('username', store.getState().ProfileReducer.profile.username);
-      formData.append('firstname', store.getState().ProfileReducer.profile.firstname);
-      axios.post(Routing.generate('my_profile_update'), formData).then((response) => {
+      formData.append('username', store.getState().ProfileReducer.profile[0].username);
+      formData.append('firstname', store.getState().ProfileReducer.profile[0][0].firstname);
+      axios.post(Routing.generate('account_update'), formData).then((response) => {
         console.log(response);
       }).catch((error) => {
         console.log(error);
@@ -48,8 +46,8 @@ export default store => next => (action) => {
 
     case SUBMIT_CHANGES_PRIVATE_INFORMATION: {
       const formData = new FormData();
-      formData.append('password', store.getState().ProfileReducer.user.password);
-      formData.append('mail', store.getState().ProfileReducer.user.mail);
+      formData.append('password', store.getState().ProfileReducer.account.password);
+      formData.append('mail', store.getState().ProfileReducer.account.mail);
       axios.post(Routing.generate('account_update'), formData).then((response) => {
         console.log(response);
       }).catch((error) => {

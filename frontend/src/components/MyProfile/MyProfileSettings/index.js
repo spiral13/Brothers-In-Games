@@ -29,7 +29,6 @@ class MyProfileSettings extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
     return (
       <section id="settingsForMyProfile">
         {/* <div >  x Téléchargez votre photo de profil </div> */}
@@ -42,12 +41,13 @@ class MyProfileSettings extends React.Component {
             maxFileSize={5242880}
           /> */}
           <label htmlFor="inputFirstName" className="label">Prénom: </label>
+          {console.log(this.props.profileInformation)}
           <input
             id="inputFirstName"
             name="firstname"
             placeholder="Prénom"
             onChange={this.handleChangeInput}
-            value={user[0].firstname}
+            value={this.props.profileInformation[0][0].firstname}
           />
           {this.state.firstNameIsPublic &&
             <FaToggleOn
@@ -68,7 +68,7 @@ class MyProfileSettings extends React.Component {
             name="username"
             placeholder="Surnom"
             onChange={this.handleChangeInput}
-            value={user.username}
+            value={this.props.profileInformation[0].username}
           />
           {this.state.nickNameIsPublic &&
             <FaToggleOn
@@ -94,7 +94,7 @@ class MyProfileSettings extends React.Component {
 
 MyProfileSettings.propTypes = {
   actions: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  profileInformation: PropTypes.object.isRequired,
 };
 
 
