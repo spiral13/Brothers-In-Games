@@ -13,11 +13,8 @@ const initialState = {
     _username: '',
     _password: '',
   },
-  games: [
-    {
-
-    },
-  ],
+  games: [],
+  allGames: [],
   news: [{}],
   redirect: {
     type: false,
@@ -47,6 +44,7 @@ const ADD_ACTUS = 'ADD_ACTUS';
 const REDIRECT = 'REDIRECT';
 
 const CHANGE_TYPE_ROUTING = 'CHANGE_TYPE_ROUTING';
+export const ADD_ALL_BDD_GAMES = 'ADD_ALL_BDD_GAMES';
 /**
  * Reducer
  */
@@ -96,6 +94,12 @@ const reducer = (state = initialState, action = {}) => {
     case SUBMIT_CONNECT:
       return {
         ...state,
+      };
+
+    case ADD_ALL_BDD_GAMES:
+      return {
+        ...state,
+        allGames: action.allBddGames.data,
       };
 
     case GET_NEWS:
@@ -192,6 +196,11 @@ export const redirect = response => ({
 
 export const changeTypeRouting = () => ({
   type: CHANGE_TYPE_ROUTING,
+});
+
+export const addAllBddGames = allBddGames => ({
+  type: ADD_ALL_BDD_GAMES,
+  allBddGames,
 });
 /**
  * Export

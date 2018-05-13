@@ -15,7 +15,7 @@ import { changeFormGameSelectedForPost, changeTextArea, submitAnnounce } from 'f
 
 const mapStateToProps = state => ({
   playerName: state.FriendsReducer.friend[0].username,
-  games: state.reducer.games,
+  allGames: state.reducer.allGames,
   textArea: state.MyGamesReducer.textArea,
 });
 

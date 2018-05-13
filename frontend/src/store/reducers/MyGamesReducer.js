@@ -2,11 +2,7 @@
  * Initial State---------------------------------------------------------
  */
 const initialState = {
-  mygames: [
-    {
-
-    },
-  ],
+  mygames: [],
   selectedOption: {},
   selectedOptionToDelete: {},
   selectedPostGame: {},

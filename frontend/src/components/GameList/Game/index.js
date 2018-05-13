@@ -17,7 +17,7 @@ const Game = ({ game }) => (
       <img src={game.cover} alt={game.title} id="gamePicture" className="resize-pic" />
     </div>
     <h2 id="game-title">{game.title}</h2>
-    <p id="game-info">0</p>
+    <p id="game-info">{game.announcementcount}</p>
   </div>
 );
 

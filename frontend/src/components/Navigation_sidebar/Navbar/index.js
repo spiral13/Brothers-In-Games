@@ -57,9 +57,9 @@ class Navbar extends React.Component {
 
   render() {
     const { selectedOption } = this.state;
-    const { games } = this.props;
+    const { allGames } = this.props;
     let allOptions = [];
-    games.map((option) => {
+    allGames.map((option) => {
       allOptions = [...allOptions, { value: option.title, label: option.title, id: option.id }];
       return true;
     });
@@ -146,7 +146,7 @@ class Navbar extends React.Component {
 Navbar.propTypes = {
   actions: PropTypes.object.isRequired,
   playerName: PropTypes.string.isRequired,
-  games: PropTypes.array.isRequired,
+  allGames: PropTypes.array.isRequired,
   textArea: PropTypes.string.isRequired,
 };
 /**

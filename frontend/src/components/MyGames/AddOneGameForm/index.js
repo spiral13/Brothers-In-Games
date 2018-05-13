@@ -29,9 +29,9 @@ class AddOneGameForm extends React.Component {
 
   render() {
     const { selectedOption } = this.state;
-    const { games } = this.props;
+    const { allGames } = this.props;
     let allOptions = [];
-    games.map((option) => {
+    allGames.map((option) => {
       allOptions = [...allOptions, { value: option.title, label: option.title, id: option.id }];
       return true;
     });
@@ -52,7 +52,7 @@ class AddOneGameForm extends React.Component {
 }
 
 AddOneGameForm.propTypes = {
-  games: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  allGames: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   actions: PropTypes.object.isRequired,
 };
 
