@@ -1,6 +1,8 @@
 @require "frontend/styles/charte";
 
 header 
+  display: flex;
+  overflow: hidden;
   background-image: url("../pictures/tom_clancy.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,12 +25,41 @@ header
         position: relative;
         left: 5px;
 
-.login_signin 
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 100px;
-  margin-left: 80px;
-  color: $second-color;
+#angle 
+  display: flex;
+  width: 700px;
+  min-height: 100vh;
+  transform: skew(-20deg); 
+  background-color: $main-color;
+  box-shadow: 4px 0px 9px 0px rgba(0,0,0,0.58);
+  #leftSide  
+    padding: 0 0 10px 0;
+    transform: skew(20deg);
+    width: 500px;
+    min-height: 100vh;
+    z-index: 50;
+    background-color: $main-color;
+    display: flex;
+    flex-direction:column;
+    .signup 
+      align-self: flex-start;
+      padding: 10px;
+      font-size: 1.1em;
+      background-color: $second-color;
+      border-radius: 3px;
+      color: $main-color;
+      margin: 5px 0 0 60px;
+      border: initial;
+    .signup:hover 
+      transition: 0.2s;
+      box-shadow: 0 0 5px #000000;
+      background-color: #000000;
+    .login_signin 
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-left: 80px;
+      color: $second-color;
 
 .ajust 
   margin-top: 40px;
@@ -48,6 +79,7 @@ header
       margin-left: 10px;
       align-self: left;
     input 
+      flex: 1;
       margin: 10px 0 0 0;
       border-radius: 10px;
       padding: 7px;
@@ -71,39 +103,6 @@ header
   color: $main-color;
   font-weight: bold;
 
-#angle 
-  display: flex;
-  width: 700px;
-  min-height: 100vh;
-  transform: skew(-20deg); 
-  background-color: $main-color;
-  box-shadow: 4px 0px 9px 0px rgba(0,0,0,0.58);
-
-#leftSide  
-  padding: 0 0 10px 0;
-  transform: skew(20deg);
-  width: 500px;
-  min-height: 100vh;
-  z-index: 50;
-  background-color: $main-color;
-  display: flex;
-  flex-direction:column;
-
-#leftSide 
-  .signup 
-    align-self: flex-start;
-    padding: 10px;
-    font-size: 1.1em;
-    background-color: $second-color;
-    border-radius: 3px;
-    color: $main-color;
-    margin: 5px 0 0 60px;
-    border: initial;
-  .signup:hover 
-    transition: 0.2s;
-    box-shadow: 0 0 5px #000000;
-    background-color: #000000;
-
 .gamesList 
   display: block;
 
@@ -117,19 +116,41 @@ header
 #forgotPassword:hover 
   color: #000000;
   text-decoration: underline;
-
-.underplace 
-  display: none;
-  z-index: 45;
-  height: 100vh;
-  clear: both;
-  text-align: center;
-  background-color: $main-color;
-
-#tom_clancy 
-  display: none;
-  height: 100vh;
-
-.test 
-  height: 100vh;
-  max-width: 100vw;
+  
+@media (max-width: 768px)
+  header
+    overflow: auto;
+  #angle 
+    width: 100vw;
+    transform: unset;
+    #leftSide
+      flex: 1;
+      transform: unset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.5em;
+        margin-top: 3px;
+        margin-left: 0;
+        span 
+          position: static;
+          margin-left: 0;
+          i 
+            position: static;
+      form 
+        margin: 0;
+        width: 70%;
+      button 
+        align-self: stretch;
+      .login_signin 
+        border-top: 1px solid black;
+        margin-top: 10px;
+        margin-left: 0;
+      .signup 
+        width: 70%
+        align-self: center;
+        margin: 5px 0 0 0px;
