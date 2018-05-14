@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
+import Footer from 'frontend/src/containers/Footer';
 import PageUnArticle from 'frontend/src/containers/Article/PageUnArticle';
 import Loading from 'frontend/src/components/Loading';
 
@@ -46,8 +47,8 @@ class Article extends React.Component {
         <div className="right-side">
           <Navbar />
           <PageUnArticle />
+          <Footer />
         </div>
-        
       </div>
     );
   }

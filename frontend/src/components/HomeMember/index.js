@@ -11,6 +11,7 @@ import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Main from 'frontend/src/containers/HomeMember/Main';
 import RightSidebar from 'frontend/src/containers/HomeMember/RightSidebar';
 import Loading from 'frontend/src/components/Loading';
+import Footer from 'frontend/src/containers/Footer';
 /**
  * Code
  */
@@ -36,12 +37,13 @@ class HomeMember extends React.Component {
     return (
       <div id="homeMember">
         <Sidebar />
-        <div id="homeMember-rightSide">
+        <div id="homeMember-rightSide" className="right-side">
           <Navbar />
           <div id="homeMember-rightSide-body">
             <Main />
             <RightSidebar />
           </div>
+          <Footer />
         </div>
       </div>
     );
