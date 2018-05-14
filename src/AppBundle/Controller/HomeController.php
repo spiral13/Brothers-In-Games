@@ -17,7 +17,19 @@ class HomeController extends Controller
     }
     public function homeUserAction()
     {
-    	return $this->render('home/user.html.twig');
+        return $this->render('home/user.html.twig');
+    }
+    public function contactAction()
+    {
+        return $this->render('home/contact.html.twig');
+    }
+    public function cguAction()
+    {
+        return $this->render('home/cgu.html.twig');
+    }
+    public function legalMentionAction()
+    {
+    	return $this->render('home/legal_mention.html.twig');
     }
     
 }
