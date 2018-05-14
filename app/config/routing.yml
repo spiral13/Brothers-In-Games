@@ -32,25 +32,25 @@ home_user:
 # Show contact
 # No need dynamic url
 contact:
-    patch: /contact
-    default: { _controller: AppBundle:Home:contact }
-  options:
+    path: /contact
+    defaults: { _controller: AppBundle:Home:contact }
+    options:
         expose: true
 
 # Show contact
 # No need dynamic url
 contact:
-    patch: /CGU
-    default: { _controller: AppBundle:Home:cgu }
-  options:
+    path: /CGU
+    defaults: { _controller: AppBundle:Home:cgu }
+    options:
         expose: true
 
 # Show contact
 # No need dynamic url
 contact:
-    patch: /legal-mention
-    default: { _controller: AppBundle:Home:legalMention }
-  options:
+    path: /legal-mention
+    defaults: { _controller: AppBundle:Home:legalMention }
+    options:
         expose: true
 
 #------------------------------------------------------------------ User
