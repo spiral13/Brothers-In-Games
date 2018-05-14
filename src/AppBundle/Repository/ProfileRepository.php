@@ -15,6 +15,7 @@ class ProfileRepository extends \Doctrine\ORM\EntityRepository
 		$qb = $this->createQueryBuilder('p')
 		->join('p.user', 'u')
 		->addSelect('u.username')
+		->addSelect('u.mail')
 		->where('p.id = :id')
 		->setParameter('id', $id)
 		->getQuery()

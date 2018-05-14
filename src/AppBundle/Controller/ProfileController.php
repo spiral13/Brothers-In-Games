@@ -72,7 +72,13 @@ class ProfileController extends Controller
 		$id = $this->getUser()->getProfile()->getId();
 		$profile = $this->getDoctrine()->getRepository(Profile::class)->findOneInArray($id);
 
-		return $this->json($profile);
+		$array = [];
+		$array = array_merge($profile[0][0], $array);
+		$array['birthdate'] = $array['birthdate']->format('d/m/Y');
+		$array['username'] = $profile[0]['username'];
+		$array['mail'] = $profile[0]['mail'];
+
+		return $this->json($array);
 	}
 
 	public function setDate($birthdate)
