@@ -17,8 +17,8 @@ import PropTypes from 'prop-types';
  */
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
 import CGU from 'frontend/src/containers/CGU/CGU';
-import LegalInformation from 'frontend/src/components/Legal';
-import ContactUs from 'frontend/src/components/Contact';
+import LegalInformation from 'frontend/src/containers/Legal/LegalInformation';
+import ContactUs from 'frontend/src/containers/Contact/ContactUs';
 import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
