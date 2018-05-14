@@ -135,6 +135,8 @@ my_profile_show:
 my_profile_update:
     path: /my-profile/update
     defaults: { _controller: AppBundle:Profile:update }
+    options:
+        expose: true
     methods: [POST]
 
 #------------------------------------------------------------------ Message
