@@ -2,23 +2,6 @@
  * Initial State---------------------------------------------------------
  */
 const initialState = {
-  profile: {
-    0: {
-      0: {
-        firstname: '',
-        image: '',
-        gender: '',
-        description: '',
-        birthday: [],
-      },
-      username: '',
-    },
-  },
-  account: {
-    username: '',
-    mail: '',
-    password: '',
-  },
   profileInformationChange: {
     username: '',
     firstname: '',
@@ -72,7 +55,7 @@ const reducer = (state = initialState, action = {}) => {
     case ADD_PROFILE_INFORMATION:
       return {
         ...state,
-        profile: action.profile.data,
+        profileInformationChange: action.profile.data,
       };
 
     case GET_ACCOUNT_INFORMATION:
@@ -83,7 +66,7 @@ const reducer = (state = initialState, action = {}) => {
     case ADD_ACCOUNT_INFORMATION:
       return {
         ...state,
-        account: action.account.data,
+        profileInformationChange: { ...state.profileInformationChange },
       };
 
     default:

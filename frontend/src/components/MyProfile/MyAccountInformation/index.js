@@ -19,13 +19,13 @@ const MyAccountInformation = ({ account }) => (
     <div
       className="BasicsInformation"
     >
-      {account[0].username}
+      {account.username}
     </div>
     <span className="labelBasicInformation">E-Mail: </span>
     <div
       className="BasicsInformation"
     >
-      {account[0].mail}
+      {account.mail}
     </div>
 
     <span className="labelBasicInformation">Mot de passe: </span>

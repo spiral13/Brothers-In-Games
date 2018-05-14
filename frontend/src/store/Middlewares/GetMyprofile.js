@@ -13,10 +13,10 @@ export default store => next => (action) => {
     case GET_PROFILE_INFORMATION: {
       // eslint-disable-next-line
       axios.get(Routing.generate('get_profile')).then((response) => {
-        response.data.forEach((data) => {
-          Object.keys(data[0]).forEach((oneData) => {
-            if (response.data[0][0][oneData] === null) response.data[0][0][oneData] = '';
-          });
+        Object.keys(response.data).forEach((oneData) => {
+          if (response.data[oneData] === null) {
+            response.data.oneData = '';
+          }
         });
         store.dispatch(addUserProfileInformation(response));
         store.dispatch(changeLoading('loadingUserProfile'));
