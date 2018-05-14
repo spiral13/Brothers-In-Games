@@ -10,6 +10,7 @@ import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Main from 'frontend/src/containers/GameList/Main';
 import Loading from 'frontend/src/components/Loading';
+import Footer from 'frontend/src/containers/Footer';
 
 /**
  * Code
@@ -41,6 +42,7 @@ class GameList extends React.Component {
         <div className="right-side">
           <Navbar />
           <Main />
+          <Footer />
         </div>
       </div>
     );

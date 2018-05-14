@@ -10,6 +10,7 @@ import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import OneMessage from 'frontend/src/containers/Messages/OneMessage';
 import Loading from 'frontend/src/components/Loading';
+import Footer from 'frontend/src/containers/Footer';
 /**
  * Code
  */
@@ -46,6 +47,7 @@ class ShowMessage extends React.Component {
         <div className="right-side">
           <Navbar />
           <OneMessage />
+          <Footer />
         </div>
       </div>
     );

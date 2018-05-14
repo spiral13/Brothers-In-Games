@@ -10,6 +10,7 @@ import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Loading from 'frontend/src/components/Loading';
 import Main from 'frontend/src/containers/Messages/Main';
+import Footer from 'frontend/src/containers/Footer';
 /**
  * Code
  */
@@ -50,6 +51,7 @@ class ReceiveMessages extends React.Component {
         <div className="right-side">
           <Navbar />
           <Main />
+          <Footer />
         </div>
       </div>
     );
