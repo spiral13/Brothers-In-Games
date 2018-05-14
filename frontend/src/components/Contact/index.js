@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Loading from 'frontend/src/components/Loading';
+import Footer from 'frontend/src/containers/Footer';
 /**
  * Code
  */
@@ -37,6 +38,7 @@ class ContactUs extends React.Component {
         <div className="right-side">
           <Navbar />
           <div id="contactUsContainer">Contactez-nous</div>
+          <Footer />
         </div>
       </div>
     );
