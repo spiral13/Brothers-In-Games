@@ -23,6 +23,7 @@ class Myprofile extends React.Component {
     this.props.actions.getAllFriends();
     this.props.actions.getAllGames();
     this.props.actions.getUserProfileInformation();
+    this.props.actions.getUserAccountInformation();
   }
 
   /*
@@ -33,14 +34,14 @@ class Myprofile extends React.Component {
       loadingFriends,
       loadingGames,
       loadingUserProfile,
-      // loadingUserAccount,
+      loadingUserAccount,
     } = this.props.loadings;
 
     if (
       !loadingFriends ||
       !loadingGames ||
-      !loadingUserProfile
-      // !loadingUserAccount
+      !loadingUserProfile ||
+      !loadingUserAccount
     ) {
       return <Loading />;
     }

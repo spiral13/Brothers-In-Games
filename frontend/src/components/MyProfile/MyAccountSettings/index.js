@@ -27,6 +27,16 @@ class MyAccountSettings extends React.Component {
     return (
       <section id="MyAccount">
         <form className="settingsInputs" onSubmit={this.onSubmit}>
+          <label htmlFor="inputPassword" className="label">Surnom: </label>
+          <input
+            id="inputPassword"
+            className="inputSettings"
+            name="username"
+            placeholder={user.username}
+            onChange={this.handleChangeInput}
+            value={this.props.profileInformationChange.username}
+          />
+
           <label htmlFor="inputPassword" className="label">Mot de passe: </label>
           <input
             id="inputPassword"
@@ -34,7 +44,7 @@ class MyAccountSettings extends React.Component {
             name="password"
             placeholder="Nouveau mot de passe"
             onChange={this.handleChangeInput}
-            value={this.props.user.password}
+            value={this.props.profileInformationChange.password}
           />
           <label htmlFor="inputEmail" className="label" >E-mail: </label>
           <input
@@ -43,7 +53,7 @@ class MyAccountSettings extends React.Component {
             name="mail"
             placeholder="E-mail"
             onChange={this.handleChangeInput}
-            value={this.props.user.mail}
+            value={this.props.profileInformationChange.mail}
           />
           <button id="confirmInformationButton">Validez vos informations</button>
         </form>
@@ -55,6 +65,7 @@ class MyAccountSettings extends React.Component {
 MyAccountSettings.propTypes = {
   actions: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  profileInformationChange: PropTypes.object.isRequired,
 };
 
 
