@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import RightSidebar from 'frontend/src/containers/HomeMember/RightSidebar';
 import Loading from 'frontend/src/components/Loading';
 /**
  * Code
@@ -33,14 +32,11 @@ class LegalInformation extends React.Component {
       return <Loading />;
     }
     return (
-      <div id="homeMember">
+      <div id="LegalInformation">
         <Sidebar />
-        <div id="homeMember-rightSide">
+        <div className="right-side">
           <Navbar />
-          <div id="homeMember-rightSide-body">
-            <div id="LegalInformation"> Info légales</div>
-            <RightSidebar />
-          </div>
+          <div id="LegalInformationContainer"> Info Légales</div>
         </div>
       </div>
     );
