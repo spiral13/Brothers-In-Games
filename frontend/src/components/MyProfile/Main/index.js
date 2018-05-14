@@ -161,8 +161,7 @@ class Main extends React.Component {
 }
 Main.propTypes = {
   userInformation: PropTypes.array.isRequired,
-  profileInformation: PropTypes.array.isRequired,
-  accountInformation: PropTypes.array.isRequired,
+  profileInformation: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   addOneFriend: PropTypes.string.isRequired,
 };

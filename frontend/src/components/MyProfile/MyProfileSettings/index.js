@@ -129,7 +129,6 @@ class MyProfileSettings extends React.Component {
 
 MyProfileSettings.propTypes = {
   actions: PropTypes.object.isRequired,
-  profileInformation: PropTypes.array.isRequired,
   profileInformationChange: PropTypes.object.isRequired,
 };
 

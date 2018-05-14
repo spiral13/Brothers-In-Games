@@ -46,7 +46,14 @@ export default store => next => (action) => {
       formData.append('birthday', store.getState().ProfileReducer.profileInformationChange.birthday);
       // eslint-disable-next-line
       axios.post(Routing.generate('my_profile_update'), formData).then((response) => {
-        console.log(response);
+        if (response.data.valid) {
+          alert('Votre profil a bien été mis à jour');
+        }
+        else {
+          Object.keys(response.data.errors).forEach((error) => {
+            alert(response.data.errors[error]);
+          });
+        }
       }).catch((error) => {
         console.log(error);
       });
@@ -60,7 +67,14 @@ export default store => next => (action) => {
       formData.append('mail', store.getState().ProfileReducer.account.mail);
       // eslint-disable-next-line
       axios.post(Routing.generate('account_update'), formData).then((response) => {
-        console.log(response);
+        if (response.data.valid) {
+          alert('Votre profil a bien été mis à jour');
+        }
+        else {
+          Object.keys(response.data.errors).forEach((error) => {
+            alert(response.data.errors[error]);
+          });
+        }
       }).catch((error) => {
         console.log(error);
       });
