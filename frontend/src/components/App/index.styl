@@ -4,7 +4,7 @@ body
   font-size: 1.7em;
   font-family: 'Montserrat', sans-serif;
   background-color: $second-color;
-  -moz-box-sizing: border-box
+  box-sizing: border-box;
 
 
 #app > div:not(#homeVisiter)
@@ -12,10 +12,10 @@ body
 	flex-direction: row;
 
 .resize-pic
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 0%;
-  width: 100%;
 
 .right-side
   display: flex;

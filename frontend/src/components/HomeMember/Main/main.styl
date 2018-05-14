@@ -7,19 +7,14 @@
   color: white;
   font-weight: normal;
   font-size: 0.5em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content space-between;
-  align-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 5px;
+  align-content: start;
   a
-    flex: 1 0 auto;
-    align-self: stretch;
     position: relative;
-    width: 430px;
     height: 250px;
     display: block;
-    margin: 5px 2px;
     border: 2px solid black;
   a:hover::before
     content: '';
@@ -31,8 +26,6 @@
     opacity: 0.2;
     cursor: pointer;
     z-index: 100;
-  a:last-child
-    width: 230px;
 .content-new
   position: relative;
   height: 100%;
