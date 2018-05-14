@@ -36,7 +36,7 @@ class HomeMember extends React.Component {
     return (
       <div id="homeMember">
         <Sidebar />
-        <div id="homeMember-rightSide">
+        <div id="homeMember-rightSide" className="right-side">
           <Navbar />
           <div id="homeMember-rightSide-body">
             <Main />
