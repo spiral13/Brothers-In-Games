@@ -2,6 +2,11 @@
  * Initial State---------------------------------------------------------
  */
 const initialState = {
+  account: {
+    username: '',
+    mail: '',
+    password: '',
+  },
   profileInformationChange: {
     username: '',
     firstname: '',
@@ -24,6 +29,7 @@ export const GET_PROFILE_INFORMATION = 'GET_PROFILE_INFORMATION';
 export const ADD_PROFILE_INFORMATION = 'ADD_PROFILE_INFORMATION';
 export const GET_ACCOUNT_INFORMATION = 'GET_ACCOUNT_INFORMATION';
 export const ADD_ACCOUNT_INFORMATION = 'ADD_ACCOUNT_INFORMATION';
+const CHANGE_NAME_ACCOUNT = 'CHANGE_NAME_ACCOUNT';
 
 /**
  * Reducer-------------------------------------------------------------
@@ -69,6 +75,13 @@ const reducer = (state = initialState, action = {}) => {
         profileInformationChange: { ...state.profileInformationChange },
       };
 
+    case CHANGE_NAME_ACCOUNT:
+      return {
+        ...state,
+        account: { ...state.account, [action.input]: action.value },
+        profileInformationChange: { ...state.profileInformationChange, [action.input]: action.value },
+      };
+
     default:
       return state;
   }
@@ -107,6 +120,12 @@ export const addUserAccountInformation = account => ({
 
 export const getUserAccountInformation = () => ({
   type: GET_ACCOUNT_INFORMATION,
+});
+
+export const changeNameAccount = (input, value) => ({
+  type: CHANGE_NAME_ACCOUNT,
+  input,
+  value,
 });
 
 /**

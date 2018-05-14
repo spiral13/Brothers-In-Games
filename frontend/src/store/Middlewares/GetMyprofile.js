@@ -55,9 +55,9 @@ export default store => next => (action) => {
 
     case SUBMIT_CHANGES_PRIVATE_INFORMATION: {
       const formData = new FormData();
-      formData.append('username', store.getState().ProfileReducer.profileInformationChange.username);
-      formData.append('password', store.getState().ProfileReducer.profileInformationChange.password);
-      formData.append('mail', store.getState().ProfileReducer.profileInformationChange.mail);
+      formData.append('username', store.getState().ProfileReducer.account.username);
+      formData.append('password', store.getState().ProfileReducer.account.password);
+      formData.append('mail', store.getState().ProfileReducer.account.mail);
       // eslint-disable-next-line
       axios.post(Routing.generate('account_update'), formData).then((response) => {
         console.log(response);

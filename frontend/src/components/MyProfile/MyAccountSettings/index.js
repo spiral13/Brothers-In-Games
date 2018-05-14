@@ -19,11 +19,11 @@ class MyAccountSettings extends React.Component {
   }
 
   handleChangeInput = ({ target }) => {
-    this.props.actions.changeName(target.name, target.value);
+    this.props.actions.changeNameAccount(target.name, target.value);
   }
 
   render() {
-    const { user } = this.props;
+    const { accountInformation } = this.props;
     return (
       <section id="MyAccount">
         <form className="settingsInputs" onSubmit={this.onSubmit}>
@@ -32,9 +32,9 @@ class MyAccountSettings extends React.Component {
             id="inputPassword"
             className="inputSettings"
             name="username"
-            placeholder={user.username}
+            placeholder={this.props.profileInformationChange.username}
             onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.username}
+            value={accountInformation.username}
           />
 
           <label htmlFor="inputPassword" className="label">Mot de passe: </label>
@@ -44,16 +44,16 @@ class MyAccountSettings extends React.Component {
             name="password"
             placeholder="Nouveau mot de passe"
             onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.password}
+            value={accountInformation.password}
           />
           <label htmlFor="inputEmail" className="label" >E-mail: </label>
           <input
             id="inputEmail"
             className="inputSettings"
             name="mail"
-            placeholder="E-mail"
+            placeholder={this.props.profileInformationChange.mail}
             onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.mail}
+            value={accountInformation.mail}
           />
           <button id="confirmInformationButton">Validez vos informations</button>
         </form>
@@ -64,7 +64,7 @@ class MyAccountSettings extends React.Component {
 
 MyAccountSettings.propTypes = {
   actions: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  accountInformation: PropTypes.object.isRequired,
   profileInformationChange: PropTypes.object.isRequired,
 };
 

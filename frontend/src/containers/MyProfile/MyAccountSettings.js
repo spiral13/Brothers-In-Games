@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
  * Import Local
  */
 import MyAccountSettings from 'frontend/src/components/MyProfile/MyAccountSettings';
-import { changeName, submitChangePrivateInformation } from 'frontend/src/store/reducers/ProfileReducer';
+import { changeName, submitChangePrivateInformation, changeNameAccount } from 'frontend/src/store/reducers/ProfileReducer';
 
 
 /*
@@ -23,6 +23,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     changeName,
+    changeNameAccount,
     submitChangePrivateInformation,
   }, dispatch),
 });
