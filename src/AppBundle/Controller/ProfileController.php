@@ -74,7 +74,10 @@ class ProfileController extends Controller
 
 		$array = [];
 		$array = array_merge($profile[0][0], $array);
-		$array['birthdate'] = $array['birthdate']->format('d/m/Y');
+		if($array['birthdate'] != null)
+		{
+			$array['birthdate'] = $array['birthdate']->format('d/m/Y');
+		}
 		$array['username'] = $profile[0]['username'];
 		$array['mail'] = $profile[0]['mail'];
 
