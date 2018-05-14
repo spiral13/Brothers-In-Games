@@ -21,7 +21,6 @@ const MyAccountInformation = ({ account }) => (
     >
       {account[0].username}
     </div>
-    {console.log(account)}
     <span className="labelBasicInformation">E-Mail: </span>
     <div
       className="BasicsInformation"
@@ -40,8 +39,7 @@ const MyAccountInformation = ({ account }) => (
 );
 
 MyAccountInformation.propTypes = {
-  user: PropTypes.object.isRequired,
-  account: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
+  account: PropTypes.array.isRequired,
 };
 
 /**

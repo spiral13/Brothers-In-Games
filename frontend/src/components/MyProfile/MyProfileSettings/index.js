@@ -75,7 +75,7 @@ class MyProfileSettings extends React.Component {
             onChange={this.handleChangeInput}
             value={this.props.profileInformationChange.birthday}
           />
-          {this.state.firstNameIsPublic &&
+          {/* {this.state.firstNameIsPublic &&
             <FaToggleOn
               className="publicToggle-on"
               onClick={() => this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
@@ -86,24 +86,24 @@ class MyProfileSettings extends React.Component {
             className="publicToggle-off"
             onClick={() => this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
           />
-          }
-          {this.state.nickNameIsPublic &&
+          } */}
+          {/* {this.state.nickNameIsPublic &&
             <FaToggleOn
               className="publicToggle-on"
               onClick={() =>
                 this.setState({ nickNameIsPublic: !this.state.nickNameIsPublic })}
             />
-          }
-          {!this.state.nickNameIsPublic &&
+          } */}
+          {/* {!this.state.nickNameIsPublic &&
           <FaToggleOff
             className="publicToggle-off"
             onClick={() =>
               this.setState({ nickNameIsPublic: !this.state.nickNameIsPublic })}
           />
-          }
+          } */}
           <button id="confirmInformationButton">Validez vos informations</button>
         </form>
-        <span id="settingsHelp"> *Rendre visibles ou non vos informations auprès de vos amis avec <FaToggleOn /> </span>
+        {/* <span id="settingsHelp"> *Rendre visibles ou non vos informations auprès de vos amis avec <FaToggleOn /> </span> */}
       </section>
     );
   }
@@ -111,7 +111,7 @@ class MyProfileSettings extends React.Component {
 
 MyProfileSettings.propTypes = {
   actions: PropTypes.object.isRequired,
-  profileInformation: PropTypes.object.isRequired,
+  profileInformation: PropTypes.array.isRequired,
   profileInformationChange: PropTypes.object.isRequired,
 };
 
