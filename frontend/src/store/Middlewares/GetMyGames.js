@@ -15,6 +15,7 @@ export default store => next => (action) => {
       const formData = new FormData();
       formData.append('content', store.getState().MyGamesReducer.textArea);
       formData.append('game-id', store.getState().MyGamesReducer.selectedPostGame.id);
+      // eslint-disable-next-line
       axios.post(Routing.generate('announcements_create'), formData).then((response) => {
         alert(response.data.message);
       }).catch((error) => {
@@ -46,6 +47,12 @@ export default store => next => (action) => {
       // eslint-disable-next-line
       axios.post(Routing.generate('my_games_add'), formData).then((response) => {
         // Ici, faire un dispatch.
+        if (response.data.status) {
+          alert(`Le jeu ${response.data.game[0].title} a bien été ajouté à votre liste de jeux`);
+        }
+        else {
+          alert(response.data.message);
+        }
         store.dispatch(addNewGameToList(response));
       }).catch((error) => {
         console.log(error);
@@ -65,7 +72,9 @@ export default store => next => (action) => {
       axios.post(Routing.generate('my_games_remove'), formData).then((response) => {
         store.dispatch(DeleteGameFromList(response));
         // Ici, faire un dispatch.
+        alert('Le jeu a bien été supprimé');
       }).catch((error) => {
+        alert('Erreur lors de la suppression du jeu');
         console.log(error);
       });
       break;

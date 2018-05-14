@@ -39,7 +39,7 @@ const MyAccountInformation = ({ account }) => (
 );
 
 MyAccountInformation.propTypes = {
-  account: PropTypes.array.isRequired,
+  account: PropTypes.object.isRequired,
 };
 
 /**
