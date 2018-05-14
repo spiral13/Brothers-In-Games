@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 */
 import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
-import RightSidebar from 'frontend/src/containers/HomeMember/RightSidebar';
 import Loading from 'frontend/src/components/Loading';
 /**
  * Code
@@ -33,19 +32,17 @@ class CGU extends React.Component {
       return <Loading />;
     }
     return (
-      <div id="homeMember">
+      <div id="CGU">
         <Sidebar />
-        <div id="homeMember-rightSide">
+        <div className="right-side">
           <Navbar />
-          <div id="homeMember-rightSide-body">
-            <div id="CGU"> Conditions Générales d'utilisation (lien)</div>
-            <RightSidebar />
-          </div>
+          <div id="CGUContainer"> Conditions Générales d'utilisation (lien)</div>
         </div>
       </div>
     );
   }
 }
+
 
 CGU.propTypes = {
   actions: PropTypes.object.isRequired,
