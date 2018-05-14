@@ -12,7 +12,6 @@ import Header from 'frontend/src/containers/HomeVisiter/Header';
 const HomeVisiter = () => (
   <div id="homeVisiter">
     <Header />
-    <div className="test" />
   </div>
 );
 /**
