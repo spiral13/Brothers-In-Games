@@ -13,10 +13,10 @@ export default store => next => (action) => {
     case GET_PROFILE_INFORMATION: {
       // eslint-disable-next-line
       axios.get(Routing.generate('get_profile')).then((response) => {
-        response.data.forEach((data) => {
-          Object.keys(data[0]).forEach((oneData) => {
-            if (response.data[0][0][oneData] === null) response.data[0][0][oneData] = '';
-          });
+        Object.keys(response.data).forEach((oneData) => {
+          if (response.data[oneData] === null) {
+            response.data.oneData = '';
+          }
         });
         store.dispatch(addUserProfileInformation(response));
         store.dispatch(changeLoading('loadingUserProfile'));
@@ -55,9 +55,9 @@ export default store => next => (action) => {
 
     case SUBMIT_CHANGES_PRIVATE_INFORMATION: {
       const formData = new FormData();
-      formData.append('username', store.getState().ProfileReducer.profileInformationChange.username);
-      formData.append('password', store.getState().ProfileReducer.profileInformationChange.password);
-      formData.append('mail', store.getState().ProfileReducer.profileInformationChange.mail);
+      formData.append('username', store.getState().ProfileReducer.account.username);
+      formData.append('password', store.getState().ProfileReducer.account.password);
+      formData.append('mail', store.getState().ProfileReducer.account.mail);
       // eslint-disable-next-line
       axios.post(Routing.generate('account_update'), formData).then((response) => {
         console.log(response);

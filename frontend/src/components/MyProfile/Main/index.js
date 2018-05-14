@@ -55,8 +55,7 @@ class Main extends React.Component {
   render() {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
-    const user = this.props.profileInformation[0];
-    const account = this.props.accountInformation;
+    const user = this.props.profileInformation;
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
@@ -65,7 +64,7 @@ class Main extends React.Component {
     return (
       <div id="MyProfileContainer">
         <section id="MyProfilePresentation">
-          <img id="MyProfilePhoto" src={user[0].image} alt={user[0].firstname} />
+          <img id="MyProfilePhoto" src={user.image} alt={user.firstname} />
           <div id="MyProfileDescription">{user.username}</div>
         </section>
 
@@ -81,7 +80,7 @@ class Main extends React.Component {
           <FaUserSecret className="MyAccountSectionIcon" />
           <MyAccountInformation
             user={user}
-            account={account}
+            account={user}
           />
         </div>
 

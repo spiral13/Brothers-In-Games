@@ -16,8 +16,7 @@ import { deleteFriend, changeOption, changeAddOneFriend, submitAddFriend } from 
 const mapStateToProps = state => ({
   userInformation: state.FriendsReducer.friend,
   addOneFriend: state.FriendsReducer.addOneFriend,
-  profileInformation: state.ProfileReducer.profile,
-  accountInformation: state.ProfileReducer.account,
+  profileInformation: state.ProfileReducer.profileInformationChange,
 });
 
 

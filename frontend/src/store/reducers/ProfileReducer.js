@@ -2,18 +2,6 @@
  * Initial State---------------------------------------------------------
  */
 const initialState = {
-  profile: {
-    0: {
-      0: {
-        firstname: '',
-        image: '',
-        gender: '',
-        description: '',
-        birthday: [],
-      },
-      username: '',
-    },
-  },
   account: {
     username: '',
     mail: '',
@@ -41,6 +29,7 @@ export const GET_PROFILE_INFORMATION = 'GET_PROFILE_INFORMATION';
 export const ADD_PROFILE_INFORMATION = 'ADD_PROFILE_INFORMATION';
 export const GET_ACCOUNT_INFORMATION = 'GET_ACCOUNT_INFORMATION';
 export const ADD_ACCOUNT_INFORMATION = 'ADD_ACCOUNT_INFORMATION';
+const CHANGE_NAME_ACCOUNT = 'CHANGE_NAME_ACCOUNT';
 
 /**
  * Reducer-------------------------------------------------------------
@@ -72,7 +61,7 @@ const reducer = (state = initialState, action = {}) => {
     case ADD_PROFILE_INFORMATION:
       return {
         ...state,
-        profile: action.profile.data,
+        profileInformationChange: action.profile.data,
       };
 
     case GET_ACCOUNT_INFORMATION:
@@ -83,7 +72,14 @@ const reducer = (state = initialState, action = {}) => {
     case ADD_ACCOUNT_INFORMATION:
       return {
         ...state,
-        account: action.account.data,
+        profileInformationChange: { ...state.profileInformationChange },
+      };
+
+    case CHANGE_NAME_ACCOUNT:
+      return {
+        ...state,
+        account: { ...state.account, [action.input]: action.value },
+        profileInformationChange: { ...state.profileInformationChange, [action.input]: action.value },
       };
 
     default:
@@ -124,6 +120,12 @@ export const addUserAccountInformation = account => ({
 
 export const getUserAccountInformation = () => ({
   type: GET_ACCOUNT_INFORMATION,
+});
+
+export const changeNameAccount = (input, value) => ({
+  type: CHANGE_NAME_ACCOUNT,
+  input,
+  value,
 });
 
 /**

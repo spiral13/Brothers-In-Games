@@ -53,16 +53,25 @@ class MyProfileSettings extends React.Component {
           <input
             id="inputFirstName"
             name="firstname"
-            placeholder={this.props.profileInformation[0][0].firstname}
+            placeholder={this.props.profileInformationChange.firstname}
             onChange={this.handleChangeInput}
             value={this.props.profileInformationChange.firstname}
+          />
+
+          <label htmlFor="inputFirstName" className="label">Image: </label>
+          <input
+            id="inputFirstName"
+            name="image"
+            placeholder={this.props.profileInformationChange.image}
+            onChange={this.handleChangeInput}
+            value={this.props.profileInformationChange.image}
           />
 
           <label htmlFor="inputFirstName" className="label">Description: </label>
           <input
             id="inputFirstName"
             name="description"
-            placeholder={this.props.profileInformation[0][0].description}
+            placeholder={this.props.profileInformationChange.description}
             onChange={this.handleChangeInput}
             value={this.props.profileInformationChange.description}
           />
@@ -71,7 +80,7 @@ class MyProfileSettings extends React.Component {
           <input
             id="inputFirstName"
             name="gender"
-            placeholder={this.props.profileInformation[0][0].gender}
+            placeholder={this.props.profileInformationChange.gender}
             onChange={this.handleChangeInput}
             value={this.props.profileInformationChange.gender}
           />
@@ -80,7 +89,7 @@ class MyProfileSettings extends React.Component {
           <input
             id="inputFirstName"
             name="birthday"
-            placeholder={this.props.profileInformation[0][0].birthday}
+            placeholder={this.props.profileInformationChange.birthday}
             onChange={this.handleChangeInput}
             value={this.props.profileInformationChange.birthday}
           />

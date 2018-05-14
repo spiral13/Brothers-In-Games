@@ -19,7 +19,7 @@ const MyProfileBasicsInformation = ({ user }) => (
       id="firstName"
       className="BasicsInformation"
     >
-      {user[0].firstname}
+      {user.firstname}
     </div>
 
     <span className="labelBasicInformation">Pseudonyme: </span>
@@ -33,21 +33,21 @@ const MyProfileBasicsInformation = ({ user }) => (
     <div
       className="BasicsInformation"
     >
-      {user[0].description}
+      {user.description}
     </div>
 
     <span className="labelBasicInformation">Genre: </span>
     <div
       className="BasicsInformation"
     >
-      {user[0].gender}
+      {user.gender}
     </div>
 
     <span className="labelBasicInformation">Date de naissance: </span>
     <div
       className="BasicsInformation"
     >
-      {user[0].birthdate.date}
+      {user.birthdate}
     </div>
 
     {/* <div id="mailProfile" className="BasicsInformation">{user.mail}</div>
