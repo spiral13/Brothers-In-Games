@@ -18,6 +18,9 @@ const initialState = {
     loadingOneMessage: false,
     loadingUserProfile: false,
     loadingUserAccount: false,
+    loadingContactUs: false,
+    loadingCgu: false,
+    loadingLegalInformation: false,
   },
 };
 

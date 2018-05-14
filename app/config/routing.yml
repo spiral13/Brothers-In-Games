@@ -39,7 +39,7 @@ contact:
 
 # Show contact
 # No need dynamic url
-contact:
+cgu:
     path: /CGU
     defaults: { _controller: AppBundle:Home:cgu }
     options:
@@ -47,7 +47,7 @@ contact:
 
 # Show contact
 # No need dynamic url
-contact:
+legal_mention:
     path: /legal-mention
     defaults: { _controller: AppBundle:Home:legalMention }
     options:

@@ -16,6 +16,9 @@ import PropTypes from 'prop-types';
  * Local import
  */
 import HomeVisiter from 'frontend/src/components/HomeVisiter';
+import CGU from 'frontend/src/containers/CGU/CGU';
+import LegalInformation from 'frontend/src/components/Legal';
+import ContactUs from 'frontend/src/components/Contact';
 import HomeMember from 'frontend/src/containers/HomeMember/HomeMember';
 import GameList from 'frontend/src/containers/GameList/gameListContainer';
 import Announcements from 'frontend/src/containers/Announcements/Announcements';
@@ -42,6 +45,9 @@ const App = ({ redirect, actions }) => {
         <Switch>
           <Route exact path="/app_dev.php" component={HomeVisiter} />
           <Route exact path="/app_dev.php/home" component={HomeMember} />
+          <Route exact path="/app_dev.php/contact" component={ContactUs} />
+          <Route exact path="/app_dev.php/CGU" component={CGU} />
+          <Route exact path="/app_dev.php/legal-mention" component={LegalInformation} />
           <Route exact path="/app_dev.php/games" component={GameList} />
           <Route exact path="/app_dev.php/my-games" component={MyGames} />
           <Route exact path="/app_dev.php/announcements" component={Announcements} />
