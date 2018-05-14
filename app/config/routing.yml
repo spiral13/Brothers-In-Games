@@ -29,6 +29,30 @@ home_user:
   options:
         expose: true
 
+# Show contact
+# No need dynamic url
+contact:
+    path: /contact
+    defaults: { _controller: AppBundle:Home:contact }
+    options:
+        expose: true
+
+# Show contact
+# No need dynamic url
+contact:
+    path: /CGU
+    defaults: { _controller: AppBundle:Home:cgu }
+    options:
+        expose: true
+
+# Show contact
+# No need dynamic url
+contact:
+    path: /legal-mention
+    defaults: { _controller: AppBundle:Home:legalMention }
+    options:
+        expose: true
+
 #------------------------------------------------------------------ User
 # User sign up
 # Return response in JSON format
