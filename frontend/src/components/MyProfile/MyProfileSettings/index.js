@@ -41,13 +41,39 @@ class MyProfileSettings extends React.Component {
             maxFileSize={5242880}
           /> */}
           <label htmlFor="inputFirstName" className="label">Prénom: </label>
-          {console.log(this.props.profileInformation)}
           <input
             id="inputFirstName"
             name="firstname"
-            placeholder="Prénom"
+            placeholder={this.props.profileInformation[0][0].firstname}
             onChange={this.handleChangeInput}
-            value={this.props.profileInformation[0][0].firstname}
+            value={this.props.profileInformationChange.firstname}
+          />
+
+          <label htmlFor="inputFirstName" className="label">Description: </label>
+          <input
+            id="inputFirstName"
+            name="description"
+            placeholder={this.props.profileInformation[0][0].description}
+            onChange={this.handleChangeInput}
+            value={this.props.profileInformationChange.description}
+          />
+
+          <label htmlFor="inputFirstName" className="label">gender: </label>
+          <input
+            id="inputFirstName"
+            name="gender"
+            placeholder={this.props.profileInformation[0][0].gender}
+            onChange={this.handleChangeInput}
+            value={this.props.profileInformationChange.gender}
+          />
+
+          <label htmlFor="inputFirstName" className="label">birthday: </label>
+          <input
+            id="inputFirstName"
+            name="birthday"
+            placeholder={this.props.profileInformation[0][0].birthday}
+            onChange={this.handleChangeInput}
+            value={this.props.profileInformationChange.birthday}
           />
           {this.state.firstNameIsPublic &&
             <FaToggleOn
@@ -61,15 +87,6 @@ class MyProfileSettings extends React.Component {
             onClick={() => this.setState({ firstNameIsPublic: !this.state.firstNameIsPublic })}
           />
           }
-
-          <label htmlFor="inputNickName" className="label" >Pseudonyme: </label>
-          <input
-            id="inputNickName"
-            name="username"
-            placeholder="Surnom"
-            onChange={this.handleChangeInput}
-            value={this.props.profileInformation[0].username}
-          />
           {this.state.nickNameIsPublic &&
             <FaToggleOn
               className="publicToggle-on"
@@ -95,6 +112,7 @@ class MyProfileSettings extends React.Component {
 MyProfileSettings.propTypes = {
   actions: PropTypes.object.isRequired,
   profileInformation: PropTypes.object.isRequired,
+  profileInformationChange: PropTypes.object.isRequired,
 };
 
 

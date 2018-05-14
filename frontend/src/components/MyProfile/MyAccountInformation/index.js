@@ -12,21 +12,28 @@ import PropTypes from 'prop-types';
 /**
  * Code
  */
-const MyAccountInformation = ({ user }) => (
+const MyAccountInformation = ({ account }) => (
   <section id="MyAccountInformation">
 
+    <span className="labelBasicInformation">Username: </span>
+    <div
+      className="BasicsInformation"
+    >
+      {account[0].username}
+    </div>
+    {console.log(account)}
     <span className="labelBasicInformation">E-Mail: </span>
     <div
       className="BasicsInformation"
     >
-      {user.mail}
+      {account[0].mail}
     </div>
 
     <span className="labelBasicInformation">Mot de passe: </span>
     <div
       className="BasicsInformation"
     >
-      {user.password}
+      ******
     </div>
 
   </section>
@@ -34,6 +41,7 @@ const MyAccountInformation = ({ user }) => (
 
 MyAccountInformation.propTypes = {
   user: PropTypes.object.isRequired,
+  account: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 
 /**

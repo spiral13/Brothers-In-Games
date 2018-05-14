@@ -56,8 +56,7 @@ class Main extends React.Component {
     const { selectedOption } = this.state;
     const { myFriend } = this.props.userInformation[0];
     const user = this.props.profileInformation[0];
-    const account = this.props.accountInformation[0];
-    console.log(account);
+    const account = this.props.accountInformation;
     let allOptions = [];
     myFriend.map((option) => {
       allOptions = [...allOptions, { value: option.username, label: option.username, id: option.id }];
@@ -82,6 +81,7 @@ class Main extends React.Component {
           <FaUserSecret className="MyAccountSectionIcon" />
           <MyAccountInformation
             user={user}
+            account={account}
           />
         </div>
 

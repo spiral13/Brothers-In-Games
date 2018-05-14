@@ -16,6 +16,7 @@ import { changeName, submitChangePrivateInformation } from 'frontend/src/store/r
  */
 const mapStateToProps = (state, ownProps) => ({
   accountInformation: state.ProfileReducer.account,
+  profileInformationChange: state.ProfileReducer.profileInformationChange,
   ownProps,
 });
 
