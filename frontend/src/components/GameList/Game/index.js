@@ -17,7 +17,10 @@ const Game = ({ game }) => (
       <img src={game.cover} alt={game.title} id="gamePicture" className="resize-pic" />
     </div>
     <h2 id="game-title">{game.title}</h2>
-    <p id="game-info">{game.announcementcount} annonce(s)</p>
+    <p id="game-info">
+      {game.announcementcount}
+      {(game.announcementcount > 1) ? ' annonces pour ce jeu' : ' annonce pour ce jeu'}
+    </p>
   </div>
 );
 

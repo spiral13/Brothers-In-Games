@@ -5,7 +5,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import FaToggleOff from 'react-icons/lib/fa/toggle-off';
 // import FaToggleOn from 'react-icons/lib/fa/toggle-on';
-// import ImageUploader from 'react-image-upload';
+// import ImagesUploader from 'react-images-uploader';
+// import 'react-images-uploader/styles.css';
+// import 'react-images-uploader/font.css';
 
 /**
 * Local import
@@ -14,10 +16,10 @@ import PropTypes from 'prop-types';
  * Code
  */
 class MyProfileSettings extends React.Component {
-  state = {
-    // firstNameIsPublic: false,
-    // nickNameIsPublic: false,
-  }
+  // state = {
+  //   firstNameIsPublic: false,
+  //   nickNameIsPublic: false,
+  // }
 
   onSubmit = (evt) => {
     evt.preventDefault();
@@ -33,13 +35,20 @@ class MyProfileSettings extends React.Component {
       <section id="settingsForMyProfile">
         {/* <div >  x Téléchargez votre photo de profil </div> */}
         <form className="settingsInputs" onSubmit={this.onSubmit}>
-          {/* <ImageUploader
-            buttonText="Choose images"
-            onChange={this.onDrop}
+          {/* <label htmlFor="inputphotoUploader" className="label">Photo de profil: </label>
+          <ImagesUploader
             id="photoUploader"
-            imgExtension={['.jpg', '.gif', '.png', '.gif']}
-            maxFileSize={5242880}
+            url="http://localhost:8000/notmultiple"
+            optimisticPreviews
+            multiple={false}
+            onLoadEnd={(err) => {
+              if (err) {
+                console.error(err);
+              }
+            }}
+            label="Upload a picture"
           /> */}
+
           <label htmlFor="inputFirstName" className="label">Prénom: </label>
           <input
             id="inputFirstName"
