@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import FaToggleOff from 'react-icons/lib/fa/toggle-off';
-import FaToggleOn from 'react-icons/lib/fa/toggle-on';
+// import FaToggleOff from 'react-icons/lib/fa/toggle-off';
+// import FaToggleOn from 'react-icons/lib/fa/toggle-on';
 // import ImageUploader from 'react-image-upload';
 
 /**
@@ -15,8 +15,8 @@ import FaToggleOn from 'react-icons/lib/fa/toggle-on';
  */
 class MyProfileSettings extends React.Component {
   state = {
-    firstNameIsPublic: false,
-    nickNameIsPublic: false,
+    // firstNameIsPublic: false,
+    // nickNameIsPublic: false,
   }
 
   onSubmit = (evt) => {
@@ -47,6 +47,15 @@ class MyProfileSettings extends React.Component {
             placeholder={this.props.profileInformation[0][0].firstname}
             onChange={this.handleChangeInput}
             value={this.props.profileInformationChange.firstname}
+          />
+
+          <label htmlFor="inputFirstName" className="label">Image: </label>
+          <input
+            id="inputFirstName"
+            name="image"
+            placeholder={this.props.profileInformation[0][0].image}
+            onChange={this.handleChangeInput}
+            value={this.props.profileInformationChange.image}
           />
 
           <label htmlFor="inputFirstName" className="label">Description: </label>
