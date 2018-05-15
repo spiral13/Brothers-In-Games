@@ -43,7 +43,7 @@ const App = ({ redirect, actions }) => {
       <div id="app">
         {bool ? <Redirect strict to={redirect.route} /> : true }
         <Switch>
-          <Route exact path="" component={HomeVisiter} />
+          <Route exact path="/" component={HomeVisiter} />
           <Route exact path="/home" component={HomeMember} />
           <Route exact path="/contact" component={ContactUs} />
           <Route exact path="/CGU" component={CGU} />

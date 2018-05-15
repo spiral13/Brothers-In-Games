@@ -59,7 +59,7 @@ export default store => next => (action) => {
     case GET_PROFILE_ANNOUNCE: {
       const url = window.location.pathname.split('/');
       const formData = new FormData();
-      formData.append('id', url[3]);
+      formData.append('id', url[2]);
       console.log(formData);
       /* eslint-disable-next-line */
       axios.post(Routing.generate('get_announcement'), formData).then((response) => {

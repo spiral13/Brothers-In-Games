@@ -36,7 +36,7 @@ export default store => next => (action) => {
     case GET_ONE_MESSAGE: {
       const url = window.location.pathname.split('/');
       const formData = new FormData();
-      formData.append('id', url[4]);
+      formData.append('id', url[3]);
       axios.post(Routing.generate('get_messages'), formData).then((response) => {
         // Ici, faire un dispatch.
         store.dispatch(addMessageSelected(response));
