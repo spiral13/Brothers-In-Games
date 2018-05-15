@@ -64,7 +64,7 @@ class Main extends React.Component {
     return (
       <div id="MyProfileContainer">
         <section id="MyProfilePresentation">
-          <img id="MyProfilePhoto" src={user.image} alt={user.firstname} />
+          <img id="MyProfilePhoto" src={user.image} alt="" />
           <div id="MyProfileDescription">{user.username}</div>
         </section>
 
