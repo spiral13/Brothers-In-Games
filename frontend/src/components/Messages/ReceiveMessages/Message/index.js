@@ -42,11 +42,6 @@ Message.propTypes = {
   author: PropTypes.objectOf(PropTypes.string.isRequired),
   receiver: PropTypes.objectOf(PropTypes.string.isRequired),
 };
-
-Message.defaultProps = {
-  author: { 0: '' },
-  receiver: { 0: '' },
-};
 /**
  * Export
  */
