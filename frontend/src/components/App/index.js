@@ -43,21 +43,21 @@ const App = ({ redirect, actions }) => {
       <div id="app">
         {bool ? <Redirect strict to={redirect.route} /> : true }
         <Switch>
-          <Route exact path="/app_dev.php" component={HomeVisiter} />
-          <Route exact path="/app_dev.php/home" component={HomeMember} />
-          <Route exact path="/app_dev.php/contact" component={ContactUs} />
-          <Route exact path="/app_dev.php/CGU" component={CGU} />
-          <Route exact path="/app_dev.php/legal-mention" component={LegalInformation} />
-          <Route exact path="/app_dev.php/games" component={GameList} />
-          <Route exact path="/app_dev.php/my-games" component={MyGames} />
-          <Route exact path="/app_dev.php/announcements" component={Announcements} />
-          <Route exact path="/app_dev.php/my-announcements" component={MyAnnouncements} />
-          <Route exact path="/app_dev.php/article/:id/:slug" component={Article} />
-          <Route exact path="/app_dev.php/announcement/:id/:slug" component={Announce} />
-          <Route exact path="/app_dev.php/message/receive" component={ReceiveMessages} />
-          <Route exact path="/app_dev.php/message/show/:id" component={ShowMessage} />
-          <Route exact path="/app_dev.php/my-profile" component={MyProfile} />
-          <Route exact path="/app_dev.php/profile/:slug" component={() => <div>Other Profile show</div>} />
+          <Route exact path="" component={HomeVisiter} />
+          <Route exact path="/home" component={HomeMember} />
+          <Route exact path="/contact" component={ContactUs} />
+          <Route exact path="/CGU" component={CGU} />
+          <Route exact path="/legal-mention" component={LegalInformation} />
+          <Route exact path="/games" component={GameList} />
+          <Route exact path="/my-games" component={MyGames} />
+          <Route exact path="/announcements" component={Announcements} />
+          <Route exact path="/my-announcements" component={MyAnnouncements} />
+          <Route exact path="/article/:id/:slug" component={Article} />
+          <Route exact path="/announcement/:id/:slug" component={Announce} />
+          <Route exact path="/message/receive" component={ReceiveMessages} />
+          <Route exact path="/message/show/:id" component={ShowMessage} />
+          <Route exact path="/my-profile" component={MyProfile} />
+          <Route exact path="/profile/:slug" component={() => <div>Other Profile show</div>} />
         </Switch>
       </div>
     </Router>

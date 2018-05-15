@@ -23,7 +23,7 @@ export default store => next => (action) => {
       axios.post(Routing.generate('login'), formData).then((response) => {
         console.warn('Requête de connexion envoyée');
         if (response.data.success) {
-          return store.dispatch(redirect('/app_dev.php/home'));
+          return store.dispatch(redirect('/home'));
         }
         alert('Votre identifiant ou mot de passe est incorrect');
       }).catch((error) => {

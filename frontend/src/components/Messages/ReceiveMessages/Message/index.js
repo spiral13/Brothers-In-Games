@@ -28,8 +28,8 @@ class Message extends React.Component {
     return (
       <tbody>
         <tr>
-          <td><a onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>{this.props.author !== undefined ? this.props.author.username : this.props.receiver.username }</a></td>
-          <td><a onClick={() => this.redirection(`/app_dev.php/message/show/${this.props.id}`)}>{content} ...</a></td>
+          <td><a onClick={() => this.redirection(`/message/show/${this.props.id}`)}>{this.props.author !== undefined ? this.props.author.username : this.props.receiver.username }</a></td>
+          <td><a onClick={() => this.redirection(`/message/show/${this.props.id}`)}>{content} ...</a></td>
         </tr>
       </tbody>
     );

@@ -23,9 +23,9 @@ class LastActu extends React.Component {
     return (
       <div className="lastActu resize-pic" style={style(this.props.image)}>
         {this.props.type === 'announcements' ?
-          <a onClick={() => this.redirection(`/app_dev.php/announcement/${this.props.id}/${this.props.slug}`)}>{<span className="navbarRange-title">{this.props.title} - {this.props.ownProps.username}</span>}</a>
+          <a onClick={() => this.redirection(`/announcement/${this.props.id}/${this.props.slug}`)}>{<span className="navbarRange-title">{this.props.title} - {this.props.ownProps.username}</span>}</a>
         :
-          <a onClick={() => this.redirection(`/app_dev.php/article/${this.props.id}/${this.props.slug}`)}>{this.props.title}</a>
+          <a onClick={() => this.redirection(`/article/${this.props.id}/${this.props.slug}`)}>{this.props.title}</a>
         }
       </div>
     );

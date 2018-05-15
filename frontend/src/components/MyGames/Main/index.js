@@ -80,7 +80,7 @@ class Main extends React.PureComponent {
 
            <div id="containerAllMyGames">
              {mygames.map(mygame => (
-               <a key={`MyGamesKey${mygame.id}`} onClick={() => this.redirection(`/app_dev.php/announcements?slug=${mygame.slug}`)}>
+               <a key={`MyGamesKey${mygame.id}`} onClick={() => this.redirection(`/announcements?slug=${mygame.slug}`)}>
                  <OneOfMyGames
                    key={mygame.index}
                    mygame={mygame}

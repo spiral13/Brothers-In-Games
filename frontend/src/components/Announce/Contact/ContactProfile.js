@@ -37,7 +37,7 @@ class ContactProfile extends React.Component {
         <h3>Joue à :</h3>
         <hr />
         <div className="gamesPlayed">
-          {this.props.datas.user.games.map(data => <a key={`ContactProfileOnClickKey${data.id}`} onClick={() => this.redirection(`/app_dev.php/announcements?slug=${data.slug}`)}><Game game={data} /></a>)}
+          {this.props.datas.user.games.map(data => <a key={`ContactProfileOnClickKey${data.id}`} onClick={() => this.redirection(`/announcements?slug=${data.slug}`)}><Game game={data} /></a>)}
           <div className="fake" />
           <div className="fake" />
           <div className="fake" />

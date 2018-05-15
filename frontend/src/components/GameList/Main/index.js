@@ -20,7 +20,7 @@ class Main extends React.Component {
       <div id="games">
         {this.props.games.map((game, index) => (
           // <a href={Routing.generate('announcements_list', { slug: game.slug })}>
-          <a key={`GameKeyInGameList${game.id}`} onClick={() => this.redirection(`/app_dev.php/announcements?slug=${game.slug}`)}>
+          <a key={`GameKeyInGameList${game.id}`} onClick={() => this.redirection(`/announcements?slug=${game.slug}`)}>
             <Game
               index={index}
               key={game.id}
