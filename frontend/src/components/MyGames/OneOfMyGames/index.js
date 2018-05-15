@@ -14,8 +14,12 @@ import PropTypes from 'prop-types';
  */
 const OneOfMyGames = ({ mygame }) => (
   <div id="oneOfMyGame">
-    <img src={mygame.cover} alt={mygame.title} id="oneOfMyGamePicture" className="resize-pic" />
-    <h2 id="oneOfMyGameTitle">{mygame.title}</h2>
+    <div id="oneOfMyGame-wrap">
+    	<img src={mygame.cover} alt={mygame.title} id="oneOfMyGamePicture" className="resize-pic" />
+   	</div>
+   	<p id="oneOfMyGame-info">
+    	<h2 id="oneOfMyGame-title">{mygame.title}</h2>
+    </p>
   </div>
 );
 
