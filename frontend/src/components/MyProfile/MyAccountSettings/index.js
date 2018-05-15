@@ -62,7 +62,8 @@ class MyAccountSettings extends React.Component {
               value={accountInformation.mail}
             />
           </div>
-          <button id="confirmInformationButton">Validez vos informations</button>
+          <button id="confirmInformationButton">Validez vos informations
+          </button>
         </form>
       </section>
     );
