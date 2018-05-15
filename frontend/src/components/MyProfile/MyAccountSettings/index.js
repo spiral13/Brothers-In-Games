@@ -27,34 +27,41 @@ class MyAccountSettings extends React.Component {
     return (
       <section id="MyAccount">
         <form className="settingsInputs" onSubmit={this.onSubmit}>
-          <label htmlFor="inputPassword" className="label">Surnom: </label>
-          <input
-            id="inputPassword"
-            className="inputSettings"
-            name="username"
-            placeholder={this.props.profileInformationChange.username}
-            onChange={this.handleChangeInput}
-            value={accountInformation.username}
-          />
+          <div className="settingsInputs-wrap">
+            <label htmlFor="inputPassword" className="label">Surnom: </label>
+            <input
+              id="inputPassword"
+              className="inputSettings"
+              name="username"
+              placeholder={this.props.profileInformationChange.username}
+              onChange={this.handleChangeInput}
+              value={accountInformation.username}
+            />
+          </div>
 
-          <label htmlFor="inputPassword" className="label">Mot de passe: </label>
-          <input
-            id="inputPassword"
-            className="inputSettings"
-            name="password"
-            placeholder="Nouveau mot de passe"
-            onChange={this.handleChangeInput}
-            value={accountInformation.password}
-          />
-          <label htmlFor="inputEmail" className="label" >E-mail: </label>
-          <input
-            id="inputEmail"
-            className="inputSettings"
-            name="mail"
-            placeholder={this.props.profileInformationChange.mail}
-            onChange={this.handleChangeInput}
-            value={accountInformation.mail}
-          />
+          <div className="settingsInputs-wrap">
+            <label htmlFor="inputPassword" className="label">Mot de passe: </label>
+            <input
+              id="inputPassword"
+              className="inputSettings"
+              name="password"
+              placeholder="Nouveau mot de passe"
+              onChange={this.handleChangeInput}
+              value={accountInformation.password}
+            />
+          </div>
+
+          <div className="settingsInputs-wrap">
+            <label htmlFor="inputEmail" className="label" >E-mail: </label>
+            <input
+              id="inputEmail"
+              className="inputSettings"
+              name="mail"
+              placeholder={this.props.profileInformationChange.mail}
+              onChange={this.handleChangeInput}
+              value={accountInformation.mail}
+            />
+          </div>
           <button id="confirmInformationButton">Validez vos informations</button>
         </form>
       </section>

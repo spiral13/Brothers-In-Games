@@ -48,51 +48,60 @@ class MyProfileSettings extends React.Component {
             }}
             label="Upload a picture"
           /> */}
+          <div className="settingsInputs-wrap">
+            <label htmlFor="inputFirstName" className="label">Prénom: </label>
+            <input
+              id="inputFirstName"
+              name="firstname"
+              placeholder={this.props.profileInformationChange.firstname}
+              onChange={this.handleChangeInput}
+              value={this.props.profileInformationChange.firstname}
+            />
+          </div>
 
-          <label htmlFor="inputFirstName" className="label">Prénom: </label>
-          <input
-            id="inputFirstName"
-            name="firstname"
-            placeholder={this.props.profileInformationChange.firstname}
-            onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.firstname}
-          />
+          <div className="settingsInputs-wrap">
+            <label htmlFor="inputFirstName" className="label">Image: </label>
+            <input
+              id="inputFirstName"
+              name="image"
+              placeholder={this.props.profileInformationChange.image}
+              onChange={this.handleChangeInput}
+              value={this.props.profileInformationChange.image}
+            />
+          </div>
 
-          <label htmlFor="inputFirstName" className="label">Image: </label>
-          <input
-            id="inputFirstName"
-            name="image"
-            placeholder={this.props.profileInformationChange.image}
-            onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.image}
-          />
+          <div className="settingsInputs-wrap">
+            <label htmlFor="inputFirstName" className="label">Description: </label>
+            <input
+              id="inputFirstName"
+              name="description"
+              placeholder={this.props.profileInformationChange.description}
+              onChange={this.handleChangeInput}
+              value={this.props.profileInformationChange.description}
+            />
+          </div>
 
-          <label htmlFor="inputFirstName" className="label">Description: </label>
-          <input
-            id="inputFirstName"
-            name="description"
-            placeholder={this.props.profileInformationChange.description}
-            onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.description}
-          />
+          <div className="settingsInputs-wrap">
+            <label htmlFor="inputFirstName" className="label">gender: </label>
+            <input
+              id="inputFirstName"
+              name="gender"
+              placeholder={this.props.profileInformationChange.gender}
+              onChange={this.handleChangeInput}
+              value={this.props.profileInformationChange.gender}
+            />
+          </div>
 
-          <label htmlFor="inputFirstName" className="label">gender: </label>
-          <input
-            id="inputFirstName"
-            name="gender"
-            placeholder={this.props.profileInformationChange.gender}
-            onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.gender}
-          />
-
-          <label htmlFor="inputFirstName" className="label">birthday: </label>
-          <input
-            id="inputFirstName"
-            name="birthday"
-            placeholder={this.props.profileInformationChange.birthday}
-            onChange={this.handleChangeInput}
-            value={this.props.profileInformationChange.birthday}
-          />
+          <div className="settingsInputs-wrap">          
+            <label htmlFor="inputFirstName" className="label">birthday: </label>
+            <input
+              id="inputFirstName"
+              name="birthday"
+              placeholder={this.props.profileInformationChange.birthday}
+              onChange={this.handleChangeInput}
+              value={this.props.profileInformationChange.birthday}
+            />
+          </div>
           {/* {this.state.firstNameIsPublic &&
             <FaToggleOn
               className="publicToggle-on"

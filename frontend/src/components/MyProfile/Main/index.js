@@ -70,28 +70,32 @@ class Main extends React.Component {
 
 
         {this.state.settingsForMyAccountIsClicked &&
-          <div id="settingsForMyAccount">
-            <MdCancel
-              onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
-              id="crossCancelSettingsForm"
-            />
-            <div id="changeYourInformation">Modifiez vos informations de compte</div>
-            <MyAccountSettings
-              user={user}
-            />
+          <div id="triggeredSettingsForm">
+            <div id="triggeredSettingsForm-wrap">
+              <MdCancel
+                onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
+                id="crossCancelDeleteForm"
+              />
+              <div id="changeYourInformation">Modifiez vos informations de compte</div>
+              <MyAccountSettings
+                user={user}
+              />
+            </div>
           </div>
         }
 
         {this.state.settingsForMyProfileIsClicked &&
         <div id="triggeredSettingsForm">
-          <MdCancel
-            onClick={() => this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
-            id="crossCancelDeleteForm"
-          />
-          <div id="changeYourInformation">Modifiez vos informations de profil</div>
-          <MyProfileSettings
-            user={user}
-          />
+          <div id="triggeredSettingsForm-wrap">
+            <MdCancel
+              onClick={() => this.setState({ settingsForMyProfileIsClicked: !this.state.settingsForMyProfileIsClicked })}
+              id="crossCancelDeleteForm"
+            />
+            <div id="changeYourInformation">Modifiez vos informations de profil</div>
+            <MyProfileSettings
+              user={user}
+            />
+          </div>
         </div>}
 
 
