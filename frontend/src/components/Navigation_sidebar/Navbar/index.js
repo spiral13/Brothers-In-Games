@@ -114,6 +114,11 @@ class Navbar extends React.Component {
           : true }
         <div id="navbar" style={this.state.style}>
           <div className="titles">
+            {this.state.littleScreen &&
+              this.state.style.display === 'flex' ?
+                <a onClick={() => this.setState({ ...this.state, style: { display: 'none' } })}><Bars /></a>
+              : true 
+            }
             {/* eslint-disable-next-line */}
             <a onClick={() => this.redirection("/app_dev.php/games")}>Liste des jeux</a>
             {/* eslint-disable-next-line */}
@@ -141,13 +146,6 @@ class Navbar extends React.Component {
                 {/* eslint-disable-next-line */}
                 <a href={Routing.generate('logout')}><Signout className="nav-fig" />Déconnexion</a>
               </li>
-              {this.state.littleScreen &&
-                <li>
-                  {this.state.style.display === 'flex' ?
-                    <a><Bars onClick={() => this.setState({ ...this.state, style: { display: 'none' } })} /></a>
-                  : true }
-                </li>
-              }
             </ul>
             {this.state.showAnnounce ?
               <div className="showInformations">
@@ -166,15 +164,11 @@ class Navbar extends React.Component {
           </nav>
         </div>
         {this.state.style.display === 'none' ?
-          <div id="navbar">
-            <nav id="nav-rubrique" style={{ width: '100%' }}>
-              <ul className="ulBarsHidden">
-                <li className="BarsHidden">
-                  <a onClick={() => this.setState({ ...this.state, style: { display: 'flex' } })}><Bars /></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+            <ul className="ulBarsHidden">
+              <li className="BarsHidden">
+                <a onClick={() => this.setState({ ...this.state, style: { display: 'flex' } })}><Bars /></a>
+              </li>
+            </ul>
         : true }
       </div>
     );
