@@ -135,14 +135,9 @@
     background-color: $main-color;
     color: $second-color;
 
-@media screen and (max-width: 650px) {
-  .titles {
-    font-size: 0.8em;
-  }
-  #nav-rubrique {
-    height: 20px;
-  }
-  #nav-rubrique ul li {
-    height: 50%;
-  }
-}
+.BarsHidden
+  float: right
+
+.ulBarsHidden::before
+  content: "";
+  flex: 1;

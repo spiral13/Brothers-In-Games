@@ -10,6 +10,7 @@ import Paper from 'react-icons/lib/fa/newspaper-o';
 import Envelope from 'react-icons/lib/fa/envelope';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import Bars from 'react-icons/lib/fa/bars';
 /**
 * Local import
 */
@@ -22,6 +23,16 @@ class Navbar extends React.Component {
     showAnnounce: false,
     createAnnounce: false,
     selectedOption: '',
+    littleScreen: false,
+    style: {
+      display: 'flex',
+    },
+  }
+
+  componentWillMount() {
+    if (document.body.clientWidth <= 1024) {
+      this.setState({ ...this.state, littleScreen: true, style: { display: 'none' } });
+    }
   }
 
   redirection = (value) => {
@@ -63,6 +74,14 @@ class Navbar extends React.Component {
       allOptions = [...allOptions, { value: option.title, label: option.title, id: option.id }];
       return true;
     });
+    window.onresize = () => {
+      if (document.body.clientWidth <= 1024) {
+        this.setState({ ...this.state, littleScreen: true, style: { display: 'none' } });
+      }
+      else {
+        this.setState({ ...this.state, littleScreen: false, style: { display: 'flex' } });
+      }
+    };
     return (
       <div>
         {this.state.createAnnounce ?
@@ -92,8 +111,8 @@ class Navbar extends React.Component {
               </fieldset>
             </form>
           </div>
-        : true }
-        <div id="navbar">
+          : true }
+        <div id="navbar" style={this.state.style}>
           <div className="titles">
             {/* eslint-disable-next-line */}
             <a onClick={() => this.redirection("/app_dev.php/games")}>Liste des jeux</a>
@@ -122,6 +141,13 @@ class Navbar extends React.Component {
                 {/* eslint-disable-next-line */}
                 <a href={Routing.generate('logout')}><Signout className="nav-fig" />Déconnexion</a>
               </li>
+              {this.state.littleScreen &&
+                <li>
+                  {this.state.style.display === 'flex' ?
+                    <a><Bars onClick={() => this.setState({ ...this.state, style: { display: 'none' } })} /></a>
+                  : true }
+                </li>
+              }
             </ul>
             {this.state.showAnnounce ?
               <div className="showInformations">
@@ -139,6 +165,17 @@ class Navbar extends React.Component {
             : true }
           </nav>
         </div>
+        {this.state.style.display === 'none' ?
+          <div id="navbar">
+            <nav id="nav-rubrique" style={{ width: '100%' }}>
+              <ul className="ulBarsHidden">
+                <li className="BarsHidden">
+                  <a onClick={() => this.setState({ ...this.state, style: { display: 'flex' } })}><Bars /></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        : true }
       </div>
     );
   }
