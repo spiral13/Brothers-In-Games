@@ -3,12 +3,6 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import FaToggleOff from 'react-icons/lib/fa/toggle-off';
-// import FaToggleOn from 'react-icons/lib/fa/toggle-on';
-// import ImagesUploader from 'react-images-uploader';
-// import 'react-images-uploader/styles.css';
-// import 'react-images-uploader/font.css';
-
 /**
 * Local import
 */
@@ -33,21 +27,8 @@ class MyProfileSettings extends React.Component {
   render() {
     return (
       <section id="settingsForMyProfile">
-        {/* <div >  x Téléchargez votre photo de profil </div> */}
+
         <form className="settingsInputs" onSubmit={this.onSubmit}>
-          {/* <label htmlFor="inputphotoUploader" className="label">Photo de profil: </label>
-          <ImagesUploader
-            id="photoUploader"
-            url="http://localhost:8000/notmultiple"
-            optimisticPreviews
-            multiple={false}
-            onLoadEnd={(err) => {
-              if (err) {
-                console.error(err);
-              }
-            }}
-            label="Upload a picture"
-          /> */}
           <div className="settingsInputs-wrap">
             <label htmlFor="inputFirstName" className="label">Prénom: </label>
             <input
@@ -92,7 +73,7 @@ class MyProfileSettings extends React.Component {
             />
           </div>
 
-          <div className="settingsInputs-wrap">          
+          <div className="settingsInputs-wrap">
             <label htmlFor="inputFirstName" className="label">birthday: </label>
             <input
               id="inputFirstName"

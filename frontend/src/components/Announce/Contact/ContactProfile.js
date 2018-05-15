@@ -21,7 +21,7 @@ class ContactProfile extends React.Component {
         <h3>A propos du joueur</h3>
         <hr />
         <div className="playerContent">
-          <img src={this.props.datas.user.profile.image} alt="Photo de profil" />
+          <img src={this.props.datas.user.profile.image} alt="" />
           <div className="personality">
             <h4>Nom du joueur:<span className="personality-player"> {this.props.datas.user.username}</span></h4>
             <h4>Âge:<span className="personality-player"> {this.props.datas.user.profile.birthdate}</span></h4>

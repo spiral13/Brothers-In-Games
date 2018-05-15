@@ -33,7 +33,7 @@ class OneMessage extends React.Component {
       <div className="OneMessage">
         <div className="currentMessage">
           <div className="userMessageProfile">
-            <img src={author.profile.image} alt="Image de profil" />
+            <img src={author.profile.image} alt="" />
             <h1>{author.username}</h1>
           </div>
           <p>{content}</p>
