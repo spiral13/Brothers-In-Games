@@ -68,21 +68,6 @@ class Main extends React.Component {
           <div id="MyProfileDescription">{user.username}</div>
         </section>
 
-        <div id="settingsForMyAccountTrigger" >
-          <h1 id="labelMyAccountTrigger">Modifiez vos informations de compte</h1>
-          <a
-            onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
-            id="FaWrenchMyAccountTrigger"
-          >
-            <FaWrench />
-          </a>
-
-          <FaUserSecret className="MyAccountSectionIcon" />
-          <MyAccountInformation
-            user={user}
-            account={user}
-          />
-        </div>
 
         {this.state.settingsForMyAccountIsClicked &&
           <div id="settingsForMyAccount">
@@ -155,6 +140,22 @@ class Main extends React.Component {
             <button>Supprimer</button>
           </form>
         </section>
+
+        <div id="settingsForMyAccountTrigger" >
+          <h1 id="labelMyAccountTrigger">Modifiez vos informations de compte</h1>
+          <a
+            onClick={() => this.setState({ settingsForMyAccountIsClicked: !this.state.settingsForMyAccountIsClicked })}
+            id="FaWrenchMyAccountTrigger"
+          >
+            <FaWrench />
+          </a>
+
+          <FaUserSecret className="MyAccountSectionIcon" />
+          <MyAccountInformation
+            user={user}
+            account={user}
+          />
+        </div>
       </div>
     );
   }

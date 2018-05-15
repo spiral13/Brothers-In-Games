@@ -1,3 +1,5 @@
+@require "frontend/styles/charte";
+
 #MyProfileContainer
   width: 50%
   height: 100%
@@ -16,7 +18,7 @@
   width:400px
   margin: 1em auto 1em
   padding:1em
-  background-color: #EC9C34
+  background-color: $main-color
   border-radius: 10px
 
 #MyProfilePhoto
@@ -52,7 +54,7 @@
 
 #FaWrenchMyAccountTrigger
   border-radius: 0 0 100% 100%
-  background-color: black
+  background-color: #2C2C2C;
   width:50px
   height:40px
   text-align: center
@@ -61,8 +63,8 @@
   margin-bottom: 5.3em
 
 #FaWrenchMyAccountTrigger:hover
-  color: black
-  background-color: #EC9C34
+  color: #2C2C2C;
+  background-color: $main-color
   cursor: pointer
 
 
@@ -75,7 +77,7 @@
   margin-top: 1em
   align-self: center
   width: 50px
-  color: black
+  color: #2C2C2C;
 
 #settingsForMyProfileTrigger:hover
   color: white
@@ -83,7 +85,7 @@
 
 .MyProfileSectionIcon
   margin: .5em auto
-  color: #EC9C34
+  color: $main-color
 
 .MyAccountSectionIcon
   margin: .5em auto
@@ -104,12 +106,12 @@
     margin-top: 10px
     padding: 5px
     border-radius: 4px
-    color: #ec9c34
+    color: $main-color
     font-weight: bold
     background-color: #000
   button:hover
     color: #000
-    background-color: #ec9c34
+    background-color: $main-color
     border: 2px solid #fff
     cursor: pointer
 
@@ -132,4 +134,40 @@
 }
 
 #crossCancelSettingsForm
-  color: #EC9C34
+  color: $main-color
+
+@media (max-width: 1024px)
+  #MyProfileContainer
+    width: 100vw
+
+  #settingsForMyAccount
+    width: 700px
+    height: 700px
+    margin-left: 28em
+    margin-top: 5em
+    background-color: white
+    border: thick double #EC9C34
+    border-radius: 10px
+    padding: 1em 2em
+    z-index:5
+
+  #settingsForMyAccountTrigger
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 1em
+    align-self: flex-end
+    width: 650px
+    height:80%
+    color: white
+    border-top: dotted  white
+    border-top-width: 2px 10px
+
+  #settingsForMyProfileTrigger
+    position: absolute
+    display: flex
+    justify-content: space-between
+    margin-top: 1em
+    align-self: center
+    width: 50px
+    color: #2C2C2C;
