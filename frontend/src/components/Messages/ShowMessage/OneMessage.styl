@@ -2,7 +2,7 @@
 
 .OneMessage
   width: 100%;
-  .currentMessage 
+  .currentMessage
     display: flex;
     flex-direction: column;
     margin: 0 auto 0  auto;
@@ -15,7 +15,7 @@
       align-items: center;
       color: white;
       line-height: 1em;
-      img 
+      img
         display: block;
         max-height: 100%;
         margin-right: 20px;
@@ -37,5 +37,10 @@
     font-size: 1.1em;
     color: $main-color
     text-indent: 20px;
-      
-      
+
+
+@media screen and (max-width: 1000px) {
+  .OneMessage-response {
+    width: inherit;
+  }
+}

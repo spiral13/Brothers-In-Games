@@ -141,6 +141,7 @@ class SignupForm extends React.Component {
             <label htmlFor="email">Email</label>
             <input
               className={classNames('email', { error: this.state.email.error, agreed: this.state.email.agreed })}
+              id="email"
               type="text"
               name="email"
               value={email}
@@ -148,10 +149,11 @@ class SignupForm extends React.Component {
             />
           </div>
           <div className="wrap">
-            <label htmlFor="email">Confirm Email</label>
+            <label htmlFor="confirmEmail">Confirm Email</label>
             <input
               className={classNames('email', { error: this.state.confirmEmail.error, agreed: this.state.confirmEmail.agreed })}
               type="text"
+              id="confirmEmail"
               name="confirmEmail"
               value={confirmEmail}
               onChange={this.changeInput}
