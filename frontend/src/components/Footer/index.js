@@ -3,14 +3,6 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Gamepad from 'react-icons/lib/fa/gamepad';
-// import User from 'react-icons/lib/fa/user';
-// import Server from 'react-icons/lib/fa/server';
-// import Signout from 'react-icons/lib/fa/sign-out';
-// import Paper from 'react-icons/lib/fa/newspaper-o';
-// import Envelope from 'react-icons/lib/fa/envelope';
-// import PropTypes from 'prop-types';
-// import Select from 'react-select';
 /**
 * Local import
 */
@@ -34,8 +26,8 @@ class Footer extends React.Component {
      return (
        <div id="footer">
          <div id="footerAllLinks">
-           <div id="sidebar-title">
-             <a href="#" onClick={() => this.redirection('/app_dev.php/home')}>
+           <div id="footerTitle">
+             <a onClick={() => this.redirection('/app_dev.php/home')}>
              Brothers<br /><span><i>in</i>Games</span>
              </a>
            </div>

@@ -10,6 +10,7 @@ import Paper from 'react-icons/lib/fa/newspaper-o';
 import Envelope from 'react-icons/lib/fa/envelope';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import Bars from 'react-icons/lib/fa/bars';
 /**
 * Local import
 */
@@ -22,6 +23,16 @@ class Navbar extends React.Component {
     showAnnounce: false,
     createAnnounce: false,
     selectedOption: '',
+    littleScreen: false,
+    style: {
+      display: 'flex',
+    },
+  }
+
+  componentWillMount() {
+    if (document.body.clientWidth <= 1024) {
+      this.setState({ ...this.state, littleScreen: true, style: { display: 'none' } });
+    }
   }
 
   redirection = (value) => {
@@ -63,6 +74,14 @@ class Navbar extends React.Component {
       allOptions = [...allOptions, { value: option.title, label: option.title, id: option.id }];
       return true;
     });
+    window.onresize = () => {
+      if (document.body.clientWidth <= 1024) {
+        this.setState({ ...this.state, littleScreen: true, style: { display: 'none' } });
+      }
+      else {
+        this.setState({ ...this.state, littleScreen: false, style: { display: 'flex' } });
+      }
+    };
     return (
       <div>
         {this.state.createAnnounce ?
@@ -92,9 +111,14 @@ class Navbar extends React.Component {
               </fieldset>
             </form>
           </div>
-        : true }
-        <div id="navbar">
+          : true }
+        <div id="navbar" style={this.state.style}>
           <div className="titles">
+            {this.state.littleScreen &&
+              this.state.style.display === 'flex' ?
+                <a onClick={() => this.setState({ ...this.state, style: { display: 'none' } })}><Bars /></a>
+              : true 
+            }
             {/* eslint-disable-next-line */}
             <a onClick={() => this.redirection("/app_dev.php/games")}>Liste des jeux</a>
             {/* eslint-disable-next-line */}
@@ -139,6 +163,13 @@ class Navbar extends React.Component {
             : true }
           </nav>
         </div>
+        {this.state.style.display === 'none' ?
+            <ul className="ulBarsHidden">
+              <li className="BarsHidden">
+                <a onClick={() => this.setState({ ...this.state, style: { display: 'flex' } })}><Bars /></a>
+              </li>
+            </ul>
+        : true }
       </div>
     );
   }
