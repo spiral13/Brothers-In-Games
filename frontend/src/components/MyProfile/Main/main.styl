@@ -1,7 +1,7 @@
 @require "frontend/styles/charte";
 
 #MyProfileContainer
-  width: 50%
+  width: 100%
   height: 100%
   display: flex
   align-items: baseline
@@ -16,6 +16,7 @@
   justify-content: center
   align-items: center
   width:400px
+  height: 400px
   margin: 1em auto 1em
   padding:1em
   background-color: $main-color
@@ -35,18 +36,18 @@
 
 
 #settingsForMyAccountTrigger
-  position: absolute
+  position: relative
   display: flex
   flex-direction: column
   align-items: center
-  margin-left: 24em
-  margin-top: 1em
-  align-self: flex-end
+  margin: 1em
+  padding-top: 1em
+  align-self: center
   width: 650px
   height:80%
   color: white
-  border-left: dotted  white
-  border-left-width: 2px 10px
+  border-top: dotted  white
+  border-top-width: 2px 10px
 
 
 #labelMyAccountTrigger
@@ -84,17 +85,19 @@
   cursor: pointer
 
 .MyProfileSectionIcon
-  margin: .5em auto
+  margin: 1em auto
+  width:50px
+  height:50px
   color: $main-color
 
 .MyAccountSectionIcon
-  margin: .5em auto
+  margin: 1em auto
   color: white
 
 
 #AddOrDeleteFriendFromMyProfile
   display: flex;
-  margin: .5em auto
+  margin: 2em auto 5em
   width: 500px
 
 .FriendsFromMyProfile
@@ -135,39 +138,3 @@
 
 #crossCancelSettingsForm
   color: $main-color
-
-@media (max-width: 1024px)
-  #MyProfileContainer
-    width: 100vw
-
-  #settingsForMyAccount
-    width: 700px
-    height: 700px
-    margin-left: 28em
-    margin-top: 5em
-    background-color: white
-    border: thick double #EC9C34
-    border-radius: 10px
-    padding: 1em 2em
-    z-index:5
-
-  #settingsForMyAccountTrigger
-    display: flex
-    flex-direction: column
-    align-items: center
-    margin-top: 1em
-    align-self: flex-end
-    width: 650px
-    height:80%
-    color: white
-    border-top: dotted  white
-    border-top-width: 2px 10px
-
-  #settingsForMyProfileTrigger
-    position: absolute
-    display: flex
-    justify-content: space-between
-    margin-top: 1em
-    align-self: center
-    width: 50px
-    color: #2C2C2C;
