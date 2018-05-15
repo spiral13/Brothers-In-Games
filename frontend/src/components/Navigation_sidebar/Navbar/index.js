@@ -37,7 +37,7 @@ class Navbar extends React.Component {
 
   redirection = (value) => {
     if (window.location.pathname === value) {
-      this.props.actions.redirect('/app_dev.php/redirection');
+      this.props.actions.redirect('/redirection');
       setTimeout(() => {
         this.props.actions.redirect(value);
       }, 300);
@@ -120,15 +120,15 @@ class Navbar extends React.Component {
               : true 
             }
             {/* eslint-disable-next-line */}
-            <a onClick={() => this.redirection("/app_dev.php/games")}>Liste des jeux</a>
+            <a onClick={() => this.redirection("/games")}>Liste des jeux</a>
             {/* eslint-disable-next-line */}
-            <a onClick={() => this.redirection("/app_dev.php/announcements")}>Liste des annonces</a>
+            <a onClick={() => this.redirection("/announcements")}>Liste des annonces</a>
           </div>
           <nav id="nav-rubrique">
             <ul>
               <li>
                 {/* eslint-disable-next-line */}
-                <a onClick={() => this.redirection("/app_dev.php/message/receive")}><Envelope className="nav-fig" /> Mes messages</a>
+                <a onClick={() => this.redirection("/message/receive")}><Envelope className="nav-fig" /> Mes messages</a>
               </li>
               <li>
                 {/* eslint-disable-next-line */}
@@ -136,11 +136,11 @@ class Navbar extends React.Component {
               </li>
               <li>
                 {/* eslint-disable-next-line */}
-                <a onClick={() => this.redirection("/app_dev.php/my-games")}><Gamepad className="nav-fig" />Mes jeux</a>
+                <a onClick={() => this.redirection("/my-games")}><Gamepad className="nav-fig" />Mes jeux</a>
               </li>
               <li>
                 {/* eslint-disable-next-line */}
-                <a onClick={() => this.redirection('/app_dev.php/my-profile')}><User className="nav-fig" />{this.props.playerName}</a>
+                <a onClick={() => this.redirection('/my-profile')}><User className="nav-fig" />{this.props.playerName}</a>
               </li>
               <li>
                 {/* eslint-disable-next-line */}
@@ -152,7 +152,7 @@ class Navbar extends React.Component {
                 <ul>
                   <li>
                     {/* eslint-disable-next-line */}
-                    <a onClick={() => this.redirection("/app_dev.php/my-announcements")}><Server className="nav-fig" />Mes annonces</a>
+                    <a onClick={() => this.redirection("/my-announcements")}><Server className="nav-fig" />Mes annonces</a>
                   </li>
                   <li>
                     {/* eslint-disable-next-line */}

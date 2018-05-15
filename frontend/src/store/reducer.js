@@ -18,7 +18,7 @@ const initialState = {
   news: [{}],
   redirect: {
     type: false,
-    route: '/app_dev.php',
+    route: '',
   },
 };
 

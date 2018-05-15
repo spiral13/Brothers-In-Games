@@ -23,9 +23,9 @@ class Sidebar extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    this.redirection('/app_dev.php/announcement');
+    this.redirection('/announcement');
     setTimeout(() => {
-      this.redirection(`/app_dev.php/announcements?slug=${this.state.selectedOption.slug}`);
+      this.redirection(`/announcements?slug=${this.state.selectedOption.slug}`);
     }, 500);
   }
 
@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
       <div id="sidebar">
         <div id="sidebar-wrap">
           <h1 id="sidebar-title">
-            <a href="#" onClick={() => this.redirection('/app_dev.php/home')}>
+            <a href="#" onClick={() => this.redirection('/home')}>
               Brothers<br /><span><i>in</i>Games</span>
             </a>
           </h1>
