@@ -10,6 +10,7 @@ import Sidebar from 'frontend/src/containers/Navigation_sidebar/Sidebar';
 import Navbar from 'frontend/src/containers/Navigation_sidebar/Navbar';
 import Loading from 'frontend/src/components/Loading';
 import Footer from 'frontend/src/containers/Footer';
+import Main from 'frontend/src/components/Contact/Main';
 /**
  * Code
  */
@@ -37,7 +38,7 @@ class ContactUs extends React.Component {
         <Sidebar />
         <div className="right-side">
           <Navbar />
-          <div id="contactUsContainer">Contactez-nous</div>
+          <Main />
           <Footer />
         </div>
       </div>
