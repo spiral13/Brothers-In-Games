@@ -7,10 +7,8 @@ class GamesProvider
 	public function gameTitle()
 	{
 		$array = [
-			'Star Wars : Battlefront II',
 			'Battlefield 3',
 			'GoldenEye 007',
-			'Dragon Ball FighterZ',
 			'Star Wars : Battlefront II ',
 			'Battlefield 4',
 			'Crash Team Racing',

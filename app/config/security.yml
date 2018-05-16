@@ -25,7 +25,7 @@ security:
             provider: user_provider
             form_login:
                 login_path: /
-                check_path: /login
+                check_path: login
                 success_handler: AppBundle\Handler\AuthenticationHandler
                 failure_handler: AppBundle\Handler\AuthenticationHandler
             logout:

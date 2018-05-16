@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\DataFixtures;
+use AppBundle\DataFixtures\Fakers\AvatarProvider;
 use AppBundle\DataFixtures\Fakers\GamesProvider;
+use AppBundle\DataFixtures\Fakers\GenreProvider;
 use AppBundle\Entity\Announcement;
 use AppBundle\Entity\Profile;
 use AppBundle\Entity\Role;
@@ -39,13 +41,15 @@ class AppFixtures extends Fixture
 
         $generator = \Faker\Factory::create('fr_FR');
         $generator->addProvider(new GamesProvider);
+        $generator->addProvider(new AvatarProvider);
+        $generator->addProvider(new GenreProvider);
 
         $populator = new \Faker\ORM\Doctrine\Populator($generator, $manager);
         $populator->addEntity('AppBundle\Entity\Profile', 10, array(
             'firstname' => function() use ($generator) { return $generator->firstName(); },
-            'image' => function() use ($generator) { return $generator->imageUrl(); },
+            'image' => function() use ($generator) { return $generator->avatar(); },
             'birthdate' => function() use ($generator) { return $generator->dateTimeBetween($startDate = '-80 years', $endDate = '-10 years', $timezone = null); },
-            'gender' => function() use ($generator) { return $generator->title(); },
+            'gender' => function() use ($generator) { return $generator->genre(); },
             'description' => function() use ($generator) { return $generator->text($maxNbChars = 200); }
         ));
         $populator->addEntity('AppBundle\Entity\User', 10, array(
@@ -55,9 +59,9 @@ class AppFixtures extends Fixture
             'isActive' => 1,
             'role' => $roleUser
         ));
-        $populator->addEntity('AppBundle\Entity\Article', 20, array(
+        $populator->addEntity('AppBundle\Entity\Article', 5, array(
             'title' => function() use ($generator) { return $generator->unique()->reviewTitle(); },
-            'image' => function() use ($generator) { return $generator->reviewImage(); },
+            'image' => function() use ($generator) { return $generator->unique()->reviewImage(); },
             'content' => function() use ($generator) { return $generator->text($maxNbChars = 2000); },
             'published' => function() use ($generator) { return $generator->dateTimeAD($max = 'now', $timezone = null); },
             'user' => $admin
@@ -67,7 +71,7 @@ class AppFixtures extends Fixture
                 $article->setSlug($this->slug->toSlug($title));
                 }
         ));
-        $populator->addEntity('AppBundle\Entity\Game', 20, array(
+        $populator->addEntity('AppBundle\Entity\Game', 10, array(
             'title' => function() use ($generator) { return $generator->unique()->gameTitle(); },
             'cover' => function() use ($generator) { return $generator->unique()->gameCover(); }
         ), array(
@@ -76,7 +80,7 @@ class AppFixtures extends Fixture
                 $game->setSlug($this->slug->toSlug($title));
                 }
         ));
-        $populator->addEntity('AppBundle\Entity\GameCategory', 5, array(
+        $populator->addEntity('AppBundle\Entity\GameCategory', 3, array(
             'title' => function() use ($generator) { return $generator->unique()->categoryTitle(); },
         ), array(
             function($category) { 
@@ -114,8 +118,8 @@ class AppFixtures extends Fixture
     {
         $profile = new Profile();
         $profile->setFirstname($generator->firstName());
-        $profile->setImage($generator->imageUrl());
-        $profile->setGender($generator->title());
+        $profile->setImage($generator->avatar());
+        $profile->setGender($generator->genre());
         $profile->setDescription($generator->text($maxNbChars = 200));
         $profile->setBirthdate($generator->dateTimeBetween($startDate = '-80 years', $endDate = '-10 years', $timezone = null));
         $manager->persist($profile);
@@ -130,7 +134,7 @@ class AppFixtures extends Fixture
     {
         shuffle($games);
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 1; $i++) {
             $announcement = new Announcement();
             $announcement->setGame($games[$i]);
             $announcement->setUser($devUser);
